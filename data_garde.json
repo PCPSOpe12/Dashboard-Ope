@@ -1,0 +1,3413 @@
+{
+  "rows": [
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "03/01/2024",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 6
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "10/01/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "11/01/2024",
+      "libelle": "BSPP",
+      "lieu": "CS NATI",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "14/01/2024",
+      "libelle": "BSPP",
+      "lieu": "CS STDE",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 7
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "20/01/2024",
+      "libelle": "BSPP 1",
+      "lieu": "CS CHPT",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 6
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "20/01/2024",
+      "libelle": "BSPP 3",
+      "lieu": "CS MASS",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 5
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "20/01/2024",
+      "libelle": "BSPP 2",
+      "lieu": "CS CRET",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "24/01/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "25/01/2024",
+      "libelle": "Renfort SAMU 92 - Régulation",
+      "lieu": "Garches - Salle Régulatio",
+      "inscrits": 1,
+      "heures": 5.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "28/01/2024",
+      "libelle": "BSPP",
+      "lieu": "CS PROY",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 7
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "28/01/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CRET",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 1
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "31/01/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 1,
+      "date": "31/01/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 19.9,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "02/02/2024",
+      "libelle": "Renfort SAMU 92 - Régulation",
+      "lieu": "Garches - Salle Régulatio",
+      "inscrits": 1,
+      "heures": 6.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "03/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS PROY",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "07/02/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "07/02/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "",
+      "inscrits": 4,
+      "heures": 19.9,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "08/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "08/02/2024",
+      "libelle": "BSPP 2",
+      "lieu": "CS NATI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "10/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS POISS",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "10/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CRET",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "18/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS STDE",
+      "inscrits": 5,
+      "heures": 40.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "19/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CHAR",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "22/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "22/02/2024",
+      "libelle": "BSPP 2",
+      "lieu": "CS CHAR",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "23/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "23/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MENI",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "24/02/2024",
+      "libelle": "BSPP 1",
+      "lieu": "CS CRET",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 5
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "28/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CHAR",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "29/02/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CHAR",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 2,
+      "date": "29/02/2024",
+      "libelle": "BSPP 2",
+      "lieu": "CS PROY",
+      "inscrits": 5,
+      "heures": 27.5,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "01/03/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "01/03/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "03/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS PROY",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 7
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "11/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CHAR",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 1
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "11/03/2024",
+      "libelle": "Renfort SAMU 92 - Régulation",
+      "lieu": "Garches - Salle Régulatio",
+      "inscrits": 1,
+      "heures": 5.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "12/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CHAR",
+      "inscrits": 5,
+      "heures": 40.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "12/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "14/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "21/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS NATI",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "21/03/2024",
+      "libelle": "Renfort SAMU 92 - Régulation",
+      "lieu": "Garches - Salle Régulatio",
+      "inscrits": 1,
+      "heures": 5.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "22/03/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "22/03/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 1
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "24/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CRET",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "26/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CHAR",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 1
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "27/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CHAR",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "28/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS NATI",
+      "inscrits": 5,
+      "heures": 27.5,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 3,
+      "date": "30/03/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 8
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "02/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS PROY",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "02/04/2024",
+      "libelle": "BSPP 2",
+      "lieu": "CS MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "06/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS BLAN",
+      "inscrits": 5,
+      "heures": 45.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "06/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CHPT",
+      "inscrits": 5,
+      "heures": 40.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "08/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS LAND",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "08/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS PROY",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "09/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS PROY",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "10/04/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "10/04/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "12/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MENI",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "16/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "17/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "17/04/2024",
+      "libelle": "BSPP 2",
+      "lieu": "CS PROY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "19/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MENI",
+      "inscrits": 5,
+      "heures": 27.5,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "20/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS STDE",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 9
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "21/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CRET",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "24/04/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "28/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS PROY",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "28/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS NATI",
+      "inscrits": 5,
+      "heures": 40.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 4,
+      "date": "30/04/2024",
+      "libelle": "BSPP",
+      "lieu": "CS BLAN",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 5
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "02/05/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "03/05/2024",
+      "libelle": "BSPP 24h PROTEC",
+      "lieu": "CS BItche",
+      "inscrits": 4,
+      "heures": 42.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "06/05/2024",
+      "libelle": "BSPP",
+      "lieu": "GREN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "08/05/2024",
+      "libelle": "BSPP",
+      "lieu": "CS LAND",
+      "inscrits": 4,
+      "heures": 44.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "08/05/2024",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 44.0,
+      "pec": 5
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "10/05/2024",
+      "libelle": "BSPP",
+      "lieu": "CS Créteil",
+      "inscrits": 4,
+      "heures": 22.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "20/05/2024",
+      "libelle": "BSPP",
+      "lieu": "CHPT",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 7
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "20/05/2024",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 35.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "21/05/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "21/05/2024",
+      "libelle": "BSPP",
+      "lieu": "IVRY",
+      "inscrits": 5,
+      "heures": 27.5,
+      "pec": 1
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "22/05/2024",
+      "libelle": "BSPP",
+      "lieu": "BITC",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "28/05/2024",
+      "libelle": "BSPP",
+      "lieu": "MTRL",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "29/05/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "30/05/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CRET",
+      "inscrits": 4,
+      "heures": 22.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 5,
+      "date": "31/05/2024",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "06/06/2024",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "06/06/2024",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "12/06/2024",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "15/06/2024",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "15/06/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CRET",
+      "inscrits": 4,
+      "heures": 18.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "19/06/2024",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "21/06/2024",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 5,
+      "heures": 37.5,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "27/06/2024",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 16.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 6,
+      "date": "27/06/2024",
+      "libelle": "BSPP",
+      "lieu": "CS à déterminé",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "03/07/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "09/07/2024",
+      "libelle": "BSPP",
+      "lieu": "MTRL",
+      "inscrits": 3,
+      "heures": 30.0,
+      "pec": 7
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "10/07/2024",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 55.0,
+      "pec": 6
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "10/07/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "CRAA Necker",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "12/07/2024",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "14/07/2024",
+      "libelle": "BSPP",
+      "lieu": "CS Château d'Eau",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "18/07/2024",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 6
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "18/07/2024",
+      "libelle": "BSPP",
+      "lieu": "CS NATI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "24/07/2024",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "24/07/2024",
+      "libelle": "BSPP",
+      "lieu": "CS BITCHE",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "24/07/2024",
+      "libelle": "JOP SAMU 75",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 7,
+      "date": "25/07/2024",
+      "libelle": "JOP SAMU 75",
+      "lieu": "CRAA Necker",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 8,
+      "date": "20/08/2024",
+      "libelle": "BSPP",
+      "lieu": "CS BLAN",
+      "inscrits": 3,
+      "heures": 30.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 8,
+      "date": "24/08/2024",
+      "libelle": "BSPP",
+      "lieu": "CS LAND",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 7
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "12/09/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "12/09/2024",
+      "libelle": "BSPP",
+      "lieu": "NATI",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 1
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "15/09/2024",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 5,
+      "heures": 50.0,
+      "pec": 6
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "18/09/2024",
+      "libelle": "BSPP",
+      "lieu": "MTRL",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "19/09/2024",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 22.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "20/09/2024",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "25/09/2024",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "25/09/2024",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 19.9,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 9,
+      "date": "29/09/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MENI",
+      "inscrits": 4,
+      "heures": 44.0,
+      "pec": 9
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "10/10/2024",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "14/10/2024",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "15/10/2024",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "16/10/2024",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "17/10/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MENI",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "21/10/2024",
+      "libelle": "BSPP",
+      "lieu": "CS BLAN",
+      "inscrits": 4,
+      "heures": 46.0,
+      "pec": 7
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "22/10/2024",
+      "libelle": "BSPP",
+      "lieu": "CS Charonne",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "29/10/2024",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 10,
+      "date": "31/10/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "06/11/2024",
+      "libelle": "SAMU 75 - Regulation",
+      "lieu": "Paris",
+      "inscrits": 2,
+      "heures": 10.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "11/11/2024",
+      "libelle": "BSPP",
+      "lieu": "CS CRET",
+      "inscrits": 5,
+      "heures": 35.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "13/11/2024",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "15/11/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "17/11/2024",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 8
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "21/11/2024",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "21/11/2024",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "22/11/2024",
+      "libelle": "BSPP",
+      "lieu": "MALF",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 11,
+      "date": "26/11/2024",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 12,
+      "date": "03/12/2024",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 6
+    },
+    {
+      "annee": 2024,
+      "mois": 12,
+      "date": "10/12/2024",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2024,
+      "mois": 12,
+      "date": "10/12/2024",
+      "libelle": "BSPP",
+      "lieu": "NATI",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 2
+    },
+    {
+      "annee": 2024,
+      "mois": 12,
+      "date": "18/12/2024",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 6
+    },
+    {
+      "annee": 2024,
+      "mois": 12,
+      "date": "21/12/2024",
+      "libelle": "BSPP",
+      "lieu": "CHPT",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 6
+    },
+    {
+      "annee": 2024,
+      "mois": 12,
+      "date": "22/12/2024",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 55.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "01/01/2025",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 5,
+      "heures": 35.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "04/01/2025",
+      "libelle": "BSPP",
+      "lieu": "CS PROY",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 7
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "05/01/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "08/01/2025",
+      "libelle": "BSPP",
+      "lieu": "LANDON",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "08/01/2025",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "10/01/2025",
+      "libelle": "BSPP",
+      "lieu": "CHAR",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "10/01/2025",
+      "libelle": "BSPP",
+      "lieu": "MTRL",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "20/01/2025",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "24/01/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 22.0,
+      "pec": 1
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "27/01/2025",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 36.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "30/01/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "30/01/2025",
+      "libelle": "BSPP",
+      "lieu": "NATI",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "30/01/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 1,
+      "date": "31/01/2025",
+      "libelle": "SAMU 75 - Régulation",
+      "lieu": "Paris",
+      "inscrits": 2,
+      "heures": 12.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "03/02/2025",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 1
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "10/02/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "11/02/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "12/02/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "16/02/2025",
+      "libelle": "Renfort Garde BSPP",
+      "lieu": "CS Plaisance",
+      "inscrits": 1,
+      "heures": 10.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "16/02/2025",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "20/02/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "21/02/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "21/02/2025",
+      "libelle": "SAMU 75 - Regulation",
+      "lieu": "Paris",
+      "inscrits": 2,
+      "heures": 12.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "21/02/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "22/02/2025",
+      "libelle": "BSPP",
+      "lieu": "",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 8
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "26/02/2025",
+      "libelle": "SAMU 75 - Régulation",
+      "lieu": "Paris",
+      "inscrits": 1,
+      "heures": 5.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "28/02/2025",
+      "libelle": "BSPP",
+      "lieu": "AULN",
+      "inscrits": 3,
+      "heures": 36.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "28/02/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 2,
+      "date": "28/02/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "05/03/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 10
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "07/03/2025",
+      "libelle": "BSPP",
+      "lieu": "CS MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "09/03/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "11/03/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "12/03/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 8,
+      "heures": 39.8,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "12/03/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 8,
+      "heures": 39.8,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "14/03/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "14/03/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "16/03/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "19/03/2025",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "20/03/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "21/03/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "23/03/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "24/03/2025",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "26/03/2025",
+      "libelle": "SAMU 75 - Régulation",
+      "lieu": "CRAA Necker",
+      "inscrits": 1,
+      "heures": 5.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "26/03/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "26/03/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 3,
+      "date": "26/03/2025",
+      "libelle": "BSPP",
+      "lieu": "NATI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "01/04/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "04/04/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "09/04/2025",
+      "libelle": "BSPP",
+      "lieu": "BOUL",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "11/04/2025",
+      "libelle": "BSPP",
+      "lieu": "AUBE",
+      "inscrits": 5,
+      "heures": 27.5,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "13/04/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 40.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "23/04/2025",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "26/04/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "28/04/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "01/05/2025",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "01/05/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 8
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "07/05/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 50.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "07/05/2025",
+      "libelle": "BSPP",
+      "lieu": "NATI",
+      "inscrits": 4,
+      "heures": 22.0,
+      "pec": 1
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "09/05/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "16/05/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "16/05/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "19/05/2025",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "27/05/2025",
+      "libelle": "BSPP",
+      "lieu": "NATI",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "27/05/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "28/05/2025",
+      "libelle": "SAMU 75 - Régulation",
+      "lieu": "",
+      "inscrits": 2,
+      "heures": 10.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 5,
+      "date": "31/05/2025",
+      "libelle": "BSPP",
+      "lieu": "MALA",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "02/06/2025",
+      "libelle": "Garde BSPP",
+      "lieu": "PROT",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "03/06/2025",
+      "libelle": "Garde BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "03/06/2025",
+      "libelle": "Garde BSPP",
+      "lieu": "MENIL",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "09/06/2025",
+      "libelle": "BSPP",
+      "lieu": "CHAR",
+      "inscrits": 4,
+      "heures": 36.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "09/06/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "12/06/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "13/06/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "17/06/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "18/06/2025",
+      "libelle": "SAMU 75 - Régulation",
+      "lieu": "Paris",
+      "inscrits": 1,
+      "heures": 5.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "20/06/2025",
+      "libelle": "BSPP",
+      "lieu": "BONDY",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 7
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "21/06/2025",
+      "libelle": "BSPP JPO",
+      "lieu": "NATI",
+      "inscrits": 5,
+      "heures": 37.5,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 6,
+      "date": "23/06/2025",
+      "libelle": "Garde BSPP",
+      "lieu": "Meni",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "01/07/2025",
+      "libelle": "Garde BSPP",
+      "lieu": "Mtrl",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "04/07/2025",
+      "libelle": "SAMU 75 - Régulation",
+      "lieu": "",
+      "inscrits": 2,
+      "heures": 12.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "05/07/2025",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 5,
+      "heures": 42.5,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "07/07/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "09/07/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "11/07/2025",
+      "libelle": "SAMU 75",
+      "lieu": "",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "11/07/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "22/07/2025",
+      "libelle": "BSPP",
+      "lieu": "Mass",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 7
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "24/07/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "28/07/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "29/07/2025",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 1
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "29/07/2025",
+      "libelle": "BSPP",
+      "lieu": "PLAI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "30/07/2025",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 3,
+      "heures": 36.0,
+      "pec": 7
+    },
+    {
+      "annee": 2025,
+      "mois": 7,
+      "date": "30/07/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "01/08/2025",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 8
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "01/08/2025",
+      "libelle": "BSPP",
+      "lieu": "COBI",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "07/08/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "07/08/2025",
+      "libelle": "BSPP",
+      "lieu": "BSLT",
+      "inscrits": 3,
+      "heures": 33.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "12/08/2025",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "23/08/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "28/08/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "29/08/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 8,
+      "date": "29/08/2025",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "04/09/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "04/09/2025",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "05/09/2025",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "08/09/2025",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "10/09/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "16/09/2025",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "17/09/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "23/09/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "23/09/2025",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 4,
+      "heures": 26.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "24/09/2025",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "24/09/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 9,
+      "date": "26/09/2025",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "04/10/2025",
+      "libelle": "BSPP",
+      "lieu": "BOND",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "08/10/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "08/10/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 19.9,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "09/10/2025",
+      "libelle": "SAMU 92",
+      "lieu": "DEPARTEMENT DES HAUTS DE",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "13/10/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "15/10/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "20/10/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "24/10/2025",
+      "libelle": "BSPP",
+      "lieu": "CHAR",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "24/10/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "28/10/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 10,
+      "date": "29/10/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "05/11/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "07/11/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 2
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "10/11/2025",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "10/11/2025",
+      "libelle": "BSPP",
+      "lieu": "MTRL",
+      "inscrits": 4,
+      "heures": 36.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "11/11/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 8
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "11/11/2025",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "15/11/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 40.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "17/11/2025",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "18/11/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "21/11/2025",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "22/11/2025",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 8
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "24/11/2025",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "26/11/2025",
+      "libelle": "BSPP",
+      "lieu": "BOUL",
+      "inscrits": 5,
+      "heures": 25.0,
+      "pec": 1
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "27/11/2025",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 11,
+      "date": "30/11/2025",
+      "libelle": "BSPP",
+      "lieu": "COBI",
+      "inscrits": 4,
+      "heures": 40.0,
+      "pec": 6
+    },
+    {
+      "annee": 2025,
+      "mois": 12,
+      "date": "08/12/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 12,
+      "date": "12/12/2025",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 12,
+      "date": "15/12/2025",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2025,
+      "mois": 12,
+      "date": "18/12/2025",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2025,
+      "mois": 12,
+      "date": "30/12/2025",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 5,
+      "heures": 40.0,
+      "pec": 5
+    },
+    {
+      "annee": 2025,
+      "mois": 12,
+      "date": "30/12/2025",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 22.0,
+      "pec": 2
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "03/01/2026",
+      "libelle": "BSPP",
+      "lieu": "MTRL",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 6
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "04/01/2026",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "05/01/2026",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "",
+      "inscrits": 4,
+      "heures": 18.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "06/01/2026",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "07/01/2026",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 5,
+      "heures": 24.9,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "08/01/2026",
+      "libelle": "BSPP",
+      "lieu": "NATI",
+      "inscrits": 5,
+      "heures": 27.5,
+      "pec": 2
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "11/01/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "11/01/2026",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 45.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "14/01/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "14/01/2026",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
+      "inscrits": 4,
+      "heures": 19.9,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "20/01/2026",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 34.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "25/01/2026",
+      "libelle": "BSPP",
+      "lieu": "AULN",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "30/01/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2026,
+      "mois": 1,
+      "date": "30/01/2026",
+      "libelle": "BSPP",
+      "lieu": "MTRL",
+      "inscrits": 3,
+      "heures": 27.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "05/02/2026",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "08/02/2026",
+      "libelle": "BSPP",
+      "lieu": "STDE",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 6
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "11/02/2026",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "13/02/2026",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "14/02/2026",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 6
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "16/02/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "19/02/2026",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "21/02/2026",
+      "libelle": "Renfort 24H SAMU 92 - PARTIE N°2 - VPS PARIS 12",
+      "lieu": "DEPARTEMENT DES HAUTS DE",
+      "inscrits": 4,
+      "heures": 28.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "22/02/2026",
+      "libelle": "Renfort 24H SAMU 92 - PARTIE N°3 - VPS PARIS 12-A",
+      "lieu": "DEPARTEMENT DES HAUTS DE",
+      "inscrits": 5,
+      "heures": 40.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "22/02/2026",
+      "libelle": "Renfort 24H SAMU 92 - PARTIE N°3 - VPS PARIS 12-B",
+      "lieu": "DEPARTEMENT DES HAUTS DE",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 2,
+      "date": "28/02/2026",
+      "libelle": "BSPP",
+      "lieu": "CHPT",
+      "inscrits": 5,
+      "heures": 55.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "01/03/2026",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 47.5,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "03/03/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 9
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "05/03/2026",
+      "libelle": "BSPP",
+      "lieu": "PARM",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "05/03/2026",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "06/03/2026",
+      "libelle": "BSPP",
+      "lieu": "PANT",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 7
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "08/03/2026",
+      "libelle": "BSPP",
+      "lieu": "GREN",
+      "inscrits": 4,
+      "heures": 36.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "10/03/2026",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "15/03/2026",
+      "libelle": "BSPP",
+      "lieu": "GREN",
+      "inscrits": 5,
+      "heures": 60.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "15/03/2026",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 4,
+      "heures": 40.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "16/03/2026",
+      "libelle": "BSPP",
+      "lieu": "BITC",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "17/03/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 2
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "17/03/2026",
+      "libelle": "BSPP",
+      "lieu": "MTRL",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 8
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "21/03/2026",
+      "libelle": "BSPP",
+      "lieu": "Mass",
+      "inscrits": 4,
+      "heures": 32.0,
+      "pec": 6
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "22/03/2026",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 40.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "25/03/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "26/03/2026",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "26/03/2026",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "29/03/2026",
+      "libelle": "BSPP",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 32.5,
+      "pec": 2
+    },
+    {
+      "annee": 2026,
+      "mois": 3,
+      "date": "31/03/2026",
+      "libelle": "BSPP",
+      "lieu": "PANT",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "03/04/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "03/04/2026",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 3,
+      "heures": 18.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "09/04/2026",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "10/04/2026",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "13/04/2026",
+      "libelle": "BSPP",
+      "lieu": "MTMA",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 2
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "14/04/2026",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "18/04/2026",
+      "libelle": "Garde BSPP",
+      "lieu": "STDE",
+      "inscrits": 5,
+      "heures": 50.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "22/04/2026",
+      "libelle": "BSPP",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "22/04/2026",
+      "libelle": "BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "14/06/2026",
+      "libelle": "[PROV] BSPP JPO CRET",
+      "lieu": "CS CRET",
+      "inscrits": 1,
+      "heures": 10.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "20/06/2026",
+      "libelle": "[PROV] BSPP JPO NATI",
+      "lieu": "CS NATI",
+      "inscrits": 4,
+      "heures": 40.0,
+      "pec": 0
+    }
+  ],
+  "lastModified": "20/04/2026 16:20",
+  "maxDate": "20/06/2026",
+  "totalRows": 340,
+  "years": [
+    2024,
+    2025,
+    2026
+  ],
+  "type": "garde"
+}
