@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPS — Suivi activité</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1A3A5C;--blue:#378ADD;--blue-lt:#E6F1FB;
+  --green:#639922;--green-lt:#EAF3DE;
+  --amber:#BA7517;--amber-lt:#FAEEDA;
+  --red:#E24B4A;--red-lt:#FCEBEB;
+  --gray-lt:#F1EFE8;
+  --border:#DEE2E6;--text:#1A1A1A;--muted:#6B7280;
+  --bg:#F8F9FB;--card:#FFF;--radius:10px;--rsm:6px;
+}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);font-size:13px}
+
+/* ── Loading ── */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:14px}
+.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── Header ── */
+.header{background:var(--navy);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.header-title{color:#fff;font-size:16px;font-weight:700}
+.header-meta{color:rgba(255,255,255,.6);font-size:11px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.meta-date{color:#FAC775;font-weight:700}
+.meta-badge{background:rgba(255,255,255,.13);border-radius:4px;padding:2px 8px;font-size:11px;color:#fff}
+.admin-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:5px;padding:4px 11px;font-size:11px;cursor:pointer}
+.admin-btn:hover{background:rgba(255,255,255,.2)}
+
+/* ── Admin panel ── */
+.admin-panel{background:#fff;border-bottom:2px solid var(--amber);padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.admin-panel label{font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.07em}
+.drop-zone{border:2px dashed var(--border);border-radius:8px;padding:10px 20px;cursor:pointer;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;transition:border-color .2s,background .2s}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--blue);background:var(--blue-lt)}
+.btn-upload{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer}
+.btn-upload:hover{background:#0F2A45}
+.upload-status{font-size:12px;color:var(--muted)}
+.upload-ok{color:var(--green);font-weight:600}
+.upload-err{color:var(--red);font-weight:600}
+#fileInput{display:none}
+.admin-hint{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ── Controls ── */
+.controls{background:var(--card);border-bottom:1px solid var(--border);padding:9px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.controls label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+select{font-size:12px;padding:4px 9px;border-radius:var(--rsm);border:1px solid var(--border);background:#fff;color:var(--text);cursor:pointer}
+
+/* ── Layout ── */
+.main{padding:18px 24px;max-width:1400px;margin:0 auto}
+.section-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:18px 0 9px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.kpi{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:13px 15px}
+.kpi-label{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.kpi-value{font-size:27px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:5px}
+.kpi-deltas{display:flex;gap:5px;flex-wrap:wrap}
+.delta{font-size:11px;font-weight:600;padding:2px 6px;border-radius:4px;white-space:nowrap}
+.d-up{background:var(--green-lt);color:#27500A}
+.d-down{background:var(--red-lt);color:#791F1F}
+.d-neu{background:var(--gray-lt);color:#444441}
+.d-warn{background:var(--amber-lt);color:#633806}
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px}
+.chart-full{margin-top:13px}
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:15px}
+.card-title{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em}
+.legend{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:9px}
+.legend span{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)}
+.ldot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.tbl-wrap{overflow-x:auto;margin-top:13px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+th{background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:8px 9px;text-align:right;white-space:nowrap}
+th:first-child{text-align:left}
+td{padding:6px 9px;border-bottom:1px solid var(--border);text-align:right;color:var(--text)}
+td:first-child{text-align:left;font-weight:600;color:var(--navy)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#F8FAFC}
+.pos{color:#27500A;font-weight:700}.neg{color:#791F1F;font-weight:700}
+.sdot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:3px}
+.footer{text-align:center;padding:18px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);margin-top:20px}
+@media(max-width:700px){.kpi-grid{grid-template-columns:1fr 1fr}.charts-row{grid-template-columns:1fr}.main{padding:10px}}
+</style>
+</head>
+<body>
+
+<div id="loadingScreen" class="loading">
+  <div class="spinner"></div>
+  <div style="color:var(--muted);font-size:13px">Chargement du dashboard...</div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="header">
+    <div>
+      <div class="header-title">DPS — Suivi activité Dispositif Prévisionnel de Secours</div>
+    </div>
+    <div class="header-meta">
+      <span>Données au <span class="meta-date" id="maxDate">—</span></span>
+      <span class="meta-badge" id="badgeYears">—</span>
+      <span class="meta-badge" id="badgeCount">—</span>
+      <button class="admin-btn" id="btnAdminToggle">Admin</button>
+    </div>
+  </div>
+
+  <!-- Admin panel (caché par défaut) -->
+  <div id="adminPanel" style="display:none">
+    <div class="admin-panel">
+      <label>Mise à jour des données</label>
+      <div class="drop-zone" id="dropZone">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="font-size:16px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+        Glisse ton fichier Excel ici
+      </div>
+      <button class="btn-upload" id="btnChooseFile">Choisir le fichier</button>
+      <input type="file" id="fileInput" accept=".xlsx,.xls">
+      <span class="upload-status" id="uploadStatus"></span>
+    </div>
+    <div style="background:#FFFBF2;border-bottom:1px solid #F0D080;padding:8px 24px">
+      <span class="admin-hint">
+        ① Charge ton export Excel ici pour mettre à jour le dashboard localement<br>
+        ② Pour mettre à jour définitivement : dépose le fichier dans <code>data/export_dps.xlsx</code> sur GitHub → le dashboard se déploie automatiquement pour toute l'équipe
+      </span>
+    </div>
+  </div>
+
+  <!-- Mot de passe admin (modal simple) -->
+  <div id="pwModal" style="display:none;min-height:200px;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:20px">
+    <div style="background:#fff;border-radius:12px;padding:28px 32px;max-width:320px;width:100%">
+      <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px">Accès admin</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:16px">Entrez le mot de passe pour charger un nouveau fichier.</div>
+      <input type="password" id="pwInput" placeholder="Mot de passe" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;margin-bottom:12px">
+      <div style="display:flex;gap:8px">
+        <button id="pwCancel" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font-size:12px">Annuler</button>
+        <button id="pwSubmit" style="flex:1;padding:8px;border:none;border-radius:6px;background:var(--navy);color:#fff;cursor:pointer;font-size:12px;font-weight:600">Valider</button>
+      </div>
+      <div id="pwError" style="color:var(--red);font-size:11px;margin-top:8px;display:none">Mot de passe incorrect.</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <label>Indicateur</label>
+    <select id="selInd">
+      <option value="missions">Missions</option>
+      <option value="inscrits">Bénévoles inscrits</option>
+      <option value="heures">Heures effectuées</option>
+      <option value="pec">Prises en charge</option>
+    </select>
+  </div>
+
+  <div class="main">
+    <div class="section-label">Indicateurs clés — année en cours</div>
+    <div class="kpi-grid" id="kpiGrid"></div>
+    <div class="chart-full card">
+      <div class="card-title" id="mainChartTitle">Missions par mois</div>
+      <div class="legend" id="mainLegend"></div>
+      <div style="position:relative;height:255px"><canvas id="chartMain" role="img" aria-label="Comparaison par mois"></canvas></div>
+    </div>
+    <div class="charts-row">
+      <div class="card"><div class="card-title" id="d1Title">Delta vs N-1</div><div style="position:relative;height:215px"><canvas id="chartD1" role="img" aria-label="Delta N-1"></canvas></div></div>
+      <div class="card"><div class="card-title" id="d2Title">Delta vs N-2</div><div style="position:relative;height:215px"><canvas id="chartD2" role="img" aria-label="Delta N-2"></canvas></div></div>
+    </div>
+    <div class="charts-row">
+      <div class="card">
+        <div class="card-title" id="dpsTitle">Répartition type DPS</div>
+        <div class="legend" id="dpsLegend"></div>
+        <div style="position:relative;height:195px"><canvas id="chartDPS" role="img" aria-label="Répartition DPS"></canvas></div>
+      </div>
+      <div class="card"><div class="card-title">Top lieux — année en cours</div><div style="position:relative;height:215px"><canvas id="chartLieux" role="img" aria-label="Top lieux"></canvas></div></div>
+    </div>
+    <div class="section-label">Tableau récapitulatif mensuel</div>
+    <div class="tbl-wrap"><table id="recapTable"></table></div>
+    <div class="footer">
+      Dispositif Prévisionnel de Secours &mdash; Données au <span id="footerDate">—</span>
+      &mdash; Mis à jour le <span id="lastModified">—</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+// ── Config ────────────────────────────────────────────────────────────────
+// Changer ce mot de passe avant de déployer sur GitHub
+var ADMIN_PASSWORD = "dps2026";
+
+// ── State ─────────────────────────────────────────────────────────────────
+var INJECTED = null;
+var charts = [];
+
+var MONTHS_S = ["Jan","Fév","Mar","Avr","Mai","Juin","Juil","Août","Sep","Oct","Nov","Déc"];
+var MONTHS_L = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+var DPS_CLR  = {"DPS-PE":"#378ADD","PAPS":"#639922","DPS-ME":"#BA7517","DPS-GE":"#7F77DD","-":"#888780"};
+var YR_CLR   = ["#B5D4F4","#BA7517","#378ADD","#97C459","#EF9F27"];
+
+function fmt(v,ind){if(v==null)return"—";return ind==="heures"?Math.round(v)+"h":Math.round(v);}
+function fmtD(d){if(d==null)return"—";return(d>=0?"+":"")+Math.round(d);}
+function pct(a,b){if(!b)return null;return Math.round((a-b)/b*100);}
+function get(agg,y,m,ind){var r=agg.find(function(d){return d.annee===y&&d.mois===m;});return r!=null?r[ind]:null;}
+
+function destroyAll(){charts.forEach(function(c){if(c)c.destroy();});charts=[];}
+
+function buildAgg(rows){
+  var map={};
+  rows.forEach(function(r){
+    var k=r.annee+"_"+r.mois;
+    if(!map[k])map[k]={annee:r.annee,mois:r.mois,missions:0,inscrits:0,heures:0,pec:0};
+    map[k].missions++;map[k].inscrits+=r.inscrits||0;map[k].heures+=r.heures||0;map[k].pec+=r.pec||0;
+  });
+  return Object.values(map).sort(function(a,b){return a.annee!==b.annee?a.annee-b.annee:a.mois-b.mois;});
+}
+
+function getComp(curYear){
+  var now=new Date(),cy=now.getFullYear(),cm=now.getMonth()+1;
+  return function(m){if(curYear<cy)return 0;if(m<cm)return 0;if(m===cm)return 1;return 2;};
+}
+
+function hatchPlugin(fi,cy){
+  return{id:"hatch",afterDatasetsDraw:function(chart){
+    var ctx=chart.ctx;
+    var dsi=chart.data.datasets.findIndex(function(d){return d.label===String(cy);});
+    if(dsi<0)return;
+    chart.getDatasetMeta(dsi).data.forEach(function(bar,i){
+      if(!fi.includes(i))return;
+      var p=bar.getProps(["x","y","width","height"],true);
+      ctx.save();ctx.beginPath();ctx.rect(p.x-p.width/2,p.y,p.width,p.height);ctx.clip();
+      ctx.strokeStyle="rgba(255,255,255,.45)";ctx.lineWidth=2;
+      for(var xx=p.x-p.width/2-p.height;xx<p.x+p.width/2+p.height;xx+=7){ctx.beginPath();ctx.moveTo(xx,p.y+p.height);ctx.lineTo(xx+p.height,p.y);ctx.stroke();}
+      ctx.restore();
+    });
+  }};
+}
+
+function render(){
+  if(!INJECTED)return;
+  destroyAll();
+  var rows=INJECTED.rows, ind=document.getElementById("selInd").value;
+  var years=[...new Set(rows.map(function(r){return r.annee;}))].sort();
+  var curYear=years[years.length-1];
+  var prevYears=years.slice(0,-1).slice(-2);
+  var agg=buildAgg(rows);
+  var comp=getComp(curYear);
+
+  document.getElementById("maxDate").textContent=INJECTED.maxDate||"—";
+  document.getElementById("footerDate").textContent=INJECTED.maxDate||"—";
+  document.getElementById("lastModified").textContent=INJECTED.lastModified||"—";
+  document.getElementById("badgeYears").textContent=years.join(" · ");
+  document.getElementById("badgeCount").textContent=rows.filter(function(r){return r.annee===curYear;}).length+" missions "+curYear;
+
+  var months=[...new Set(agg.filter(function(d){return d.annee===curYear;}).map(function(d){return d.mois;}))].sort(function(a,b){return a-b;});
+  var maxM=Math.max.apply(null,months.concat([0]));
+  var allM=Array.from({length:maxM},function(_,i){return i+1;});
+
+  var v_cur=allM.map(function(m){return get(agg,curYear,m,ind);});
+  var compM=allM.filter(function(m){return comp(m)===0;});
+  var cmpM=allM.filter(function(m){return comp(m)<=1;});
+
+  function cumul(y,mths){return mths.reduce(function(s,m){var v=get(agg,y,m,ind);return s+(v||0);},0);}
+  var c26c=cumul(curYear,compM), c26a=cumul(curYear,cmpM);
+  var lp=prevYears[prevYears.length-1], pp=prevYears[prevYears.length-2];
+  var cp1c=lp?cumul(lp,compM):null, cp1a=lp?cumul(lp,cmpM):null, cp2c=pp?cumul(pp,compM):null;
+  var lcm=compM.length>0?MONTHS_L[compM[compM.length-1]-1]:"—";
+  var lam=cmpM.length>0?MONTHS_L[cmpM[cmpM.length-1]-1]:"—";
+
+  document.getElementById("kpiGrid").innerHTML=[
+    {l:"Cumul jan–"+lcm+" (complets)",v:fmt(c26c,ind),d:[cp1c!=null?{t:fmtD(c26c-cp1c)+" vs "+lp,cl:c26c>=cp1c?"d-up":"d-down"}:null,cp2c!=null?{t:fmtD(c26c-cp2c)+" vs "+pp,cl:c26c>=cp2c?"d-up":"d-down"}:null].filter(Boolean)},
+    {l:"% vs "+(lp||"N-1")+" (mois complets)",v:cp1c!=null?(pct(c26c,cp1c)>=0?"+":"")+pct(c26c,cp1c)+"%":"—",d:[{t:"mois calendaires passés",cl:"d-neu"}]},
+    {l:"Cumul jan–"+lam+" (en cours incl.)",v:fmt(c26a,ind),d:[cp1a!=null?{t:fmtD(c26a-cp1a)+" vs "+lp,cl:c26a>=cp1a?"d-up":"d-down"}:null].filter(Boolean)},
+    {l:"% vs "+(lp||"N-1")+" (en cours incl.)",v:cp1a!=null?(pct(c26a,cp1a)>=0?"+":"")+pct(c26a,cp1a)+"%":"—",d:[{t:"mois en cours partiel",cl:"d-warn"}]},
+  ].map(function(k){return'<div class="kpi"><div class="kpi-label">'+k.l+'</div><div class="kpi-value">'+k.v+'</div><div class="kpi-deltas">'+k.d.map(function(d){return'<span class="delta '+d.cl+'">'+d.t+'</span>';}).join("")+'</div></div>';}).join("");
+
+  var ycm={};years.forEach(function(y,i){ycm[y]=YR_CLR[i%YR_CLR.length];});
+  var cc=ycm[curYear];
+  var bg26=allM.map(function(m){var s=comp(m);return s===0?cc:s===1?cc+"8C":cc+"33";});
+  var fi=allM.map(function(m,i){return comp(m)>0?i:-1;}).filter(function(i){return i>=0;});
+
+  document.getElementById("mainChartTitle").textContent=document.querySelector("#selInd option:checked").text+" par mois — "+years.join(" / ");
+  document.getElementById("mainLegend").innerHTML=
+    prevYears.map(function(y){return'<span><span class="ldot" style="background:'+ycm[y]+'"></span>'+y+'</span>';}).join("")+
+    '<span><span class="ldot" style="background:'+cc+'"></span>'+curYear+'</span>'+
+    (allM.some(function(m){return comp(m)===1;})?'<span><span class="ldot" style="background:'+cc+'8C"></span>en cours</span>':"")+
+    (allM.some(function(m){return comp(m)===2;})?'<span><span class="ldot" style="background:'+cc+'33"></span>futur</span>':"");
+
+  var ds=prevYears.map(function(y){return{label:String(y),data:allM.map(function(m){return get(agg,y,m,ind);}),backgroundColor:ycm[y],borderRadius:3};});
+  ds.push({label:String(curYear),data:v_cur,backgroundColor:bg26,borderRadius:3});
+  charts.push(new Chart(document.getElementById("chartMain"),{type:"bar",plugins:[hatchPlugin(fi,curYear)],data:{labels:allM.map(function(m){return MONTHS_S[m-1];}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{autoSkip:false,font:{size:11}}},y:{ticks:{font:{size:11}}}}}}));
+
+  function mkDelta(id,tId,refY){
+    if(!refY){var el=document.getElementById(id);if(el)el.closest(".card").style.display="none";return;}
+    document.getElementById(id).closest(".card").style.display="";
+    document.getElementById(tId).textContent="Delta vs "+refY;
+    var ref=allM.map(function(m){return get(agg,refY,m,ind);});
+    var diffs=allM.map(function(m,i){return ref[i]!=null&&v_cur[i]!=null?Math.round(v_cur[i]-ref[i]):null;});
+    var bgs=allM.map(function(m,i){if(diffs[i]==null)return"#ccc";var pos=diffs[i]>=0,s=comp(m),a=s===0?1:s===1?.55:.25;return pos?"rgba(99,175,80,"+a+")":"rgba(226,75,74,"+a+")";});
+    charts.push(new Chart(document.getElementById(id),{type:"bar",data:{labels:allM.map(function(m){return MONTHS_S[m-1];}),datasets:[{label:"Δ",data:diffs,backgroundColor:bgs,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{autoSkip:false,font:{size:11}}},y:{ticks:{font:{size:11}},grid:{color:function(c){return c.tick.value===0?"rgba(0,0,0,.25)":"rgba(0,0,0,.05)";}}}}}}));
+  }
+  mkDelta("chartD1","d1Title",lp);
+  mkDelta("chartD2","d2Title",pp);
+
+  var dpsMap={};
+  rows.filter(function(r){return r.annee===curYear;}).forEach(function(r){var k=r.dps||"-";dpsMap[k]=(dpsMap[k]||0)+1;});
+  var dpsT=Object.keys(dpsMap).sort(function(a,b){return dpsMap[b]-dpsMap[a];});
+  document.getElementById("dpsTitle").textContent="Répartition type DPS — "+curYear;
+  document.getElementById("dpsLegend").innerHTML=dpsT.map(function(t){return'<span><span class="ldot" style="background:'+(DPS_CLR[t]||"#aaa")+'"></span>'+t+" : "+dpsMap[t]+'</span>';}).join("");
+  charts.push(new Chart(document.getElementById("chartDPS"),{type:"doughnut",data:{labels:dpsT,datasets:[{data:dpsT.map(function(t){return dpsMap[t];}),backgroundColor:dpsT.map(function(t){return DPS_CLR[t]||"#aaa";}),borderWidth:2,borderColor:"#fff"}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}}));
+
+  var lieuxM={};
+  rows.filter(function(r){return r.annee===curYear&&r.lieu;}).forEach(function(r){lieuxM[r.lieu]=(lieuxM[r.lieu]||0)+1;});
+  var lieux=Object.entries(lieuxM).sort(function(a,b){return b[1]-a[1];}).slice(0,8);
+  charts.push(new Chart(document.getElementById("chartLieux"),{type:"bar",data:{labels:lieux.map(function(e){return e[0].length>22?e[0].slice(0,22)+"…":e[0];}),datasets:[{label:"Missions",data:lieux.map(function(e){return e[1];}),backgroundColor:"#B5D4F4",borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}}));
+
+  var SL=["complet","en cours","futur"],SC=["#639922","#BA7517","#E24B4A"];
+  var pCols=prevYears.map(function(y){return"<th>"+y+"</th>";}).join("");
+  var pDH=prevYears.slice().reverse().map(function(y){return"<th>Δ vs "+y+"</th><th>Δ%</th>";}).join("");
+  var thead="<thead><tr><th>Mois</th><th>Statut</th>"+pCols+"<th>"+curYear+"</th>"+pDH+"</tr></thead>";
+
+  var trows=allM.map(function(m){
+    var vc=get(agg,curYear,m,ind),s=comp(m);
+    var pD=prevYears.map(function(y){return"<td>"+(get(agg,y,m,ind)!=null?Math.round(get(agg,y,m,ind)):"—")+"</td>";}).join("");
+    var pDelta=prevYears.slice().reverse().map(function(y){
+      var vp=get(agg,y,m,ind),dv=vc!=null&&vp!=null?Math.round(vc-vp):null,dp=pct(vc,vp);
+      function dc(d,ip){if(d==null)return"<td>—</td>";var pos=d>=0,a=s>0?"opacity:.65;":"";return'<td class="'+(pos?"pos":"neg")+'" style="'+a+'">'+(pos?"+":"")+d+(ip?"%":"")+"</td>";}
+      return dc(dv,false)+dc(dp,true);
+    }).join("");
+    return'<tr style="'+(s===2?"opacity:.6":"")+'"><td>'+MONTHS_L[m-1]+'</td><td style="text-align:center"><span class="sdot" style="background:'+SC[s]+'"></span><span style="font-size:11px;color:'+SC[s]+'">'+SL[s]+'</span></td>'+pD+'<td style="font-weight:700">'+(vc!=null?fmt(vc,ind):"—")+"</td>"+pDelta+"</tr>";
+  });
+
+  function totCell(a,b,ip){var v=ip?pct(a,b):Math.round(a-b);if(v==null)return"<td>—</td>";return'<td class="'+(v>=0?"pos":"neg")+'">'+(v>=0?"+":"")+v+(ip?"%":"")+"</td>";}
+  var totPD=prevYears.map(function(y){return'<td style="font-weight:700">'+Math.round(cumul(y,compM))+"</td>";}).join("");
+  var totPDelta=prevYears.slice().reverse().map(function(y){return totCell(c26c,cumul(y,compM),false)+totCell(c26c,cumul(y,compM),true);}).join("");
+  trows.push('<tr style="border-top:2px solid #ddd;background:#F0F4F8"><td>Total (mois complets)</td><td style="text-align:center"><span class="sdot" style="background:#639922"></span><span style="font-size:11px;color:#639922">complet</span></td>'+totPD+'<td style="font-weight:700">'+fmt(c26c,ind)+"</td>"+totPDelta+"</tr>");
+  document.getElementById("recapTable").innerHTML=thead+"<tbody>"+trows.join("")+"</tbody>";
+}
+
+// ── Load data.json ────────────────────────────────────────────────────────
+function loadJSON(){
+  fetch("data.json?t="+Date.now())
+    .then(function(r){if(!r.ok)throw new Error("data.json introuvable");return r.json();})
+    .then(function(data){
+      INJECTED=data;
+      document.getElementById("loadingScreen").style.display="none";
+      document.getElementById("app").style.display="block";
+      render();
+    })
+    .catch(function(err){
+      document.getElementById("loadingScreen").innerHTML='<div style="color:#c0392b;padding:40px;text-align:center;font-family:sans-serif"><b>Erreur de chargement</b><br><small>'+err.message+'</small></div>';
+    });
+}
+
+// ── Parse Excel (admin local preview) ────────────────────────────────────
+function parseExcel(buffer){
+  var wb=XLSX.read(buffer,{type:"array",cellDates:true});
+  var ws=wb.Sheets[wb.SheetNames[0]];
+  var raw=XLSX.utils.sheet_to_json(ws,{raw:false,defval:null});
+  var rows=[];
+  var maxDate=null;
+  raw.forEach(function(row){
+    var dv=row["Début"]||row["Debut"]||row["début"]||Object.values(row)[0];
+    if(!dv)return;
+    var d=null;
+    if(dv instanceof Date){d=dv;}
+    else if(typeof dv==="string"){var m=dv.match(/(\d{2})[-\/](\d{2})[-\/](\d{4})/);if(m)d=new Date(+m[3],+m[2]-1,+m[1]);}
+    if(!d||isNaN(d))return;
+    if(!maxDate||d>maxDate)maxDate=d;
+    function num(k){var v=row[k];if(v==null||v==="")return 0;var n=parseFloat(String(v).replace(",","."));return isNaN(n)?0:n;}
+    function str(k){return row[k]?String(row[k]).trim():"";}
+    rows.push({annee:d.getFullYear(),mois:d.getMonth()+1,date:d.toLocaleDateString("fr-FR"),libelle:str("Libellé")||str("Libelle"),lieu:str("Lieu"),dps:str("DPS")||"-",statut:str("Ouvert.")||str("Ouvert")||"cloturé",inscrits:num("Inscrits"),heures:parseFloat(num("Heures").toFixed(1)),pec:num("Prise(s) en charge"),duree:parseFloat(num("Durée").toFixed(2))});
+  });
+  var now=new Date();
+  return{rows:rows,lastModified:now.toLocaleDateString("fr-FR"),maxDate:maxDate?maxDate.toLocaleDateString("fr-FR"):"—",totalRows:rows.length,years:[...new Set(rows.map(function(r){return r.annee;}))].sort()};
+}
+
+// ── Admin UI ──────────────────────────────────────────────────────────────
+var adminUnlocked=false;
+
+document.getElementById("btnAdminToggle").addEventListener("click",function(){
+  if(adminUnlocked){
+    var panel=document.getElementById("adminPanel");
+    panel.style.display=panel.style.display==="none"?"block":"none";
+    return;
+  }
+  var modal=document.getElementById("pwModal");
+  modal.style.display="flex";
+  document.getElementById("pwInput").focus();
+});
+
+document.getElementById("pwCancel").addEventListener("click",function(){
+  document.getElementById("pwModal").style.display="none";
+  document.getElementById("pwInput").value="";
+  document.getElementById("pwError").style.display="none";
+});
+
+document.getElementById("pwSubmit").addEventListener("click",function(){
+  if(document.getElementById("pwInput").value===ADMIN_PASSWORD){
+    adminUnlocked=true;
+    document.getElementById("pwModal").style.display="none";
+    document.getElementById("adminPanel").style.display="block";
+    document.getElementById("pwInput").value="";
+    document.getElementById("pwError").style.display="none";
+  }else{
+    document.getElementById("pwError").style.display="block";
+    document.getElementById("pwInput").value="";
+  }
+});
+
+document.getElementById("pwInput").addEventListener("keydown",function(e){if(e.key==="Enter")document.getElementById("pwSubmit").click();});
+
+function processFile(file){
+  if(!file)return;
+  var status=document.getElementById("uploadStatus");
+  status.textContent="Chargement...";status.className="upload-status";
+  var reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      var data=parseExcel(new Uint8Array(e.target.result));
+      if(!data.rows.length){status.textContent="Aucune donnée lisible.";status.className="upload-status upload-err";return;}
+      INJECTED=data;
+      render();
+      status.textContent="✓ "+data.rows.length+" lignes chargées — données au "+data.maxDate;
+      status.className="upload-status upload-ok";
+    }catch(err){status.textContent="Erreur : "+err.message;status.className="upload-status upload-err";}
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+document.getElementById("btnChooseFile").addEventListener("click",function(){document.getElementById("fileInput").click();});
+document.getElementById("fileInput").addEventListener("change",function(e){processFile(e.target.files[0]);});
+var dz=document.getElementById("dropZone");
+dz.addEventListener("click",function(){document.getElementById("fileInput").click();});
+dz.addEventListener("dragover",function(e){e.preventDefault();dz.classList.add("drag-over");});
+dz.addEventListener("dragleave",function(){dz.classList.remove("drag-over");});
+dz.addEventListener("drop",function(e){e.preventDefault();dz.classList.remove("drag-over");processFile(e.dataTransfer.files[0]);});
+document.getElementById("selInd").addEventListener("change",render);
+
+// ── Boot ──────────────────────────────────────────────────────────────────
+loadJSON();
+</script>
+</body>
+</html>
