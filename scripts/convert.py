@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Convertit l'export DPS (Excel) en data.json pour le dashboard.
-Lancé automatiquement par GitHub Actions à chaque push du fichier Excel.
+Convertit les exports DPS et Garde (Excel) en JSON pour le dashboard.
+Lancé automatiquement par GitHub Actions à chaque push.
 """
 import json, sys, os
 from pathlib import Path
@@ -12,9 +12,6 @@ try:
 except ImportError:
     print("openpyxl manquant. Lancer: pip install openpyxl")
     sys.exit(1)
-
-EXCEL_PATH = Path("data/export_dps.xlsx")
-JSON_PATH  = Path("data.json")
 
 def parse_date(val):
     if isinstance(val, (datetime, date)):
@@ -34,25 +31,24 @@ def safe_float(v, default=0.0):
 def safe_str(v):
     return str(v).strip() if v is not None else ""
 
-def main():
-    if not EXCEL_PATH.exists():
-        print(f"Fichier introuvable : {EXCEL_PATH}")
-        sys.exit(1)
+def col(row, headers, *names):
+    for name in names:
+        for i, h in enumerate(headers):
+            hn = h.lower().replace(" ", "").replace("(", "").replace(")", "").replace("'", "").replace("é","e").replace("è","e").replace("ê","e")
+            nn = name.lower().replace(" ", "").replace("(", "").replace(")", "").replace("'", "").replace("é","e").replace("è","e").replace("ê","e")
+            if hn == nn:
+                return row[i] if i < len(row) else None
+    return None
 
-    wb = openpyxl.load_workbook(EXCEL_PATH, data_only=True)
+def convert_file(excel_path, json_path, file_type):
+    if not excel_path.exists():
+        print(f"  Fichier introuvable : {excel_path} — ignoré")
+        return False
+
+    wb = openpyxl.load_workbook(excel_path, data_only=True)
     ws = wb.active
     rows_iter = ws.iter_rows(values_only=True)
-
-    # En-têtes
     headers = [str(h).strip() if h else "" for h in next(rows_iter)]
-
-    def col(row, *names):
-        for name in names:
-            for i, h in enumerate(headers):
-                if h.lower().replace(" ", "").replace("(", "").replace(")", "").replace("'", "") == \
-                   name.lower().replace(" ", "").replace("(", "").replace(")", "").replace("'", ""):
-                    return row[i] if i < len(row) else None
-        return None
 
     data = []
     max_date = None
@@ -60,33 +56,38 @@ def main():
     for row in rows_iter:
         if all(v is None for v in row):
             continue
-
-        date_val = col(row, "Début", "Debut", "début")
+        date_val = col(row, headers, "Début", "Debut", "début")
         d = parse_date(date_val)
-        if not d:
+        if not d or d.year < 2020:
             continue
-
-        annee = d.year
-        mois  = d.month
-        if annee < 2020:
-            continue
-
         if max_date is None or d > max_date:
             max_date = d
 
-        data.append({
-            "annee":    annee,
-            "mois":     mois,
-            "date":     d.strftime("%d/%m/%Y"),
-            "libelle":  safe_str(col(row, "Libellé", "Libelle")),
-            "lieu":     safe_str(col(row, "Lieu")),
-            "dps":      safe_str(col(row, "DPS")) or "-",
-            "statut":   safe_str(col(row, "Ouvert.", "Ouvert")) or "cloturé",
-            "inscrits": int(safe_float(col(row, "Inscrits"))),
-            "heures":   round(safe_float(col(row, "Heures")), 1),
-            "pec":      int(safe_float(col(row, "Priseesencharge", "Prise(s)encharge", "Priseencharge"))),
-            "duree":    round(safe_float(col(row, "Durée", "Duree")), 2),
-        })
+        if file_type == "dps":
+            entry = {
+                "annee":   d.year,
+                "mois":    d.month,
+                "date":    d.strftime("%d/%m/%Y"),
+                "libelle": safe_str(col(row, headers, "Libellé", "Libelle")),
+                "lieu":    safe_str(col(row, headers, "Lieu")),
+                "dps":     safe_str(col(row, headers, "DPS")) or "-",
+                "statut":  safe_str(col(row, headers, "Ouvert.", "Ouvert")) or "cloturé",
+                "inscrits": int(safe_float(col(row, headers, "Inscrits"))),
+                "heures":   round(safe_float(col(row, headers, "Heures")), 1),
+                "pec":      int(safe_float(col(row, headers, "Prise(s) en charge", "Priseesencharge"))),
+            }
+        else:  # garde
+            entry = {
+                "annee":   d.year,
+                "mois":    d.month,
+                "date":    d.strftime("%d/%m/%Y"),
+                "libelle": safe_str(col(row, headers, "Libellé", "Libelle")),
+                "lieu":    safe_str(col(row, headers, "Lieu")),
+                "inscrits": int(safe_float(col(row, headers, "Inscrits"))),
+                "heures":   round(safe_float(col(row, headers, "Heures")), 1),
+                "pec":      int(safe_float(col(row, headers, "Intervention(s)", "Interventions"))),
+            }
+        data.append(entry)
 
     output = {
         "rows":         data,
@@ -94,12 +95,16 @@ def main():
         "maxDate":      max_date.strftime("%d/%m/%Y") if max_date else "—",
         "totalRows":    len(data),
         "years":        sorted(list(set(r["annee"] for r in data))),
+        "type":         file_type,
     }
+    json_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"  OK — {len(data)} lignes → {json_path} (années: {output['years']}, dernier: {output['maxDate']})")
+    return True
 
-    JSON_PATH.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"OK — {len(data)} lignes converties → {JSON_PATH}")
-    print(f"Années : {output['years']}")
-    print(f"Dernière date : {output['maxDate']}")
+def main():
+    convert_file(Path("data/export_dps.xlsx"),   Path("data_dps.json"),   "dps")
+    convert_file(Path("data/export_garde.xlsx"), Path("data_garde.json"), "garde")
+    print("Conversion terminée.")
 
 if __name__ == "__main__":
     main()
