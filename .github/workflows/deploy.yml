@@ -5,7 +5,9 @@ on:
     branches: [main]
     paths:
       - 'data/export_dps.xlsx'
+      - 'data/export_garde.xlsx'
       - 'index.html'
+      - 'assets/**'
       - '.github/workflows/deploy.yml'
 
 permissions:
