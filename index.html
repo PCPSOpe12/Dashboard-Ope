@@ -37,7 +37,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .tab{padding:10px 22px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;user-select:none}
 .tab:hover{color:var(--navy)}
 .tab.dps-active{color:var(--orange);border-bottom-color:var(--orange)}
-.tab.garde-active{color:var(--navy);border-bottom-color:var(--navy)}
+.tab.sr-active{color:var(--orange);border-bottom-color:var(--orange);opacity:.75}
 
 /* ── Admin ── */
 .admin-panel{background:#fff;border-bottom:2px solid var(--orange);padding:11px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -133,6 +133,8 @@ tr:nth-child(even) td{background:#F8FAFC}
       <select id="selFileType" style="font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border)">
         <option value="dps">Fichier DPS</option>
         <option value="garde">Fichier Garde</option>
+        <option value="competences">Compétences (SR)</option>
+        <option value="participations">Participations (SR)</option>
       </select>
       <div class="drop-zone" id="dropZone">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
@@ -169,26 +171,28 @@ tr:nth-child(even) td{background:#F8FAFC}
   <div class="tabs">
     <div class="tab dps-active" id="tabDPS" onclick="switchTab('dps')">Dispositif Prévisionnel de Secours</div>
     <div class="tab" id="tabGarde" onclick="switchTab('garde')">Garde</div>
+    <div class="tab" id="tabSR" onclick="switchTab('sr')">Suivi SR</div>
   </div>
 
-  <div class="controls">
+  <div id="controlsActivity" class="controls">
     <span class="ctrl-label">Indicateur</span>
     <select id="selInd">
-      <option value="missions">Missions / Gardes</option>
+      <option value="missions">DPS</option>
       <option value="inscrits">Bénévoles inscrits</option>
       <option value="heures">Heures effectuées</option>
-      <option value="pec">Interventions / PEC</option>
+      <option value="pec">Prises en charge</option>
     </select>
   </div>
 
   <div id="contentDPS"></div>
   <div id="contentGarde" style="display:none"></div>
+  <div id="contentSR" style="display:none"></div>
 
 </div>
 
 <script>
 var ADMIN_PASSWORD = "dps2026";
-var DATA_DPS = null, DATA_GARDE = null;
+var DATA_DPS = null, DATA_GARDE = null, DATA_SR = null;
 var charts = [], currentTab = "dps";
 
 var MS=["Jan","Fév","Mar","Avr","Mai","Juin","Juil","Août","Sep","Oct","Nov","Déc"];
@@ -223,19 +227,31 @@ function switchTab(tab){
   currentTab=tab;
   document.getElementById("contentDPS").style.display=tab==="dps"?"block":"none";
   document.getElementById("contentGarde").style.display=tab==="garde"?"block":"none";
+  document.getElementById("contentSR").style.display=tab==="sr"?"block":"none";
+  document.getElementById("controlsActivity").style.display=tab==="sr"?"none":"flex";
   document.getElementById("tabDPS").className="tab"+(tab==="dps"?" dps-active":"");
   document.getElementById("tabGarde").className="tab"+(tab==="garde"?" garde-active":"");
+  document.getElementById("tabSR").className="tab"+(tab==="sr"?" sr-active":"");
   var sel=document.getElementById("selInd");
-  sel.options[0].text=tab==="dps"?"Missions":"Gardes";
-  sel.options[3].text=tab==="dps"?"Prises en charge":"Interventions";
-  render();
+  sel.options[0].text=tab==="garde"?"Gardes":"DPS";
+  sel.options[3].text=tab==="garde"?"Interventions":"Prises en charge";
+  if(tab==="sr") renderSR();
+  else render();
 }
 
 function updateHeader(){
   var dates=[];
   if(DATA_DPS&&DATA_DPS.maxDate)dates.push(DATA_DPS.maxDate);
   if(DATA_GARDE&&DATA_GARDE.maxDate)dates.push(DATA_GARDE.maxDate);
-  document.getElementById("headerUpdate").textContent=dates.length?dates.sort().pop():"—";
+  if(DATA_SR&&DATA_SR.maxDate)dates.push(DATA_SR.maxDate);
+  // Sort dates as DD/MM/YYYY
+  dates.sort(function(a,b){
+    var pa=a.split('/'),pb=b.split('/');
+    var da=new Date(+pa[2],+pa[1]-1,+pa[0]);
+    var db=new Date(+pb[2],+pb[1]-1,+pb[0]);
+    return da-db;
+  });
+  document.getElementById("headerUpdate").textContent=dates.length?dates[dates.length-1]:"—";
   var yrs=new Set();
   if(DATA_DPS)DATA_DPS.rows.forEach(function(r){yrs.add(r.annee);});
   if(DATA_GARDE)DATA_GARDE.rows.forEach(function(r){yrs.add(r.annee);});
@@ -430,9 +446,9 @@ function parseExcel(buffer,type){
 
 // ── Load data.json ───────────────────────────────────────────────────────
 function loadJSON(){
-  var loaded={dps:false,garde:false};
+  var loaded={dps:false,garde:false,sr:false};
   function check(){
-    if(loaded.dps&&loaded.garde){
+    if(loaded.dps&&loaded.garde&&loaded.sr){
       document.getElementById("loadingScreen").style.display="none";
       document.getElementById("app").style.display="block";
       updateHeader();
@@ -447,6 +463,10 @@ function loadJSON(){
     .then(function(r){return r.ok?r.json():null;})
     .then(function(d){if(d){DATA_GARDE=d;}loaded.garde=true;check();})
     .catch(function(){loaded.garde=true;check();});
+  fetch("data_sr.json?t="+Date.now())
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(d){if(d&&d.secouristes){SR_DATA=d.secouristes;DATA_SR=d;}loaded.sr=true;check();})
+    .catch(function(){loaded.sr=true;check();});
 }
 
 // ── Admin ────────────────────────────────────────────────────────────────
@@ -496,7 +516,11 @@ function processFile(file){
       var buf=new Uint8Array(e.target.result);
       var data=parseExcel(buf,type);
       if(!data.rows.length){status.textContent="Aucune donnée lisible.";status.className="up-status up-err";return;}
-      if(type==="dps")DATA_DPS=data; else DATA_GARDE=data;
+      if(type==="dps"){DATA_DPS=data;}
+      else if(type==="garde"){DATA_GARDE=data;}
+      else if(type==="competences"||type==="participations"){
+        // SR files — preview only in admin, deploy triggers GitHub Actions to regenerate data_sr.json
+      }
       lastFileBuffer=e.target.result;
       lastFileType=type;
       updateHeader();render();
@@ -521,7 +545,14 @@ async function deployToGitHub(){
   ds.style.color="var(--muted)";
   ds.textContent="Envoi vers GitHub...";
 
-  var path="data/export_"+(lastFileType==="dps"?"dps":"garde")+".xlsx";
+  var pathMap = {
+    "dps":           "data/export_dps.xlsx",
+    "garde":         "data/export_garde.xlsx",
+    "competences":   "data/export_competences.xlsx",
+    "participations":"data/export_participations.xlsx"
+  };
+  var path = pathMap[lastFileType];
+  if(!path){ds.textContent="Type de fichier non reconnu.";ds.style.color="var(--red)";btn.disabled=false;return;}
   var apiUrl="https://api.github.com/repos/"+GITHUB_OWNER+"/"+GITHUB_REPO+"/contents/"+path;
 
   try{
@@ -538,7 +569,8 @@ async function deployToGitHub(){
     var b64=btoa(binary);
 
     // Push to GitHub
-    var body={message:"Mise à jour données "+(lastFileType==="dps"?"DPS":"Garde")+" — "+new Date().toLocaleDateString("fr-FR"),content:b64};
+    var labelMap={"dps":"DPS","garde":"Garde","competences":"Compétences SR","participations":"Participations SR"};
+    var body={message:"Mise à jour "+(labelMap[lastFileType]||lastFileType)+" — "+new Date().toLocaleDateString("fr-FR"),content:b64};
     if(sha)body.sha=sha;
 
     var putResp=await fetch(apiUrl,{
@@ -571,6 +603,130 @@ dz.addEventListener("dragover",function(e){e.preventDefault();dz.classList.add("
 dz.addEventListener("dragleave",function(){dz.classList.remove("drag-over");});
 dz.addEventListener("drop",function(e){e.preventDefault();dz.classList.remove("drag-over");processFile(e.dataTransfer.files[0]);});
 document.getElementById("selInd").addEventListener("change",render);
+
+// ── SR Data — chargé depuis data_sr.json ─────────────────────────────────
+var SR_DATA = [];,"prenom":"David","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":{"obt":"","exp":""},"CDD":null,"nb_dps":10,"nb_gar":54,"last_dps":"31/12/2025","last_gar":"18/04/2026","heures":462.9,"inscrit_dps":true,"inscrit_gar":true},{"nom":"ALOUI","prenom":"Haithem","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":65,"nb_gar":43,"last_dps":"19/04/2026","last_gar":"18/04/2026","heures":732.4,"inscrit_dps":true,"inscrit_gar":true},{"nom":"BAR-HEN","prenom":"Avner","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":16,"nb_gar":2,"last_dps":"19/04/2026","last_gar":"03/01/2026","heures":110.8,"inscrit_dps":false,"inscrit_gar":false},{"nom":"BAVAY","prenom":"Quentin","PSE1":{"obt":"","exp":"31-12-2026"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":6,"nb_gar":0,"last_dps":"13/03/2026","last_gar":"","heures":38.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"BENDJELLOUL","prenom":"Silya","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":6,"nb_gar":0,"last_dps":"19/07/2025","last_gar":"","heures":49.8,"inscrit_dps":false,"inscrit_gar":false},{"nom":"BENHAMOU","prenom":"Simon","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":5,"nb_gar":4,"last_dps":"12/11/2025","last_gar":"22/03/2026","heures":60.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"BLONDEAU","prenom":"Elsa","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":9,"nb_gar":1,"last_dps":"16/04/2026","last_gar":"28/02/2025","heures":71.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"BOILARD","prenom":"Cécilia","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":6,"nb_gar":2,"last_dps":"20/04/2026","last_gar":"09/04/2026","heures":42.8,"inscrit_dps":true,"inscrit_gar":false},{"nom":"BONNEMAISON","prenom":"Marie-Aude","PSE1":{"obt":"","exp":"31-12-2027"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":6,"nb_gar":0,"last_dps":"29/03/2026","last_gar":"","heures":45.2,"inscrit_dps":true,"inscrit_gar":false},{"nom":"BOULANGER","prenom":"David","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":0,"last_dps":"22/06/2025","last_gar":"","heures":27.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"BOUMRAR","prenom":"Eliott","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":11,"nb_gar":4,"last_dps":"03/09/2025","last_gar":"30/07/2025","heures":100.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"BRETHOMÉ","prenom":"Théo","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":6,"nb_gar":1,"last_dps":"04/04/2026","last_gar":"03/04/2026","heures":56.2,"inscrit_dps":true,"inscrit_gar":false},{"nom":"BRIAND","prenom":"Romain","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":10,"nb_gar":3,"last_dps":"28/03/2026","last_gar":"21/03/2026","heures":111.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"BRUGEROLLE","prenom":"Thierry","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":21,"nb_gar":2,"last_dps":"13/04/2026","last_gar":"11/01/2026","heures":179.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"CARO","prenom":"Solène","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":13,"nb_gar":9,"last_dps":"10/04/2026","last_gar":"05/03/2026","heures":166.0,"inscrit_dps":true,"inscrit_gar":false},{"nom":"CAZIN","prenom":"Titouan","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2025"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":3,"nb_gar":9,"last_dps":"08/10/2025","last_gar":"13/04/2026","heures":70.8,"inscrit_dps":false,"inscrit_gar":false},{"nom":"CHARBONNIER","prenom":"Charlotte","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":29,"nb_gar":3,"last_dps":"19/04/2026","last_gar":"15/03/2026","heures":235.8,"inscrit_dps":false,"inscrit_gar":false},{"nom":"CHEMINADE","prenom":"Paulin","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":39,"nb_gar":13,"last_dps":"10/04/2026","last_gar":"13/04/2026","heures":356.7,"inscrit_dps":true,"inscrit_gar":false},{"nom":"COURRIEU","prenom":"Paul","PSE1":{"obt":"","exp":"31-12-2026"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":3,"nb_gar":1,"last_dps":"18/04/2026","last_gar":"14/04/2026","heures":23.8,"inscrit_dps":false,"inscrit_gar":false},{"nom":"DARCY","prenom":"Benoît","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":5,"nb_gar":4,"last_dps":"02/01/2026","last_gar":"21/02/2026","heures":78.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"DAROLD","prenom":"Jules","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":33,"nb_gar":14,"last_dps":"18/04/2026","last_gar":"10/04/2026","heures":336.0,"inscrit_dps":true,"inscrit_gar":true},{"nom":"DAUGUET","prenom":"Alexis","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":25,"nb_gar":33,"last_dps":"18/04/2026","last_gar":"15/04/2026","heures":407.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"DELALEU","prenom":"Bérénice","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":13,"nb_gar":8,"last_dps":"09/04/2026","last_gar":"31/03/2026","heures":129.8,"inscrit_dps":true,"inscrit_gar":false},{"nom":"DESCHAMPS","prenom":"Marie","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":21,"nb_gar":18,"last_dps":"21/03/2026","last_gar":"10/04/2026","heures":300.0,"inscrit_dps":false,"inscrit_gar":true},{"nom":"DUBOIS DELETANG","prenom":"Gaëlle","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":3,"nb_gar":0,"last_dps":"05/11/2025","last_gar":"","heures":14.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"FEZAS","prenom":"Hugo","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":0,"last_dps":"11/10/2025","last_gar":"","heures":11.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"FROMON","prenom":"Helene","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":0,"last_dps":"30/05/2025","last_gar":"","heures":9.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GALLAND","prenom":"Pierre","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":0,"last_dps":"11/04/2026","last_gar":"","heures":8.5,"inscrit_dps":false,"inscrit_gar":true},{"nom":"GALY","prenom":"Florent","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":0,"nb_gar":1,"last_dps":"","last_gar":"10/01/2025","heures":6.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GANSTER","prenom":"Maxime","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":{"obt":"","exp":""},"CDD":null,"nb_dps":2,"nb_gar":0,"last_dps":"19/03/2026","last_gar":"","heures":18.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GARCIA","prenom":"Lucas","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":3,"nb_gar":2,"last_dps":"25/06/2025","last_gar":"15/03/2026","heures":36.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GASCHIGNARD","prenom":"Pauline","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":6,"last_dps":"19/01/2026","last_gar":"19/02/2026","heures":54.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GAUTHIEROT","prenom":"Kawly","PSE1":{"obt":"","exp":"31-12-2026"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":1,"last_dps":"01/01/2026","last_gar":"01/01/2025","heures":15.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GENET","prenom":"Diane","PSE1":{"obt":"","exp":"31-12-2027"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":1,"last_dps":"03/04/2026","last_gar":"26/03/2026","heures":17.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"GENIN","prenom":"Constantin","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":4,"nb_gar":5,"last_dps":"18/04/2026","last_gar":"08/01/2026","heures":56.0,"inscrit_dps":true,"inscrit_gar":true},{"nom":"GOUTORBE","prenom":"Jean-Pierre","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":21,"nb_gar":11,"last_dps":"18/03/2026","last_gar":"03/03/2026","heures":195.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GRANIER","prenom":"Pascal","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":6,"nb_gar":2,"last_dps":"10/03/2026","last_gar":"30/11/2025","heures":54.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GRELIER","prenom":"Patrick","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":4,"nb_gar":1,"last_dps":"17/04/2026","last_gar":"03/01/2026","heures":43.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"GUINAMANT","prenom":"Thibault","PSE1":{"obt":"","exp":"31-12-2026"},"PSE2":{"obt":"","exp":"31-12-2018"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":0,"last_dps":"03/04/2026","last_gar":"","heures":11.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"HAK","prenom":"Dominique","PSE1":null,"PSE2":{"obt":"19-01-2025","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":20,"nb_gar":11,"last_dps":"09/04/2026","last_gar":"26/03/2026","heures":205.0,"inscrit_dps":true,"inscrit_gar":false},{"nom":"HUET","prenom":"Florence","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":9,"nb_gar":2,"last_dps":"26/03/2026","last_gar":"05/03/2026","heures":59.8,"inscrit_dps":true,"inscrit_gar":false},{"nom":"IDRES","prenom":"Nicolas","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":4,"nb_gar":0,"last_dps":"19/04/2026","last_gar":"","heures":26.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"JANIAK","prenom":"Maxime","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":0,"last_dps":"21/06/2025","last_gar":"","heures":7.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"JOND","prenom":"Agathe","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":1,"last_dps":"12/10/2025","last_gar":"28/02/2025","heures":23.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"JOURNO","prenom":"Samuel","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":{"obt":"","exp":""},"CDD":null,"nb_dps":27,"nb_gar":29,"last_dps":"16/04/2026","last_gar":"09/04/2026","heures":464.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"JULIEN","prenom":"Théo","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":18,"nb_gar":14,"last_dps":"19/04/2026","last_gar":"18/04/2026","heures":209.0,"inscrit_dps":true,"inscrit_gar":false},{"nom":"KACI-CHAOUCHE","prenom":"Adam","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":7,"nb_gar":0,"last_dps":"28/09/2025","last_gar":"","heures":52.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"KISELEVA","prenom":"Tatiana","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":44,"nb_gar":15,"last_dps":"19/04/2026","last_gar":"13/04/2026","heures":460.9,"inscrit_dps":true,"inscrit_gar":false},{"nom":"KROTKINE","prenom":"Thomas","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":13,"nb_gar":17,"last_dps":"05/11/2025","last_gar":"31/03/2026","heures":236.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"LABBE","prenom":"Patrick","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":13,"nb_gar":15,"last_dps":"04/04/2026","last_gar":"18/04/2026","heures":192.0,"inscrit_dps":true,"inscrit_gar":false},{"nom":"LAGNY","prenom":"Karine","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":79,"nb_gar":42,"last_dps":"19/04/2026","last_gar":"14/04/2026","heures":863.0,"inscrit_dps":true,"inscrit_gar":true},{"nom":"LARENE","prenom":"Julien","PSE1":null,"PSE2":{"obt":"31-12-2020","exp":"31-12-2026"},"CE":null,"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":6,"nb_gar":1,"last_dps":"28/03/2026","last_gar":"28/02/2025","heures":60.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"LAU","prenom":"Benoit","PSE1":{"obt":"","exp":"31-12-2027"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":19,"nb_gar":4,"last_dps":"17/04/2026","last_gar":"10/04/2026","heures":145.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"LE BAGOUSSE","prenom":"Joseph","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":{"obt":"","exp":""},"CDD":null,"nb_dps":32,"nb_gar":9,"last_dps":"08/04/2026","last_gar":"10/04/2026","heures":250.7,"inscrit_dps":true,"inscrit_gar":true},{"nom":"LEMORT","prenom":"Théo","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":{"obt":"","exp":""},"CDD":null,"nb_dps":19,"nb_gar":25,"last_dps":"18/03/2026","last_gar":"03/04/2026","heures":324.6,"inscrit_dps":true,"inscrit_gar":false},{"nom":"LEMORT","prenom":"Zoé","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":39,"nb_gar":17,"last_dps":"19/04/2026","last_gar":"25/03/2026","heures":415.2,"inscrit_dps":true,"inscrit_gar":true},{"nom":"LETRANGE RECHAL","prenom":"Dimitri","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":15,"nb_gar":2,"last_dps":"20/02/2026","last_gar":"22/02/2026","heures":96.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"LOPAT","prenom":"Blanche","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":11,"nb_gar":6,"last_dps":"18/04/2026","last_gar":"15/04/2026","heures":119.2,"inscrit_dps":true,"inscrit_gar":false},{"nom":"LORIEUX","prenom":"Benjamin","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":0,"nb_gar":1,"last_dps":"","last_gar":"06/03/2026","heures":12.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MANSARD","prenom":"Morgane","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":7,"nb_gar":1,"last_dps":"30/10/2025","last_gar":"23/08/2025","heures":59.7,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MARTIN","prenom":"Paul","PSE1":{"obt":"","exp":"31-12-2026"},"PSE2":{"obt":"","exp":"31-12-2026"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":5,"nb_gar":3,"last_dps":"13/03/2026","last_gar":"10/03/2026","heures":71.8,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MAURIN","prenom":"Denis","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":37,"nb_gar":28,"last_dps":"17/04/2026","last_gar":"14/04/2026","heures":470.5,"inscrit_dps":true,"inscrit_gar":true},{"nom":"MAZEIRAC","prenom":"Jean-François","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":{"obt":"","exp":""},"CDD":null,"nb_dps":7,"nb_gar":3,"last_dps":"04/03/2026","last_gar":"22/02/2026","heures":65.7,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MAZEIRAC","prenom":"Valérie","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":0,"last_dps":"05/01/2025","last_gar":"","heures":16.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MAZOT","prenom":"Julien","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":45,"nb_gar":15,"last_dps":"20/04/2026","last_gar":"27/11/2025","heures":512.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MEHAMI","prenom":"Mehdi","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":1,"last_dps":"30/05/2025","last_gar":"04/07/2025","heures":15.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MERILLOU","prenom":"Vincent","PSE1":null,"PSE2":{"obt":"28-06-2016","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":32,"nb_gar":0,"last_dps":"18/03/2026","last_gar":"","heures":171.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"MICCOLI","prenom":"Remy","PSE1":{"obt":"","exp":"31-12-2027"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":15,"nb_gar":7,"last_dps":"25/02/2026","last_gar":"22/02/2026","heures":157.0,"inscrit_dps":true,"inscrit_gar":true},{"nom":"MICHAUX","prenom":"Gabin","PSE1":{"obt":"","exp":"31-12-2026"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":5,"nb_gar":2,"last_dps":"13/07/2025","last_gar":"12/02/2025","heures":42.3,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MOLOTKOFF","prenom":"Clément","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":2,"last_dps":"21/06/2025","last_gar":"21/03/2026","heures":21.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MONVOISIN","prenom":"Bérengère","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":0,"nb_gar":1,"last_dps":"","last_gar":"01/01/2025","heures":7.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MOULIN","prenom":"Jade","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":17,"nb_gar":10,"last_dps":"08/04/2026","last_gar":"26/03/2026","heures":189.0,"inscrit_dps":true,"inscrit_gar":false},{"nom":"MOUSKA","prenom":"Raphaële","PSE1":{"obt":"","exp":"31-12-2027"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":0,"last_dps":"19/02/2026","last_gar":"","heures":5.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MOUSSET DUPIN","prenom":"Xavier","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":21,"nb_gar":17,"last_dps":"15/04/2026","last_gar":"26/03/2026","heures":280.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"MOUTON","prenom":"Julien","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":3,"last_dps":"20/09/2025","last_gar":"11/01/2026","heures":29.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"NGUYEN HUU","prenom":"Anthony","PSE1":null,"PSE2":{"obt":"11-04-2025","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":11,"nb_gar":8,"last_dps":"23/01/2026","last_gar":"28/02/2026","heures":117.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"NICOT","prenom":"Alexandra","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":3,"nb_gar":2,"last_dps":"06/10/2025","last_gar":"20/10/2025","heures":26.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"NICOULEAU","prenom":"Adely","PSE1":null,"PSE2":{"obt":"29-04-2022","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":16,"nb_gar":5,"last_dps":"19/04/2026","last_gar":"17/03/2026","heures":156.2,"inscrit_dps":true,"inscrit_gar":false},{"nom":"NOTERIS","prenom":"Jean","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":14,"nb_gar":8,"last_dps":"10/04/2026","last_gar":"04/03/2026","heures":157.0,"inscrit_dps":true,"inscrit_gar":false},{"nom":"OPYRCHAL","prenom":"Patryk","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":31,"nb_gar":5,"last_dps":"13/03/2026","last_gar":"22/02/2026","heures":261.9,"inscrit_dps":false,"inscrit_gar":false},{"nom":"ORCEL","prenom":"Dominique","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":17,"nb_gar":6,"last_dps":"22/02/2026","last_gar":"28/08/2025","heures":141.0,"inscrit_dps":true,"inscrit_gar":false},{"nom":"OUVRARD","prenom":"Benoît","PSE1":null,"PSE2":{"obt":"08-02-2021","exp":"31-12-2026"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":11,"nb_gar":0,"last_dps":"27/03/2026","last_gar":"","heures":87.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"PAILLARD","prenom":"Camille","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":0,"last_dps":"02/11/2025","last_gar":"","heures":8.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"PARLIER","prenom":"Lou","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":7,"nb_gar":0,"last_dps":"27/07/2025","last_gar":"","heures":40.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"PIGUET","prenom":"Côme","PSE1":null,"PSE2":{"obt":"22-04-2022","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":4,"nb_gar":3,"last_dps":"13/03/2026","last_gar":"06/03/2026","heures":76.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"PISTON D EAUBONNE","prenom":"Côme","PSE1":null,"PSE2":{"obt":"12-02-2016","exp":"31-12-2026"},"CE":{"obt":"29-05-2020","exp":""},"CP":{"obt":"07-01-2019","exp":""},"CEPS":null,"CDD":{"obt":"","exp":""},"nb_dps":81,"nb_gar":39,"last_dps":"17/04/2026","last_gar":"29/03/2026","heures":862.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"PORCHERON","prenom":"Clément","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":34,"nb_gar":26,"last_dps":"19/04/2026","last_gar":"18/04/2026","heures":456.7,"inscrit_dps":true,"inscrit_gar":false},{"nom":"POULET","prenom":"David","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":12,"nb_gar":14,"last_dps":"08/02/2026","last_gar":"01/03/2026","heures":176.2,"inscrit_dps":true,"inscrit_gar":false},{"nom":"PUYAU","prenom":"François","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":8,"nb_gar":11,"last_dps":"03/03/2026","last_gar":"09/04/2026","heures":119.7,"inscrit_dps":false,"inscrit_gar":false},{"nom":"RAZNY","prenom":"Jérémy","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":14,"nb_gar":3,"last_dps":"15/04/2026","last_gar":"29/03/2026","heures":100.7,"inscrit_dps":true,"inscrit_gar":false},{"nom":"REAUTE","prenom":"Arnaud","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":5,"nb_gar":3,"last_dps":"12/12/2025","last_gar":"27/11/2025","heures":45.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"RENGNET","prenom":"Kathleen","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":31,"nb_gar":12,"last_dps":"17/04/2026","last_gar":"17/03/2026","heures":308.2,"inscrit_dps":true,"inscrit_gar":false},{"nom":"RETUNSKAIA","prenom":"Tatiana","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":15,"nb_gar":1,"last_dps":"22/02/2026","last_gar":"16/05/2025","heures":96.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"ROBEZ-MASSON","prenom":"Martin","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":null,"CEPS":null,"CDD":null,"nb_dps":45,"nb_gar":20,"last_dps":"16/04/2026","last_gar":"13/04/2026","heures":462.4,"inscrit_dps":true,"inscrit_gar":true},{"nom":"SAINTE-MARIE","prenom":"Tania","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":0,"last_dps":"15/03/2025","last_gar":"","heures":9.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"SANDERINK","prenom":"Arnaud","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":1,"nb_gar":0,"last_dps":"02/11/2025","last_gar":"","heures":8.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"SETITER","prenom":"Yacine","PSE1":null,"PSE2":{"obt":"12-02-2018","exp":"31-12-2026"},"CE":{"obt":"27-02-2020","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":8,"nb_gar":0,"last_dps":"22/12/2025","last_gar":"","heures":62.5,"inscrit_dps":true,"inscrit_gar":true},{"nom":"SINNAEVE JACQUET","prenom":"Clément","PSE1":null,"PSE2":{"obt":"12-11-2018","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":{"obt":"","exp":""},"CDD":null,"nb_dps":31,"nb_gar":39,"last_dps":"19/04/2026","last_gar":"10/04/2026","heures":555.8,"inscrit_dps":false,"inscrit_gar":false},{"nom":"SOLTANI-LE BRUN","prenom":"Kalaï","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":3,"nb_gar":0,"last_dps":"02/03/2026","last_gar":"","heures":27.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"THIBAULT","prenom":"Pierre-André","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":7,"nb_gar":5,"last_dps":"08/04/2026","last_gar":"09/04/2026","heures":89.5,"inscrit_dps":true,"inscrit_gar":false},{"nom":"TOUVRON","prenom":"Gwladys","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":8,"nb_gar":4,"last_dps":"16/11/2025","last_gar":"04/01/2026","heures":65.7,"inscrit_dps":false,"inscrit_gar":false},{"nom":"VAINOPOULOS","prenom":"Thibault","PSE1":{"obt":"","exp":"31-12-2026"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":3,"nb_gar":0,"last_dps":"11/04/2026","last_gar":"","heures":12.2,"inscrit_dps":true,"inscrit_gar":false},{"nom":"VALLET","prenom":"Olivier","PSE1":{"obt":"","exp":"31-12-2027"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":2,"nb_gar":1,"last_dps":"31/12/2025","last_gar":"25/03/2026","heures":19.2,"inscrit_dps":false,"inscrit_gar":false},{"nom":"VERGNORY-MION","prenom":"Sandrine","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":17,"nb_gar":7,"last_dps":"20/04/2026","last_gar":"08/03/2026","heures":156.5,"inscrit_dps":false,"inscrit_gar":false},{"nom":"VERNIMMEN","prenom":"Charles","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2026"},"CE":{"obt":"","exp":""},"CP":{"obt":"","exp":""},"CEPS":{"obt":"","exp":""},"CDD":null,"nb_dps":39,"nb_gar":45,"last_dps":"19/04/2026","last_gar":"14/04/2026","heures":606.5,"inscrit_dps":true,"inscrit_gar":true},{"nom":"VIGOUROUX--SANNIER","prenom":"Ilona","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":6,"nb_gar":2,"last_dps":"24/08/2025","last_gar":"27/05/2025","heures":48.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"VIOT","prenom":"Julien","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":24,"nb_gar":4,"last_dps":"10/04/2026","last_gar":"15/11/2025","heures":196.3,"inscrit_dps":false,"inscrit_gar":false},{"nom":"VOLPI","prenom":"Alessandro","PSE1":null,"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":10,"nb_gar":2,"last_dps":"06/11/2025","last_gar":"17/11/2025","heures":75.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"VOUHE","prenom":"Benjamin","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":{"obt":"11-04-2016","exp":""},"CP":{"obt":"","exp":""},"CEPS":null,"CDD":null,"nb_dps":18,"nb_gar":4,"last_dps":"08/04/2026","last_gar":"01/03/2026","heures":162.0,"inscrit_dps":false,"inscrit_gar":false},{"nom":"WALTER","prenom":"Luc","PSE1":null,"PSE2":{"obt":"","exp":"31-12-2027"},"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":32,"nb_gar":16,"last_dps":"27/02/2026","last_gar":"07/01/2026","heures":326.4,"inscrit_dps":false,"inscrit_gar":false},{"nom":"ZEBELUS","prenom":"Bayane","PSE1":{"obt":"","exp":"31-12-2026"},"PSE2":null,"CE":null,"CP":null,"CEPS":null,"CDD":null,"nb_dps":3,"nb_gar":0,"last_dps":"26/12/2025","last_gar":"","heures":20.8,"inscrit_dps":true,"inscrit_gar":false}];
+
+// ── Suivi SR ─────────────────────────────────────────────────────────────
+var SR_COMPS=['PSE2','PSE1','CE','CP','CEPS','CDD'];
+var srSearch='',srComp='',srInscrit='',srSort='nom',srFicheIdx=-1;
+
+function isExp(e){if(!e||e==='-'||e==='nan')return false;try{var p=e.split('-');return new Date(+p[2],+p[1]-1,+p[0])<new Date();}catch(x){return false;}}
+function compCell(c){if(!c)return'<span style="color:#ddd">—</span>';return isExp(c.exp)?'<span style="background:#FFF3CD;color:#7A4F00;font-weight:700;border-radius:4px;padding:1px 6px;font-size:10px">EXP</span>':'<span style="background:#EAF3DE;color:#27500A;font-weight:700;border-radius:4px;padding:1px 6px;font-size:10px">✓</span>';}
+
+function renderSR(){
+  var D=SR_DATA;
+  var q=srSearch.toLowerCase();
+  var f=D.filter(function(s){
+    if(q&&!(s.nom.toLowerCase().includes(q)||s.prenom.toLowerCase().includes(q)))return false;
+    if(srComp&&(!s[srComp]||isExp(s[srComp].exp)))return false;
+    if(srInscrit==='dps'&&!s.inscrit_dps)return false;
+    if(srInscrit==='gar'&&!s.inscrit_gar)return false;
+    if(srInscrit==='aucun'&&(s.inscrit_dps||s.inscrit_gar))return false;
+    return true;
+  });
+  f.sort(function(a,b){
+    if(srSort==='nom')return a.nom.localeCompare(b.nom);
+    if(srSort==='nb_dps')return b.nb_dps-a.nb_dps;
+    if(srSort==='nb_gar')return b.nb_gar-a.nb_gar;
+    if(srSort==='heures')return b.heures-a.heures;
+    return 0;
+  });
+
+  var pse2v=D.filter(function(s){return s.PSE2&&!isExp(s.PSE2.exp);}).length;
+  var cev=D.filter(function(s){return s.CE&&!isExp(s.CE.exp);}).length;
+  var idps=D.filter(function(s){return s.inscrit_dps;}).length;
+  var igar=D.filter(function(s){return s.inscrit_gar;}).length;
+
+  var kpiHtml=[
+    {l:'Secouristes',v:D.length,c:'var(--orange)'},
+    {l:'PSE2 valides',v:pse2v,c:'var(--orange)'},
+    {l:'CE valides',v:cev,c:'var(--orange)'},
+    {l:'Inscrits DPS',v:idps,c:'var(--orange)'},
+    {l:'Inscrits Garde',v:igar,c:'var(--navy)'},
+  ].map(function(k){return'<div style="background:var(--card);border-radius:8px;border:1px solid var(--border);padding:11px 13px;border-left:3px solid var(--orange)"><div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">'+k.l+'</div><div style="font-size:21px;font-weight:700;color:'+k.c+'">'+k.v+'</div></div>';}).join('');
+
+  var rows=f.map(function(s){
+    var idx=D.indexOf(s);
+    return'<tr style="cursor:pointer" onclick="showSRFiche('+idx+')">'+
+      '<td style="text-align:left;font-weight:600;color:var(--navy)">'+s.nom+'</td>'+
+      '<td style="text-align:left">'+s.prenom+'</td>'+
+      SR_COMPS.map(function(c){return'<td>'+compCell(s[c])+'</td>';}).join('')+
+      '<td style="font-weight:700;color:var(--orange)">'+s.nb_dps+'</td>'+
+      '<td style="font-weight:700;color:var(--navy)">'+s.nb_gar+'</td>'+
+      '<td style="font-size:10px;color:var(--muted)">'+s.last_dps+'</td>'+
+      '<td style="font-size:10px;color:var(--muted)">'+s.last_gar+'</td>'+
+      '<td style="font-weight:600">'+s.heures+'h</td>'+
+      '<td>'+(s.inscrit_dps?'<span style="background:#FFF0E6;color:#CC5500;border-radius:10px;padding:1px 7px;font-size:10px;font-weight:600">DPS ✓</span>':'<span style="color:#ddd;font-size:10px">—</span>')+'</td>'+
+      '<td>'+(s.inscrit_gar?'<span style="background:#E6F1FB;color:#002D74;border-radius:10px;padding:1px 7px;font-size:10px;font-weight:600">Garde ✓</span>':'<span style="color:#ddd;font-size:10px">—</span>')+'</td>'+
+    '</tr>';
+  }).join('');
+
+  var ficheHtml='';
+  if(srFicheIdx>=0){
+    var s=D[srFicheIdx];
+    ficheHtml='<div style="margin-top:14px;background:var(--card);border-radius:12px;border:1px solid var(--border);border-top:3px solid var(--orange);padding:20px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">'+
+      '<div style="font-size:17px;font-weight:700;color:var(--navy)">'+s.nom+' '+s.prenom+'</div>'+
+      '<button onclick="srFicheIdx=-1;renderSR()" style="background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;color:var(--muted)">Fermer ✕</button>'+
+      '</div>'+
+      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">'+
+      [{l:'DPS effectués',v:s.nb_dps,c:'var(--orange)'},{l:'Gardes effectuées',v:s.nb_gar,c:'var(--navy)'},{l:'Heures totales',v:s.heures+'h',c:'var(--navy)'},{l:'Dernier DPS',v:s.last_dps||'—',c:'var(--muted)'},{l:'Dernière garde',v:s.last_gar||'—',c:'var(--muted)'},{l:'Inscrit DPS',v:s.inscrit_dps?'Oui':'Non',c:s.inscrit_dps?'#27500A':'#aaa'},{l:'Inscrit Garde',v:s.inscrit_gar?'Oui':'Non',c:s.inscrit_gar?'var(--navy)':'#aaa'}]
+      .map(function(k){return'<div style="background:var(--bg);border-radius:7px;padding:10px 12px;border-left:3px solid var(--orange)"><div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px">'+k.l+'</div><div style="font-size:15px;font-weight:700;color:'+k.c+'">'+k.v+'</div></div>';}).join('')+
+      '</div>'+
+      '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Compétences opérationnelles</div>'+
+      '<div style="display:flex;flex-wrap:wrap;gap:8px">'+
+      SR_COMPS.map(function(c){
+        var v=s[c];
+        if(!v)return'<div style="border-radius:7px;padding:7px 13px;background:var(--gray-lt);color:#bbb;font-size:11px;font-weight:600;min-width:60px;text-align:center"><div>'+c+'</div><div style="font-size:9px;font-weight:400;margin-top:2px">—</div></div>';
+        var exp=isExp(v.exp);
+        var expTxt=v.exp&&v.exp!=='-'&&v.exp!=='nan'?'exp. '+v.exp.replace(/-/g,'/'):'valide';
+        return'<div style="border-radius:7px;padding:7px 13px;background:'+(exp?'#FFF3CD':'#EAF3DE')+';color:'+(exp?'#7A4F00':'#27500A')+';font-size:11px;font-weight:600;min-width:60px;text-align:center"><div>'+c+'</div><div style="font-size:9px;font-weight:400;margin-top:2px">'+(exp?'expiré':expTxt)+'</div></div>';
+      }).join('')+
+      '</div></div>';
+  }
+
+  document.getElementById('contentSR').innerHTML=
+    '<div style="padding:14px 22px;background:var(--bg)">'+
+    '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:0 0 8px">Vue d\'ensemble — '+D.length+' secouristes actifs</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px">'+kpiHtml+'</div>'+
+    '<div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center">'+
+    '<span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Recherche</span>'+
+    '<input type="text" id="srSearch" value="'+srSearch+'" placeholder="Nom ou prénom..." style="font-size:12px;padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:#fff;width:180px" oninput="srSearch=this.value;renderSR()">'+
+    '<span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Compétence</span>'+
+    '<select onchange="srComp=this.value;renderSR()" style="font-size:12px;padding:5px 9px;border-radius:6px;border:1px solid var(--border);background:#fff">'+
+    '<option value="">Toutes</option>'+SR_COMPS.map(function(c){return'<option value="'+c+'"'+(srComp===c?' selected':'')+'>'+c+'</option>';}).join('')+
+    '</select>'+
+    '<span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Inscrit</span>'+
+    '<select onchange="srInscrit=this.value;renderSR()" style="font-size:12px;padding:5px 9px;border-radius:6px;border:1px solid var(--border);background:#fff">'+
+    '<option value="">Tous</option><option value="dps"'+(srInscrit==='dps'?' selected':'')+'>Inscrit DPS</option><option value="gar"'+(srInscrit==='gar'?' selected':'')+'>Inscrit Garde</option><option value="aucun"'+(srInscrit==='aucun'?' selected':'')+'>Non inscrit</option>'+
+    '</select>'+
+    '<span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Tri</span>'+
+    '<select onchange="srSort=this.value;renderSR()" style="font-size:12px;padding:5px 9px;border-radius:6px;border:1px solid var(--border);background:#fff">'+
+    '<option value="nom"'+(srSort==='nom'?' selected':'')+'>Nom</option><option value="nb_dps"'+(srSort==='nb_dps'?' selected':'')+'>DPS ↓</option><option value="nb_gar"'+(srSort==='nb_gar'?' selected':'')+'>Gardes ↓</option><option value="heures"'+(srSort==='heures'?' selected':'')+'>Heures ↓</option>'+
+    '</select>'+
+    '<span style="font-size:11px;color:var(--muted);margin-left:auto">'+f.length+' / '+D.length+'</span>'+
+    '</div>'+
+    '<div style="overflow-x:auto;border-radius:10px;border:1px solid var(--border);max-height:420px;overflow-y:auto">'+
+    '<table style="width:100%;border-collapse:collapse;font-size:11px;background:var(--card)">'+
+    '<thead><tr>'+
+    '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:left;position:sticky;top:0">Nom</th>'+
+    '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:left;position:sticky;top:0">Prénom</th>'+
+    SR_COMPS.map(function(c){return'<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">'+c+'</th>';}).join('')+
+    '<th style="background:var(--orange);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">DPS</th>'+
+    '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">Gardes</th>'+
+    '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;white-space:nowrap;text-align:center;position:sticky;top:0">Dernier DPS</th>'+
+    '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;white-space:nowrap;text-align:center;position:sticky;top:0">Dernière garde</th>'+
+    '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">Heures</th>'+
+    '<th style="background:var(--orange);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">Inscrit DPS</th>'+
+    '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">Inscrit Garde</th>'+
+    '</tr></thead><tbody>'+rows+'</tbody></table></div>'+
+    ficheHtml+
+    '<div style="text-align:center;padding:14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px">Protection Civile Paris Seine — Antenne de Paris 12</div>'+
+    '</div>';
+}
+
+function showSRFiche(idx){srFicheIdx=idx;renderSR();setTimeout(function(){var el=document.getElementById('contentSR').querySelector('[style*="border-top:3px solid var(--orange)"]');if(el)el.scrollIntoView({behavior:'smooth'});},50);}
 
 loadJSON();
 </script>
