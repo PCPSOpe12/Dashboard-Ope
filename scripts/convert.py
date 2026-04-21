@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Convertit les exports DPS et Garde (Excel) en JSON pour le dashboard.
+Convertit les exports DPS, Garde et SR (Excel) en JSON pour le dashboard.
 Lancé automatiquement par GitHub Actions à chaque push.
 """
-import json, sys, os
+import json, sys
 from pathlib import Path
 from datetime import datetime, date
 
@@ -32,42 +32,35 @@ def safe_str(v):
     return str(v).strip() if v is not None else ""
 
 def col(row, headers, *names):
+    def norm(s): return s.lower().replace(" ","").replace("(","").replace(")","").replace("'","").replace("é","e").replace("è","e").replace("ê","e")
     for name in names:
         for i, h in enumerate(headers):
-            hn = h.lower().replace(" ", "").replace("(", "").replace(")", "").replace("'", "").replace("é","e").replace("è","e").replace("ê","e")
-            nn = name.lower().replace(" ", "").replace("(", "").replace(")", "").replace("'", "").replace("é","e").replace("è","e").replace("ê","e")
-            if hn == nn:
+            if norm(h) == norm(name):
                 return row[i] if i < len(row) else None
     return None
 
-def convert_file(excel_path, json_path, file_type):
-    if not excel_path.exists():
-        print(f"  Fichier introuvable : {excel_path} — ignoré")
-        return False
-
+def read_sheet(excel_path):
     wb = openpyxl.load_workbook(excel_path, data_only=True)
     ws = wb.active
     rows_iter = ws.iter_rows(values_only=True)
     headers = [str(h).strip() if h else "" for h in next(rows_iter)]
+    rows = [r for r in rows_iter if not all(v is None for v in r)]
+    return headers, rows
 
-    data = []
-    max_date = None
-
-    for row in rows_iter:
-        if all(v is None for v in row):
-            continue
-        date_val = col(row, headers, "Début", "Debut", "début")
-        d = parse_date(date_val)
-        if not d or d.year < 2020:
-            continue
-        if max_date is None or d > max_date:
-            max_date = d
-
+# ── DPS / Garde ────────────────────────────────────────────────────────────
+def convert_activity(excel_path, json_path, file_type):
+    if not excel_path.exists():
+        print(f"  Fichier introuvable : {excel_path} — ignoré")
+        return False
+    headers, rows = read_sheet(excel_path)
+    data, max_date = [], None
+    for row in rows:
+        d = parse_date(col(row, headers, "Début", "Debut", "début"))
+        if not d or d.year < 2020: continue
+        if max_date is None or d > max_date: max_date = d
         if file_type == "dps":
             entry = {
-                "annee":   d.year,
-                "mois":    d.month,
-                "date":    d.strftime("%d/%m/%Y"),
+                "annee": d.year, "mois": d.month, "date": d.strftime("%d/%m/%Y"),
                 "libelle": safe_str(col(row, headers, "Libellé", "Libelle")),
                 "lieu":    safe_str(col(row, headers, "Lieu")),
                 "dps":     safe_str(col(row, headers, "DPS")) or "-",
@@ -76,11 +69,9 @@ def convert_file(excel_path, json_path, file_type):
                 "heures":   round(safe_float(col(row, headers, "Heures")), 1),
                 "pec":      int(safe_float(col(row, headers, "Prise(s) en charge", "Priseesencharge"))),
             }
-        else:  # garde
+        else:
             entry = {
-                "annee":   d.year,
-                "mois":    d.month,
-                "date":    d.strftime("%d/%m/%Y"),
+                "annee": d.year, "mois": d.month, "date": d.strftime("%d/%m/%Y"),
                 "libelle": safe_str(col(row, headers, "Libellé", "Libelle")),
                 "lieu":    safe_str(col(row, headers, "Lieu")),
                 "inscrits": int(safe_float(col(row, headers, "Inscrits"))),
@@ -88,22 +79,121 @@ def convert_file(excel_path, json_path, file_type):
                 "pec":      int(safe_float(col(row, headers, "Intervention(s)", "Interventions"))),
             }
         data.append(entry)
-
     output = {
-        "rows":         data,
-        "lastModified": datetime.now().strftime("%d/%m/%Y %H:%M"),
-        "maxDate":      max_date.strftime("%d/%m/%Y") if max_date else "—",
-        "totalRows":    len(data),
-        "years":        sorted(list(set(r["annee"] for r in data))),
-        "type":         file_type,
+        "rows": data, "lastModified": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "maxDate": max_date.strftime("%d/%m/%Y") if max_date else "—",
+        "totalRows": len(data), "years": sorted(list(set(r["annee"] for r in data))),
+        "type": file_type,
     }
     json_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"  OK — {len(data)} lignes → {json_path} (années: {output['years']}, dernier: {output['maxDate']})")
+    print(f"  OK — {len(data)} lignes → {json_path} (dernier: {output['maxDate']})")
     return True
 
+# ── SR : fusion compétences + participations ───────────────────────────────
+COMP_CIBLES = {'PSE1','PSE2','CE','CP','CEPS','CDD'}
+TODAY = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+
+def convert_sr(comp_path, part_path, json_path):
+    if not comp_path.exists() and not part_path.exists():
+        print(f"  Fichiers SR introuvables — ignoré")
+        return False
+
+    # Compétences
+    comp_pivot = {}
+    if comp_path.exists():
+        headers, rows = read_sheet(comp_path)
+        for row in rows:
+            typ = safe_str(col(row, headers, "TYPE")).strip()
+            if typ not in COMP_CIBLES: continue
+            nom    = safe_str(col(row, headers, "NOM")).upper()
+            prenom = safe_str(col(row, headers, "prenom", "prénom", "Prénom"))
+            key = nom + " " + prenom
+            if key not in comp_pivot:
+                comp_pivot[key] = {"nom": nom, "prenom": prenom}
+            obt = safe_str(col(row, headers, "Obtention"))
+            exp = safe_str(col(row, headers, "Expiration"))
+            if obt in ("-","nan",""): obt = ""
+            if exp in ("-","nan",""): exp = ""
+            comp_pivot[key][typ] = {"obt": obt, "exp": exp}
+        print(f"  Compétences SR : {len(comp_pivot)} personnes")
+
+    # Participations
+    stats = {}
+    max_date = None
+    if part_path.exists():
+        headers, rows = read_sheet(part_path)
+        for row in rows:
+            name = safe_str(col(row, headers, "Personnel"))
+            if not name: continue
+            parts = name.strip().split(" ", 1)
+            key = parts[0].upper() + " " + parts[1] if len(parts) == 2 else name.upper()
+            if key not in stats:
+                stats[key] = {"nb_dps":0,"nb_gar":0,"last_dps":None,"last_gar":None,
+                              "heures":0,"inscrit_dps":False,"inscrit_gar":False}
+            code = safe_str(col(row, headers, "Code"))
+            d = parse_date(col(row, headers, "Début", "Debut"))
+            h = safe_float(col(row, headers, "Présence", "Presence"))
+            if d and (max_date is None or d > max_date): max_date = d
+            if code == "DPS":
+                if d and d < TODAY:
+                    stats[key]["nb_dps"] += 1
+                    stats[key]["heures"] += h
+                    if not stats[key]["last_dps"] or d > stats[key]["last_dps"]:
+                        stats[key]["last_dps"] = d
+                elif d and d >= TODAY:
+                    stats[key]["inscrit_dps"] = True
+            elif code == "GAR":
+                if d and d < TODAY:
+                    stats[key]["nb_gar"] += 1
+                    stats[key]["heures"] += h
+                    if not stats[key]["last_gar"] or d > stats[key]["last_gar"]:
+                        stats[key]["last_gar"] = d
+                elif d and d >= TODAY:
+                    stats[key]["inscrit_gar"] = True
+        print(f"  Participations SR : {len(stats)} personnes")
+
+    # Fusion — uniquement SR avec participations
+    secouristes = []
+    for key in sorted(stats.keys()):
+        c = comp_pivot.get(key, {})
+        s = stats[key]
+        np = key.split(" ", 1)
+        def comp_val(typ):
+            v = c.get(typ)
+            return {"obt": v.get("obt",""), "exp": v.get("exp","")} if v else None
+        secouristes.append({
+            "nom":    c.get("nom")    or (np[0] if np else key),
+            "prenom": c.get("prenom") or (np[1] if len(np)>1 else ""),
+            "PSE1": comp_val("PSE1"), "PSE2": comp_val("PSE2"),
+            "CE":   comp_val("CE"),   "CP":   comp_val("CP"),
+            "CEPS": comp_val("CEPS"), "CDD":  comp_val("CDD"),
+            "nb_dps": s["nb_dps"],   "nb_gar": s["nb_gar"],
+            "last_dps": s["last_dps"].strftime("%d/%m/%Y") if s["last_dps"] else "",
+            "last_gar": s["last_gar"].strftime("%d/%m/%Y") if s["last_gar"] else "",
+            "heures": round(s["heures"], 1),
+            "inscrit_dps": s["inscrit_dps"],
+            "inscrit_gar": s["inscrit_gar"],
+        })
+
+    output = {
+        "secouristes":  secouristes,
+        "lastModified": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "maxDate":      max_date.strftime("%d/%m/%Y") if max_date else "—",
+        "totalRows":    len(secouristes),
+    }
+    json_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"  OK — {len(secouristes)} secouristes → {json_path}")
+    return True
+
+# ── Main ───────────────────────────────────────────────────────────────────
 def main():
-    convert_file(Path("data/export_dps.xlsx"),   Path("data_dps.json"),   "dps")
-    convert_file(Path("data/export_garde.xlsx"), Path("data_garde.json"), "garde")
+    convert_activity(Path("data/export_dps.xlsx"),   Path("data_dps.json"),   "dps")
+    convert_activity(Path("data/export_garde.xlsx"), Path("data_garde.json"), "garde")
+    convert_sr(
+        Path("data/export_competences.xlsx"),
+        Path("data/export_participations.xlsx"),
+        Path("data_sr.json")
+    )
     print("Conversion terminée.")
 
 if __name__ == "__main__":
