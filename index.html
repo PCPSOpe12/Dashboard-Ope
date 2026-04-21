@@ -246,15 +246,17 @@ function updateHeader(){
   if(DATA_SR&&DATA_SR.lastModified)dates.push(DATA_SR.lastModified);
   dates.sort(function(a,b){
     var pa=a.split('/'),pb=b.split('/');
-    var da=new Date(+pa[2],+pa[1]-1,+pa[0]);
-    var db=new Date(+pb[2],+pb[1]-1,+pb[0]);
-    return da-db;
+    return new Date(+pa[2],+pa[1]-1,+pa[0])-new Date(+pb[2],+pb[1]-1,+pb[0]);
   });
   document.getElementById("headerUpdate").textContent=dates.length?dates[dates.length-1]:"—";
-  var yrs=new Set();
-  if(DATA_DPS)DATA_DPS.rows.forEach(function(r){yrs.add(r.annee);});
-  if(DATA_GARDE)DATA_GARDE.rows.forEach(function(r){yrs.add(r.annee);});
-  document.getElementById("badgeYears").textContent=[...yrs].sort().join(" · ");
+  // Badge eProtec date range
+  var minD=DATA_SR&&DATA_SR.minDate?DATA_SR.minDate:null;
+  var maxD=DATA_SR&&DATA_SR.maxDate?DATA_SR.maxDate:null;
+  if(minD&&maxD){
+    document.getElementById("badgeYears").textContent="Données eProtec du "+minD+" au "+maxD;
+  } else {
+    document.getElementById("badgeYears").textContent="—";
+  }
 }
 
 function buildAgg(rows,mKey){
@@ -622,8 +624,18 @@ var srSearch='',srComp='',srInscrit='',srSort='nom',srFicheIdx=-1;
 function isExp(e){if(!e||e==='-'||e==='nan')return false;try{var p=e.split('-');return new Date(+p[2],+p[1]-1,+p[0])<new Date();}catch(x){return false;}}
 function compCell(c){if(!c)return'<span style="color:#ddd">—</span>';return isExp(c.exp)?'<span style="background:#FFF3CD;color:#7A4F00;font-weight:700;border-radius:4px;padding:1px 6px;font-size:10px">EXP</span>':'<span style="background:#EAF3DE;color:#27500A;font-weight:700;border-radius:4px;padding:1px 6px;font-size:10px">✓</span>';}
 
+function getFeu(lastAny){
+  if(!lastAny)return{c:'#E24B4A',t:'inactif'};
+  var p=lastAny.split('/');
+  var d=new Date(+p[2],+p[1]-1,+p[0]);
+  var diffDays=Math.floor((new Date()-d)/(1000*60*60*24));
+  if(diffDays<=30)return{c:'#639922',t:'actif'};
+  if(diffDays<=90)return{c:'#BA7517',t:'récent'};
+  return{c:'#E24B4A',t:'inactif'};
+}
+
 function renderSR(){
-  var D=SR_DATA;
+  var D=SR_DATA.filter(function(s){return s.heures>0;});
   var q=srSearch.toLowerCase();
   var f=D.filter(function(s){
     if(q&&!(s.nom.toLowerCase().includes(q)||s.prenom.toLowerCase().includes(q)))return false;
@@ -651,14 +663,16 @@ function renderSR(){
     {l:'PSE2',v:pse2v,c:'var(--orange)'},
     {l:'CE',v:cev,c:'var(--orange)'},
     {l:'CP',v:cpv,c:'var(--orange)'},
-    {l:'CEPS',v:cepsv,c:'var(--navy)'},
+    {l:'CEPS',v:cepsv,c:'var(--orange)'},
   ].map(function(k){return'<div style="background:var(--card);border-radius:8px;border:1px solid var(--border);padding:11px 13px;border-left:3px solid var(--orange)"><div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">'+k.l+'</div><div style="font-size:21px;font-weight:700;color:'+k.c+'">'+k.v+'</div></div>';}).join('');
 
   var rows=f.map(function(s){
     var idx=D.indexOf(s);
+    var feu=getFeu(s.last_any);
     return'<tr style="cursor:pointer" onclick="showSRFiche('+idx+')">'+
       '<td style="text-align:left;font-weight:600;color:var(--navy)">'+s.nom+'</td>'+
       '<td style="text-align:left">'+s.prenom+'</td>'+
+      '<td style="text-align:center"><span title="'+feu.t+'" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+feu.c+'"></span></td>'+
       SR_COMPS.map(function(c){return'<td>'+compCell(s[c])+'</td>';}).join('')+
       '<td style="font-weight:700;color:var(--orange)">'+s.nb_dps+'</td>'+
       '<td style="font-weight:700;color:var(--navy)">'+s.nb_gar+'</td>'+
@@ -710,6 +724,13 @@ function renderSR(){
       }).join('')+
       '</div>'+
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'+
+        (function(){
+          var maxD=DATA_SR&&DATA_SR.maxDate?DATA_SR.maxDate:'';
+          var minD12='';
+          if(maxD){var p=maxD.split('/');var d=new Date(+p[2]-1,+p[1]-1,+p[0]);minD12=d.toLocaleDateString('fr-FR');}
+          var periodLabel=minD12&&maxD?'<div style="font-size:10px;color:var(--muted);margin-bottom:10px;grid-column:span 2">Activités affichées sur 12 mois glissants : '+minD12+' → '+maxD+'</div>':'';
+          return periodLabel;
+        })()+
         '<div>'+
           '<div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">DPS ('+s.nb_dps+')</div>'+
           '<div style="'+actStyle+'">'+actTable(s.activites_dps,'orange')+'</div>'+
@@ -748,6 +769,7 @@ function renderSR(){
     '<thead><tr>'+
     '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:left;position:sticky;top:0">Nom</th>'+
     '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:left;position:sticky;top:0">Prénom</th>'+
+    '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:8px;text-align:center;position:sticky;top:0" title="Vert &lt;1m / Orange 1-3m / Rouge &gt;3m">●</th>'+
     SR_COMPS.map(function(c){return'<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">'+c+'</th>';}).join('')+
     '<th style="background:var(--orange);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">DPS</th>'+
     '<th style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px;text-align:center;position:sticky;top:0">Gardes</th>'+
