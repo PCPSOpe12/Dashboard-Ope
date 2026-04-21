@@ -6,6 +6,8 @@ on:
     paths:
       - 'data/export_dps.xlsx'
       - 'data/export_garde.xlsx'
+      - 'data/export_competences.xlsx'
+      - 'data/export_participations.xlsx'
       - 'index.html'
       - 'assets/**'
       - '.github/workflows/deploy.yml'
