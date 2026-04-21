@@ -446,27 +446,33 @@ function parseExcel(buffer,type){
 
 // ── Load data.json ───────────────────────────────────────────────────────
 function loadJSON(){
-  var loaded={dps:false,garde:false,sr:false};
-  function check(){
-    if(loaded.dps&&loaded.garde&&loaded.sr){
-      document.getElementById("loadingScreen").style.display="none";
-      document.getElementById("app").style.display="block";
-      updateHeader();
-      render();
-    }
+  var firstLoad=true;
+
+  function showApp(){
+    if(!firstLoad)return;
+    firstLoad=false;
+    document.getElementById("loadingScreen").style.display="none";
+    document.getElementById("app").style.display="block";
+    updateHeader();
+    render();
   }
+
+  // DPS = onglet par défaut → affiche dès que prêt
   fetch("data_dps.json?t="+Date.now())
     .then(function(r){return r.ok?r.json():null;})
-    .then(function(d){if(d){DATA_DPS=d;}loaded.dps=true;check();})
-    .catch(function(){loaded.dps=true;check();});
+    .then(function(d){if(d)DATA_DPS=d;showApp();})
+    .catch(function(){showApp();});
+
+  // Garde et SR = en arrière-plan, refresh header quand prêts
   fetch("data_garde.json?t="+Date.now())
     .then(function(r){return r.ok?r.json():null;})
-    .then(function(d){if(d){DATA_GARDE=d;}loaded.garde=true;check();})
-    .catch(function(){loaded.garde=true;check();});
+    .then(function(d){if(d)DATA_GARDE=d;updateHeader();})
+    .catch(function(){});
+
   fetch("data_sr.json?t="+Date.now())
     .then(function(r){return r.ok?r.json():null;})
-    .then(function(d){if(d&&d.secouristes){SR_DATA=d.secouristes;DATA_SR=d;}loaded.sr=true;check();})
-    .catch(function(){loaded.sr=true;check();});
+    .then(function(d){if(d&&d.secouristes){SR_DATA=d.secouristes;DATA_SR=d;}updateHeader();})
+    .catch(function(){});
 }
 
 // ── Admin ────────────────────────────────────────────────────────────────
