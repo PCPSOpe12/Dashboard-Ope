@@ -745,7 +745,13 @@ function renderSR(){
 
   document.getElementById('contentSR').innerHTML=
     '<div style="padding:14px 22px;background:var(--bg)">'+
-    '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:0 0 8px">Vue d\'ensemble — '+D.length+' secouristes actifs</div>'+
+    '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:0 0 4px">Vue d\'ensemble — '+D.length+' secouristes actifs</div>'+
+    (function(){
+      var maxD=DATA_SR&&DATA_SR.maxDate?DATA_SR.maxDate:'';
+      var minD12='';
+      if(maxD){var p=maxD.split('/');var d=new Date(+p[2]-1,+p[1]-1,+p[0]);minD12=d.toLocaleDateString('fr-FR');}
+      return minD12&&maxD?'<div style="font-size:11px;color:var(--muted);margin-bottom:12px">Activités sur 12 mois glissants : '+minD12+' → '+maxD+'</div>':'<div style="margin-bottom:12px"></div>';
+    })()+
     '<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px">'+kpiHtml+'</div>'+
     '<div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center">'+
     '<span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Recherche</span>'+
