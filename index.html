@@ -457,13 +457,16 @@ function loadJSON(){
     render();
   }
 
+  // Timeout de secours — affiche après 4s même si les fichiers ne chargent pas
+  setTimeout(showApp, 4000);
+
   // DPS = onglet par défaut → affiche dès que prêt
   fetch("data_dps.json?t="+Date.now())
     .then(function(r){return r.ok?r.json():null;})
     .then(function(d){if(d)DATA_DPS=d;showApp();})
     .catch(function(){showApp();});
 
-  // Garde et SR = en arrière-plan, refresh header quand prêts
+  // Garde et SR = en arrière-plan
   fetch("data_garde.json?t="+Date.now())
     .then(function(r){return r.ok?r.json():null;})
     .then(function(d){if(d)DATA_GARDE=d;updateHeader();})
