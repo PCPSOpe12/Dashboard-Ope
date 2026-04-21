@@ -7203,6 +7203,18 @@
     {
       "annee": 2026,
       "mois": 4,
+      "date": "21/04/2026",
+      "libelle": "Renfort DPS-ME - Concert Louis Tomlinson",
+      "lieu": "Accor Arena Bercy",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 1,
+      "heures": 6.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
       "date": "22/04/2026",
       "libelle": "Renfort PSG  Nantes Ligue 1",
       "lieu": "Parc des Princes",
@@ -7573,9 +7585,9 @@
       "pec": 0
     }
   ],
-  "lastModified": "21/04/2026 15:13",
+  "lastModified": "21/04/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 631,
+  "totalRows": 632,
   "years": [
     2023,
     2024,
