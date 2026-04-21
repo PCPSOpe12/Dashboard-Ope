@@ -634,9 +634,42 @@ function getFeu(lastAny){
   return{c:'#E24B4A',t:'inactif'};
 }
 
+function get12mCutoff(){
+  var now=new Date();
+  return new Date(now.getFullYear()-1,now.getMonth(),now.getDate());
+}
+
+function parseDate(str){
+  if(!str)return null;
+  var p=str.split('/');
+  return new Date(+p[2],+p[1]-1,+p[0]);
+}
+
+function compute12m(s){
+  var cutoff=get12mCutoff();
+  var adps=(s.activites_dps||[]).filter(function(a){var d=parseDate(a.date);return d&&d>=cutoff;});
+  var agar=(s.activites_gar||[]).filter(function(a){var d=parseDate(a.date);return d&&d>=cutoff;});
+  var nb_dps=adps.length;
+  var nb_gar=agar.length;
+  var heures=adps.reduce(function(t,a){return t+a.heures;},0)+agar.reduce(function(t,a){return t+a.heures;},0);
+  return{nb_dps:nb_dps,nb_gar:nb_gar,heures:Math.round(heures*10)/10,adps:adps,agar:agar};
+}
+
 function renderSR(){
-  var D=SR_DATA.filter(function(s){return s.heures>0;});
+  var raw=SR_DATA.filter(function(s){
+    var c=compute12m(s);
+    return c.nb_dps+c.nb_gar>0||s.inscrit_dps||s.inscrit_gar;
+  });
   var q=srSearch.toLowerCase();
+  var cutoff=get12mCutoff();
+  var cutoffStr=cutoff.toLocaleDateString('fr-FR');
+  var todayStr=new Date().toLocaleDateString('fr-FR');
+
+  var D=raw.map(function(s){
+    var c12=compute12m(s);
+    return Object.assign({},s,{nb_dps:c12.nb_dps,nb_gar:c12.nb_gar,heures:c12.heures,_adps12:c12.adps,_agar12:c12.agar});
+  }).filter(function(s){return s.heures>0||s.inscrit_dps||s.inscrit_gar;});
+
   var f=D.filter(function(s){
     if(q&&!(s.nom.toLowerCase().includes(q)||s.prenom.toLowerCase().includes(q)))return false;
     if(srComp&&(!s[srComp]||isExp(s[srComp].exp)))return false;
@@ -724,20 +757,14 @@ function renderSR(){
       }).join('')+
       '</div>'+
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'+
-        (function(){
-          var maxD=DATA_SR&&DATA_SR.maxDate?DATA_SR.maxDate:'';
-          var minD12='';
-          if(maxD){var p=maxD.split('/');var d=new Date(+p[2]-1,+p[1]-1,+p[0]);minD12=d.toLocaleDateString('fr-FR');}
-          var periodLabel=minD12&&maxD?'<div style="font-size:10px;color:var(--muted);margin-bottom:10px;grid-column:span 2">Activités affichées sur 12 mois glissants : '+minD12+' → '+maxD+'</div>':'';
-          return periodLabel;
-        })()+
+        '<div style="font-size:10px;color:var(--muted);margin-bottom:10px;grid-column:span 2">Activités affichées sur 12 mois glissants : '+cutoffStr+' → '+todayStr+'</div>'+
         '<div>'+
-          '<div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">DPS ('+s.nb_dps+')</div>'+
-          '<div style="'+actStyle+'">'+actTable(s.activites_dps,'orange')+'</div>'+
+          '<div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">DPS ('+s._adps12.length+')</div>'+
+          '<div style="'+actStyle+'">'+actTable(s._adps12,'orange')+'</div>'+
         '</div>'+
         '<div>'+
-          '<div style="font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Gardes ('+s.nb_gar+')</div>'+
-          '<div style="'+actStyle+'">'+actTable(s.activites_gar,'navy')+'</div>'+
+          '<div style="font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Gardes ('+s._agar12.length+')</div>'+
+          '<div style="'+actStyle+'">'+actTable(s._agar12,'navy')+'</div>'+
         '</div>'+
       '</div>'+
     '</div>';
@@ -746,12 +773,7 @@ function renderSR(){
   document.getElementById('contentSR').innerHTML=
     '<div style="padding:14px 22px;background:var(--bg)">'+
     '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:0 0 4px">Vue d\'ensemble — '+D.length+' secouristes actifs</div>'+
-    (function(){
-      var maxD=DATA_SR&&DATA_SR.maxDate?DATA_SR.maxDate:'';
-      var minD12='';
-      if(maxD){var p=maxD.split('/');var d=new Date(+p[2]-1,+p[1]-1,+p[0]);minD12=d.toLocaleDateString('fr-FR');}
-      return minD12&&maxD?'<div style="font-size:11px;color:var(--muted);margin-bottom:12px">Activités sur 12 mois glissants : '+minD12+' → '+maxD+'</div>':'<div style="margin-bottom:12px"></div>';
-    })()+
+    '<div style="font-size:11px;color:var(--muted);margin-bottom:12px">Activités sur 12 mois glissants : '+cutoffStr+' → '+todayStr+'</div>'+
     '<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px">'+kpiHtml+'</div>'+
     '<div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center">'+
     '<span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Recherche</span>'+
