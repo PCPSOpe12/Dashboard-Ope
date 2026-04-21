@@ -170,36 +170,27 @@ def convert_sr(comp_path, part_path, json_path):
         print(f"  Participations SR : {len(stats)} personnes")
 
     # Fusion — uniquement SR avec participations ET heures > 0
-    # Fenêtre 12 mois glissants pour les activités affichées
-    cutoff_12m = datetime(max_date.year - 1, max_date.month, max_date.day) if max_date else None
-
     secouristes = []
     for key in sorted(stats.keys()):
         c = comp_pivot.get(key, {})
         s = stats[key]
-        if round(s["heures"], 1) == 0: continue  # Exclure SR sans heures
+        if round(s["heures"], 1) == 0: continue
         np = key.split(" ", 1)
         def comp_val(typ):
             v = c.get(typ)
             return {"obt": v.get("obt",""), "exp": v.get("exp","")} if v else None
 
-        # Filtrer activités sur 12 mois glissants, trier par date décroissante
-        def filter_acts(acts):
-            filtered = []
-            for a in acts:
-                if cutoff_12m:
-                    from datetime import datetime as dt2
-                    try:
-                        ad = dt2.strptime(a["date"], "%d/%m/%Y")
-                        if ad < cutoff_12m: continue
-                    except: pass
-                filtered.append({k2: v2 for k2, v2 in a.items() if k2 != "ts"})
-            return sorted(filtered, key=lambda x: x["date"], reverse=True)
+        # Trier toutes les activités par date décroissante (pas de filtre — fait côté JS)
+        adps = sorted(
+            [{k2: v2 for k2, v2 in a.items() if k2 != "ts"} for a in s["activites_dps"]],
+            key=lambda x: x["date"], reverse=True
+        )
+        agar = sorted(
+            [{k2: v2 for k2, v2 in a.items() if k2 != "ts"} for a in s["activites_gar"]],
+            key=lambda x: x["date"], reverse=True
+        )
 
-        adps = filter_acts(s["activites_dps"])
-        agar = filter_acts(s["activites_gar"])
-
-        # Dernière activité toutes catégories pour le feu
+        # Dernière activité toutes catégories pour le feu (calculé côté JS)
         last_any = None
         if s["last_dps"] and s["last_gar"]:
             last_any = max(s["last_dps"], s["last_gar"])
@@ -208,19 +199,15 @@ def convert_sr(comp_path, part_path, json_path):
         elif s["last_gar"]:
             last_any = s["last_gar"]
 
-        last_any_str = last_any.strftime("%d/%m/%Y") if last_any else ""
-
         secouristes.append({
             "nom":    c.get("nom")    or (np[0] if np else key),
             "prenom": c.get("prenom") or (np[1] if len(np)>1 else ""),
             "PSE1": comp_val("PSE1"), "PSE2": comp_val("PSE2"),
             "CE":   comp_val("CE"),   "CP":   comp_val("CP"),
             "CEPS": comp_val("CEPS"), "CDD":  comp_val("CDD"),
-            "nb_dps": s["nb_dps"],   "nb_gar": s["nb_gar"],
             "last_dps": s["last_dps"].strftime("%d/%m/%Y") if s["last_dps"] else "",
             "last_gar": s["last_gar"].strftime("%d/%m/%Y") if s["last_gar"] else "",
-            "last_any": last_any_str,
-            "heures": round(s["heures"], 1),
+            "last_any": last_any.strftime("%d/%m/%Y") if last_any else "",
             "inscrit_dps": s["inscrit_dps"],
             "inscrit_gar": s["inscrit_gar"],
             "activites_dps": adps,
