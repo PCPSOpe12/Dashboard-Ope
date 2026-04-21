@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
 Convertit les exports DPS, Garde et SR (Excel) en JSON pour le dashboard.
-Lancé automatiquement par GitHub Actions à chaque push.
 """
-import json, sys
+import json
 from pathlib import Path
 from datetime import datetime, date
 
@@ -11,7 +10,7 @@ try:
     import openpyxl
 except ImportError:
     print("openpyxl manquant. Lancer: pip install openpyxl")
-    sys.exit(1)
+    import sys; sys.exit(1)
 
 def parse_date(val):
     if isinstance(val, (datetime, date)):
@@ -79,24 +78,26 @@ def convert_activity(excel_path, json_path, file_type):
                 "pec":      int(safe_float(col(row, headers, "Intervention(s)", "Interventions"))),
             }
         data.append(entry)
+    now = datetime.now()
     output = {
-        "rows": data, "lastModified": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "rows": data,
+        "lastModified": now.strftime("%d/%m/%Y"),
         "maxDate": max_date.strftime("%d/%m/%Y") if max_date else "—",
-        "totalRows": len(data), "years": sorted(list(set(r["annee"] for r in data))),
+        "totalRows": len(data),
+        "years": sorted(list(set(r["annee"] for r in data))),
         "type": file_type,
     }
     json_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  OK — {len(data)} lignes → {json_path} (dernier: {output['maxDate']})")
     return True
 
-# ── SR : fusion compétences + participations ───────────────────────────────
+# ── SR ─────────────────────────────────────────────────────────────────────
 COMP_CIBLES = {'PSE1','PSE2','CE','CP','CEPS','CDD'}
 TODAY = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
 def convert_sr(comp_path, part_path, json_path):
     if not comp_path.exists() and not part_path.exists():
-        print(f"  Fichiers SR introuvables — ignoré")
-        return False
+        print(f"  Fichiers SR introuvables — ignoré"); return False
 
     # Compétences
     comp_pivot = {}
@@ -128,18 +129,26 @@ def convert_sr(comp_path, part_path, json_path):
             parts = name.strip().split(" ", 1)
             key = parts[0].upper() + " " + parts[1] if len(parts) == 2 else name.upper()
             if key not in stats:
-                stats[key] = {"nb_dps":0,"nb_gar":0,"last_dps":None,"last_gar":None,
-                              "heures":0,"inscrit_dps":False,"inscrit_gar":False}
+                stats[key] = {
+                    "nb_dps":0,"nb_gar":0,"last_dps":None,"last_gar":None,
+                    "heures":0,"inscrit_dps":False,"inscrit_gar":False,
+                    "activites_dps":[], "activites_gar":[]
+                }
             code = safe_str(col(row, headers, "Code"))
-            d = parse_date(col(row, headers, "Début", "Debut"))
-            h = safe_float(col(row, headers, "Présence", "Presence"))
+            d    = parse_date(col(row, headers, "Début", "Debut"))
+            h    = safe_float(col(row, headers, "Présence", "Presence"))
+            lib  = safe_str(col(row, headers, "Evenement", "Évènement", "Libellé", "Libelle"))
             if d and (max_date is None or d > max_date): max_date = d
+
             if code == "DPS":
                 if d and d < TODAY:
                     stats[key]["nb_dps"] += 1
                     stats[key]["heures"] += h
                     if not stats[key]["last_dps"] or d > stats[key]["last_dps"]:
                         stats[key]["last_dps"] = d
+                    stats[key]["activites_dps"].append({
+                        "date": d.strftime("%d/%m/%Y"), "lib": lib, "heures": round(h,1)
+                    })
                 elif d and d >= TODAY:
                     stats[key]["inscrit_dps"] = True
             elif code == "GAR":
@@ -148,11 +157,14 @@ def convert_sr(comp_path, part_path, json_path):
                     stats[key]["heures"] += h
                     if not stats[key]["last_gar"] or d > stats[key]["last_gar"]:
                         stats[key]["last_gar"] = d
+                    stats[key]["activites_gar"].append({
+                        "date": d.strftime("%d/%m/%Y"), "lib": lib, "heures": round(h,1)
+                    })
                 elif d and d >= TODAY:
                     stats[key]["inscrit_gar"] = True
         print(f"  Participations SR : {len(stats)} personnes")
 
-    # Fusion — uniquement SR avec participations
+    # Fusion
     secouristes = []
     for key in sorted(stats.keys()):
         c = comp_pivot.get(key, {})
@@ -161,6 +173,9 @@ def convert_sr(comp_path, part_path, json_path):
         def comp_val(typ):
             v = c.get(typ)
             return {"obt": v.get("obt",""), "exp": v.get("exp","")} if v else None
+        # Trier activités par date décroissante
+        adps = sorted(s["activites_dps"], key=lambda x: x["date"], reverse=True)
+        agar = sorted(s["activites_gar"], key=lambda x: x["date"], reverse=True)
         secouristes.append({
             "nom":    c.get("nom")    or (np[0] if np else key),
             "prenom": c.get("prenom") or (np[1] if len(np)>1 else ""),
@@ -173,11 +188,14 @@ def convert_sr(comp_path, part_path, json_path):
             "heures": round(s["heures"], 1),
             "inscrit_dps": s["inscrit_dps"],
             "inscrit_gar": s["inscrit_gar"],
+            "activites_dps": adps,
+            "activites_gar": agar,
         })
 
+    now = datetime.now()
     output = {
         "secouristes":  secouristes,
-        "lastModified": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "lastModified": now.strftime("%d/%m/%Y"),
         "maxDate":      max_date.strftime("%d/%m/%Y") if max_date else "—",
         "totalRows":    len(secouristes),
     }
@@ -185,7 +203,6 @@ def convert_sr(comp_path, part_path, json_path):
     print(f"  OK — {len(secouristes)} secouristes → {json_path}")
     return True
 
-# ── Main ───────────────────────────────────────────────────────────────────
 def main():
     convert_activity(Path("data/export_dps.xlsx"),   Path("data_dps.json"),   "dps")
     convert_activity(Path("data/export_garde.xlsx"), Path("data_garde.json"), "garde")
