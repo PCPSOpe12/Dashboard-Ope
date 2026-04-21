@@ -142,16 +142,22 @@ tr:nth-child(even) td{background:#F8FAFC}
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <span class="up-status" id="uploadStatus"></span>
     </div>
-    <div class="admin-hint">
-      Pour déployer : dépose le fichier dans <code>data/export_dps.xlsx</code> ou <code>data/export_garde.xlsx</code> sur GitHub → mise à jour automatique pour toute l'équipe
+    <div class="admin-hint" id="adminHint">
+      ① Charge ton fichier Excel &nbsp;②&nbsp;
+      <button id="btnDeploy" style="background:var(--orange);color:#fff;border:none;border-radius:5px;padding:4px 12px;font-size:11px;font-weight:600;cursor:pointer;display:none">
+        Déployer pour l'équipe
+      </button>
+      <span id="deployStatus" style="font-size:11px;margin-left:8px"></span>
     </div>
   </div>
 
   <div id="pwModal" class="modal-overlay">
     <div class="modal-box">
       <div class="modal-title">Accès admin</div>
-      <div class="modal-sub">Mot de passe requis.</div>
-      <input type="password" id="pwInput" class="modal-input" placeholder="Mot de passe">
+      <div class="modal-sub">Entrez le mot de passe et votre token GitHub pour activer le déploiement automatique.</div>
+      <input type="password" id="pwInput" class="modal-input" placeholder="Mot de passe admin">
+      <input type="password" id="tokenInput" class="modal-input" placeholder="Token GitHub (ghp_...)" style="margin-top:-4px">
+      <div style="font-size:10px;color:var(--muted);margin:-8px 0 11px">Le token est stocké localement dans votre navigateur uniquement.</div>
       <div class="modal-btns">
         <button id="pwCancel" class="modal-cancel">Annuler</button>
         <button id="pwSubmit" class="modal-submit">Valider</button>
@@ -444,19 +450,36 @@ function loadJSON(){
 }
 
 // ── Admin ────────────────────────────────────────────────────────────────
-var adminUnlocked=false;
+var GITHUB_OWNER = "PCPSOpe12";
+var GITHUB_REPO  = "Dashboard-Ope";
+var adminUnlocked = false;
+var githubToken = localStorage.getItem("dps_gh_token") || "";
+var lastFileBuffer = null, lastFileType = null;
+
 document.getElementById("btnAdminToggle").addEventListener("click",function(){
   if(adminUnlocked){var p=document.getElementById("adminPanel");p.style.display=p.style.display==="none"?"block":"none";return;}
   document.getElementById("pwModal").style.display="flex";
+  if(githubToken)document.getElementById("tokenInput").value=githubToken;
   setTimeout(function(){document.getElementById("pwInput").focus();},50);
 });
-document.getElementById("pwCancel").addEventListener("click",function(){document.getElementById("pwModal").style.display="none";document.getElementById("pwInput").value="";document.getElementById("pwError").style.display="none";});
+document.getElementById("pwCancel").addEventListener("click",function(){
+  document.getElementById("pwModal").style.display="none";
+  document.getElementById("pwInput").value="";
+  document.getElementById("pwError").style.display="none";
+});
 document.getElementById("pwSubmit").addEventListener("click",function(){
   if(document.getElementById("pwInput").value===ADMIN_PASSWORD){
-    adminUnlocked=true;document.getElementById("pwModal").style.display="none";
+    var tok=document.getElementById("tokenInput").value.trim();
+    if(tok){githubToken=tok;localStorage.setItem("dps_gh_token",tok);}
+    adminUnlocked=true;
+    document.getElementById("pwModal").style.display="none";
     document.getElementById("adminPanel").style.display="block";
-    document.getElementById("pwInput").value="";document.getElementById("pwError").style.display="none";
-  }else{document.getElementById("pwError").style.display="block";document.getElementById("pwInput").value="";}
+    document.getElementById("pwInput").value="";
+    document.getElementById("pwError").style.display="none";
+  }else{
+    document.getElementById("pwError").style.display="block";
+    document.getElementById("pwInput").value="";
+  }
 });
 document.getElementById("pwInput").addEventListener("keydown",function(e){if(e.key==="Enter")document.getElementById("pwSubmit").click();});
 
@@ -465,19 +488,81 @@ function processFile(file){
   var type=document.getElementById("selFileType").value;
   var status=document.getElementById("uploadStatus");
   status.textContent="Chargement...";status.className="up-status";
+  document.getElementById("btnDeploy").style.display="none";
+  document.getElementById("deployStatus").textContent="";
   var reader=new FileReader();
   reader.onload=function(e){
     try{
-      var data=parseExcel(new Uint8Array(e.target.result),type);
+      var buf=new Uint8Array(e.target.result);
+      var data=parseExcel(buf,type);
       if(!data.rows.length){status.textContent="Aucune donnée lisible.";status.className="up-status up-err";return;}
       if(type==="dps")DATA_DPS=data; else DATA_GARDE=data;
+      lastFileBuffer=e.target.result;
+      lastFileType=type;
       updateHeader();render();
       status.textContent="✓ "+data.rows.length+" lignes — données au "+data.maxDate;
       status.className="up-status up-ok";
+      document.getElementById("btnDeploy").style.display="inline-block";
     }catch(err){status.textContent="Erreur : "+err.message;status.className="up-status up-err";}
   };
   reader.readAsArrayBuffer(file);
 }
+
+async function deployToGitHub(){
+  if(!lastFileBuffer||!lastFileType){return;}
+  if(!githubToken){
+    document.getElementById("deployStatus").textContent="Token GitHub manquant — reconnecte-toi en admin.";
+    document.getElementById("deployStatus").style.color="var(--red)";
+    return;
+  }
+  var ds=document.getElementById("deployStatus");
+  var btn=document.getElementById("btnDeploy");
+  btn.disabled=true;
+  ds.style.color="var(--muted)";
+  ds.textContent="Envoi vers GitHub...";
+
+  var path="data/export_"+(lastFileType==="dps"?"dps":"garde")+".xlsx";
+  var apiUrl="https://api.github.com/repos/"+GITHUB_OWNER+"/"+GITHUB_REPO+"/contents/"+path;
+
+  try{
+    // Get current SHA (needed to update existing file)
+    var sha=null;
+    try{
+      var getResp=await fetch(apiUrl,{headers:{"Authorization":"token "+githubToken,"Accept":"application/vnd.github.v3+json"}});
+      if(getResp.ok){var getJson=await getResp.json();sha=getJson.sha;}
+    }catch(e){}
+
+    // Convert buffer to base64
+    var bytes=new Uint8Array(lastFileBuffer);
+    var binary="";for(var i=0;i<bytes.byteLength;i++)binary+=String.fromCharCode(bytes[i]);
+    var b64=btoa(binary);
+
+    // Push to GitHub
+    var body={message:"Mise à jour données "+(lastFileType==="dps"?"DPS":"Garde")+" — "+new Date().toLocaleDateString("fr-FR"),content:b64};
+    if(sha)body.sha=sha;
+
+    var putResp=await fetch(apiUrl,{
+      method:"PUT",
+      headers:{"Authorization":"token "+githubToken,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
+      body:JSON.stringify(body)
+    });
+
+    if(putResp.ok){
+      ds.textContent="✓ Envoyé ! GitHub Actions déploie dans ~2 min.";
+      ds.style.color="var(--green)";
+    }else{
+      var err=await putResp.json();
+      ds.textContent="Erreur GitHub : "+(err.message||putResp.status);
+      ds.style.color="var(--red)";
+    }
+  }catch(e){
+    ds.textContent="Erreur réseau : "+e.message;
+    ds.style.color="var(--red)";
+  }
+  btn.disabled=false;
+}
+
+document.getElementById("btnDeploy").addEventListener("click", deployToGitHub);
 document.getElementById("btnChooseFile").addEventListener("click",function(){document.getElementById("fileInput").click();});
 document.getElementById("fileInput").addEventListener("change",function(e){processFile(e.target.files[0]);});
 var dz=document.getElementById("dropZone");
