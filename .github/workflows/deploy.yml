@@ -8,6 +8,7 @@ on:
       - 'data/export_garde.xlsx'
       - 'data/export_competences.xlsx'
       - 'data/export_participations.xlsx'
+      - 'data/requests/*.json'
       - 'index.html'
       - 'assets/**'
       - '.github/workflows/deploy.yml'
@@ -30,10 +31,13 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install openpyxl
+        run: pip install openpyxl python-docx
 
       - name: Convert Excel to JSON
         run: python scripts/convert.py
+
+      - name: Generate documents
+        run: python scripts/generate_docs.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -41,4 +45,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           publish_branch: gh-pages
-          exclude_assets: '.github,scripts,data/*.xlsx'
+          exclude_assets: '.github,scripts,data/*.xlsx,data/requests'
