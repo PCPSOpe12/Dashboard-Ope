@@ -1071,7 +1071,7 @@ function renderPL(){
       annees.forEach(function(yr){
         var pct=plProgress(p.annees[yr]);
         var clr=pct===100?'#639922':pct>0?'#BA7517':'#ccc';
-        html+='<span style="display:inline-flex;align-items:center;gap:4px;margin-right:6px;background:var(--bg);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:600;color:'+clr+'">'+yr+' '+pct+'%</span>';
+        html+='<span onclick="openAnneeModal('+p.id+',\''+yr+'\')" style="display:inline-flex;align-items:center;gap:4px;margin-right:6px;background:var(--bg);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:600;color:'+clr+';cursor:pointer" title="Modifier '+yr+'">'+yr+' '+pct+'% ✏️</span>';
       });
     } else {
       html+='<span style="color:#ccc;font-size:11px">—</span>';
@@ -1080,11 +1080,11 @@ function renderPL(){
     // Actions
     html+='<td style="padding:6px 8px;text-align:center;white-space:nowrap">';
     html+='<button onclick="openPosteModal('+p.id+')" title="Modifier" style="background:var(--blue-lt);border:none;border-radius:4px;padding:3px 7px;font-size:11px;cursor:pointer;color:var(--navy);margin-right:4px">✏️</button>';
-    html+='<button onclick="plAddAnnee('+p.id+')" title="Ajouter une année" style="background:var(--blue-lt);border:none;border-radius:4px;padding:3px 7px;font-size:11px;cursor:pointer;color:var(--navy);margin-right:4px">+ Année</button>';
+    html+='<button onclick="plAddAnneeModal('+p.id+')" title="Ajouter une année" style="background:var(--blue-lt);border:none;border-radius:4px;padding:3px 7px;font-size:11px;cursor:pointer;color:var(--navy);margin-right:4px">+ Année</button>';
     html+='<button onclick="plDelete('+p.id+')" title="Supprimer" style="background:var(--red-lt);border:none;border-radius:4px;padding:3px 7px;font-size:11px;cursor:pointer;color:#791F1F">✕</button>';
     html+='</td></tr>';
 
-    // Expanded sub-rows
+    // Expanded sub-rows — clic sur badge ouvre popup
     if(expanded && annees.length){
       annees.forEach(function(yr){
         var a=p.annees[yr];
@@ -1427,6 +1427,150 @@ function plAddPosteModal(){
   openPosteModal(PL_DATA[0].id);
 }
 
+
+// ── Pop-up Année ──────────────────────────────────────────────────────────
+var P2_OPTS = [
+  {v:'faible', l:'Faible (0.25) — Public assis'},
+  {v:'modere', l:'Modéré (0.30) — Public debout statique'},
+  {v:'moyen',  l:'Moyen (0.35)  — Public debout fête foraine'},
+  {v:'eleve',  l:'Élevé (0.40)  — Public dynamique, danse, feria'}
+];
+var E1_OPTS = [
+  {v:'faible', l:'Faible (0.25) — Structures permanentes, accès aisés'},
+  {v:'modere', l:'Modéré (0.30) — Structures non permanentes, < 2 ha'},
+  {v:'moyen',  l:'Moyen (0.35)  — Espaces naturels 2-5 ha'},
+  {v:'eleve',  l:'Élevé (0.40)  — Espaces naturels > 5 ha, accès difficiles'}
+];
+var E2_OPTS = [
+  {v:'faible', l:'Faible (0.25) — Inférieur à 10 minutes'},
+  {v:'modere', l:'Modéré (0.30) — Entre 10 et 20 minutes'},
+  {v:'moyen',  l:'Moyen (0.35)  — Entre 20 et 30 minutes'},
+  {v:'eleve',  l:'Élevé (0.40)  — Plus de 30 minutes'}
+];
+
+function plAddAnneeModal(posteId){
+  var p = PL_DATA.find(function(x){return x.id===posteId;});
+  if(!p) return;
+  var yr = new Date().getFullYear();
+  while(p.annees[yr]) yr++;
+  p.annees[yr] = {
+    steps:{}, commentaire:'',
+    date:'', heureDebut:'', heureFin:'', lieu:'',
+    p1:0, p2:'faible', e1:'faible', e2:'faible',
+    ris:0, nbSR:0, typeDisp:'',
+    typeDevis:'PAPS', nbHeures:0, nbHeuresNuit:0, nbSRPlus:0, nbRepas:0, remise:0, prixFinal:460, prixModif:false
+  };
+  openAnneeModal(posteId, yr);
+}
+
+function openAnneeModal(posteId, yr){
+  var p = PL_DATA.find(function(x){return x.id===posteId;});
+  if(!p||!p.annees[yr]) return;
+  renderAnneeModal(posteId, yr);
+}
+
+function renderAnneeModal(posteId, yr){
+  var p = PL_DATA.find(function(x){return x.id===posteId;});
+  var a = p.annees[yr];
+  var r = calcRIS(a.p1||0, a.p2||'faible', a.e1||'faible', a.e2||'faible');
+  var risColor = r.ris<=0.25?'#888':r.ris<=1.125?'#639922':r.ris<=12?'#BA7517':'#E24B4A';
+  var devisR = calcDevis(a.typeDevis||'PAPS', a.nbHeures||0, a.nbHeuresNuit||0, a.nbSRPlus||0, a.nbRepas||0, a.remise||0);
+
+  function selModal(field, val, opts, extra){
+    var s = '<select onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'][\''+field+'\']=this.value;'+( extra||'')+';renderAnneeModal('+posteId+','+yr+')}).call(this)" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:11px;font-family:inherit">';
+    opts.forEach(function(o){s+='<option value="'+o.v+'"'+(val===o.v?' selected':'')+'>'+o.l+'</option>';});
+    return s+'</select>';
+  }
+  function numModal(field, val, onextra){
+    return '<input type="number" value="'+(val||0)+'" onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'][\''+field+'\']=+this.value;'+(onextra||'')+';renderAnneeModal('+posteId+','+yr+')}).call(this)" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:12px">';
+  }
+  function textModal(field, val, ph){
+    return '<input type="text" value="'+escHtml(val||'')+'" placeholder="'+(ph||'')+'" onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'][\''+field+'\']=this.value}).call(this)" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:12px;font-family:inherit">';
+  }
+  function dateModal(field, val){
+    return '<input type="date" value="'+(val||'')+'" onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'][\''+field+'\']=this.value}).call(this)" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:12px">';
+  }
+  function timeModal(field, val){
+    return '<input type="time" value="'+(val||'')+'" onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'][\''+field+'\']=this.value}).call(this)" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:12px">';
+  }
+
+  var html = '';
+
+  // ── Infos événement ──
+  html += '<div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Informations événement</div>';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Date</label>'+dateModal('date',a.date)+'</div>';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Heure début</label>'+timeModal('heureDebut',a.heureDebut)+'</div>';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Heure fin</label>'+timeModal('heureFin',a.heureFin)+'</div>';
+  html += '</div>';
+  html += '<div style="margin-bottom:14px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Lieu précis</label>'+textModal('lieu',a.lieu,'Adresse complète du site')+'</div>';
+
+  // ── RIS ──
+  html += '<div style="background:var(--bg);border-radius:8px;padding:12px;margin-bottom:14px;border-left:3px solid var(--orange)">';
+  html += '<div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Calcul RIS — Grille d\'évaluation des risques</div>';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">P1 — Participants déclarés</label>'+numModal('p1',a.p1,'')+'</div>';
+  html += '<div style="display:flex;align-items:center;justify-content:center"><div style="background:#fff;border-radius:7px;padding:10px 16px;border-left:4px solid '+risColor+';text-align:center"><div style="font-size:11px;color:var(--muted)">RIS = <strong>'+r.ris.toFixed(4)+'</strong></div><div style="font-size:14px;font-weight:700;color:'+risColor+'">'+r.type+'</div><div style="font-size:12px;font-weight:600;color:'+risColor+'">'+r.nbSR+' secouristes</div></div></div>';
+  html += '</div>';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">P2 — Comportement public</label>'+selModal('p2',a.p2||'faible',P2_OPTS,'')+'</div>';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">E1 — Environnement / accessibilité</label>'+selModal('e1',a.e1||'faible',E1_OPTS,'')+'</div>';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">E2 — Délai secours publics</label>'+selModal('e2',a.e2||'faible',E2_OPTS,'')+'</div>';
+  html += '</div></div>';
+
+  // ── Devis ──
+  var TARIFS_LABELS = [{v:'PAPS',l:'PAPS (140€/h — 2 SR)'},{v:'DPS',l:'DPS (180€/h — 4 SR)'},{v:'VPS',l:'VPS (180€/h — 3 SR)'},{v:'BPI',l:'BPI (180€/h — 3 SR)'}];
+  var prixAffiche = a.prixModif ? a.prixFinal : devisR.final;
+  html += '<div style="background:var(--orange-lt);border-radius:8px;padding:12px;margin-bottom:14px;border-left:3px solid var(--orange)">';
+  html += '<div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Calcul devis</div>';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px">';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Type de dispositif</label>';
+  html += '<select onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'].typeDevis=this.value;if(!p.annees['+yr+'].prixModif){var d=calcDevis(p.annees['+yr+'].typeDevis,p.annees['+yr+'].nbHeures||0,p.annees['+yr+'].nbHeuresNuit||0,p.annees['+yr+'].nbSRPlus||0,p.annees['+yr+'].nbRepas||0,p.annees['+yr+'].remise||0);p.annees['+yr+'].prixFinal=d.final;}renderAnneeModal('+posteId+','+yr+')}).call(this)" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:11px;font-family:inherit">';
+  TARIFS_LABELS.forEach(function(o){html+='<option value="'+o.v+'"'+((a.typeDevis||'PAPS')===o.v?' selected':'')+'>'+o.l+'</option>';});
+  html += '</select></div>';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Nb heures</label>'+numModal('nbHeures',a.nbHeures,'')+'</div>';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">H. nuit (22h-6h)</label>'+numModal('nbHeuresNuit',a.nbHeuresNuit,'')+'</div>';
+  html += '</div>';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">SR supplémentaires</label>'+numModal('nbSRPlus',a.nbSRPlus,'')+'</div>';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Remise %</label>'+numModal('remise',a.remise,'')+'</div>';
+  html += '<div><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Prix final (€) <span style="font-weight:400">'+(a.prixModif?'✏️ modifié':'auto')+'</span></label>';
+  html += '<div style="display:flex;gap:6px;align-items:center">';
+  html += '<input type="number" value="'+prixAffiche+'" onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'].prixFinal=+this.value;p.annees['+yr+'].prixModif=true;renderAnneeModal('+posteId+','+yr+')}).call(this)" style="flex:1;border:1px solid var(--orange);border-radius:5px;padding:6px 8px;font-size:13px;font-weight:700;color:var(--orange)">';
+  html += '<button onclick="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'].prixModif=false;var d=calcDevis(p.annees['+yr+'].typeDevis||\'PAPS\',p.annees['+yr+'].nbHeures||0,p.annees['+yr+'].nbHeuresNuit||0,p.annees['+yr+'].nbSRPlus||0,p.annees['+yr+'].nbRepas||0,p.annees['+yr+'].remise||0);p.annees['+yr+'].prixFinal=d.final;renderAnneeModal('+posteId+','+yr+')})() " style="background:var(--gray-lt);border:none;border-radius:5px;padding:6px 8px;font-size:10px;cursor:pointer;white-space:nowrap">↺ Auto</button>';
+  html += '</div></div>';
+  html += '</div></div>';
+
+  // ── Avancement ──
+  html += '<div style="margin-bottom:14px">';
+  html += '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Avancement</div>';
+  html += '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px">';
+  PL_STEPS.forEach(function(step){
+    var checked = a.steps && a.steps[step];
+    html += '<label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;font-weight:600;color:'+(checked?'#27500A':'var(--muted)')+'">'+
+      '<input type="checkbox"'+(checked?' checked':'')+' onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'].steps[\''+step+'\']=this.checked;renderAnneeModal('+posteId+','+yr+')}).call(this)" style="cursor:pointer;accent-color:var(--orange);width:14px;height:14px">'+
+      step+'</label>';
+  });
+  html += '</div>';
+  html += '<label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px">Commentaires & next steps</label>';
+  html += '<textarea onchange="(function(){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});p.annees['+yr+'].commentaire=this.value}).call(this)" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:7px 9px;font-size:12px;font-family:inherit;resize:vertical;min-height:60px">'+escHtml(a.commentaire||'')+'</textarea>';
+  html += '</div>';
+
+  // ── Boutons documents ──
+  html += '<div style="display:flex;gap:8px;margin-bottom:16px">';
+  html += '<button onclick="plGenGrille('+posteId+','+yr+')" style="background:var(--navy);color:#fff;border:none;border-radius:5px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer">📄 Grille de risques</button>';
+  html += '<button onclick="plGenDeclaration('+posteId+','+yr+')" style="background:var(--orange);color:#fff;border:none;border-radius:5px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer">📋 Déclaration</button>';
+  html += '</div>';
+
+  // ── Footer ──
+  html += '<div style="display:flex;gap:8px;justify-content:space-between;border-top:1px solid var(--border);padding-top:14px">';
+  html += '<button onclick="if(confirm(\'Supprimer cette année ?\''+')){var p=PL_DATA.find(function(x){return x.id==='+posteId+';});delete p.annees['+yr+'];closeModal();renderPL();}" style="background:var(--red-lt);color:#791F1F;border:none;border-radius:6px;padding:7px 14px;font-size:12px;cursor:pointer">Supprimer cette année</button>';
+  html += '<button onclick="closeModal();renderPL()" style="background:var(--navy);color:#fff;border:none;border-radius:6px;padding:7px 20px;font-size:12px;font-weight:600;cursor:pointer">✓ Valider & fermer</button>';
+  html += '</div>';
+
+  openModal(escHtml(p.nom)+' — '+yr, html);
+}
+
 // ── Génération documents ──────────────────────────────────────────────────
 var P2_LABELS = {
   faible:'Public assis (spectacle, cérémonie cultuelle, réunion publique, restauration, rendez-vous sportif…)',
@@ -1453,94 +1597,65 @@ function getClientInfo(clientId){
 }
 function formatHeure(h){ return h ? h.replace(':','h') : ''; }
 
-function plGenGrille(posteId, yr){
+
+async function plPushRequest(reqName, data){
+  if(!githubToken){
+    alert('Token GitHub requis — connecte-toi en admin.');
+    return false;
+  }
+  var content = JSON.stringify(data, null, 2);
+  var b64 = btoa(unescape(encodeURIComponent(content)));
+  var apiUrl = 'https://api.github.com/repos/'+GITHUB_OWNER+'/'+GITHUB_REPO+'/contents/data/requests/'+reqName+'.json';
+  // Get SHA if exists
+  var sha = null;
+  try{
+    var r = await fetch(apiUrl,{headers:{'Authorization':'token '+githubToken,'Accept':'application/vnd.github.v3+json'}});
+    if(r.ok){var j=await r.json();sha=j.sha;}
+  }catch(e){}
+  var body = {message:'Génération doc: '+reqName,content:b64};
+  if(sha) body.sha = sha;
+  var put = await fetch(apiUrl,{method:'PUT',headers:{'Authorization':'token '+githubToken,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+  return put.ok;
+}
+
+async function plGenGrille(posteId, yr){
   var p = PL_DATA.find(function(x){return x.id===posteId;});
   if(!p||!p.annees[yr]) return;
   var a = p.annees[yr];
   var client = getClientInfo(p.clientId);
-  var r = calcRIS(a.p1||0, a.p2||'faible', a.e1||'faible', a.e2||'faible');
-  var P = (a.p1||0)<=100000 ? (a.p1||0) : 100000+((a.p1||0)-100000)/2;
-  var i_val = (RIS_COEFF[a.p2||'faible']||0.25)+(RIS_COEFF[a.e1||'faible']||0.25)+(RIS_COEFF[a.e2||'faible']||0.25);
+  var dateStr = a.date || '';
+  var dateLieu = [dateStr, a.lieu||p.commune||''].filter(Boolean).join(' — ');
 
-  var css = '<style>'+
-    '*{box-sizing:border-box}'+
-    'body{font-family:Arial,sans-serif;font-size:9pt;margin:10mm 15mm;color:#000}'+
-    'h1{font-size:10pt;font-weight:bold;text-align:center;text-transform:uppercase;margin:0 0 2mm}'+
-    'h2{font-size:8.5pt;font-weight:bold;text-transform:uppercase;margin:4mm 0 1mm;text-align:center}'+
-    '.ref{font-size:7.5pt;text-align:center;font-style:italic;margin-bottom:3mm}'+
-    'table{width:100%;border-collapse:collapse;font-size:8.5pt}'+
-    'td,th{border:1px solid #000;padding:2mm 3mm;vertical-align:top}'+
-    '.orange{background:#f5a623;font-weight:bold}'+
-    '.grey{background:#d9d9d9}'+
-    '.yellow{background:#ffff00;font-weight:bold}'+
-    '.result{background:#002D74;color:#fff;font-weight:bold;font-size:10pt;text-align:center;padding:3mm}'+
-    '.sign-table{width:100%;border-collapse:collapse;margin-top:6mm}'+
-    '.sign-table td{border:1px solid #000;padding:3mm;vertical-align:top;width:50%}'+
-    '.no-print{display:block}'+
-    '@media print{.no-print{display:none}}'+
-    '.btn-print{background:#FF7F30;color:#fff;border:none;border-radius:5px;padding:6px 18px;font-size:11px;cursor:pointer;font-weight:600}'+
-    '</style>';
+  var data = {
+    nom: p.nom + (yr?' — '+yr:''),
+    date_lieu: dateLieu,
+    p1: a.p1||0,
+    p2: a.p2||'faible',
+    e1: a.e1||'faible',
+    e2: a.e2||'faible'
+  };
 
-  var html = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Grille RIS</title>'+css+'</head><body>';
-  html += '<div class="no-print" style="background:#002D74;color:#fff;padding:8px 12px;margin-bottom:8mm;border-radius:6px;display:flex;align-items:center;gap:12px">';
-  html += '<strong>Protection Civile Paris Seine — Antenne de Paris 12</strong>';
-  html += '<button class="btn-print" onclick="window.print()" style="margin-left:auto">🖨️ Imprimer / Sauvegarder PDF</button></div>';
+  var reqName = 'grille_'+posteId+'_'+yr;
+  var btn = event.target;
+  btn.textContent = '⏳ Génération...';
+  btn.disabled = true;
 
-  // PAGE 1
-  html += '<h1>Grille d\'évaluation des risques</h1>';
-  html += '<div class="ref">(arrêté du 7 novembre 2006 fixant le référentiel national relatif aux dispositifs prévisionnels de secours)</div>';
-
-  html += '<table>';
-  html += '<tr><td colspan="5" class="orange">Intitulé de la manifestation : <strong>'+escHtml(p.nom+(yr?' — '+yr:''))+'</strong></td></tr>';
-  html += '<tr><td colspan="5" class="orange">Date(s) et lieu : <strong>'+(a.date||'')+(a.lieu?' — '+escHtml(a.lieu):'')+'</strong></td></tr>';
-  html += '<tr><th style="width:5%">P1</th><td style="width:30%">Effectif prévisible déclaré du public :</td><td class="orange" style="width:10%"><strong>'+(a.p1||0)+'</strong></td><td style="width:40%">P = effectif après application du coefficient pondérateur<br><small>(si public &lt; 100 000 : P = P1 ; si public &gt; 100 000 : P = 100 000 + (P1 - 100 000)/2)</small></td><td class="grey" style="width:10%"><strong>'+P.toFixed(0)+'</strong></td></tr>';
-  html += '<tr><th>P2</th><td>Comportement du public :</td><td class="orange"><strong>'+RIS_LABELS[a.p2||'faible']+'</strong></td><td>'+escHtml(P2_LABELS[a.p2||'faible'])+'</td><td class="grey"><strong>'+(RIS_COEFF[a.p2||'faible']||0.25)+'</strong></td></tr>';
-  html += '<tr><th>E1</th><td>Environnement / accessibilité du site :</td><td class="orange"><strong>'+RIS_LABELS[a.e1||'faible']+'</strong></td><td>'+escHtml(E1_LABELS[a.e1||'faible'])+'</td><td class="grey"><strong>'+(RIS_COEFF[a.e1||'faible']||0.25)+'</strong></td></tr>';
-  html += '<tr><th>E2</th><td>Délai d\'intervention des secours publics :</td><td class="orange"><strong>'+RIS_LABELS[a.e2||'faible']+'</strong></td><td>'+escHtml(E2_LABELS[a.e2||'faible'])+'</td><td class="grey"><strong>'+(RIS_COEFF[a.e2||'faible']||0.25)+'</strong></td></tr>';
-  html += '<tr><th>i</th><td>Indice total de risque :</td><td colspan="2"><em>P2 + E1 + E2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(calcul automatique)</em></td><td class="grey"><strong>'+i_val.toFixed(2)+'</strong></td></tr>';
-  html += '<tr><th>RIS</th><td>Ratio d\'intervenants secouristes :</td><td colspan="2"><em>i × (P / 1 000) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(calcul automatique)</em></td><td class="grey"><strong>'+r.ris.toFixed(4)+'</strong></td></tr>';
-  html += '<tr><td colspan="2">Type de dispositif</td><td>=</td><td colspan="2" class="yellow"><strong>'+r.type+'</strong></td></tr>';
-  html += '<tr><td colspan="2">Effectif réel de secouristes</td><td>=</td><td colspan="2" class="yellow"><strong>'+r.nbSR+'</strong></td></tr>';
-  html += '</table>';
-
-  html += '<table class="sign-table" style="margin-top:8mm">';
-  html += '<tr><td style="width:50%;height:25mm"><strong>Pour l\'organisateur</strong><br><br>Date, nom, cachet et signature :</td>';
-  html += '<td style="width:50%;height:25mm"><strong>Pour la Protection Civile Paris Seine</strong><br><br>Date, nom, cachet et signature :<br><br><em style="font-size:8pt">[Signature numérique]</em><br>Haithem ALOUI — Directeur des Opérations</td></tr>';
-  html += '</table>';
-
-  // PAGE 2 — Explications
-  html += '<div style="page-break-before:always"></div>';
-  html += '<h2>Grille d\'évaluation des risques — Explications du mode de calcul</h2>';
-  html += '<div class="ref">(arrêté du 7 novembre 2006)</div>';
-  html += '<table>';
-  html += '<tr><th rowspan="4">P2</th><td rowspan="4">Comportement du public :</td><td>Faible</td><td>Public assis (spectacle, cérémonie cultuelle, réunion publique, restauration, rendez-vous sportif…)</td><td>0,25</td></tr>';
-  html += '<tr><td>Modéré</td><td>Public debout (cérémonie cultuelle, réunion publique, restauration, exposition, foire, salon, comice agricole…)</td><td>0,30</td></tr>';
-  html += '<tr><td>Moyen</td><td>Public debout (spectacle avec public statique, fête foraine, rendez-vous sportif avec protection du public…)</td><td>0,35</td></tr>';
-  html += '<tr><td>Élevé</td><td>Public debout (spectacle avec public dynamique, danse, feria, fête votive, carnaval, spectacle de rue, grande parade…), événement se déroulant sur plusieurs jours avec présence permanente du public</td><td>0,40</td></tr>';
-  html += '<tr><th rowspan="4">E1</th><td rowspan="4">Environnement / accessibilité du site :</td><td>Faible</td><td>Structures permanentes (bâtiment, salle en dur), voies publiques avec accès dégagés, conditions d\'accès aisées</td><td>0,25</td></tr>';
-  html += '<tr><td>Modéré</td><td>Structures non permanentes (gradins, tribunes, chapiteaux), espaces naturels &lt; 2 ha, 150 à 300 m de brancardage, terrain en pente sur plus de 100 m</td><td>0,30</td></tr>';
-  html += '<tr><td>Moyen</td><td>Espaces naturels de 2 à 5 ha, de 300 à 600 m de brancardage, terrain en pente sur plus de 150 m, autres conditions d\'accès difficiles</td><td>0,35</td></tr>';
-  html += '<tr><td>Élevé</td><td>Espaces naturels > 5 ha, plus de 600 m de brancardage, terrain en pente sur plus de 300 m, autres conditions d\'accès difficiles (talus, escaliers, voies d\'accès non carrossables), progression des secours rendue difficile par la présence du public</td><td>0,40</td></tr>';
-  html += '<tr><th rowspan="3">E2</th><td rowspan="3">Délai d\'intervention des secours publics :</td><td>Faible</td><td>Inférieur à 10 minutes</td><td>0,25</td></tr>';
-  html += '<tr><td>Modéré</td><td>Entre 10 et 20 minutes</td><td>0,30</td></tr>';
-  html += '<tr><td>Moyen</td><td>Entre 20 et 30 minutes</td><td>0,35</td></tr>';
-  html += '<tr><td></td><td>Élevé</td><td>Plus de 30 minutes</td><td></td><td>0,40</td></tr>';
-  html += '<tr><th rowspan="5">RIS</th><td rowspan="5">Ratio d\'intervenants secouristes :</td><td>RIS ≤ 0,25</td><td colspan="2">À la diligence de l\'autorité de police compétente</td></tr>';
-  html += '<tr><td>0,25 &lt; RIS ≤ 1,125</td><td colspan="2">Point d\'alerte et de premiers secours (PAPS)</td></tr>';
-  html += '<tr><td>1,125 &lt; RIS ≤ 12</td><td colspan="2">Dispositif prévisionnel de secours de petite envergure (DPS-PE)</td></tr>';
-  html += '<tr><td>12 &lt; RIS ≤ 36</td><td colspan="2">Dispositif prévisionnel de secours de moyenne envergure (DPS-ME)</td></tr>';
-  html += '<tr><td>36 &lt; RIS</td><td colspan="2">Dispositif prévisionnel de secours de grande envergure (DPS-GE)</td></tr>';
-  html += '<tr><td></td><td>Effectif réel de secouristes :</td><td>0,25 &lt; RIS ≤ 1,125</td><td colspan="2">⇒ 2</td></tr>';
-  html += '<tr><td></td><td></td><td>1,125 &lt; RIS ≤ 4</td><td colspan="2">⇒ 4</td></tr>';
-  html += '<tr><td></td><td></td><td>4 &lt; RIS</td><td colspan="2">⇒ nombre pair immédiatement supérieur au RIS déterminé</td></tr>';
-  html += '</table>';
-  html += '</body></html>';
-
-  var win = window.open('','_blank');
-  win.document.write(html); win.document.close();
+  var ok = await plPushRequest(reqName, data);
+  if(ok){
+    btn.textContent = '✓ En cours (~2min)';
+    btn.style.background = 'var(--green)';
+    // Poll for the generated file
+    setTimeout(function(){
+      plCheckGenerated(reqName+'.xlsx', btn, '📄 Grille de risques');
+    }, 30000);
+  } else {
+    btn.textContent = '✗ Erreur';
+    btn.style.background = 'var(--red)';
+    setTimeout(function(){btn.textContent='📄 Grille de risques';btn.style.background='var(--navy)';btn.disabled=false;},3000);
+  }
 }
 
-function plGenDeclaration(posteId, yr){
+async function plGenDeclaration(posteId, yr){
   var p = PL_DATA.find(function(x){return x.id===posteId;});
   if(!p||!p.annees[yr]) return;
   var a = p.annees[yr];
@@ -1548,89 +1663,71 @@ function plGenDeclaration(posteId, yr){
   var r = calcRIS(a.p1||0, a.p2||'faible', a.e1||'faible', a.e2||'faible');
   var P = (a.p1||0)<=100000?(a.p1||0):100000+((a.p1||0)-100000)/2;
   var i_val = (RIS_COEFF[a.p2||'faible']||0.25)+(RIS_COEFF[a.e1||'faible']||0.25)+(RIS_COEFF[a.e2||'faible']||0.25);
-  var nbCP = r.nbSR > 0 ? 1 : 0;
-  var nbPSE2 = Math.max(0, Math.floor((r.nbSR-1)/2));
-  var nbPSE1 = Math.max(0, r.nbSR - nbCP - nbPSE2);
-  var nbVeh = r.nbSR >= 4 ? 2 : (r.nbSR > 0 ? 1 : 0);
-  var orgNom = client ? client.label : p.nom;
-  var orgContact = client ? (client.contact||(client.civilite?client.civilite+' ':'')+client.prenom+' '+client.nom).trim() : '';
-  var orgQualite = client ? (client.qualite||'') : '';
-  var orgAdresse = client ? (client.adresse||'')+(client.adresse2?' '+client.adresse2:'') : '';
-  var orgVille = client ? ((client.cp||'')+' '+(client.ville||'')).trim() : '';
-  var orgTel = client ? (client.tel||client.portable||'') : '';
-  var orgEmail = client ? (client.email||'') : '';
+  var nbCP = r.nbSR>0?1:0;
+  var nbPSE2 = Math.max(0,Math.floor((r.nbSR-1)/2));
+  var nbPSE1 = Math.max(0,r.nbSR-nbCP-nbPSE2);
+  var nbVeh = r.nbSR>=4?2:(r.nbSR>0?1:0);
   var hDeb = formatHeure(a.heureDebut);
   var hFin = formatHeure(a.heureFin);
 
-  var css = '<style>'+
-    '*{box-sizing:border-box}'+
-    'body{font-family:Arial,sans-serif;font-size:9pt;margin:10mm 15mm;color:#000;line-height:1.35}'+
-    'table{width:100%;border-collapse:collapse;font-size:9pt}'+
-    'td,th{border:1px solid #000;padding:1.5mm 2.5mm;vertical-align:top}'+
-    '.bold{font-weight:bold}'+
-    '.center{text-align:center}'+
-    '.ul{border-bottom:1px solid #000;display:inline-block;min-width:80px;padding:0 2px}'+
-    '.ul-long{border-bottom:1px solid #000;display:inline-block;min-width:200px;padding:0 2px}'+
-    '.ul-xl{border-bottom:1px solid #000;display:inline-block;min-width:300px;padding:0 2px}'+
-    '.section{margin-bottom:3mm}'+
-    '.no-print{display:block}'+
-    '@media print{.no-print{display:none}}'+
-    '.btn-print{background:#FF7F30;color:#fff;border:none;border-radius:5px;padding:6px 18px;font-size:11px;cursor:pointer;font-weight:600}'+
-    '</style>';
+  var data = {
+    nom: p.nom,
+    org_nom: client?client.label:p.nom,
+    contact: client?(client.contact||(client.civilite?client.civilite+' ':'')+client.prenom+' '+client.nom).trim():'',
+    qualite: client?(client.qualite||''):'',
+    adresse: client?((client.adresse||'')+(client.adresse2?' '+client.adresse2:'')):'',
+    tel: client?(client.tel||client.portable||''):'',
+    email: client?(client.email||''):'',
+    lieu: a.lieu||'',
+    commune: p.commune||'',
+    dept: client?(client.cp||''):'',
+    date: a.date||'',
+    heure_debut: hDeb,
+    heure_fin: hFin,
+    p1: a.p1||0,
+    i: i_val.toFixed(2),
+    ris: r.ris.toFixed(4),
+    nbSR: r.nbSR,
+    nbCP: nbCP, nbPSE2: nbPSE2, nbPSE1: nbPSE1, nbVeh: nbVeh
+  };
 
-  var html = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Déclaration dispositif</title>'+css+'</head><body>';
-  html += '<div class="no-print" style="background:#002D74;color:#fff;padding:8px 12px;margin-bottom:6mm;border-radius:6px;display:flex;align-items:center;gap:12px">';
-  html += '<strong>Protection Civile Paris Seine — Antenne de Paris 12</strong>';
-  html += '<button class="btn-print" onclick="window.print()" style="margin-left:auto">🖨️ Imprimer / Sauvegarder PDF</button></div>';
+  var reqName = 'decl_'+posteId+'_'+yr;
+  var btn = event.target;
+  btn.textContent = '⏳ Génération...';
+  btn.disabled = true;
 
-  html += '<div class="center section"><span class="bold">Antenne de PARIS 12</span><br>';
-  html += '<span class="bold" style="font-size:11pt;text-transform:uppercase">Grille déclarative d\'ouverture</span><br>';
-  html += '<span class="bold">☐ DSN-P ASSOCIÉ → RÉALISÉ PAR</span></div>';
+  var ok = await plPushRequest(reqName, data);
+  if(ok){
+    btn.textContent = '✓ En cours (~2min)';
+    btn.style.background = 'var(--green)';
+    setTimeout(function(){
+      plCheckGenerated(reqName+'.docx', btn, '📋 Déclaration');
+    }, 30000);
+  } else {
+    btn.textContent = '✗ Erreur';
+    btn.style.background = 'var(--red)';
+    setTimeout(function(){btn.textContent='📋 Déclaration';btn.style.background='var(--orange)';btn.disabled=false;},3000);
+  }
+}
 
-  html += '<table class="section"><tr><td colspan="4" class="bold">Organisateur : <span class="ul-xl">'+escHtml(orgNom)+'</span></td></tr>';
-  html += '<tr><td colspan="4">Représenté par : <span class="ul-long">'+escHtml(orgContact)+'</span> &nbsp;&nbsp; Qualité : <span class="ul">'+escHtml(orgQualite)+'</span></td></tr>';
-  html += '<tr><td colspan="4">Adresse : <span class="ul-xl">'+escHtml(orgAdresse+(orgVille?', '+orgVille:''))+'</span></td></tr>';
-  html += '<tr><td colspan="2">Tél. : <span class="ul">'+escHtml(orgTel)+'</span> &nbsp; Fax : <span class="ul"></span></td><td colspan="2">E-mail : <span class="ul-long">'+escHtml(orgEmail)+'</span></td></tr>';
-  html += '<tr><td colspan="4">Un dossier a-t-il été déposé en Préfecture ? &nbsp; oui ☐ &nbsp; non ☐</td></tr></table>';
-
-  html += '<table class="section">';
-  html += '<tr><td colspan="6" class="bold">Nature de la manifestation : <span class="ul-xl">'+escHtml(p.nom)+'</span></td></tr>';
-  html += '<tr><td colspan="6">Descriptif : <span class="ul-xl">'+escHtml(p.nom)+'</span></td></tr>';
-  html += '<tr><td colspan="6">Lieu précis : <span class="ul-long">'+escHtml(a.lieu||'')+'</span> &nbsp; Commune : <span class="ul">'+escHtml(p.commune||'')+'</span> &nbsp; Dépt. : <span class="ul"></span></td></tr>';
-  html += '<tr><td colspan="3">Date : <span class="ul">'+escHtml(a.date||'')+'</span></td><td>Heure de début : <span class="ul">'+hDeb+'</span></td><td colspan="2">Heure de fin : <span class="ul">'+hFin+'</span></td></tr>';
-  html += '<tr><td colspan="3">Date : <span class="ul"></span></td><td>Heure de début : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td><td colspan="2">Heure de fin : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td></tr>';
-  html += '<tr><td colspan="3">Date : <span class="ul"></span></td><td>Heure de début : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td><td colspan="2">Heure de fin : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td></tr>';
-  html += '<tr><td colspan="3">Ou du : <span class="ul"></span> au : <span class="ul"></span></td><td>Heure de début : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td><td colspan="2">Heure de fin : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td></tr>';
-  html += '<tr><td colspan="3" class="bold">Public prévisible déclaré (P1)*</td><td>Participants : <span class="ul"><strong>'+(a.p1||0)+'</strong></span></td><td colspan="2">Spectateurs : <span class="ul"></span></td></tr>';
-  html += '<tr><td colspan="3" class="bold">Grille d\'évaluation des risques*</td><td>Indice total de risque : <span class="ul"><strong>'+i_val.toFixed(2)+'</strong></span></td><td colspan="2">Effectif pondéré du public : <span class="ul"><strong>'+P.toFixed(0)+'</strong></span></td></tr>';
-  html += '<tr><td colspan="2"></td><td colspan="2">Ratio d\'Intervenants Secouristes : <span class="ul"><strong>'+r.ris.toFixed(4)+'</strong></span></td><td colspan="2">Intervenants-secouristes : <span class="ul"><strong>'+r.nbSR+'</strong></span></td></tr>';
-  html += '<tr><td colspan="6">N° du Certificat Original d\'Affiliation : <span class="ul-long"></span></td></tr>';
-  html += '<tr><td colspan="6"><em style="font-size:8pt">(*) À remplir obligatoirement</em></td></tr></table>';
-
-  html += '<table class="section">';
-  html += '<tr><td colspan="6" class="bold center">Configuration du dispositif prévisionnel de secours mis en place</td></tr>';
-  html += '<tr><td colspan="3">Date : <span class="ul">'+escHtml(a.date||'')+'</span></td><td>Heure de début : <span class="ul">'+hDeb+'</span></td><td colspan="2">Heure de fin : <span class="ul">'+hFin+'</span></td></tr>';
-  html += '<tr><td colspan="3">Date : <span class="ul"></span></td><td>Heure de début : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td><td colspan="2">Heure de fin : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td></tr>';
-  html += '<tr><td colspan="3">Date : <span class="ul"></span></td><td>Heure de début : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td><td colspan="2">Heure de fin : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td></tr>';
-  html += '<tr><td colspan="3">Ou du : <span class="ul"></span> au : <span class="ul"></span></td><td>Heure de début : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td><td colspan="2">Heure de fin : <span class="ul">&nbsp;&nbsp;&nbsp;h</span></td></tr>';
-  html += '<tr><td colspan="2">Chef de Poste : <span class="ul"><strong>'+nbCP+'</strong></span></td><td colspan="2">PSE2 : <span class="ul"><strong>'+nbPSE2+'</strong></span></td><td colspan="2">PSE1 : <span class="ul"><strong>'+nbPSE1+'</strong></span></td></tr>';
-  html += '<tr><td colspan="3">Nombre de véhicules de secours : <span class="ul"><strong>'+nbVeh+'</strong></span></td><td>Tente : <span class="ul">0</span></td><td colspan="2">Local infirmerie : <span class="ul">0</span></td></tr>';
-  html += '<tr><td colspan="3">Nombre de médecins : <span class="ul">0</span></td><td colspan="3">associatif ☐ &nbsp; autre : <span class="ul">0</span></td></tr>';
-  html += '<tr><td colspan="3">Nombre d\'infirmiers : <span class="ul">0</span></td><td colspan="3">associatif ☐ &nbsp; autre : <span class="ul">0</span></td></tr>';
-  html += '<tr><td colspan="2" class="bold">Autres structures</td><td colspan="2">SAMU &nbsp; informé &nbsp; oui ☒ &nbsp; non ☐ &nbsp; présent &nbsp; oui ☐ &nbsp; non ☒</td><td colspan="2">BSPP/SDIS &nbsp; informé &nbsp; oui ☐ &nbsp; non ☒ &nbsp; présent &nbsp; oui ☐ &nbsp; non ☒</td></tr>';
-  html += '<tr><td colspan="6" class="bold">Justification(s) du dispositif mis en place :</td></tr>';
-  html += '<tr><td colspan="6" style="min-height:15mm">'+r.type+' — RIS = '+r.ris.toFixed(4)+' — '+r.nbSR+' intervenants secouristes</td></tr>';
-  html += '</table>';
-
-  html += '<table style="width:100%;border-collapse:collapse;margin-top:4mm">';
-  html += '<tr><td style="border:1px solid #000;width:50%;min-height:20mm;padding:2mm" class="bold">Visa du cadre d\'Antenne<br><br><br>Haithem ALOUI</td>';
-  html += '<td style="border:1px solid #000;width:50%;min-height:20mm;padding:2mm" class="bold">Visa du Directeur des Opérations<br><br><br></td></tr>';
-  html += '</table>';
-  html += '<div style="border:2px solid #000;margin-top:4mm;padding:2mm;font-size:8pt">Cadre réservé à l\'administration</div>';
-  html += '</body></html>';
-
-  var win = window.open('','_blank');
-  win.document.write(html); win.document.close();
+function plCheckGenerated(filename, btn, label){
+  var url = 'https://pcpsope12.github.io/Dashboard-Ope/data/generated/'+filename+'?t='+Date.now();
+  fetch(url,{method:'HEAD'})
+    .then(function(r){
+      if(r.ok){
+        btn.textContent = '⬇️ Télécharger';
+        btn.style.background = 'var(--green)';
+        btn.disabled = false;
+        btn.onclick = function(){window.open(url,'_blank');};
+      } else {
+        btn.textContent = '⏳ Encore ~1min';
+        // Retry in 30s
+        setTimeout(function(){plCheckGenerated(filename,btn,label);},30000);
+      }
+    })
+    .catch(function(){
+      setTimeout(function(){plCheckGenerated(filename,btn,label);},30000);
+    });
 }
 
 loadJSON();
