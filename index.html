@@ -868,7 +868,7 @@ function plLoad(){
 }
 
 function plAddPoste(){
-  PL_DATA.push({id:Date.now(),nom:'',commune:'',contact:'',statut:'En cours',annees:{}});
+  PL_DATA.push({id:Date.now(),nom:'',commune:'',contact:'',clientId:null,statut:'En cours',annees:{}});
   renderPL();
 }
 
@@ -877,8 +877,75 @@ function plAddAnnee(id){
   if(!p)return;
   var yr=new Date().getFullYear();
   if(p.annees[yr])yr++;
-  p.annees[yr]={steps:{},commentaire:''};
+  p.annees[yr]={
+    steps:{},commentaire:'',
+    // Infos événement
+    date:'',heureDebut:'',heureFin:'',lieu:'',
+    // Calcul RIS
+    p1:0,p2:'faible',e1:'faible',e2:'faible',
+    ris:0,nbSR:0,typeDisp:'',
+    // Devis
+    typeDevis:'PAPS',nbHeures:0,nbHeuresNuit:0,nbSRPlus:0,nbRepas:0,remise:0,prixFinal:0,prixModif:false
+  };
   PL_EXPANDED[id]=true;
+  renderPL();
+}
+
+// Calcul RIS
+var RIS_COEFF={faible:0.25,modere:0.3,moyen:0.35,eleve:0.4};
+var RIS_LABELS={faible:'Faible',modere:'Modéré',moyen:'Moyen',eleve:'Élevé'};
+
+function calcRIS(p1,p2,e1,e2){
+  var P=p1<=100000?p1:100000+(p1-100000)/2;
+  var i=(RIS_COEFF[p2]||0.25)+(RIS_COEFF[e1]||0.25)+(RIS_COEFF[e2]||0.25);
+  var ris=i*(P/1000);
+  var nbSR=0,type='';
+  if(ris<=0.25){type='Diligence autorité';nbSR=0;}
+  else if(ris<=1.125){type='PAPS';nbSR=2;}
+  else if(ris<=4){type='DPS-PE';nbSR=4;}
+  else if(ris<=12){type='DPS-PE';nbSR=Math.ceil(ris/2)*2;}
+  else if(ris<=36){type='DPS-ME';nbSR=Math.ceil(ris/2)*2;}
+  else{type='DPS-GE';nbSR=Math.ceil(ris/2)*2;}
+  return{ris:Math.round(ris*10000)/10000,nbSR:nbSR,type:type,i:Math.round(i*100)/100};
+}
+
+// Calcul devis
+var TARIFS={PAPS:140,DPS:180,VPS:180,BPI:180};
+var MIN_JOUR=460;
+
+function calcDevis(typeDevis,nbHeures,nbHeuresNuit,nbSRPlus,nbRepas,remise){
+  var taux=TARIFS[typeDevis]||140;
+  var nbSRBase=typeDevis==='PAPS'?2:typeDevis==='VPS'?3:typeDevis==='BPI'?3:4;
+  var nbSRTotal=nbSRBase+(nbSRPlus||0);
+  var base=taux*nbHeures*nbSRTotal;
+  if(nbHeuresNuit>0)base+=taux*nbHeuresNuit*nbSRTotal*0.25; // majoration nuit
+  if(base<MIN_JOUR)base=MIN_JOUR;
+  var avecRemise=remise>0?base*(1-remise/100):base;
+  return{base:Math.round(base),final:Math.round(avecRemise),nbSRTotal:nbSRTotal};
+}
+
+function plUpdateRIS(id,yr){
+  var p=PL_DATA.find(function(x){return x.id===id;});
+  if(!p||!p.annees[yr])return;
+  var a=p.annees[yr];
+  var r=calcRIS(a.p1||0,a.p2||'faible',a.e1||'faible',a.e2||'faible');
+  a.ris=r.ris;a.nbSR=r.nbSR;a.typeDisp=r.type;
+  // Mettre à jour devis si pas modifié manuellement
+  if(!a.prixModif){
+    var d=calcDevis(a.typeDevis||'PAPS',a.nbHeures||0,a.nbHeuresNuit||0,a.nbSRPlus||0,a.nbRepas||0,a.remise||0);
+    a.prixFinal=d.final;
+  }
+  renderPL();
+}
+
+function plUpdateDevis(id,yr){
+  var p=PL_DATA.find(function(x){return x.id===id;});
+  if(!p||!p.annees[yr])return;
+  var a=p.annees[yr];
+  if(!a.prixModif){
+    var d=calcDevis(a.typeDevis||'PAPS',a.nbHeures||0,a.nbHeuresNuit||0,a.nbSRPlus||0,a.nbRepas||0,a.remise||0);
+    a.prixFinal=d.final;
+  }
   renderPL();
 }
 
@@ -958,7 +1025,7 @@ function renderPL(){
   html+='<div style="background:var(--card);border-radius:10px;border:1px solid var(--border);overflow:hidden">';
   html+='<table style="width:100%;border-collapse:collapse;font-size:12px">';
   html+='<thead><tr>';
-  ['','Poste local','Commune','Contact','Statut','Années',''].forEach(function(h,i){
+  ['','Poste local','Commune','Client','Statut','Années',''].forEach(function(h,i){
     var align=i===0||i===6?'center':'left';
     html+='<th style="background:var(--navy);color:#fff;padding:9px 10px;text-align:'+align+';font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">'+h+'</th>';
   });
@@ -978,8 +1045,11 @@ function renderPL(){
     html+='<td style="padding:6px 8px"><input value="'+escHtml(p.nom)+'" onchange="plUpdate('+p.id+',\'nom\',this.value)" placeholder="Nom du poste" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:12px;font-family:inherit"></td>';
     // Commune
     html+='<td style="padding:6px 8px"><input value="'+escHtml(p.commune)+'" onchange="plUpdate('+p.id+',\'commune\',this.value)" placeholder="Commune" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:12px;font-family:inherit"></td>';
-    // Contact
-    html+='<td style="padding:6px 8px"><input value="'+escHtml(p.contact)+'" onchange="plUpdate('+p.id+',\'contact\',this.value)" placeholder="Contact" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:12px;font-family:inherit"></td>';
+    // Client dropdown
+    html+='<td style="padding:6px 8px"><select onchange="plUpdate('+p.id+',\'clientId\',this.value)" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:11px;font-family:inherit;max-width:200px">';
+    html+='<option value="">— Choisir client —</option>';
+    CL_DATA.forEach(function(cl){html+='<option value="'+cl.id+'"'+(p.clientId==cl.id?' selected':'')+'>'+escHtml(cl.label)+'</option>';});
+    html+='</select></td>';
     // Statut
     html+='<td style="padding:6px 8px"><select onchange="plUpdate('+p.id+',\'statut\',this.value)" style="border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:11px;font-weight:600;background:'+sb+';color:'+sc+';cursor:pointer">';
     PL_STATUTS.forEach(function(s){html+='<option value="'+s+'"'+(p.statut===s?' selected':'')+'>'+s+'</option>';});
@@ -1008,29 +1078,83 @@ function renderPL(){
         var a=p.annees[yr];
         var pct=plProgress(a);
         var pclr=pct===100?'#639922':pct>0?'#BA7517':'#ccc';
+        var ris=a.ris||0;
+        var risR=calcRIS(a.p1||0,a.p2||'faible',a.e1||'faible',a.e2||'faible');
+        var devisR=calcDevis(a.typeDevis||'PAPS',a.nbHeures||0,a.nbHeuresNuit||0,a.nbSRPlus||0,a.nbRepas||0,a.remise||0);
+
+        function sel(field,val,opts){
+          var s='<select onchange="plUpdateAnnee('+p.id+','+yr+',\''+field+'\',this.value);plUpdateRIS('+p.id+','+yr+')" style="border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px;font-family:inherit">';
+          opts.forEach(function(o){s+='<option value="'+o.v+'"'+(val===o.v?' selected':'')+'>'+o.l+'</option>';});
+          return s+'</select>';
+        }
+        function numInp(field,val,w,onchange){
+          return'<input type="number" value="'+(val||0)+'" onchange="'+onchange+'" style="width:'+(w||60)+'px;border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px">';
+        }
+
+        var niveaux=[{v:'faible',l:'Faible (0.25)'},{v:'modere',l:'Modéré (0.30)'},{v:'moyen',l:'Moyen (0.35)'},{v:'eleve',l:'Élevé (0.40)'}];
+        var typeDevisOpts=[{v:'PAPS',l:'PAPS (140€/h)'},{v:'DPS',l:'DPS (180€/h)'},{v:'VPS',l:'VPS (180€/h)'},{v:'BPI',l:'BPI (180€/h)'}];
+        var risColor=risR.ris<=0.25?'#888':risR.ris<=1.125?'#639922':risR.ris<=12?'#BA7517':'#E24B4A';
+
+        // Row 1: Année + infos événement
+        html+='<tr style="background:#F0F4F8;border-bottom:1px solid var(--border)">';
+        html+='<td style="padding:8px 10px;text-align:center"><span style="font-size:10px;font-weight:700;color:var(--navy);background:var(--blue-lt);border-radius:4px;padding:2px 6px">'+yr+'</span></td>';
+        html+='<td colspan="5" style="padding:8px 10px">';
+        html+='<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">Date</label><input type="date" value="'+(a.date||'')+'" onchange="plUpdateAnnee('+p.id+','+yr+',\'date\',this.value)" style="border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px"></div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">Début</label><input type="time" value="'+(a.heureDebut||'')+'" onchange="plUpdateAnnee('+p.id+','+yr+',\'heureDebut\',this.value)" style="border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px;width:90px"></div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">Fin</label><input type="time" value="'+(a.heureFin||'')+'" onchange="plUpdateAnnee('+p.id+','+yr+',\'heureFin\',this.value)" style="border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px;width:90px"></div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px;flex:1"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">Lieu précis</label><input value="'+(a.lieu||'')+'" onchange="plUpdateAnnee('+p.id+','+yr+',\'lieu\',this.value)" placeholder="Adresse du site" style="border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px;min-width:200px"></div>';
+        html+='</div></td>';
+        html+='<td style="padding:8px 10px;text-align:center"><button onclick="plDeleteAnnee('+p.id+','+yr+')" style="background:var(--red-lt);border:none;border-radius:4px;padding:2px 6px;font-size:10px;cursor:pointer;color:#791F1F">✕</button></td>';
+        html+='</tr>';
+
+        // Row 2: Calcul RIS
         html+='<tr style="background:#F8FAFC;border-bottom:1px solid var(--border)">';
-        html+='<td style="padding:6px 10px;text-align:center"><span style="font-size:10px;font-weight:700;color:var(--navy);background:var(--blue-lt);border-radius:4px;padding:2px 6px">'+yr+'</span></td>';
-        // Steps
-        html+='<td colspan="4" style="padding:8px 10px">';
+        html+='<td style="padding:6px 10px;text-align:center;font-size:10px;font-weight:700;color:var(--orange)">RIS</td>';
+        html+='<td colspan="5" style="padding:8px 10px">';
         html+='<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">P1 — Participants</label>'+numInp('p1',a.p1,80,'plUpdateAnnee('+p.id+','+yr+',\'p1\',+this.value);plUpdateRIS('+p.id+','+yr+')')+'</div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">P2 — Comportement public</label>'+sel('p2',a.p2||'faible',niveaux)+'</div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">E1 — Environnement</label>'+sel('e1',a.e1||'faible',niveaux)+'</div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">E2 — Délai secours publics</label>'+sel('e2',a.e2||'faible',niveaux)+'</div>';
+        html+='<div style="background:var(--bg);border-radius:7px;padding:8px 12px;border-left:3px solid '+risColor+'">';
+        html+='<div style="font-size:10px;color:var(--muted);font-weight:700;margin-bottom:2px">RIS = '+risR.ris.toFixed(4)+'</div>';
+        html+='<div style="font-size:13px;font-weight:700;color:'+risColor+'">'+risR.type+' — '+risR.nbSR+' SR</div>';
+        html+='</div>';
+        html+='</div></td><td></td></tr>';
+
+        // Row 3: Devis
+        html+='<tr style="background:#FFFBF2;border-bottom:1px solid var(--border)">';
+        html+='<td style="padding:6px 10px;text-align:center;font-size:10px;font-weight:700;color:var(--orange)">Devis</td>';
+        html+='<td colspan="5" style="padding:8px 10px">';
+        html+='<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">Type</label>'+
+          '<select onchange="plUpdateAnnee('+p.id+','+yr+',\'typeDevis\',this.value);plUpdateDevis('+p.id+','+yr+')" style="border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px">'+
+          typeDevisOpts.map(function(o){return'<option value="'+o.v+'"'+((a.typeDevis||'PAPS')===o.v?' selected':'')+'>'+o.l+'</option>';}).join('')+'</select></div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">Nb heures</label>'+numInp('nbHeures',a.nbHeures,60,'plUpdateAnnee('+p.id+','+yr+',\'nbHeures\',+this.value);plUpdateDevis('+p.id+','+yr+')')+'</div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">H. nuit (22h-6h)</label>'+numInp('nbHeuresNuit',a.nbHeuresNuit,60,'plUpdateAnnee('+p.id+','+yr+',\'nbHeuresNuit\',+this.value);plUpdateDevis('+p.id+','+yr+')')+'</div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">SR supplémentaires</label>'+numInp('nbSRPlus',a.nbSRPlus,60,'plUpdateAnnee('+p.id+','+yr+',\'nbSRPlus\',+this.value);plUpdateDevis('+p.id+','+yr+')')+'</div>';
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">Remise %</label>'+numInp('remise',a.remise,60,'plUpdateAnnee('+p.id+','+yr+',\'remise\',+this.value);plUpdateDevis('+p.id+','+yr+')')+'</div>';
+        var prixAffiche=a.prixModif?a.prixFinal:devisR.final;
+        html+='<div style="display:flex;flex-direction:column;gap:2px"><label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase">Prix final (€) <span style="font-weight:400;text-transform:none">'+(a.prixModif?'✏️ modifié':'auto')+'</span></label>'+
+          '<input type="number" value="'+prixAffiche+'" onchange="plUpdateAnnee('+p.id+','+yr+',\'prixFinal\',+this.value);plUpdateAnnee('+p.id+','+yr+',\'prixModif\',true)" style="width:90px;border:1px solid var(--orange);border-radius:5px;padding:3px 6px;font-size:12px;font-weight:700;color:var(--orange)"></div>';
+        html+='<button onclick="plUpdateAnnee('+p.id+','+yr+',\'prixModif\',false);plUpdateDevis('+p.id+','+yr+')" title="Recalculer automatiquement" style="background:var(--gray-lt);border:none;border-radius:5px;padding:4px 8px;font-size:10px;cursor:pointer;color:var(--muted);align-self:flex-end">↺ Auto</button>';
+        html+='</div></td><td></td></tr>';
+
+        // Row 4: Steps + commentaire
+        html+='<tr style="background:#F8FAFC;border-bottom:1px solid var(--border)">';
+        html+='<td style="padding:6px 10px;text-align:center"><span style="font-size:10px;font-weight:700;color:'+pclr+'">'+pct+'%</span></td>';
+        html+='<td colspan="5" style="padding:8px 10px">';
+        html+='<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:8px">';
         PL_STEPS.forEach(function(step){
           var checked=a.steps&&a.steps[step];
           html+='<label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;font-weight:600;color:'+(checked?'#27500A':'var(--muted)')+'">'+
             '<input type="checkbox"'+(checked?' checked':'')+' onchange="plUpdateAnnee('+p.id+','+yr+',\'step\',\''+step+'|\'+this.checked)" style="cursor:pointer;accent-color:var(--orange)">'+
             step+'</label>';
         });
-        html+='</div></td>';
-        // Progress
-        html+='<td style="padding:8px 10px;text-align:center"><span style="font-size:11px;font-weight:700;color:'+pclr+'">'+pct+'%</span></td>';
-        // Delete year + comment
-        html+='<td style="padding:6px 8px;text-align:center"><button onclick="plDeleteAnnee('+p.id+','+yr+')" style="background:var(--red-lt);border:none;border-radius:4px;padding:2px 6px;font-size:10px;cursor:pointer;color:#791F1F">✕</button></td>';
-        html+='</tr>';
-        // Commentaire row
-        html+='<tr style="background:#F8FAFC;border-bottom:2px solid var(--border)">';
-        html+='<td></td>';
-        html+='<td colspan="6" style="padding:4px 10px 10px">';
+        html+='</div>';
         html+='<textarea onchange="plUpdateAnnee('+p.id+','+yr+',\'commentaire\',this.value)" placeholder="Commentaires & next steps..." style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:11px;font-family:inherit;resize:vertical;min-height:50px">'+escHtml(a.commentaire||'')+'</textarea>';
-        html+='</td></tr>';
+        html+='</td><td></td></tr>';
       });
     } else if(expanded && !annees.length){
       html+='<tr style="background:#F8FAFC;border-bottom:1px solid var(--border)"><td colspan="7" style="padding:10px 20px;font-size:11px;color:var(--muted);text-align:center">Aucune année — cliquez "+ Année" pour ajouter</td></tr>';
