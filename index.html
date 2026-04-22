@@ -38,6 +38,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .tab:hover{color:var(--navy)}
 .tab.dps-active{color:var(--orange);border-bottom-color:var(--orange)}
 .tab.sr-active{color:var(--orange);border-bottom-color:var(--orange);opacity:.75}
+.tab.pl-active{color:var(--navy);border-bottom-color:var(--navy)}
 
 /* ── Admin ── */
 .admin-panel{background:#fff;border-bottom:2px solid var(--orange);padding:11px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -172,6 +173,7 @@ tr:nth-child(even) td{background:#F8FAFC}
     <div class="tab dps-active" id="tabDPS" onclick="switchTab('dps')">Dispositif Prévisionnel de Secours</div>
     <div class="tab" id="tabGarde" onclick="switchTab('garde')">Garde</div>
     <div class="tab" id="tabSR" onclick="switchTab('sr')">Suivi SR</div>
+    <div class="tab" id="tabPL" onclick="switchTab('pl')">Postes Locaux</div>
   </div>
 
   <div id="controlsActivity" class="controls">
@@ -187,6 +189,7 @@ tr:nth-child(even) td{background:#F8FAFC}
   <div id="contentDPS"></div>
   <div id="contentGarde" style="display:none"></div>
   <div id="contentSR" style="display:none"></div>
+  <div id="contentPL" style="display:none"></div>
 
 </div>
 
@@ -228,14 +231,17 @@ function switchTab(tab){
   document.getElementById("contentDPS").style.display=tab==="dps"?"block":"none";
   document.getElementById("contentGarde").style.display=tab==="garde"?"block":"none";
   document.getElementById("contentSR").style.display=tab==="sr"?"block":"none";
-  document.getElementById("controlsActivity").style.display=tab==="sr"?"none":"flex";
+  document.getElementById("contentPL").style.display=tab==="pl"?"block":"none";
+  document.getElementById("controlsActivity").style.display=(tab==="sr"||tab==="pl")?"none":"flex";
   document.getElementById("tabDPS").className="tab"+(tab==="dps"?" dps-active":"");
   document.getElementById("tabGarde").className="tab"+(tab==="garde"?" garde-active":"");
   document.getElementById("tabSR").className="tab"+(tab==="sr"?" sr-active":"");
+  document.getElementById("tabPL").className="tab"+(tab==="pl"?" pl-active":"");
   var sel=document.getElementById("selInd");
   sel.options[0].text=tab==="garde"?"Gardes":"DPS";
   sel.options[3].text=tab==="garde"?"Interventions":"Prises en charge";
   if(tab==="sr") renderSR();
+  else if(tab==="pl") renderPL();
   else render();
 }
 
@@ -814,7 +820,230 @@ function renderSR(){
 
 function showSRFiche(idx){srFicheIdx=idx;renderSR();setTimeout(function(){var el=document.getElementById('contentSR').querySelector('[style*="border-top:3px solid var(--orange)"]');if(el)el.scrollIntoView({behavior:'smooth'});},50);}
 
+// ── Postes Locaux ─────────────────────────────────────────────────────────
+var PL_DATA = [{"id":1005,"nom":"Brunch Electronik","commune":"","contact":"","statut":"En cours","annees":{"2024":{"steps":{},"commentaire":"20241005"},"2025":{"steps":{},"commentaire":"20251004"},"2026":{"steps":{},"commentaire":"20260613"}}},{"id":1036,"nom":"Crescendo UGC Bercy","commune":"Paris 12","contact":"","statut":"En cours","annees":{"2026":{"steps":{},"commentaire":"20260410"}}},{"id":1038,"nom":"Festival 2Much","commune":"","contact":"","statut":"En cours","annees":{"2026":{"steps":{},"commentaire":"20260117"}}},{"id":1008,"nom":"Jeux des collèges","commune":"","contact":"","statut":"En cours","annees":{"2024":{"steps":{},"commentaire":"20240619"},"2025":{"steps":{},"commentaire":"20250618"},"2026":{"steps":{},"commentaire":"20260617"}}},{"id":1037,"nom":"La Lycéenne","commune":"","contact":"","statut":"En cours","annees":{"2026":{"steps":{},"commentaire":"20260318"}}},{"id":1009,"nom":"Passage de grade Aïkido","commune":"","contact":"","statut":"En cours","annees":{"2024":{"steps":{},"commentaire":"20240609"},"2026":{"steps":{},"commentaire":"20260208"}}},{"id":1011,"nom":"Tournoi Rugby Kids","commune":"","contact":"","statut":"En cours","annees":{"2024":{"steps":{},"commentaire":"20240504"},"2025":{"steps":{},"commentaire":"20250504"},"2026":{"steps":{},"commentaire":"20260509"}}},{"id":1024,"nom":"Tournoi de rugby à 5","commune":"","contact":"","statut":"En cours","annees":{"2024":{"steps":{},"commentaire":"20240312"},"2026":{"steps":{},"commentaire":"20260602"}}},{"id":1012,"nom":"Aïkido","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240204"},"2025":{"steps":{},"commentaire":"20250202 + 20250615"}}},{"id":1030,"nom":"Bal du 12ème","commune":"Paris 12","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20250625"}}},{"id":1035,"nom":"Boiler Room","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20250502"}}},{"id":1027,"nom":"Compétition d'athlétisme","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20251203"}}},{"id":1029,"nom":"Cross Country UNSS","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20251015"}}},{"id":1015,"nom":"Cross Scolaire Jean Moulin","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241016"}}},{"id":1026,"nom":"Cross UNSS Alice Milliat","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20251203"}}},{"id":1014,"nom":"Cross UNSS75 / Cross Scolaire C8","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241211 + 20241016"},"2025":{"steps":{},"commentaire":"20251015"}}},{"id":1003,"nom":"Cross UNSS93","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241120"},"2025":{"steps":{},"commentaire":"20251119"}}},{"id":1013,"nom":"Cross UNSS94","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241211"}}},{"id":1007,"nom":"Cérémonie des Martyrs de la Résistance","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240818"},"2025":{"steps":{},"commentaire":"20250823"}}},{"id":1002,"nom":"Festival du livre et de la jeunesse","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241127"},"2025":{"steps":{},"commentaire":"20251126"}}},{"id":1001,"nom":"Festival du merveilleux","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241227"},"2025":{"steps":{},"commentaire":"20251226"}}},{"id":1006,"nom":"Forum des associations Paris 12","commune":"Paris 12","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240914"},"2025":{"steps":{},"commentaire":"20250913"}}},{"id":1019,"nom":"Gala SciencePo","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240629"}}},{"id":1022,"nom":"Journée une France en forme","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240410"}}},{"id":1034,"nom":"NBA x HOOPBUS","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20250118"}}},{"id":1010,"nom":"On s'la coule douze","commune":"Paris 12","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240531"},"2025":{"steps":{},"commentaire":"20250628"}}},{"id":1033,"nom":"SHOOTERS LEAGUE","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20250207"}}},{"id":1018,"nom":"Soirée AFD / Festival AFD","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240629"},"2025":{"steps":{},"commentaire":"20250625"}}},{"id":1020,"nom":"Soirée Privée","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240618"}}},{"id":1039,"nom":"Soirée Techno - Babcock","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240907"}}},{"id":1017,"nom":"Soirée Techno / Soirée Electro","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240706 + 20240630 + 20240413"}}},{"id":1028,"nom":"Stade vers l'emploi","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20251112"}}},{"id":1004,"nom":"Teletech","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241019"},"2025":{"steps":{},"commentaire":"20251122 + 20250719"}}},{"id":1031,"nom":"Tournoi Rugby RUGBYGIRL","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20250418"}}},{"id":1032,"nom":"Tournoi TopEight","commune":"","contact":"","statut":"Terminé","annees":{"2025":{"steps":{},"commentaire":"20250330"}}},{"id":1016,"nom":"Tournoi de Rugby","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241014"},"2025":{"steps":{},"commentaire":"20250610"}}},{"id":1023,"nom":"UNSS FUTSAL","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240328"}}},{"id":1025,"nom":"Waza Night","commune":"","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20241220"}}},{"id":1021,"nom":"Festival On s'la coule douze","commune":"Paris 12","contact":"","statut":"Terminé","annees":{"2024":{"steps":{},"commentaire":"20240531"}}}];
+var PL_EXPANDED = {};
+var PL_STATUTS = ['En cours','Terminé','Annulé'];
+var PL_STEPS = ['Envoi devis','Création eProtec','Déclaration poste','Facturation'];
+var PL_YEARS = [2023,2024,2025,2026,2027];
+
+function plSave(){
+  if(!githubToken){alert("Token GitHub requis — connecte-toi en admin d'abord.");return;}
+  var content = JSON.stringify({postes:PL_DATA,lastModified:new Date().toLocaleDateString('fr-FR')},null,2);
+  var b64 = btoa(unescape(encodeURIComponent(content)));
+  var apiUrl="https://api.github.com/repos/"+GITHUB_OWNER+"/"+GITHUB_REPO+"/contents/data/postes_locaux.json";
+  var ds=document.getElementById('plSaveStatus');
+  if(ds){ds.textContent="Enregistrement...";ds.style.color="var(--muted)";}
+  fetch(apiUrl,{headers:{"Authorization":"token "+githubToken,"Accept":"application/vnd.github.v3+json"}})
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(existing){
+      var body={message:"Mise à jour postes locaux — "+new Date().toLocaleDateString('fr-FR'),content:b64};
+      if(existing&&existing.sha)body.sha=existing.sha;
+      return fetch(apiUrl,{method:"PUT",headers:{"Authorization":"token "+githubToken,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},body:JSON.stringify(body)});
+    })
+    .then(function(r){
+      if(ds){
+        if(r&&r.ok){ds.textContent="✓ Enregistré";ds.style.color="var(--green)";}
+        else{ds.textContent="Erreur d'enregistrement";ds.style.color="var(--red)";}
+      }
+    })
+    .catch(function(){if(ds){ds.textContent="Erreur réseau";ds.style.color="var(--red)";}});
+}
+
+function plLoad(){
+  var apiUrl="https://pcpsope12.github.io/Dashboard-Ope/data/postes_locaux.json?t="+Date.now();
+  fetch(apiUrl)
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(d){
+      if(d&&d.postes){PL_DATA=d.postes;}
+      if(currentTab==='pl')renderPL();
+    })
+    .catch(function(){});
+}
+
+function plAddPoste(){
+  PL_DATA.push({id:Date.now(),nom:'',commune:'',contact:'',statut:'En cours',annees:{}});
+  renderPL();
+}
+
+function plAddAnnee(id){
+  var p=PL_DATA.find(function(x){return x.id===id;});
+  if(!p)return;
+  var yr=new Date().getFullYear();
+  if(p.annees[yr])yr++;
+  p.annees[yr]={steps:{},commentaire:''};
+  PL_EXPANDED[id]=true;
+  renderPL();
+}
+
+function plToggle(id){
+  PL_EXPANDED[id]=!PL_EXPANDED[id];
+  renderPL();
+}
+
+function plDelete(id){
+  if(!confirm('Supprimer ce poste ?'))return;
+  PL_DATA=PL_DATA.filter(function(x){return x.id!==id;});
+  renderPL();
+}
+
+function plDeleteAnnee(id,yr){
+  var p=PL_DATA.find(function(x){return x.id===id;});
+  if(!p)return;
+  delete p.annees[yr];
+  renderPL();
+}
+
+function plUpdate(id,field,val){
+  var p=PL_DATA.find(function(x){return x.id===id;});
+  if(p)p[field]=val;
+}
+
+function plUpdateAnnee(id,yr,field,val){
+  var p=PL_DATA.find(function(x){return x.id===id;});
+  if(!p||!p.annees[yr])return;
+  if(field==='step'){
+    var parts=val.split('|');
+    p.annees[yr].steps[parts[0]]=parts[1]==='true';
+  } else {
+    p.annees[yr][field]=val;
+  }
+}
+
+function plProgress(annee){
+  if(!annee)return 0;
+  var done=PL_STEPS.filter(function(s){return annee.steps&&annee.steps[s];}).length;
+  return Math.round(done/PL_STEPS.length*100);
+}
+
+function renderPL(){
+  var statutColor={'En cours':'#BA7517','Terminé':'#639922','Annulé':'#E24B4A'};
+  var statutBg={'En cours':'#FAEEDA','Terminé':'#EAF3DE','Annulé':'#FCEBEB'};
+
+  var kpiEnCours=PL_DATA.filter(function(p){return p.statut==='En cours';}).length;
+  var kpiTermine=PL_DATA.filter(function(p){return p.statut==='Terminé';}).length;
+  var kpiAnnule=PL_DATA.filter(function(p){return p.statut==='Annulé';}).length;
+  var kpiTotal=PL_DATA.length;
+
+  var html='<div style="padding:16px 22px;background:var(--bg)">';
+
+  // KPIs
+  html+='<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Vue d\'ensemble</div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px">';
+  [{l:'Total',v:kpiTotal,c:'var(--navy)'},{l:'En cours',v:kpiEnCours,c:'#BA7517'},{l:'Terminés',v:kpiTermine,c:'#639922'},{l:'Annulés',v:kpiAnnule,c:'#E24B4A'}]
+    .forEach(function(k){html+='<div style="background:var(--card);border-radius:8px;border:1px solid var(--border);padding:11px 13px;border-left:3px solid var(--navy)"><div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px">'+k.l+'</div><div style="font-size:21px;font-weight:700;color:'+k.c+'">'+k.v+'</div></div>';});
+  html+='</div>';
+
+  // Toolbar
+  html+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">';
+  html+='<button onclick="plAddPoste()" style="background:var(--navy);color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer">+ Nouveau poste</button>';
+  html+='<button onclick="plSave()" style="background:var(--orange);color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer">💾 Enregistrer</button>';
+  html+='<span id="plSaveStatus" style="font-size:11px;color:var(--muted)"></span>';
+  html+='</div>';
+
+  if(!PL_DATA.length){
+    html+='<div style="background:var(--card);border-radius:10px;border:1px solid var(--border);padding:40px;text-align:center;color:var(--muted);font-size:13px">Aucun poste local — cliquez "+ Nouveau poste" pour commencer</div>';
+    html+='</div>';
+    document.getElementById('contentPL').innerHTML=html;
+    return;
+  }
+
+  // Table
+  html+='<div style="background:var(--card);border-radius:10px;border:1px solid var(--border);overflow:hidden">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:12px">';
+  html+='<thead><tr>';
+  ['','Poste local','Commune','Contact','Statut','Années',''].forEach(function(h,i){
+    var align=i===0||i===6?'center':'left';
+    html+='<th style="background:var(--navy);color:#fff;padding:9px 10px;text-align:'+align+';font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">'+h+'</th>';
+  });
+  html+='</tr></thead><tbody>';
+
+  PL_DATA.forEach(function(p){
+    var expanded=PL_EXPANDED[p.id];
+    var annees=Object.keys(p.annees||{}).sort().reverse();
+    var sc=statutColor[p.statut]||'#888';
+    var sb=statutBg[p.statut]||'#eee';
+
+    // Main row
+    html+='<tr style="border-bottom:1px solid var(--border)">';
+    // Toggle
+    html+='<td style="padding:8px 10px;text-align:center;width:32px"><button onclick="plToggle('+p.id+')" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--navy)">'+(expanded?'▼':'▶')+'</button></td>';
+    // Nom
+    html+='<td style="padding:6px 8px"><input value="'+escHtml(p.nom)+'" onchange="plUpdate('+p.id+',\'nom\',this.value)" placeholder="Nom du poste" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:12px;font-family:inherit"></td>';
+    // Commune
+    html+='<td style="padding:6px 8px"><input value="'+escHtml(p.commune)+'" onchange="plUpdate('+p.id+',\'commune\',this.value)" placeholder="Commune" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:12px;font-family:inherit"></td>';
+    // Contact
+    html+='<td style="padding:6px 8px"><input value="'+escHtml(p.contact)+'" onchange="plUpdate('+p.id+',\'contact\',this.value)" placeholder="Contact" style="width:100%;border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:12px;font-family:inherit"></td>';
+    // Statut
+    html+='<td style="padding:6px 8px"><select onchange="plUpdate('+p.id+',\'statut\',this.value)" style="border:1px solid var(--border);border-radius:5px;padding:4px 7px;font-size:11px;font-weight:600;background:'+sb+';color:'+sc+';cursor:pointer">';
+    PL_STATUTS.forEach(function(s){html+='<option value="'+s+'"'+(p.statut===s?' selected':'')+'>'+s+'</option>';});
+    html+='</select></td>';
+    // Années summary
+    html+='<td style="padding:6px 8px;font-size:11px;color:var(--muted)">';
+    if(annees.length){
+      annees.forEach(function(yr){
+        var pct=plProgress(p.annees[yr]);
+        var clr=pct===100?'#639922':pct>0?'#BA7517':'#ccc';
+        html+='<span style="display:inline-flex;align-items:center;gap:4px;margin-right:6px;background:var(--bg);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:600;color:'+clr+'">'+yr+' '+pct+'%</span>';
+      });
+    } else {
+      html+='<span style="color:#ccc;font-size:11px">—</span>';
+    }
+    html+='</td>';
+    // Actions
+    html+='<td style="padding:6px 8px;text-align:center;white-space:nowrap">';
+    html+='<button onclick="plAddAnnee('+p.id+')" title="Ajouter une année" style="background:var(--blue-lt);border:none;border-radius:4px;padding:3px 7px;font-size:11px;cursor:pointer;color:var(--navy);margin-right:4px">+ Année</button>';
+    html+='<button onclick="plDelete('+p.id+')" title="Supprimer" style="background:var(--red-lt);border:none;border-radius:4px;padding:3px 7px;font-size:11px;cursor:pointer;color:#791F1F">✕</button>';
+    html+='</td></tr>';
+
+    // Expanded sub-rows
+    if(expanded && annees.length){
+      annees.forEach(function(yr){
+        var a=p.annees[yr];
+        var pct=plProgress(a);
+        var pclr=pct===100?'#639922':pct>0?'#BA7517':'#ccc';
+        html+='<tr style="background:#F8FAFC;border-bottom:1px solid var(--border)">';
+        html+='<td style="padding:6px 10px;text-align:center"><span style="font-size:10px;font-weight:700;color:var(--navy);background:var(--blue-lt);border-radius:4px;padding:2px 6px">'+yr+'</span></td>';
+        // Steps
+        html+='<td colspan="4" style="padding:8px 10px">';
+        html+='<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">';
+        PL_STEPS.forEach(function(step){
+          var checked=a.steps&&a.steps[step];
+          html+='<label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;font-weight:600;color:'+(checked?'#27500A':'var(--muted)')+'">'+
+            '<input type="checkbox"'+(checked?' checked':'')+' onchange="plUpdateAnnee('+p.id+','+yr+',\'step\',\''+step+'|\'+this.checked)" style="cursor:pointer;accent-color:var(--orange)">'+
+            step+'</label>';
+        });
+        html+='</div></td>';
+        // Progress
+        html+='<td style="padding:8px 10px;text-align:center"><span style="font-size:11px;font-weight:700;color:'+pclr+'">'+pct+'%</span></td>';
+        // Delete year + comment
+        html+='<td style="padding:6px 8px;text-align:center"><button onclick="plDeleteAnnee('+p.id+','+yr+')" style="background:var(--red-lt);border:none;border-radius:4px;padding:2px 6px;font-size:10px;cursor:pointer;color:#791F1F">✕</button></td>';
+        html+='</tr>';
+        // Commentaire row
+        html+='<tr style="background:#F8FAFC;border-bottom:2px solid var(--border)">';
+        html+='<td></td>';
+        html+='<td colspan="6" style="padding:4px 10px 10px">';
+        html+='<textarea onchange="plUpdateAnnee('+p.id+','+yr+',\'commentaire\',this.value)" placeholder="Commentaires & next steps..." style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:11px;font-family:inherit;resize:vertical;min-height:50px">'+escHtml(a.commentaire||'')+'</textarea>';
+        html+='</td></tr>';
+      });
+    } else if(expanded && !annees.length){
+      html+='<tr style="background:#F8FAFC;border-bottom:1px solid var(--border)"><td colspan="7" style="padding:10px 20px;font-size:11px;color:var(--muted);text-align:center">Aucune année — cliquez "+ Année" pour ajouter</td></tr>';
+    }
+  });
+
+  html+='</tbody></table></div>';
+  html+='<div style="text-align:center;padding:14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px">Protection Civile Paris Seine — Antenne de Paris 12</div>';
+  html+='</div>';
+  document.getElementById('contentPL').innerHTML=html;
+}
+
+function escHtml(s){
+  if(!s)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 loadJSON();
+plLoad();
 </script>
 </body>
 </html>
