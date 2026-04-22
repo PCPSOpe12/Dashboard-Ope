@@ -1,0 +1,23 @@
+{
+  "nom": "Brunch Electronik",
+  "org_nom": "Brunch Electronik",
+  "contact": "",
+  "qualite": "",
+  "adresse": "",
+  "tel": "",
+  "email": "",
+  "lieu": "2 voie mazas 75012 paris",
+  "commune": "",
+  "dept": "",
+  "date": "2026-04-20",
+  "heure_debut": "18h16",
+  "heure_fin": "21h16",
+  "p1": 1800,
+  "i": "0.75",
+  "ris": "1.3500",
+  "nbSR": 4,
+  "nbCP": 1,
+  "nbPSE2": 1,
+  "nbPSE1": 2,
+  "nbVeh": 2
+}
