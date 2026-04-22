@@ -7,6 +7,7 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -1141,8 +1142,8 @@ function renderPL(){
         html+='<button onclick="plUpdateAnnee('+p.id+','+yr+',\'prixModif\',false);plUpdateDevis('+p.id+','+yr+')" title="Recalculer automatiquement" style="background:var(--gray-lt);border:none;border-radius:5px;padding:4px 8px;font-size:10px;cursor:pointer;color:var(--muted);align-self:flex-end">↺ Auto</button>';
         html+='</div></td><td></td></tr>';
 
-        // Row 4: Steps + commentaire
-        html+='<tr style="background:#F8FAFC;border-bottom:1px solid var(--border)">';
+        // Row 4: Steps + commentaire + boutons génération
+        html+='<tr style="background:#F8FAFC;border-bottom:2px solid var(--border)">';
         html+='<td style="padding:6px 10px;text-align:center"><span style="font-size:10px;font-weight:700;color:'+pclr+'">'+pct+'%</span></td>';
         html+='<td colspan="5" style="padding:8px 10px">';
         html+='<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:8px">';
@@ -1153,7 +1154,11 @@ function renderPL(){
             step+'</label>';
         });
         html+='</div>';
-        html+='<textarea onchange="plUpdateAnnee('+p.id+','+yr+',\'commentaire\',this.value)" placeholder="Commentaires & next steps..." style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:11px;font-family:inherit;resize:vertical;min-height:50px">'+escHtml(a.commentaire||'')+'</textarea>';
+        html+='<textarea onchange="plUpdateAnnee('+p.id+','+yr+',\'commentaire\',this.value)" placeholder="Commentaires & next steps..." style="width:100%;border:1px solid var(--border);border-radius:5px;padding:6px 8px;font-size:11px;font-family:inherit;resize:vertical;min-height:50px;margin-bottom:8px">'+escHtml(a.commentaire||'')+'</textarea>';
+        html+='<div style="display:flex;gap:8px;flex-wrap:wrap">';
+        html+='<button onclick="plGenGrille('+p.id+','+yr+')" style="background:#002D74;color:#fff;border:none;border-radius:5px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer">📄 Grille de risques</button>';
+        html+='<button onclick="plGenDeclaration('+p.id+','+yr+')" style="background:#FF7F30;color:#fff;border:none;border-radius:5px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer">📋 Déclaration</button>';
+        html+='</div>';
         html+='</td><td></td></tr>';
       });
     } else if(expanded && !annees.length){
@@ -1322,6 +1327,204 @@ function renderCL(){
   html+='<div style="text-align:center;padding:14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px">Protection Civile Paris Seine — Antenne de Paris 12</div>';
   html+='</div>';
   document.getElementById('contentCL').innerHTML=html;
+}
+
+
+// ── Génération documents ───────────────────────────────────────────────────
+
+function getClientInfo(clientId){
+  if(!clientId) return null;
+  return CL_DATA.find(function(c){return c.id==clientId;}) || null;
+}
+
+function formatHeure(h){
+  if(!h) return '';
+  return h.replace(':','h');
+}
+
+function plGenGrille(posteId, yr){
+  var p = PL_DATA.find(function(x){return x.id===posteId;});
+  if(!p || !p.annees[yr]) return;
+  var a = p.annees[yr];
+  var client = getClientInfo(p.clientId);
+  var r = calcRIS(a.p1||0, a.p2||'faible', a.e1||'faible', a.e2||'faible');
+  var P = (a.p1||0) <= 100000 ? (a.p1||0) : 100000 + ((a.p1||0)-100000)/2;
+  var i = (RIS_COEFF[a.p2||'faible']||0.25) + (RIS_COEFF[a.e1||'faible']||0.25) + (RIS_COEFF[a.e2||'faible']||0.25);
+
+  var P2_LABELS = {
+    faible: 'Public assis (spectacle, cérémonie cultuelle, réunion publique, restauration…)',
+    modere: 'Public debout (cérémonie cultuelle, réunion, exposition, foire, salon…)',
+    moyen:  'Public debout (spectacle avec public statique, fête foraine…)',
+    eleve:  'Public debout (spectacle dynamique, danse, feria, carnaval, rendez-vous sportif sans protection…)'
+  };
+  var E1_LABELS = {
+    faible: 'Structures permanentes (bâtiment, salle en dur), voies publiques avec accès dégagés',
+    modere: 'Structures non permanentes (gradins, tribunes, chapiteaux), espaces naturels < 2 ha',
+    moyen:  'Espaces naturels de 2 à 5 ha, de 300 à 600 m de brancardage',
+    eleve:  'Espaces naturels > 5 ha, plus de 600 m de brancardage, accès difficiles'
+  };
+  var E2_LABELS = {
+    faible: 'Inférieur à 10 minutes',
+    modere: 'Entre 10 et 20 minutes',
+    moyen:  'Entre 20 et 30 minutes',
+    eleve:  'Plus de 30 minutes'
+  };
+
+  var html = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">';
+  html += '<title>Grille évaluation risques — ' + escHtml(p.nom) + ' ' + yr + '</title>';
+  html += '<style>';
+  html += 'body{font-family:Arial,sans-serif;font-size:11px;margin:20px;color:#000}';
+  html += 'h1{font-size:13px;text-align:center;text-transform:uppercase;border-bottom:2px solid #000;padding-bottom:6px;margin-bottom:14px}';
+  html += 'h2{font-size:11px;text-transform:uppercase;margin:14px 0 6px}';
+  html += '.section{border:1px solid #333;margin-bottom:10px;padding:8px 12px}';
+  html += '.row{display:flex;gap:20px;margin:4px 0;align-items:baseline}';
+  html += '.label{font-weight:bold;min-width:80px}';
+  html += '.val{border-bottom:1px solid #000;min-width:200px;padding:0 4px}';
+  html += '.result{background:#f0f0f0;font-weight:bold;font-size:13px;padding:6px 10px;border:2px solid #333;margin-top:10px;text-align:center}';
+  html += '.sign{display:flex;justify-content:space-between;margin-top:30px}';
+  html += '.sign-box{border:1px solid #000;width:45%;min-height:80px;padding:8px}';
+  html += '.mode-emploi{background:#fff3cd;border:1px solid #ffc107;padding:8px 12px;font-size:10px;margin-bottom:12px;font-style:italic}';
+  html += '@media print{.no-print{display:none}.mode-emploi{display:none}}';
+  html += '</style></head><body>';
+
+  html += '<div class="no-print" style="background:#002D74;color:#fff;padding:10px;margin-bottom:16px;border-radius:6px;display:flex;gap:12px;align-items:center">';
+  html += '<strong>Protection Civile Paris Seine — Antenne de Paris 12</strong>';
+  html += '<button onclick="window.print()" style="margin-left:auto;background:#FF7F30;color:#fff;border:none;border-radius:5px;padding:6px 16px;cursor:pointer;font-size:12px">🖨️ Imprimer / Sauvegarder PDF</button>';
+  html += '</div>';
+
+  html += '<h1>Grille d\'évaluation des risques<br><small style="font-size:10px">(Arrêté du 7 novembre 2006 fixant le référentiel national relatif aux dispositifs prévisionnels de secours)</small></h1>';
+
+  html += '<div class="section">';
+  html += '<div class="row"><span class="label">Manifestation :</span><span class="val">' + escHtml(p.nom) + (yr?' — '+yr:'') + '</span></div>';
+  html += '<div class="row"><span class="label">Date(s) :</span><span class="val">' + (a.date||'') + '</span><span class="label" style="margin-left:20px">Lieu :</span><span class="val">' + escHtml(a.lieu||p.commune||'') + '</span></div>';
+  if(client){
+    html += '<div class="row"><span class="label">Organisateur :</span><span class="val">' + escHtml(client.label) + '</span></div>';
+  }
+  html += '</div>';
+
+  html += '<h2>Calcul du ratio d\'intervenants secouristes</h2>';
+  html += '<div class="section">';
+  html += '<div class="row"><span class="label">P1 — Effectif prévisible :</span><span class="val">' + (a.p1||0) + ' participants</span><span style="margin-left:20px;color:#666">P pondéré = ' + P.toFixed(0) + '</span></div>';
+  html += '<div class="row"><span class="label">P2 — Comportement :</span><span style="font-weight:bold;color:#002D74">' + RIS_LABELS[a.p2||'faible'] + ' (' + (RIS_COEFF[a.p2||'faible']||0.25) + ')</span></div>';
+  html += '<div style="font-size:10px;color:#666;margin:2px 0 8px 82px">' + (P2_LABELS[a.p2||'faible']||'') + '</div>';
+  html += '<div class="row"><span class="label">E1 — Environnement :</span><span style="font-weight:bold;color:#002D74">' + RIS_LABELS[a.e1||'faible'] + ' (' + (RIS_COEFF[a.e1||'faible']||0.25) + ')</span></div>';
+  html += '<div style="font-size:10px;color:#666;margin:2px 0 8px 82px">' + (E1_LABELS[a.e1||'faible']||'') + '</div>';
+  html += '<div class="row"><span class="label">E2 — Délai secours :</span><span style="font-weight:bold;color:#002D74">' + RIS_LABELS[a.e2||'faible'] + ' (' + (RIS_COEFF[a.e2||'faible']||0.25) + ')</span></div>';
+  html += '<div style="font-size:10px;color:#666;margin:2px 0 8px 82px">' + (E2_LABELS[a.e2||'faible']||'') + '</div>';
+  html += '<div style="margin-top:8px;border-top:1px solid #ccc;padding-top:8px">';
+  html += '<div class="row"><span class="label">i (indice) :</span><span>P2 + E1 + E2 = <strong>' + i.toFixed(2) + '</strong></span></div>';
+  html += '<div class="row"><span class="label">RIS :</span><span>i × (P / 1000) = <strong>' + r.ris.toFixed(4) + '</strong></span></div>';
+  html += '</div>';
+  html += '<div class="result">Type de dispositif : ' + r.type + ' &nbsp;|&nbsp; Effectif de secouristes : ' + r.nbSR + ' SR</div>';
+  html += '</div>';
+
+  html += '<div class="sign">';
+  html += '<div class="sign-box"><strong>Pour l\'organisateur</strong><br><br>Date, nom, cachet et signature :</div>';
+  html += '<div class="sign-box"><strong>Pour la Protection Civile Paris Seine</strong><br><br>Date, nom, cachet et signature :<br><br><em style="font-size:10px">[Signature numérique]</em><br>Haithem ALOUI<br>Directeur des Opérations</div>';
+  html += '</div>';
+  html += '</body></html>';
+
+  var win = window.open('','_blank');
+  win.document.write(html);
+  win.document.close();
+}
+
+function plGenDeclaration(posteId, yr){
+  var p = PL_DATA.find(function(x){return x.id===posteId;});
+  if(!p || !p.annees[yr]) return;
+  var a = p.annees[yr];
+  var client = getClientInfo(p.clientId);
+  var r = calcRIS(a.p1||0, a.p2||'faible', a.e1||'faible', a.e2||'faible');
+  var P = (a.p1||0) <= 100000 ? (a.p1||0) : 100000 + ((a.p1||0)-100000)/2;
+  var devisR = calcDevis(a.typeDevis||'PAPS', a.nbHeures||0, a.nbHeuresNuit||0, a.nbSRPlus||0, a.nbRepas||0, a.remise||0);
+
+  var orgNom = client ? client.label : (p.nom||'');
+  var orgContact = client ? (client.contact || (client.civilite+' '+client.prenom+' '+client.nom).trim()) : '';
+  var orgQualite = client ? (client.qualite||'') : '';
+  var orgAdresse = client ? ((client.adresse||'')+(client.adresse2?' '+client.adresse2:'')) : '';
+  var orgVille = client ? ((client.cp||'')+' '+(client.ville||'')).trim() : '';
+  var orgTel = client ? (client.tel||client.portable||'') : '';
+  var orgEmail = client ? (client.email||'') : '';
+  var hDeb = formatHeure(a.heureDebut);
+  var hFin = formatHeure(a.heureFin);
+  var nbCP = Math.max(1, Math.floor(r.nbSR/2));
+  var nbPSE2 = Math.floor(r.nbSR/2);
+  var nbPSE1 = r.nbSR - nbCP - nbPSE2;
+  var nbVeh = r.nbSR >= 4 ? 2 : 1;
+
+  var html = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">';
+  html += '<title>Déclaration dispositif — ' + escHtml(p.nom) + ' ' + yr + '</title>';
+  html += '<style>';
+  html += 'body{font-family:Arial,sans-serif;font-size:10.5px;margin:15mm 20mm;color:#000;line-height:1.4}';
+  html += 'h1{font-size:12px;text-align:center;text-transform:uppercase;font-weight:bold;margin:0 0 4px}';
+  html += 'h2{font-size:10.5px;font-weight:bold;text-transform:uppercase;margin:10px 0 4px}';
+  html += '.entete{text-align:center;margin-bottom:12px}';
+  html += '.block{border:1px solid #000;padding:6px 10px;margin-bottom:6px}';
+  html += '.row{display:flex;flex-wrap:wrap;gap:6px;margin:3px 0;align-items:baseline}';
+  html += '.f{border-bottom:1px solid #000;min-width:120px;padding:0 3px;display:inline-block}';
+  html += '.f-long{border-bottom:1px solid #000;min-width:250px;padding:0 3px;display:inline-block}';
+  html += 'strong{font-weight:bold}';
+  html += '.sign{display:flex;justify-content:space-between;margin-top:20px}';
+  html += '.sign-box{border:1px solid #000;width:46%;min-height:60px;padding:6px;font-size:10px}';
+  html += '.cadre-admin{border:2px solid #000;padding:6px 10px;margin-top:10px;font-size:9.5px}';
+  html += '@media print{.no-print{display:none}}';
+  html += '</style></head><body>';
+
+  html += '<div class="no-print" style="background:#002D74;color:#fff;padding:10px;margin-bottom:16px;border-radius:6px;display:flex;gap:12px;align-items:center">';
+  html += '<strong>Protection Civile Paris Seine — Antenne de Paris 12</strong>';
+  html += '<button onclick="window.print()" style="margin-left:auto;background:#FF7F30;color:#fff;border:none;border-radius:5px;padding:6px 16px;cursor:pointer;font-size:12px">🖨️ Imprimer / Sauvegarder PDF</button>';
+  html += '</div>';
+
+  html += '<div class="entete"><strong>Antenne de PARIS 12</strong><br>';
+  html += '<h1>Grille déclarative d\'ouverture</h1>';
+  html += '<strong>☐ DSN-P ASSOCIÉ → RÉALISÉ PAR</strong></div>';
+
+  html += '<div class="block">';
+  html += '<strong>Organisateur : </strong><span class="f-long">' + escHtml(orgNom) + '</span><br>';
+  html += '<div class="row" style="margin-top:4px">Représenté par : <span class="f">' + escHtml(orgContact) + '</span> &nbsp; Qualité : <span class="f">' + escHtml(orgQualite) + '</span></div>';
+  html += '<div class="row">Adresse : <span class="f-long">' + escHtml(orgAdresse) + (orgVille?', '+orgVille:'') + '</span></div>';
+  html += '<div class="row">Tél. : <span class="f">' + escHtml(orgTel) + '</span> &nbsp; Fax : <span class="f"></span> &nbsp; E-mail : <span class="f">' + escHtml(orgEmail) + '</span></div>';
+  html += '<div class="row" style="margin-top:4px">Un dossier a-t-il été déposé en Préfecture ? &nbsp; oui ☐ &nbsp; non ☐</div>';
+  html += '</div>';
+
+  html += '<div class="block">';
+  html += '<div class="row"><strong>Nature de la manifestation : </strong><span class="f-long">' + escHtml(p.nom) + '</span></div>';
+  html += '<div class="row">Descriptif : <span class="f-long">' + escHtml(p.nom) + '</span></div>';
+  html += '<div class="row">Lieu précis : <span class="f-long">' + escHtml(a.lieu||'') + '</span> &nbsp; Commune : <span class="f">' + escHtml(p.commune||'') + '</span> &nbsp; Dépt. : <span class="f"></span></div>';
+  html += '<div class="row">Date : <span class="f">' + (a.date||'') + '</span> &nbsp; Heure de début : <span class="f">' + hDeb + '</span> &nbsp; Heure de fin : <span class="f">' + hFin + '</span></div>';
+  html += '<div class="row">Date : <span class="f"></span> &nbsp; Heure de début : <span class="f">&nbsp;&nbsp;&nbsp;h</span> &nbsp; Heure de fin : <span class="f">&nbsp;&nbsp;&nbsp;h</span></div>';
+  html += '<div class="row" style="margin-top:6px"><strong>Public prévisible déclaré (P1)*</strong> &nbsp; Participants : <span class="f">' + (a.p1||0) + '</span> &nbsp; Spectateurs : <span class="f"></span></div>';
+  html += '<div class="row"><strong>Grille d\'évaluation des risques*</strong> &nbsp; Indice total de risque : <span class="f">' + r.i.toFixed(2) + '</span> &nbsp; Effectif pondéré du public : <span class="f">' + P.toFixed(0) + '</span></div>';
+  html += '<div class="row" style="padding-left:20px">Ratio d\'Intervenants Secouristes : <span class="f">' + r.ris.toFixed(4) + '</span> &nbsp; Intervenants-secouristes : <span class="f"><strong>' + r.nbSR + '</strong></span></div>';
+  html += '<div class="row">N° du Certificat Original d\'Affiliation : <span class="f-long"></span></div>';
+  html += '<div style="font-size:9px;margin-top:4px">(*) À remplir obligatoirement</div>';
+  html += '</div>';
+
+  html += '<div class="block">';
+  html += '<h2>Configuration du dispositif prévisionnel de secours mis en place</h2>';
+  html += '<div class="row">Date : <span class="f">' + (a.date||'') + '</span> &nbsp; Heure de début : <span class="f">' + hDeb + '</span> &nbsp; Heure de fin : <span class="f">' + hFin + '</span></div>';
+  html += '<div class="row">Date : <span class="f"></span> &nbsp; Heure de début : <span class="f">&nbsp;&nbsp;&nbsp;h</span> &nbsp; Heure de fin : <span class="f">&nbsp;&nbsp;&nbsp;h</span></div>';
+  html += '<div class="row" style="margin-top:8px">Chef de Poste : <span class="f">' + nbCP + '</span> &nbsp; PSE2 : <span class="f">' + nbPSE2 + '</span> &nbsp; PSE1 : <span class="f">' + Math.max(0,nbPSE1) + '</span></div>';
+  html += '<div class="row">Nombre de véhicules de secours : <span class="f">' + nbVeh + '</span> &nbsp; Tente : <span class="f">0</span> &nbsp; Local infirmerie : <span class="f">0</span></div>';
+  html += '<div class="row">Nombre de médecins : <span class="f">0</span> &nbsp; associatif ☐ &nbsp; autre : <span class="f">0</span></div>';
+  html += '<div class="row">Nombre d\'infirmiers : <span class="f">0</span> &nbsp; associatif ☐ &nbsp; autre : <span class="f">0</span></div>';
+  html += '<div class="row" style="margin-top:6px"><strong>Autres structures</strong> &nbsp; SAMU : informé oui ☒ non ☐ &nbsp; présent oui ☐ non ☒</div>';
+  html += '<div class="row" style="padding-left:30px">BSPP/SDIS : informé oui ☐ non ☒ &nbsp; présent oui ☐ non ☒</div>';
+  html += '<div class="row"><strong>Justification(s) du dispositif mis en place :</strong></div>';
+  html += '<div style="border:1px solid #ccc;min-height:30px;margin:4px 0;padding:4px">' + r.type + ' — RIS = ' + r.ris.toFixed(4) + ' — ' + r.nbSR + ' intervenants secouristes</div>';
+  html += '</div>';
+
+  html += '<div class="sign">';
+  html += '<div class="sign-box"><strong>Visa du cadre d\'Antenne</strong><br><br><br><span style="text-decoration:underline">Haithem ALOUI</span></div>';
+  html += '<div class="sign-box"><strong>Visa du Directeur des Opérations</strong><br><br><br></div>';
+  html += '</div>';
+
+  html += '<div class="cadre-admin">Cadre réservé à l\'administration</div>';
+  html += '</body></html>';
+
+  var win = window.open('','_blank');
+  win.document.write(html);
+  win.document.close();
 }
 
 loadJSON();
