@@ -3358,7 +3358,7 @@
       "lieu": "STDE",
       "inscrits": 5,
       "heures": 50.0,
-      "pec": 0
+      "pec": 4
     },
     {
       "annee": 2026,
@@ -3368,7 +3368,7 @@
       "lieu": "LAND",
       "inscrits": 4,
       "heures": 24.0,
-      "pec": 0
+      "pec": 3
     },
     {
       "annee": 2026,
@@ -3378,6 +3378,46 @@
       "lieu": "BLAN",
       "inscrits": 4,
       "heures": 24.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "25/04/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "CRET",
+      "inscrits": 2,
+      "heures": 12.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "30/04/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "PROY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "04/05/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "MASS",
+      "inscrits": 2,
+      "heures": 12.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "16/05/2026",
+      "libelle": "BSPP - Journée des CS",
+      "lieu": "TBC",
+      "inscrits": 1,
+      "heures": 8.0,
       "pec": 0
     },
     {
@@ -3403,7 +3443,7 @@
   ],
   "lastModified": "23/04/2026",
   "maxDate": "20/06/2026",
-  "totalRows": 340,
+  "totalRows": 344,
   "years": [
     2024,
     2025,
