@@ -22,8 +22,8 @@
       },
       "CDD": null,
       "last_dps": "31/12/2025",
-      "last_gar": "18/04/2026",
-      "last_any": "18/04/2026",
+      "last_gar": "22/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -151,6 +151,11 @@
         },
         {
           "date": "23/04/2025",
+          "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "22/04/2026",
           "lib": "BSPP",
           "heures": 6.0
         },
@@ -2591,10 +2596,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "18/04/2026",
-      "last_gar": "10/04/2026",
-      "last_any": "18/04/2026",
+      "last_gar": "22/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "28/03/2025",
@@ -2777,6 +2782,11 @@
           "date": "28/07/2025",
           "lib": "BSPP",
           "heures": 6.0
+        },
+        {
+          "date": "22/04/2026",
+          "lib": "[PROV] BSPP",
+          "heures": 7.0
         },
         {
           "date": "22/03/2026",
@@ -3600,10 +3610,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "11/04/2026",
-      "last_gar": "",
-      "last_any": "11/04/2026",
+      "last_gar": "22/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "11/04/2026",
@@ -3616,7 +3626,13 @@
           "heures": 5.0
         }
       ],
-      "activites_gar": []
+      "activites_gar": [
+        {
+          "date": "22/04/2026",
+          "lib": "BSPP",
+          "heures": 6.0
+        }
+      ]
     },
     {
       "nom": "GALY",
@@ -3884,10 +3900,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "18/04/2026",
-      "last_gar": "08/01/2026",
-      "last_any": "18/04/2026",
+      "last_gar": "22/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "22/11/2025",
@@ -3913,6 +3929,11 @@
       "activites_gar": [
         {
           "date": "30/01/2025",
+          "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "22/04/2026",
           "lib": "BSPP",
           "heures": 6.0
         },
@@ -4458,9 +4479,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "26/03/2026",
+      "last_dps": "22/04/2026",
       "last_gar": "05/03/2026",
-      "last_any": "26/03/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -4478,6 +4499,11 @@
           "date": "26/03/2026",
           "lib": "Renfort DPS-ME - Concert L2B J1",
           "heures": 5.5
+        },
+        {
+          "date": "22/04/2026",
+          "lib": "Renfort PSG  Nantes Ligue 1",
+          "heures": 5.0
         },
         {
           "date": "20/03/2026",
@@ -7175,10 +7201,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "19/04/2026",
-      "last_gar": "25/03/2026",
-      "last_any": "19/04/2026",
+      "last_gar": "22/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/10/2025",
@@ -7401,6 +7427,11 @@
           "date": "23/03/2025",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "22/04/2026",
+          "lib": "BSPP",
+          "heures": 6.0
         },
         {
           "date": "21/06/2025",
@@ -7844,10 +7875,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "17/04/2026",
-      "last_gar": "14/04/2026",
-      "last_any": "17/04/2026",
+      "last_gar": "22/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "28/11/2025",
@@ -8065,6 +8096,11 @@
           "date": "22/11/2025",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "22/04/2026",
+          "lib": "BSPP",
+          "heures": 6.0
         },
         {
           "date": "20/11/2025",
@@ -10171,9 +10207,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "22/02/2026",
+      "last_dps": "22/04/2026",
       "last_gar": "28/08/2025",
-      "last_any": "22/02/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -10196,6 +10232,11 @@
           "date": "24/01/2025",
           "lib": "Renfort DPS-ME - NBA",
           "heures": 6.2
+        },
+        {
+          "date": "22/04/2026",
+          "lib": "Renfort PSG  Nantes Ligue 1",
+          "heures": 5.0
         },
         {
           "date": "22/03/2025",
@@ -11932,9 +11973,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "17/04/2026",
+      "last_dps": "22/04/2026",
       "last_gar": "17/03/2026",
-      "last_any": "17/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -11972,6 +12013,11 @@
           "date": "25/01/2025",
           "lib": "Renfort DPS-ME - NBA",
           "heures": 6.2
+        },
+        {
+          "date": "22/04/2026",
+          "lib": "Renfort PSG  Nantes Ligue 1",
+          "heures": 5.0
         },
         {
           "date": "21/04/2025",
@@ -12275,10 +12321,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "16/04/2026",
-      "last_gar": "13/04/2026",
-      "last_any": "16/04/2026",
+      "last_gar": "22/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/05/2025",
@@ -12514,6 +12560,11 @@
         },
         {
           "date": "23/09/2025",
+          "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "22/04/2026",
           "lib": "BSPP",
           "heures": 6.0
         },
@@ -13554,10 +13605,10 @@
       },
       "CDD": null,
       "last_dps": "19/04/2026",
-      "last_gar": "14/04/2026",
-      "last_any": "19/04/2026",
+      "last_gar": "22/04/2026",
+      "last_any": "22/04/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/12/2025",
@@ -13825,6 +13876,11 @@
           "date": "22/07/2025",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "22/04/2026",
+          "lib": "BSPP",
+          "heures": 6.0
         },
         {
           "date": "21/03/2026",
@@ -14720,7 +14776,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "22/04/2026",
+  "lastModified": "23/04/2026",
   "minDate": "31/12/2024",
   "maxDate": "15/07/2026",
   "totalRows": 111

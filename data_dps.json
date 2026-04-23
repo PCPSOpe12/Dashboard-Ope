@@ -7207,7 +7207,7 @@
       "libelle": "Renfort DPS-ME - Concert Louis Tomlinson",
       "lieu": "Accor Arena Bercy",
       "dps": "PAPS",
-      "statut": "cloturé",
+      "statut": "ouvert",
       "inscrits": 1,
       "heures": 6.0,
       "pec": 0
@@ -7220,8 +7220,8 @@
       "lieu": "Parc des Princes",
       "dps": "DPS-PE",
       "statut": "cloturé",
-      "inscrits": 3,
-      "heures": 15.0,
+      "inscrits": 2,
+      "heures": 10.0,
       "pec": 0
     },
     {
@@ -7231,9 +7231,9 @@
       "libelle": "Renfort DPS-ME - Finales CDF de Basket",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 12.0,
+      "statut": "cloturé",
+      "inscrits": 3,
+      "heures": 18.5,
       "pec": 0
     },
     {
@@ -7352,8 +7352,8 @@
       "lieu": "Paris",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 27.1,
+      "inscrits": 4,
+      "heures": 36.1,
       "pec": 0
     },
     {
@@ -7387,9 +7387,21 @@
       "libelle": "Renfort DPS-ME - Concert Star Academy",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "21/05/2026",
+      "libelle": "[PROV] Fête de la musique",
+      "lieu": "Paris",
+      "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 12.0,
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7454,6 +7466,18 @@
     },
     {
       "annee": 2026,
+      "mois": 5,
+      "date": "30/05/2026",
+      "libelle": "Course Amnestienne",
+      "lieu": "Paris - Bois de Vincennes",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 7.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
       "mois": 6,
       "date": "02/06/2026",
       "libelle": "Rugby à 5",
@@ -7470,6 +7494,18 @@
       "date": "04/06/2026",
       "libelle": "Forum des Transitions énergétiques et écologiques",
       "lieu": "Parc Floral",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 9.5,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "07/06/2026",
+      "libelle": "[Prov] La ruée des fadas",
+      "lieu": "IdF",
       "dps": "DPS-PE",
       "statut": "ouvert",
       "inscrits": 0,
@@ -7532,8 +7568,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 5,
-      "heures": 35.0,
+      "inscrits": 6,
+      "heures": 42.0,
       "pec": 0
     },
     {
@@ -7546,6 +7582,18 @@
       "statut": "ouvert",
       "inscrits": 5,
       "heures": 55.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "27/06/2026",
+      "libelle": "[PROV] La marche des fiertés",
+      "lieu": "Paris",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7575,6 +7623,18 @@
     {
       "annee": 2026,
       "mois": 7,
+      "date": "13/07/2026",
+      "libelle": "Feu d'arifice",
+      "lieu": "Choisy",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
       "date": "15/07/2026",
       "libelle": "[PROV] Vieilles Charrues 2026",
       "lieu": "Carhaix (29)",
@@ -7585,9 +7645,9 @@
       "pec": 0
     }
   ],
-  "lastModified": "22/04/2026",
+  "lastModified": "23/04/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 632,
+  "totalRows": 637,
   "years": [
     2023,
     2024,
