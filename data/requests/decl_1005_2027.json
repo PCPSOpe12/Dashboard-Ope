@@ -1,0 +1,23 @@
+{
+  "nom": "Brunch Electronik",
+  "org_nom": "AFD",
+  "contact": "AFD",
+  "qualite": "",
+  "adresse": "5 Rue Roland Barthes",
+  "tel": "",
+  "email": "m.thibaud@agencenovabox.com",
+  "lieu": "",
+  "commune": "",
+  "dept": "75012",
+  "date": "",
+  "heure_debut": "",
+  "heure_fin": "",
+  "p1": 15000,
+  "i": "0.75",
+  "ris": "11.2500",
+  "nbSR": 12,
+  "nbCP": 1,
+  "nbPSE2": 5,
+  "nbPSE1": 6,
+  "nbVeh": 2
+}
