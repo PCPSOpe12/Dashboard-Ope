@@ -7239,14 +7239,26 @@
     {
       "annee": 2026,
       "mois": 4,
+      "date": "25/04/2026",
+      "libelle": "Renfort DPS-ME - Finale CDF Basket",
+      "lieu": "Accor Arena Bercy",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 1,
+      "heures": 13.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
       "date": "28/04/2026",
       "libelle": "Foire du Trone 2026",
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 11,
-      "heures": 112.0,
-      "pec": 0
+      "statut": "cloturé",
+      "inscrits": 8,
+      "heures": 112.5,
+      "pec": 5
     },
     {
       "annee": 2026,
@@ -7263,13 +7275,37 @@
     {
       "annee": 2026,
       "mois": 4,
+      "date": "28/04/2026",
+      "libelle": "Course d'entreprise",
+      "lieu": "Villeneuve-la-Garenne",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 12.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
       "date": "29/04/2026",
       "libelle": "Renfort DPS-ME - Concert Amel Bent",
       "lieu": "Accor Arena Bercy",
       "dps": "PAPS",
       "statut": "cloturé",
       "inscrits": 2,
-      "heures": 11.0,
+      "heures": 10.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "02/05/2026",
+      "libelle": "Renfort PSG  Lorient Ligue 1",
+      "lieu": "Parc des Princes",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 1,
+      "heures": 5.0,
       "pec": 0
     },
     {
@@ -7280,9 +7316,21 @@
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "cloturé",
-      "inscrits": 4,
-      "heures": 24.0,
+      "inscrits": 3,
+      "heures": 18.0,
       "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "03/05/2026",
+      "libelle": "Interclub Athlétisme",
+      "lieu": "Noisy-le-Grand",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 2,
+      "heures": 15.0,
+      "pec": 4
     },
     {
       "annee": 2026,
@@ -7291,9 +7339,9 @@
       "libelle": "Tour Auto",
       "lieu": "Paris - Grand Palais",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 42.5,
+      "statut": "cloturé",
+      "inscrits": 6,
+      "heures": 50.0,
       "pec": 0
     },
     {
@@ -7303,9 +7351,33 @@
       "libelle": "Printemps des Associations",
       "lieu": "Paris - Esplanade Pierre",
       "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 5,
+      "heures": 32.5,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "07/05/2026",
+      "libelle": "Soirée Électronique - Boiler Room J1",
+      "lieu": "Parc floral, Hall de la p",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 12,
+      "heures": 144.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "08/05/2026",
+      "libelle": "Soirée électronique - Boiler Room Paris J2",
+      "lieu": "Paris 12",
+      "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 26.0,
+      "inscrits": 10,
+      "heures": 120.0,
       "pec": 0
     },
     {
@@ -7314,10 +7386,10 @@
       "date": "09/05/2026",
       "libelle": "Rugby Kids",
       "lieu": "Stade de la Cipale, vélod",
-      "dps": "-",
+      "dps": "PAPS",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 14.0,
+      "inscrits": 3,
+      "heures": 21.0,
       "pec": 0
     },
     {
@@ -7328,8 +7400,8 @@
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "cloturé",
-      "inscrits": 4,
-      "heures": 32.0,
+      "inscrits": 5,
+      "heures": 40.0,
       "pec": 0
     },
     {
@@ -7338,10 +7410,10 @@
       "date": "12/05/2026",
       "libelle": "Renfort DPS-ME - Concert Ne-Yo & Akon",
       "lieu": "Accor Arena Bercy",
-      "dps": "PAPS",
-      "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 18.0,
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 5,
+      "heures": 30.0,
       "pec": 0
     },
     {
@@ -7352,8 +7424,8 @@
       "lieu": "Paris",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 36.1,
+      "inscrits": 7,
+      "heures": 63.1,
       "pec": 0
     },
     {
@@ -7364,8 +7436,8 @@
       "lieu": "Accor Arena Bercy",
       "dps": "PAPS",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 12.0,
+      "inscrits": 4,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7374,10 +7446,10 @@
       "date": "17/05/2026",
       "libelle": "Renfort DPS-ME - Concert Twice J2",
       "lieu": "Accor Arena Bercy",
-      "dps": "PAPS",
+      "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 3,
+      "heures": 18.0,
       "pec": 0
     },
     {
@@ -7395,13 +7467,37 @@
     {
       "annee": 2026,
       "mois": 5,
-      "date": "21/05/2026",
-      "libelle": "[PROV] Fête de la musique",
-      "lieu": "Paris",
+      "date": "20/05/2026",
+      "libelle": "Foire du Trone 2026",
+      "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
       "statut": "ouvert",
+      "inscrits": 2,
+      "heures": 19.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "21/05/2026",
+      "libelle": "Exercice SOGEPP TRAPIL/TOTAL",
+      "lieu": "Gennevilliers",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
       "inscrits": 0,
       "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "21/05/2026",
+      "libelle": "Festival Educ'Sport",
+      "lieu": "Paris - UFR Cité Paris",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 3.0,
       "pec": 0
     },
     {
@@ -7424,8 +7520,8 @@
       "lieu": "Le Bourget",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 12.0,
+      "inscrits": 2,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7436,8 +7532,8 @@
       "lieu": "Le Bourget",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 12.0,
+      "inscrits": 2,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7455,13 +7551,25 @@
     {
       "annee": 2026,
       "mois": 5,
-      "date": "25/05/2026",
-      "libelle": "Renfort DPS-ME - Concert Wizkid",
+      "date": "24/05/2026",
+      "libelle": "Foire du Trone 2026",
+      "lieu": "Paris - Pelouse de Reuill",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 11.5,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "27/05/2026",
+      "libelle": "Renfort DPS-ME - Handball PSG vs Nantes",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "ouvert",
       "inscrits": 2,
-      "heures": 12.0,
+      "heures": 11.0,
       "pec": 0
     },
     {
@@ -7472,8 +7580,8 @@
       "lieu": "Paris - Bois de Vincennes",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 7.0,
+      "inscrits": 2,
+      "heures": 14.0,
       "pec": 0
     },
     {
@@ -7482,7 +7590,7 @@
       "date": "02/06/2026",
       "libelle": "Rugby à 5",
       "lieu": "Stade Charlety",
-      "dps": "-",
+      "dps": "PAPS",
       "statut": "ouvert",
       "inscrits": 0,
       "heures": 0.0,
@@ -7520,8 +7628,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 9,
-      "heures": 90.0,
+      "inscrits": 8,
+      "heures": 80.0,
       "pec": 0
     },
     {
@@ -7532,8 +7640,20 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 36.0,
+      "inscrits": 3,
+      "heures": 27.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "14/06/2026",
+      "libelle": "Passage de grade Aikido",
+      "lieu": "Maison des arts Martiaux",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7551,13 +7671,25 @@
     {
       "annee": 2026,
       "mois": 6,
+      "date": "21/06/2026",
+      "libelle": "[PROV] Fête de la musique",
+      "lieu": "Paris",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
       "date": "26/06/2026",
       "libelle": "[PROV] Solidays J1 - 1/2",
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 15.0,
+      "inscrits": 4,
+      "heures": 20.0,
       "pec": 0
     },
     {
@@ -7568,8 +7700,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 6,
-      "heures": 42.0,
+      "inscrits": 10,
+      "heures": 70.0,
       "pec": 0
     },
     {
@@ -7580,8 +7712,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 5,
-      "heures": 55.0,
+      "inscrits": 6,
+      "heures": 66.0,
       "pec": 0
     },
     {
@@ -7592,6 +7724,18 @@
       "lieu": "Paris",
       "dps": "DPS-PE",
       "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "27/06/2026",
+      "libelle": "FestiMarne 2026 - J1",
+      "lieu": "Marne",
+      "dps": "-",
+      "statut": "cloturé",
       "inscrits": 0,
       "heures": 0.0,
       "pec": 0
@@ -7610,14 +7754,62 @@
     },
     {
       "annee": 2026,
+      "mois": 6,
+      "date": "28/06/2026",
+      "libelle": "FestiMarne 2026 - J2",
+      "lieu": "Marne",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "29/06/2026",
+      "libelle": "Tournage Le réseau Corneille",
+      "lieu": "Tunnel Canal Saint martin",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "01/07/2026",
+      "libelle": "Spectacle sur l'eau",
+      "lieu": "Canal de l'ourcq",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
       "mois": 7,
       "date": "04/07/2026",
       "libelle": "Company Cup 2026",
       "lieu": "Annecy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 7,
-      "heures": 63.0,
+      "inscrits": 8,
+      "heures": 72.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "04/07/2026",
+      "libelle": "Renfort Compagny Cup",
+      "lieu": "Avenue de Chavoires 74940",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7635,19 +7827,55 @@
     {
       "annee": 2026,
       "mois": 7,
+      "date": "13/07/2026",
+      "libelle": "Feu d'arifice",
+      "lieu": "Poissy",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "13/07/2026",
+      "libelle": "Feu d'arifice",
+      "lieu": "Triel Sur Seine",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "13/07/2026",
+      "libelle": "Feu d'arifice",
+      "lieu": "Bonneuil-sur-Marne",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
       "date": "15/07/2026",
       "libelle": "[PROV] Vieilles Charrues 2026",
       "lieu": "Carhaix (29)",
       "dps": "-",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 240.0,
+      "inscrits": 4,
+      "heures": 480.0,
       "pec": 0
     }
   ],
-  "lastModified": "23/04/2026",
+  "lastModified": "04/05/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 637,
+  "totalRows": 656,
   "years": [
     2023,
     2024,
