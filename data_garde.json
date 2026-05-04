@@ -3384,30 +3384,60 @@
       "annee": 2026,
       "mois": 4,
       "date": "25/04/2026",
-      "libelle": "[PROV] BSPP",
+      "libelle": "BSPP",
       "lieu": "CRET",
-      "inscrits": 2,
-      "heures": 12.0,
-      "pec": 0
+      "inscrits": 3,
+      "heures": 18.0,
+      "pec": 4
+    },
+    {
+      "annee": 2026,
+      "mois": 4,
+      "date": "29/04/2026",
+      "libelle": "BSPP",
+      "lieu": "AULN",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 4
     },
     {
       "annee": 2026,
       "mois": 4,
       "date": "30/04/2026",
-      "libelle": "[PROV] BSPP",
+      "libelle": "BSPP",
       "lieu": "PROY",
       "inscrits": 4,
       "heures": 24.0,
-      "pec": 0
+      "pec": 4
     },
     {
       "annee": 2026,
       "mois": 5,
       "date": "04/05/2026",
-      "libelle": "[PROV] BSPP",
+      "libelle": "BSPP",
       "lieu": "MASS",
-      "inscrits": 2,
-      "heures": 12.0,
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "11/05/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "MENIL",
+      "inscrits": 6,
+      "heures": 36.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "11/05/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "PROY",
+      "inscrits": 1,
+      "heures": 6.0,
       "pec": 0
     },
     {
@@ -3416,8 +3446,48 @@
       "date": "16/05/2026",
       "libelle": "BSPP - Journée des CS",
       "lieu": "TBC",
+      "inscrits": 3,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "16/05/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "CRET",
       "inscrits": 1,
-      "heures": 8.0,
+      "heures": 9.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "29/05/2026",
+      "libelle": "[PROV] Garde BSPP",
+      "lieu": "MTRL",
+      "inscrits": 2,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "06/06/2026",
+      "libelle": "[PROV] Garde BSPP",
+      "lieu": "AULN",
+      "inscrits": 3,
+      "heures": 36.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "08/06/2026",
+      "libelle": "[PROV] Garde BSPP",
+      "lieu": "LAND",
+      "inscrits": 2,
+      "heures": 12.0,
       "pec": 0
     },
     {
@@ -3443,7 +3513,7 @@
   ],
   "lastModified": "04/05/2026",
   "maxDate": "20/06/2026",
-  "totalRows": 344,
+  "totalRows": 351,
   "years": [
     2024,
     2025,
