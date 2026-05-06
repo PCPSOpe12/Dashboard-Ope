@@ -441,6 +441,45 @@ function parseExcel(buffer,type){
   var wb=XLSX.read(buffer,{type:"array",cellDates:true});
   var ws=wb.Sheets[wb.SheetNames[0]];
   var raw=XLSX.utils.sheet_to_json(ws,{raw:false,defval:null});
+  var now=new Date();
+
+  // ── Compétences SR ──
+  if(type==="competences"){
+    var rows=[];
+    raw.forEach(function(row){
+      function g(k){
+        // Case-insensitive key lookup
+        var keys=Object.keys(row);
+        var found=keys.find(function(k2){return k2.toLowerCase()===k.toLowerCase();});
+        return found?String(row[found]||'').trim():'';
+      }
+      var typ=g('TYPE'); var nom=g('NOM'); var prenom=g('prenom')||g('prénom');
+      if(!typ||!nom)return;
+      var obt=g('Obtention'); var exp=g('Expiration');
+      if(obt==='-')obt=''; if(exp==='-')exp='';
+      rows.push({TYPE:typ,NOM:nom,prenom:prenom,Obtention:obt,Expiration:exp});
+    });
+    return{rows:rows,maxDate:"—",lastModified:now.toLocaleDateString("fr-FR"),totalRows:rows.length};
+  }
+
+  // ── Participations SR ──
+  if(type==="participations"){
+    var rows=[];
+    raw.forEach(function(row){
+      function g(k){
+        var keys=Object.keys(row);
+        var found=keys.find(function(k2){return k2.toLowerCase()===k.toLowerCase();});
+        return found?String(row[found]||'').trim():'';
+      }
+      var pers=g('Personnel'); var code=g('Code');
+      var dv=row['Début']||row['Debut']||row['début']||g('Début');
+      if(!pers||!dv)return;
+      rows.push({Personnel:pers,Code:code,Début:dv,Présence:g('Présence')||g('Presence'),Evenement:g('Evenement')||g('Évènement')||g('Libellé')});
+    });
+    return{rows:rows,maxDate:"—",lastModified:now.toLocaleDateString("fr-FR"),totalRows:rows.length};
+  }
+
+  // ── DPS / Garde ──
   var rows=[],maxDate=null;
   raw.forEach(function(row){
     var dv=row["Début"]||row["Debut"]||row["début"]||Object.values(row)[0];
@@ -464,7 +503,6 @@ function parseExcel(buffer,type){
       pec:type==="garde"?num("Intervention(s)"):num("Prise(s) en charge"),
     });
   });
-  var now=new Date();
   return{rows:rows,maxDate:maxDate?maxDate.toLocaleDateString("fr-FR"):"—",lastModified:now.toLocaleDateString("fr-FR"),totalRows:rows.length};
 }
 
@@ -557,7 +595,10 @@ function processFile(file){
       lastFileBuffer=e.target.result;
       lastFileType=type;
       updateHeader();render();
-      status.textContent="✓ "+data.rows.length+" lignes — données au "+data.maxDate;
+      var msg=type==="competences"||type==="participations"
+        ?"✓ "+data.rows.length+" entrées SR détectées"
+        :"✓ "+data.rows.length+" lignes — données au "+data.maxDate;
+      status.textContent=msg;
       status.className="up-status up-ok";
       document.getElementById("btnDeploy").style.display="inline-block";
     }catch(err){status.textContent="Erreur : "+err.message;status.className="up-status up-err";}
