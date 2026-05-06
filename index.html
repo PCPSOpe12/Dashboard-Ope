@@ -7,6 +7,7 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -42,6 +43,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .tab.pl-active{color:var(--navy);border-bottom-color:var(--navy)}
 .tab.cl-active{color:var(--orange);border-bottom-color:var(--orange);opacity:.8}
 .tab.cal-active{color:var(--navy);border-bottom-color:var(--navy);font-weight:700}
+.tab.an-active{color:var(--orange);border-bottom-color:var(--orange);font-weight:700}
 
 /* ── Admin ── */
 .admin-panel{background:#fff;border-bottom:2px solid var(--orange);padding:11px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -180,6 +182,7 @@ tr:nth-child(even) td{background:#F8FAFC}
     <div class="tab" id="tabPL" onclick="switchTab('pl')">Postes Locaux</div>
     <div class="tab" id="tabCL" onclick="switchTab('cl')">Clients</div>
     <div class="tab" id="tabCAL" onclick="switchTab('cal')">📅 Calendrier</div>
+    <div class="tab" id="tabAN" onclick="switchTab('an')">📈 Analyse</div>
   </div>
 
   <div id="controlsActivity" class="controls">
@@ -198,6 +201,7 @@ tr:nth-child(even) td{background:#F8FAFC}
   <div id="contentPL" style="display:none"></div>
   <div id="contentCL" style="display:none"></div>
   <div id="contentCAL" style="display:none"></div>
+  <div id="contentAN" style="display:none"></div>
   <!-- Modal pop-up universel -->
   <div id="modalOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000;overflow-y:auto">
     <div id="modalBox" style="background:#fff;border-radius:12px;max-width:640px;width:90%;margin:40px auto;border-top:4px solid var(--navy);box-shadow:0 8px 32px rgba(0,0,0,.2)">
@@ -252,13 +256,15 @@ function switchTab(tab){
   document.getElementById("contentPL").style.display=tab==="pl"?"block":"none";
   document.getElementById("contentCL").style.display=tab==="cl"?"block":"none";
   document.getElementById("contentCAL").style.display=tab==="cal"?"block":"none";
-  document.getElementById("controlsActivity").style.display=(tab==="sr"||tab==="pl"||tab==="cl"||tab==="cal")?"none":"flex";
+  document.getElementById("contentAN").style.display=tab==="an"?"block":"none";
+  document.getElementById("controlsActivity").style.display=(tab==="sr"||tab==="pl"||tab==="cl"||tab==="cal"||tab==="an")?"none":"flex";
   document.getElementById("tabDPS").className="tab"+(tab==="dps"?" dps-active":"");
   document.getElementById("tabGarde").className="tab"+(tab==="garde"?" garde-active":"");
   document.getElementById("tabSR").className="tab"+(tab==="sr"?" sr-active":"");
   document.getElementById("tabPL").className="tab"+(tab==="pl"?" pl-active":"");
   document.getElementById("tabCL").className="tab"+(tab==="cl"?" cl-active":"");
   document.getElementById("tabCAL").className="tab"+(tab==="cal"?" cal-active":"");
+  document.getElementById("tabAN").className="tab"+(tab==="an"?" an-active":"");
   var sel=document.getElementById("selInd");
   sel.options[0].text=tab==="garde"?"Gardes":"DPS";
   sel.options[3].text=tab==="garde"?"Interventions":"Prises en charge";
@@ -266,6 +272,7 @@ function switchTab(tab){
   else if(tab==="pl") renderPL();
   else if(tab==="cl") renderCL();
   else if(tab==="cal") renderCAL();
+  else if(tab==="an") renderAN();
   else render();
 }
 
@@ -2128,6 +2135,212 @@ function genererRapport(){
   var win = window.open('','_blank');
   win.document.write(win_html);
   win.document.close();
+}
+
+
+// ── Analyse ────────────────────────────────────────────────────────────────
+var AN_CHART = null;
+var anType   = 'dps';
+var anMetric = 'sr';
+
+var FR_MONTHS_AN = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+var AN_PALETTE = [
+  {border:'#C8C7C0', width:1,   dash:[4,4]},
+  {border:'#7F9BB5', width:1.5, dash:[5,3]},
+  {border:'#002D74', width:2,   dash:[]   },
+  {border:'#FF7F30', width:3,   dash:[]   },
+];
+
+function anGetWeeklyData(year, type, metric){
+  var source = [];
+  if(type==='dps'||type==='both') source = source.concat((DATA_DPS?DATA_DPS.rows:[]).filter(function(r){return r.annee===year;}));
+  if(type==='garde'||type==='both') source = source.concat((DATA_GARDE?DATA_GARDE.rows:[]).filter(function(r){return r.annee===year;}));
+
+  // Bucket by week number
+  var weeks = new Array(52).fill(0);
+  source.forEach(function(r){
+    var d = parseDate(r.date);
+    if(!d) return;
+    // Week number (ISO-ish: day of year / 7)
+    var start = new Date(year,0,1);
+    var dayOfYear = Math.floor((d - start)/(1000*60*60*24));
+    var wk = Math.min(51, Math.floor(dayOfYear/7));
+    if(metric==='sr')       weeks[wk] += (r.inscrits||0);
+    else if(metric==='missions') weeks[wk] += 1;
+    else if(metric==='heures')   weeks[wk] += (r.heures||0);
+  });
+
+  // For 2026: null out weeks beyond today
+  var today = new Date();
+  var curYear = today.getFullYear();
+  if(year===curYear){
+    var start2 = new Date(year,0,1);
+    var dayOfYear2 = Math.floor((today-start2)/(1000*60*60*24));
+    var curWk = Math.floor(dayOfYear2/7);
+    for(var i=curWk+1;i<52;i++) weeks[i]=null;
+  }
+
+  // Smooth with 3-week rolling average
+  var smoothed = weeks.map(function(v,i){
+    if(v===null) return null;
+    var vals = [];
+    for(var j=Math.max(0,i-1);j<=Math.min(51,i+1);j++){
+      if(weeks[j]!==null) vals.push(weeks[j]);
+    }
+    return vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length*10)/10:0;
+  });
+  return smoothed;
+}
+
+function renderAN(){
+  var years = [];
+  if(DATA_DPS)   DATA_DPS.rows.forEach(function(r){if(years.indexOf(r.annee)<0)years.push(r.annee);});
+  if(DATA_GARDE) DATA_GARDE.rows.forEach(function(r){if(years.indexOf(r.annee)<0)years.push(r.annee);});
+  years.sort();
+  // Keep max 4 years
+  if(years.length>4) years=years.slice(years.length-4);
+
+  // Pad palette if needed
+  var palette = AN_PALETTE.slice(-years.length);
+
+  var datasets = years.map(function(yr,i){
+    var p = palette[i];
+    var data = anGetWeeklyData(yr, anType, anMetric);
+    var isLast = i===years.length-1;
+    return {
+      label: String(yr),
+      data: data,
+      borderColor: p.border,
+      borderWidth: p.width,
+      borderDash: p.dash,
+      pointRadius: 0,
+      pointHoverRadius: isLast?5:3,
+      pointHoverBackgroundColor: p.border,
+      tension: 0.45,
+      fill: isLast?{target:'origin',above:'rgba(255,127,48,0.07)'}:false,
+      spanGaps: false,
+      order: years.length-i,
+    };
+  });
+
+  var unitLabel = anMetric==='sr'?'SR / semaine':anMetric==='heures'?'Heures / semaine':'Missions / semaine';
+  var weeks = Array.from({length:52},function(_,i){return 'S'+(i+1);});
+
+  var legendHtml = years.map(function(yr,i){
+    var p = palette[i];
+    var isLast = i===years.length-1;
+    return '<span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)">'+
+      '<span style="width:'+(10+i*3)+'px;height:'+(1+i*0.7)+'px;background:'+p.border+';display:inline-block;border-radius:1px"></span>'+
+      '<span style="font-weight:'+(isLast?700:400)+';color:'+(isLast?'var(--orange)':'var(--muted)')+'">'+yr+'</span></span>';
+  }).join('');
+
+  // KPIs comparatif année en cours vs N-1
+  var curYr = years[years.length-1];
+  var prevYr = years.length>1?years[years.length-2]:null;
+  var kpiHtml = '';
+  if(prevYr){
+    var curData  = (anType==='dps'||anType==='both'?DATA_DPS:DATA_GARDE);
+    var prevData = curData;
+    var curRows  = curData?(anType==='both'?(DATA_DPS?DATA_DPS.rows:[]).concat(DATA_GARDE?DATA_GARDE.rows:[]).filter(function(r){return r.annee===curYr;}):curData.rows.filter(function(r){return r.annee===curYr;})):[];
+    var prevRows = prevData?(anType==='both'?(DATA_DPS?DATA_DPS.rows:[]).concat(DATA_GARDE?DATA_GARDE.rows:[]).filter(function(r){return r.annee===prevYr;}):prevData.rows.filter(function(r){return r.annee===prevYr;})):[];
+    // Limit prev to same period as cur (today's week)
+    var today = new Date(); var startCur = new Date(curYr,0,1);
+    var curWkLimit = Math.floor((today-startCur)/(1000*60*60*24*7));
+    var startPrev = new Date(prevYr,0,1);
+    prevRows = prevRows.filter(function(r){
+      var d=parseDate(r.date); if(!d) return false;
+      var wk=Math.floor((d-startPrev)/(1000*60*60*24*7));
+      return wk<=curWkLimit;
+    });
+    function sum(rows,f){return rows.reduce(function(t,r){return t+(r[f]||0);},0);}
+    function delta(a,b){if(!b)return'—';var d=Math.round((a-b)/b*100);return(d>=0?'+':'')+d+'%';}
+    function dclr(a,b){return a>=b?'#27500A':'#C0392B';}
+    var kpis=[
+      {l:'Missions '+curYr,v:curRows.length,     n:prevRows.length,     u:''},
+      {l:'SR mobilisés',   v:Math.round(sum(curRows,'inscrits')),n:Math.round(sum(prevRows,'inscrits')),u:''},
+      {l:'Heures',         v:Math.round(sum(curRows,'heures')), n:Math.round(sum(prevRows,'heures')), u:'h'},
+    ];
+    kpiHtml='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">';
+    kpis.forEach(function(k){
+      var d=delta(k.v,k.n);
+      kpiHtml+='<div style="background:var(--card);border-radius:8px;border:1px solid var(--border);padding:10px 13px;border-left:3px solid var(--orange)">'+
+        '<div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:2px">'+k.l+'</div>'+
+        '<div style="font-size:20px;font-weight:700;color:var(--orange)">'+k.v+k.u+'</div>'+
+        '<div style="font-size:11px;color:'+dclr(k.v,k.n)+'">'+d+' vs '+prevYr+' ('+k.n+k.u+')</div>'+
+      '</div>';
+    });
+    kpiHtml+='</div>';
+  }
+
+  var html='<div style="padding:16px 22px;background:var(--bg)">';
+  html+='<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Analyse de l\'activité — courbes comparatives</div>';
+
+  // Controls
+  html+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">';
+  html+='<select onchange="anType=this.value;renderAN()" style="border:1px solid var(--border);border-radius:5px;padding:5px 8px;font-size:12px;font-family:inherit">';
+  [{v:'dps',l:'DPS eProtec'},{v:'garde',l:'Gardes'},{v:'both',l:'DPS + Gardes'}].forEach(function(o){html+='<option value="'+o.v+'"'+(anType===o.v?' selected':'')+'>'+o.l+'</option>';});
+  html+='</select>';
+  html+='<select onchange="anMetric=this.value;renderAN()" style="border:1px solid var(--border);border-radius:5px;padding:5px 8px;font-size:12px;font-family:inherit">';
+  [{v:'sr',l:'SR mobilisés'},{v:'missions',l:'Nb missions'},{v:'heures',l:'Heures'}].forEach(function(o){html+='<option value="'+o.v+'"'+(anMetric===o.v?' selected':'')+'>'+o.l+'</option>';});
+  html+='</select>';
+  html+='<div style="margin-left:auto;display:flex;gap:12px;align-items:center">'+legendHtml+'</div>';
+  html+='</div>';
+
+  html+=kpiHtml;
+
+  html+='<div style="background:var(--card);border-radius:10px;border:1px solid var(--border);padding:16px">';
+  html+='<canvas id="anChart" role="img" aria-label="Courbes comparatives SR mobilisés par semaine" style="width:100%;height:300px"></canvas>';
+  html+='</div>';
+  html+='<div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">Courbe lissée sur 3 semaines glissantes · 2026 tronqué à la semaine en cours</div>';
+  html+='</div>';
+
+  document.getElementById('contentAN').innerHTML=html;
+
+  // Draw chart
+  if(AN_CHART){AN_CHART.destroy();AN_CHART=null;}
+  AN_CHART=new Chart(document.getElementById('anChart'),{
+    type:'line',
+    data:{labels:weeks,datasets:datasets},
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'rgba(0,0,0,0.8)',
+          titleFont:{size:11},bodyFont:{size:11},padding:10,
+          callbacks:{
+            title:function(ctx){
+              var w=ctx[0].dataIndex;
+              return 'Semaine '+(w+1)+' · '+FR_MONTHS_AN[Math.floor(w/4.33)];
+            },
+            label:function(ctx){
+              if(ctx.raw===null)return null;
+              var u=anMetric==='sr'?' SR':anMetric==='heures'?'h':' missions';
+              return '  '+ctx.dataset.label+' : '+ctx.raw+u;
+            }
+          }
+        }
+      },
+      scales:{
+        x:{
+          ticks:{
+            maxTicksLimit:13,autoSkip:true,
+            color:'#888',font:{size:11},
+            callback:function(_,i){return i%4===0?FR_MONTHS_AN[Math.floor(i/4.33)]:'';}
+          },
+          grid:{color:'rgba(136,135,128,0.1)'}
+        },
+        y:{
+          beginAtZero:true,
+          ticks:{color:'#888',font:{size:11}},
+          grid:{color:'rgba(136,135,128,0.1)'},
+          title:{display:true,text:unitLabel,color:'#888',font:{size:11}}
+        }
+      }
+    }
+  });
 }
 
 loadJSON();
