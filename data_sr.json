@@ -4,10 +4,22 @@
       "nom": "ADMETE",
       "prenom": "David",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "29/04/2026",
       "last_gar": "04/05/2026",
@@ -648,9 +660,18 @@
       "nom": "ALOUI",
       "prenom": "Haithem",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "30/04/2026",
@@ -1700,7 +1721,10 @@
       "nom": "BAR-HEN",
       "prenom": "Avner",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -1908,7 +1932,10 @@
     {
       "nom": "BAVAY",
       "prenom": "Quentin",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -2058,7 +2085,10 @@
       "nom": "BENHAMOU",
       "prenom": "Simon",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -2172,7 +2202,10 @@
       "nom": "BLONDEAU",
       "prenom": "Elsa",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -2331,7 +2364,10 @@
       "nom": "BOILARD",
       "prenom": "Cécilia",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -2399,7 +2435,10 @@
     {
       "nom": "BONNEMAISON",
       "prenom": "Marie-Aude",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -2874,7 +2913,10 @@
       "nom": "BRETHOMÉ",
       "prenom": "Théo",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -2933,7 +2975,10 @@
       "nom": "BRIAND",
       "prenom": "Romain",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -3072,8 +3117,14 @@
       "nom": "BRUGEROLLE",
       "prenom": "Thierry",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -3346,7 +3397,10 @@
       "nom": "CARO",
       "prenom": "Solène",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -3575,7 +3629,10 @@
       "nom": "CAZIN",
       "prenom": "Titouan",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -3749,7 +3806,10 @@
       "nom": "CHARBONNIER",
       "prenom": "Charlotte",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -3928,7 +3988,10 @@
       "nom": "CHEMINADE",
       "prenom": "Paulin",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -4254,7 +4317,10 @@
     {
       "nom": "COURRIEU",
       "prenom": "Paul",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -4294,8 +4360,14 @@
       "nom": "DARCY",
       "prenom": "Benoît",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -4413,8 +4485,14 @@
       "nom": "DAROLD",
       "prenom": "Jules",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -4692,9 +4770,18 @@
       "nom": "DAUGUET",
       "prenom": "Alexis",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "30/04/2026",
@@ -5406,7 +5493,10 @@
       "nom": "DELALEU",
       "prenom": "Bérénice",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -5569,7 +5659,10 @@
     {
       "nom": "DELEST",
       "prenom": "Alana",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -5598,7 +5691,10 @@
       "nom": "DEODATI",
       "prenom": "Clement",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -5708,7 +5804,10 @@
       "nom": "DESCHAMPS",
       "prenom": "Marie",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -5997,10 +6096,13 @@
       "activites_gar": []
     },
     {
-      "nom": "DUBOIS",
-      "prenom": "DELETANG Gaëlle",
+      "nom": "DUBOIS DELETANG",
+      "prenom": "Gaëlle",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -6225,7 +6327,10 @@
       "nom": "FEZAS",
       "prenom": "Hugo",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -6291,7 +6396,10 @@
       "nom": "FRAYSSINET",
       "prenom": "Antoine",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2025"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -6319,7 +6427,10 @@
       "nom": "FREIRE--STELLA",
       "prenom": "Lorenzo",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -6386,7 +6497,10 @@
       "nom": "GALLAND",
       "prenom": "Pierre",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -6474,10 +6588,22 @@
       "nom": "GANSTER",
       "prenom": "Maxime",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "19/03/2026",
       "last_gar": "",
@@ -6527,9 +6653,18 @@
       "nom": "GARCIA",
       "prenom": "Lucas",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "25/06/2025",
@@ -6676,8 +6811,14 @@
       "nom": "GASCHIGNARD",
       "prenom": "Pauline",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -6824,7 +6965,10 @@
     {
       "nom": "GAUTHIEROT",
       "prenom": "Kawly",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -6878,7 +7022,10 @@
     {
       "nom": "GENET",
       "prenom": "Diane",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -6913,8 +7060,14 @@
       "nom": "GENIN",
       "prenom": "Constantin",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -7182,7 +7335,10 @@
       "nom": "GOUTORBE",
       "prenom": "Jean-Pierre",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -7391,7 +7547,10 @@
       "nom": "GRANIER",
       "prenom": "Pascal",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -7465,9 +7624,18 @@
       "nom": "GRELIER",
       "prenom": "Patrick",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "17/04/2026",
@@ -7533,8 +7701,14 @@
     {
       "nom": "GUINAMANT",
       "prenom": "Thibault",
-      "PSE1": null,
-      "PSE2": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2018"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -7562,7 +7736,10 @@
       "nom": "HAK",
       "prenom": "Dominique",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "19-01-2025",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -7831,7 +8008,10 @@
       "nom": "HUET",
       "prenom": "Florence",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -7905,7 +8085,10 @@
       "nom": "IDRES",
       "prenom": "Nicolas",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -7964,8 +8147,14 @@
       "nom": "JANIAK",
       "prenom": "Maxime",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -8017,7 +8206,10 @@
       "nom": "JOND",
       "prenom": "Agathe",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -8131,10 +8323,22 @@
       "nom": "JOURNO",
       "prenom": "Samuel",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "28/04/2026",
       "last_gar": "29/04/2026",
@@ -8965,9 +9169,18 @@
       "nom": "JULIEN",
       "prenom": "Théo",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "30/04/2026",
@@ -9354,7 +9567,10 @@
       "nom": "KACI-CHAOUCHE",
       "prenom": "Adam",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -9580,7 +9796,10 @@
       "nom": "KISELEVA",
       "prenom": "Tatiana",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -9924,8 +10143,14 @@
       "nom": "KROTKINE",
       "prenom": "Thomas",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -10208,8 +10433,14 @@
       "nom": "LABBE",
       "prenom": "Patrick",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -10487,9 +10718,18 @@
       "nom": "LAGNY",
       "prenom": "Karine",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "28/04/2026",
@@ -11501,10 +11741,19 @@
       "nom": "LARENE",
       "prenom": "Julien",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "31-12-2020",
+        "exp": "31-12-2026"
+      },
       "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "28/03/2026",
       "last_gar": "28/02/2025",
@@ -11599,7 +11848,10 @@
     {
       "nom": "LAU",
       "prenom": "Benoit",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -11759,13 +12011,25 @@
       "activites_gar": []
     },
     {
-      "nom": "LE",
-      "prenom": "BAGOUSSE Joseph",
+      "nom": "LE BAGOUSSE",
+      "prenom": "Joseph",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "28/04/2026",
       "last_gar": "10/04/2026",
@@ -12334,10 +12598,22 @@
       "nom": "LEMORT",
       "prenom": "Théo",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "28/04/2026",
       "last_gar": "03/04/2026",
@@ -12823,7 +13099,10 @@
       "nom": "LEMORT",
       "prenom": "Zoé",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -13139,10 +13418,13 @@
       ]
     },
     {
-      "nom": "LETRANGE",
-      "prenom": "RECHAL Dimitri",
+      "nom": "LETRANGE RECHAL",
+      "prenom": "Dimitri",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -13251,7 +13533,10 @@
       "nom": "LOPAT",
       "prenom": "Blanche",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -13398,7 +13683,10 @@
       "nom": "LORIEUX",
       "prenom": "Benjamin",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -13575,8 +13863,14 @@
     {
       "nom": "MARTIN",
       "prenom": "Paul",
-      "PSE1": null,
-      "PSE2": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -13635,8 +13929,14 @@
       "nom": "MAURIN",
       "prenom": "Denis",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -13999,10 +14299,22 @@
       "nom": "MAZEIRAC",
       "prenom": "Jean-François",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "04/03/2026",
       "last_gar": "22/02/2026",
@@ -14173,9 +14485,18 @@
       "nom": "MAZEIRAC",
       "prenom": "Valérie",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "05/01/2025",
@@ -14237,8 +14558,14 @@
       "nom": "MAZOT",
       "prenom": "Julien",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -14720,9 +15047,18 @@
       "nom": "MERILLOU",
       "prenom": "Vincent",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "28-06-2016",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "03/05/2026",
@@ -15047,7 +15383,10 @@
     {
       "nom": "MICCOLI",
       "prenom": "Remy",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -15176,7 +15515,10 @@
     {
       "nom": "MICHAUX",
       "prenom": "Gabin",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -15256,8 +15598,14 @@
       "nom": "MOLOTKOFF",
       "prenom": "Clément",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -15501,7 +15849,10 @@
       "nom": "MOULIN",
       "prenom": "Jade",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -15859,7 +16210,10 @@
     {
       "nom": "MOUSKA",
       "prenom": "Raphaële",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -15880,10 +16234,13 @@
       "activites_gar": []
     },
     {
-      "nom": "MOUSSET",
-      "prenom": "DUPIN Xavier",
+      "nom": "MOUSSET DUPIN",
+      "prenom": "Xavier",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -16222,7 +16579,10 @@
       "nom": "MOUTON",
       "prenom": "Julien",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -16318,10 +16678,13 @@
       ]
     },
     {
-      "nom": "NGUYEN",
-      "prenom": "HUU Anthony",
+      "nom": "NGUYEN HUU",
+      "prenom": "Anthony",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "11-04-2025",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -16505,7 +16868,10 @@
       "nom": "NICOT",
       "prenom": "Alexandra",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -16639,7 +17005,10 @@
       "nom": "NICOULEAU",
       "prenom": "Adely",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "29-04-2022",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -16813,7 +17182,10 @@
       "nom": "NOTERIS",
       "prenom": "Jean",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -16991,7 +17363,10 @@
       "nom": "OPYRCHAL",
       "prenom": "Patryk",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -17330,8 +17705,14 @@
       "nom": "ORCEL",
       "prenom": "Dominique",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -17524,7 +17905,10 @@
       "nom": "OUVRARD",
       "prenom": "Benoît",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "08-02-2021",
+        "exp": "31-12-2026"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -17658,7 +18042,10 @@
       "nom": "PAILLARD",
       "prenom": "Camille",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -17691,7 +18078,10 @@
       "nom": "PALOSSE",
       "prenom": "Edouard",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2025"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -17772,8 +18162,14 @@
       "nom": "PIGUET",
       "prenom": "Côme",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "22-04-2022",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -17908,14 +18304,29 @@
       ]
     },
     {
-      "nom": "PISTON",
-      "prenom": "D EAUBONNE Côme",
+      "nom": "PISTON D EAUBONNE",
+      "prenom": "Côme",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
-      "CDD": null,
+      "PSE2": {
+        "obt": "12-02-2016",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "29-05-2020",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "07-01-2019",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
+      "CDD": {
+        "obt": "",
+        "exp": ""
+      },
       "last_dps": "02/05/2026",
       "last_gar": "25/04/2026",
       "last_any": "02/05/2026",
@@ -18960,7 +19371,10 @@
       "nom": "PORCHERON",
       "prenom": "Clément",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -19289,8 +19703,14 @@
       "nom": "POULET",
       "prenom": "David",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -19817,8 +20237,14 @@
       "nom": "PUYAU",
       "prenom": "François",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -20041,7 +20467,10 @@
       "nom": "RABIANT",
       "prenom": "Rene",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2025"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -20087,7 +20516,10 @@
       "nom": "RAZNY",
       "prenom": "Jérémy",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -20196,9 +20628,18 @@
       "nom": "REAUTE",
       "prenom": "Arnaud",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "12/12/2025",
@@ -20468,9 +20909,18 @@
       "nom": "RENGNET",
       "prenom": "Kathleen",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "29/04/2026",
@@ -20952,7 +21402,10 @@
       "nom": "RETUNSKAIA",
       "prenom": "Tatiana",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -21071,8 +21524,14 @@
       "nom": "ROBEZ-MASSON",
       "prenom": "Martin",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
       "CP": null,
       "CEPS": null,
       "CDD": null,
@@ -21643,7 +22102,10 @@
       "nom": "SANDERINK",
       "prenom": "Arnaud",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -21686,9 +22148,18 @@
       "nom": "SETITER",
       "prenom": "Yacine",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "12-02-2018",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "27-02-2020",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "22/12/2025",
@@ -21856,13 +22327,25 @@
       ]
     },
     {
-      "nom": "SINNAEVE",
-      "prenom": "JACQUET Clément",
+      "nom": "SINNAEVE JACQUET",
+      "prenom": "Clément",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "PSE2": {
+        "obt": "12-11-2018",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "19/04/2026",
       "last_gar": "10/04/2026",
@@ -22525,10 +23008,13 @@
       ]
     },
     {
-      "nom": "SOLTANI-LE",
-      "prenom": "BRUN Kalaï",
+      "nom": "SOLTANI-LE BRUN",
+      "prenom": "Kalaï",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -22599,7 +23085,10 @@
       "nom": "THIBAULT",
       "prenom": "Pierre-André",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -22708,7 +23197,10 @@
       "nom": "TOUVRON",
       "prenom": "Gwladys",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -22811,7 +23303,10 @@
     {
       "nom": "VAINOPOULOS",
       "prenom": "Thibault",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -22860,7 +23355,10 @@
     {
       "nom": "VALLET",
       "prenom": "Olivier",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -22929,9 +23427,18 @@
       "nom": "VERGNORY-MION",
       "prenom": "Sandrine",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "20/04/2026",
@@ -23253,10 +23760,22 @@
       "nom": "VERNIMMEN",
       "prenom": "Charles",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
-      "CEPS": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
+      "CE": {
+        "obt": "",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "05/05/2026",
       "last_gar": "30/04/2026",
@@ -24121,7 +24640,10 @@
       "nom": "VIOT",
       "prenom": "Julien",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -24469,9 +24991,18 @@
       "nom": "VOUHE",
       "prenom": "Benjamin",
       "PSE1": null,
-      "PSE2": null,
-      "CE": null,
-      "CP": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
+      "CE": {
+        "obt": "18-05-2017",
+        "exp": ""
+      },
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "08/04/2026",
@@ -24683,7 +25214,10 @@
       "nom": "WALTER",
       "prenom": "Luc",
       "PSE1": null,
-      "PSE2": null,
+      "PSE2": {
+        "obt": "",
+        "exp": "31-12-2027"
+      },
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -25005,7 +25539,10 @@
     {
       "nom": "ZEBELUS",
       "prenom": "Bayane",
-      "PSE1": null,
+      "PSE1": {
+        "obt": "",
+        "exp": "31-12-2026"
+      },
       "PSE2": null,
       "CE": null,
       "CP": null,
