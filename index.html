@@ -41,6 +41,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .tab.sr-active{color:var(--orange);border-bottom-color:var(--orange);opacity:.75}
 .tab.pl-active{color:var(--navy);border-bottom-color:var(--navy)}
 .tab.cl-active{color:var(--orange);border-bottom-color:var(--orange);opacity:.8}
+.tab.cal-active{color:var(--navy);border-bottom-color:var(--navy);font-weight:700}
 
 /* ── Admin ── */
 .admin-panel{background:#fff;border-bottom:2px solid var(--orange);padding:11px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -126,6 +127,7 @@ tr:nth-child(even) td{background:#F8FAFC}
     <div class="header-meta">
       <span class="meta-update">Mis à jour le <span id="headerUpdate">—</span></span>
       <span class="meta-badge" id="badgeYears">—</span>
+      <button onclick="openRapportModal()" style="background:var(--orange);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer">📊 Rapport PDF</button>
       <button class="admin-btn" id="btnAdminToggle">Admin</button>
     </div>
   </div>
@@ -177,6 +179,7 @@ tr:nth-child(even) td{background:#F8FAFC}
     <div class="tab" id="tabSR" onclick="switchTab('sr')">Suivi SR</div>
     <div class="tab" id="tabPL" onclick="switchTab('pl')">Postes Locaux</div>
     <div class="tab" id="tabCL" onclick="switchTab('cl')">Clients</div>
+    <div class="tab" id="tabCAL" onclick="switchTab('cal')">📅 Calendrier</div>
   </div>
 
   <div id="controlsActivity" class="controls">
@@ -194,6 +197,7 @@ tr:nth-child(even) td{background:#F8FAFC}
   <div id="contentSR" style="display:none"></div>
   <div id="contentPL" style="display:none"></div>
   <div id="contentCL" style="display:none"></div>
+  <div id="contentCAL" style="display:none"></div>
   <!-- Modal pop-up universel -->
   <div id="modalOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000;overflow-y:auto">
     <div id="modalBox" style="background:#fff;border-radius:12px;max-width:640px;width:90%;margin:40px auto;border-top:4px solid var(--navy);box-shadow:0 8px 32px rgba(0,0,0,.2)">
@@ -247,18 +251,21 @@ function switchTab(tab){
   document.getElementById("contentSR").style.display=tab==="sr"?"block":"none";
   document.getElementById("contentPL").style.display=tab==="pl"?"block":"none";
   document.getElementById("contentCL").style.display=tab==="cl"?"block":"none";
-  document.getElementById("controlsActivity").style.display=(tab==="sr"||tab==="pl"||tab==="cl")?"none":"flex";
+  document.getElementById("contentCAL").style.display=tab==="cal"?"block":"none";
+  document.getElementById("controlsActivity").style.display=(tab==="sr"||tab==="pl"||tab==="cl"||tab==="cal")?"none":"flex";
   document.getElementById("tabDPS").className="tab"+(tab==="dps"?" dps-active":"");
   document.getElementById("tabGarde").className="tab"+(tab==="garde"?" garde-active":"");
   document.getElementById("tabSR").className="tab"+(tab==="sr"?" sr-active":"");
   document.getElementById("tabPL").className="tab"+(tab==="pl"?" pl-active":"");
   document.getElementById("tabCL").className="tab"+(tab==="cl"?" cl-active":"");
+  document.getElementById("tabCAL").className="tab"+(tab==="cal"?" cal-active":"");
   var sel=document.getElementById("selInd");
   sel.options[0].text=tab==="garde"?"Gardes":"DPS";
   sel.options[3].text=tab==="garde"?"Interventions":"Prises en charge";
   if(tab==="sr") renderSR();
   else if(tab==="pl") renderPL();
   else if(tab==="cl") renderCL();
+  else if(tab==="cal") renderCAL();
   else render();
 }
 
@@ -1769,6 +1776,358 @@ function plCheckGenerated(filename, btn, label){
     .catch(function(){
       setTimeout(function(){plCheckGenerated(filename,btn,label);},30000);
     });
+}
+
+
+// ── Calendrier ─────────────────────────────────────────────────────────────
+var calYear  = new Date().getFullYear();
+var calMonth = new Date().getMonth(); // 0-based
+var calView  = 'month'; // 'month' | 'week'
+var calWeekOffset = 0;
+
+var FR_MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+var FR_DAYS   = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+
+function calGetEvents(){
+  var evts = [];
+  // DPS eProtec
+  if(DATA_DPS && DATA_DPS.rows){
+    DATA_DPS.rows.forEach(function(r){
+      var d = parseDate(r.date);
+      if(!d) return;
+      evts.push({date:d, label:r.libelle||'DPS', lieu:r.lieu||'', type:'dps',
+        heures:r.heures, inscrits:r.inscrits});
+    });
+  }
+  // Gardes
+  if(DATA_GARDE && DATA_GARDE.rows){
+    DATA_GARDE.rows.forEach(function(r){
+      var d = parseDate(r.date);
+      if(!d) return;
+      evts.push({date:d, label:r.libelle||'Garde', lieu:r.lieu||'', type:'garde',
+        heures:r.heures, inscrits:r.inscrits});
+    });
+  }
+  return evts;
+}
+
+function renderCAL(){
+  if(calView==='month') renderCalMonth();
+  else renderCalWeek();
+}
+
+function renderCalMonth(){
+  var evts = calGetEvents();
+  var firstDay = new Date(calYear, calMonth, 1);
+  var lastDay  = new Date(calYear, calMonth+1, 0);
+  // Monday-first: 0=Mon … 6=Sun
+  var startDow = (firstDay.getDay()+6)%7;
+  var totalDays = lastDay.getDate();
+
+  var html = '<div style="padding:16px 22px;background:var(--bg)">';
+
+  // Header controls
+  html += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap">';
+  html += '<button onclick="calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCAL()" style="background:var(--navy);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:14px;cursor:pointer">‹</button>';
+  html += '<div style="font-size:16px;font-weight:700;color:var(--navy);min-width:160px;text-align:center">'+FR_MONTHS[calMonth]+' '+calYear+'</div>';
+  html += '<button onclick="calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCAL()" style="background:var(--navy);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:14px;cursor:pointer">›</button>';
+  html += '<button onclick="calMonth=new Date().getMonth();calYear=new Date().getFullYear();renderCAL()" style="background:var(--gray-lt);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11px;cursor:pointer">Aujourd\'hui</button>';
+  html += '<div style="margin-left:auto;display:flex;gap:6px">';
+  html += '<button onclick="calView=\'month\';renderCAL()" style="background:'+(calView==='month'?'var(--navy)':'var(--gray-lt)')+';color:'+(calView==='month'?'#fff':'var(--navy)')+';border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11px;cursor:pointer;font-weight:600">Mois</button>';
+  html += '<button onclick="calView=\'week\';calWeekOffset=0;renderCAL()" style="background:'+(calView==='week'?'var(--navy)':'var(--gray-lt)')+';color:'+(calView==='week'?'#fff':'var(--navy)')+';border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11px;cursor:pointer;font-weight:600">Semaine</button>';
+  html += '</div>';
+  // Legend
+  html += '<div style="display:flex;gap:10px;align-items:center;margin-left:8px">';
+  html += '<span style="display:flex;align-items:center;gap:4px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--orange);display:inline-block"></span>DPS</span>';
+  html += '<span style="display:flex;align-items:center;gap:4px;font-size:11px"><span style="width:10px;height:10px;border-radius:2px;background:var(--navy);display:inline-block"></span>Garde</span>';
+  html += '</div>';
+  html += '</div>';
+
+  // KPIs mois
+  var mDPS   = evts.filter(function(e){return e.type==='dps'&&e.date.getFullYear()===calYear&&e.date.getMonth()===calMonth;});
+  var mGarde = evts.filter(function(e){return e.type==='garde'&&e.date.getFullYear()===calYear&&e.date.getMonth()===calMonth;});
+  html += '<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px">';
+  [{l:'DPS ce mois',v:mDPS.length,c:'var(--orange)'},{l:'Gardes ce mois',v:mGarde.length,c:'var(--navy)'},
+   {l:'Heures DPS',v:mDPS.reduce(function(t,e){return t+e.heures;},0).toFixed(1)+'h',c:'var(--orange)'},
+   {l:'Heures Garde',v:mGarde.reduce(function(t,e){return t+e.heures;},0).toFixed(1)+'h',c:'var(--navy)'}
+  ].forEach(function(k){
+    html+='<div style="background:var(--card);border-radius:8px;border:1px solid var(--border);padding:9px 12px;border-left:3px solid '+k.c+'">'+
+      '<div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:2px">'+k.l+'</div>'+
+      '<div style="font-size:18px;font-weight:700;color:'+k.c+'">'+k.v+'</div></div>';
+  });
+  html += '</div>';
+
+  // Grid
+  html += '<div style="background:var(--card);border-radius:10px;border:1px solid var(--border);overflow:hidden">';
+  // Day headers
+  html += '<div style="display:grid;grid-template-columns:repeat(7,1fr)">';
+  FR_DAYS.forEach(function(d,i){
+    html += '<div style="background:var(--navy);color:#fff;text-align:center;padding:7px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em'+(i>=5?';opacity:.7':'')+'">' + d + '</div>';
+  });
+  html += '</div>';
+
+  // Cells
+  html += '<div style="display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:minmax(80px,auto)">';
+  var today = new Date(); today.setHours(0,0,0,0);
+
+  // Empty cells before first day
+  for(var i=0; i<startDow; i++){
+    html += '<div style="background:#F8FAFC;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-height:80px"></div>';
+  }
+
+  for(var day=1; day<=totalDays; day++){
+    var thisDate = new Date(calYear, calMonth, day);
+    thisDate.setHours(0,0,0,0);
+    var isToday = thisDate.getTime()===today.getTime();
+    var dow = (thisDate.getDay()+6)%7;
+    var isWeekend = dow>=5;
+    var dayEvts = evts.filter(function(e){
+      var ed=new Date(e.date); ed.setHours(0,0,0,0);
+      return ed.getTime()===thisDate.getTime();
+    });
+    html += '<div style="border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:4px;min-height:80px;background:'+(isWeekend?'#F5F7FA':'#fff')+(isToday?';box-shadow:inset 0 0 0 2px var(--orange)':'')+'">';
+    html += '<div style="font-size:11px;font-weight:'+(isToday?'700':'500')+';color:'+(isToday?'var(--orange)':isWeekend?'var(--muted)':'var(--navy)')+';margin-bottom:3px">'+day+'</div>';
+    dayEvts.forEach(function(e){
+      var bg = e.type==='dps'?'var(--orange)':'var(--navy)';
+      html += '<div title="'+escHtml(e.label)+(e.lieu?' — '+e.lieu:'')+'" style="background:'+bg+';color:#fff;border-radius:3px;padding:1px 4px;font-size:9.5px;margin-bottom:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;cursor:default">'+escHtml(e.label.length>22?e.label.substring(0,20)+'…':e.label)+'</div>';
+    });
+    html += '</div>';
+  }
+  // Fill remaining cells
+  var totalCells = startDow + totalDays;
+  var remaining = totalCells%7===0?0:7-(totalCells%7);
+  for(var i=0; i<remaining; i++){
+    html += '<div style="background:#F8FAFC;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-height:80px"></div>';
+  }
+  html += '</div></div></div>';
+  document.getElementById('contentCAL').innerHTML = html;
+}
+
+function renderCalWeek(){
+  var evts = calGetEvents();
+  var now  = new Date();
+  // Get Monday of current week + offset
+  var dow  = (now.getDay()+6)%7;
+  var mon  = new Date(now); mon.setHours(0,0,0,0);
+  mon.setDate(mon.getDate() - dow + calWeekOffset*7);
+
+  var weekDays = [];
+  for(var i=0;i<7;i++){
+    var d=new Date(mon); d.setDate(mon.getDate()+i);
+    weekDays.push(d);
+  }
+
+  var weekLabel = weekDays[0].toLocaleDateString('fr-FR',{day:'numeric',month:'long'})+' – '+weekDays[6].toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+
+  var html = '<div style="padding:16px 22px;background:var(--bg)">';
+  html += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap">';
+  html += '<button onclick="calWeekOffset--;renderCAL()" style="background:var(--navy);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:14px;cursor:pointer">‹</button>';
+  html += '<div style="font-size:14px;font-weight:700;color:var(--navy);min-width:220px;text-align:center">'+weekLabel+'</div>';
+  html += '<button onclick="calWeekOffset++;renderCAL()" style="background:var(--navy);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:14px;cursor:pointer">›</button>';
+  html += '<button onclick="calWeekOffset=0;renderCAL()" style="background:var(--gray-lt);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11px;cursor:pointer">Cette semaine</button>';
+  html += '<div style="margin-left:auto;display:flex;gap:6px">';
+  html += '<button onclick="calView=\'month\';calMonth=mon.getMonth();calYear=mon.getFullYear();renderCAL()" style="background:var(--gray-lt);color:var(--navy);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11px;cursor:pointer;font-weight:600">Mois</button>';
+  html += '<button onclick="calView=\'week\';renderCAL()" style="background:var(--navy);color:#fff;border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11px;cursor:pointer;font-weight:600">Semaine</button>';
+  html += '</div></div>';
+
+  html += '<div style="background:var(--card);border-radius:10px;border:1px solid var(--border);overflow:hidden">';
+  html += '<div style="display:grid;grid-template-columns:repeat(7,1fr)">';
+  var today = new Date(); today.setHours(0,0,0,0);
+  weekDays.forEach(function(d,i){
+    var isToday = d.getTime()===today.getTime();
+    var isWeekend = i>=5;
+    html += '<div style="background:'+(isToday?'var(--orange)':isWeekend?'#EEF1F5':'var(--navy)')+';color:#fff;text-align:center;padding:8px 4px">';
+    html += '<div style="font-size:10px;font-weight:700;text-transform:uppercase;opacity:.8">'+FR_DAYS[i]+'</div>';
+    html += '<div style="font-size:18px;font-weight:700">'+d.getDate()+'</div>';
+    html += '<div style="font-size:10px;opacity:.7">'+FR_MONTHS[d.getMonth()].substring(0,3)+'</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  html += '<div style="display:grid;grid-template-columns:repeat(7,1fr)">';
+  weekDays.forEach(function(d,i){
+    var isWeekend = i>=5;
+    var dayEvts = evts.filter(function(e){
+      var ed=new Date(e.date); ed.setHours(0,0,0,0);
+      return ed.getTime()===d.getTime();
+    });
+    html += '<div style="border-right:1px solid var(--border);padding:6px;min-height:120px;background:'+(isWeekend?'#F5F7FA':'#fff')+'">';
+    if(!dayEvts.length){
+      html += '<div style="color:#ddd;font-size:10px;text-align:center;margin-top:16px">—</div>';
+    }
+    dayEvts.forEach(function(e){
+      var bg = e.type==='dps'?'var(--orange)':'var(--navy)';
+      html += '<div style="background:'+bg+';color:#fff;border-radius:5px;padding:5px 7px;margin-bottom:5px;font-size:10px">';
+      html += '<div style="font-weight:700;margin-bottom:2px">'+escHtml(e.label)+'</div>';
+      if(e.lieu) html += '<div style="opacity:.8">📍 '+escHtml(e.lieu)+'</div>';
+      html += '<div style="opacity:.8">'+e.heures+'h · '+e.inscrits+' SR</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+  html += '</div></div></div>';
+  document.getElementById('contentCAL').innerHTML = html;
+}
+
+// ── Rapport PDF ────────────────────────────────────────────────────────────
+function openRapportModal(){
+  var now = new Date();
+  var opts = '';
+  for(var i=0; i<12; i++){
+    var d = new Date(now.getFullYear(), now.getMonth()-i, 1);
+    var val = d.getFullYear()+'-'+(d.getMonth()+1);
+    var lbl = FR_MONTHS[d.getMonth()]+' '+d.getFullYear();
+    opts += '<option value="'+val+'"'+(i===0?' selected':'')+'>'+lbl+'</option>';
+  }
+  var html = '<div style="margin-bottom:16px">';
+  html += '<label style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:6px">Sélectionner le mois</label>';
+  html += '<select id="rapportMoisSel" style="border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:13px;font-family:inherit;width:100%">'+opts+'</select>';
+  html += '</div>';
+  html += '<div style="display:flex;gap:8px;justify-content:flex-end">';
+  html += '<button onclick="closeModal()" style="background:var(--gray-lt);border:1px solid var(--border);border-radius:6px;padding:7px 14px;font-size:12px;cursor:pointer">Annuler</button>';
+  html += '<button onclick="genererRapport()" style="background:var(--orange);color:#fff;border:none;border-radius:6px;padding:7px 20px;font-size:12px;font-weight:600;cursor:pointer">📊 Générer le rapport</button>';
+  html += '</div>';
+  openModal('Rapport mensuel PDF', html);
+}
+
+function genererRapport(){
+  var sel = document.getElementById('rapportMoisSel');
+  if(!sel) return;
+  var parts = sel.value.split('-');
+  var yr = +parts[0], mo = +parts[1]-1;
+  closeModal();
+
+  var moisLabel = FR_MONTHS[mo]+' '+yr;
+  var dpsRows   = DATA_DPS   ? DATA_DPS.rows.filter(function(r){return r.annee===yr&&r.mois===mo+1;}) : [];
+  var gardeRows = DATA_GARDE ? DATA_GARDE.rows.filter(function(r){return r.annee===yr&&r.mois===mo+1;}) : [];
+
+  // Totaux mois
+  var dpsTotal   = dpsRows.length;
+  var gardeTotal = gardeRows.length;
+  var dpsH       = dpsRows.reduce(function(t,r){return t+r.heures;},0);
+  var gardeH     = gardeRows.reduce(function(t,r){return t+r.heures;},0);
+  var dpsSR      = dpsRows.reduce(function(t,r){return t+r.inscrits;},0);
+  var gardeSR    = gardeRows.reduce(function(t,r){return t+r.inscrits;},0);
+  var dpsPEC     = dpsRows.reduce(function(t,r){return t+r.pec;},0);
+  var gardeINT   = gardeRows.reduce(function(t,r){return t+r.pec;},0);
+
+  // Comparatif N-1
+  var dpsRowsN1   = DATA_DPS   ? DATA_DPS.rows.filter(function(r){return r.annee===yr-1&&r.mois===mo+1;}) : [];
+  var gardeRowsN1 = DATA_GARDE ? DATA_GARDE.rows.filter(function(r){return r.annee===yr-1&&r.mois===mo+1;}) : [];
+  var dpsTotalN1   = dpsRowsN1.length;
+  var gardeTotalN1 = gardeRowsN1.length;
+  var dpsHN1       = dpsRowsN1.reduce(function(t,r){return t+r.heures;},0);
+  var gardeHN1     = gardeRowsN1.reduce(function(t,r){return t+r.heures;},0);
+
+  function delta(a,b){
+    if(b===0) return a>0?'+100%':'—';
+    var d=Math.round((a-b)/b*100);
+    return (d>=0?'+':'')+d+'%';
+  }
+  function dColor(a,b){ return a>=b?'#27500A':'#C0392B'; }
+
+  // Barres comparatives (SVG inline)
+  function svgBars(label, val, valN1, color, max){
+    if(max===0)max=1;
+    var w1 = Math.round(val/max*180);
+    var w2 = Math.round(valN1/max*180);
+    return '<div style="margin-bottom:10px">'+
+      '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:3px">'+label+'</div>'+
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:2px">'+
+        '<div style="width:'+w1+'px;height:16px;background:'+color+';border-radius:3px;min-width:2px"></div>'+
+        '<span style="font-size:12px;font-weight:700;color:'+color+'">'+val+'</span>'+
+        '<span style="font-size:10px;color:'+dColor(val,valN1)+';font-weight:600">'+delta(val,valN1)+'</span>'+
+      '</div>'+
+      '<div style="display:flex;align-items:center;gap:8px">'+
+        '<div style="width:'+w2+'px;height:10px;background:#ccc;border-radius:3px;min-width:2px"></div>'+
+        '<span style="font-size:11px;color:var(--muted)">'+valN1+' (N-1)</span>'+
+      '</div>'+
+    '</div>';
+  }
+
+  var maxDPS = Math.max(dpsTotal, dpsTotalN1, 1);
+  var maxGar = Math.max(gardeTotal, gardeTotalN1, 1);
+  var maxHDPS = Math.max(dpsH, dpsHN1, 1);
+  var maxHGar = Math.max(gardeH, gardeHN1, 1);
+
+  // SR actifs 12 mois
+  var cutoff = get12mCutoff();
+  var srActifs = SR_DATA.filter(function(s){
+    var c = compute12m(s);
+    return c.nb_dps+c.nb_gar > 0;
+  }).length;
+
+  // Postes locaux en cours
+  var plEnCours = PL_DATA.filter(function(p){return p.statut==='En cours';}).length;
+
+  var css = '<style>'+
+    '*{box-sizing:border-box}body{font-family:Arial,sans-serif;font-size:10pt;margin:0;color:#000}'+
+    '.page{padding:15mm 18mm;max-width:210mm;margin:0 auto}'+
+    '.header-pdf{background:#002D74;color:#fff;padding:10px 18px;display:flex;align-items:center;gap:14px;margin-bottom:8mm}'+
+    '.header-pdf img{height:40px}'+
+    'h1{font-size:13pt;font-weight:bold;margin:0 0 2px}'+
+    'h2{font-size:10pt;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;color:#002D74;margin:6mm 0 3mm;border-bottom:2px solid #FF7F30;padding-bottom:2px}'+
+    '.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:6mm}'+
+    '.kpi{border:1px solid #ddd;border-radius:6px;padding:8px 10px;border-left:3px solid #FF7F30}'+
+    '.kpi-label{font-size:8pt;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:2px}'+
+    '.kpi-val{font-size:16pt;font-weight:700;color:#FF7F30}'+
+    '.kpi-sub{font-size:8pt;color:#aaa}'+
+    '.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8mm}'+
+    '.section{border:1px solid #eee;border-radius:6px;padding:8px 10px}'+
+    '.no-print{display:block}@media print{.no-print{display:none}}'+
+    '.btn-print{background:#FF7F30;color:#fff;border:none;border-radius:5px;padding:6px 18px;font-size:11px;cursor:pointer;font-weight:600}'+
+    '.footer{margin-top:8mm;border-top:1px solid #ddd;padding-top:4mm;font-size:8pt;color:#aaa;text-align:center}'+
+    '</style>';
+
+  var win_html = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Rapport '+moisLabel+'</title>'+css+'</head><body>';
+  win_html += '<div class="no-print" style="background:#002D74;padding:8px 18px;display:flex;align-items:center;gap:12px">';
+  win_html += '<span style="color:#fff;font-weight:600">Rapport mensuel — '+moisLabel+'</span>';
+  win_html += '<button class="btn-print" onclick="window.print()" style="margin-left:auto">🖨️ Imprimer / Sauvegarder PDF</button></div>';
+
+  win_html += '<div class="page">';
+  win_html += '<div class="header-pdf">';
+  win_html += '<div><h1>Protection Civile Paris Seine — Antenne de Paris 12</h1>';
+  win_html += '<div style="font-size:11pt;opacity:.85">Rapport mensuel d\'activité — '+moisLabel+'</div></div></div>';
+
+  win_html += '<h2>Indicateurs clés du mois</h2>';
+  win_html += '<div class="kpi-grid">';
+  [{l:'DPS réalisés',v:dpsTotal,s:dpsH.toFixed(0)+'h effectuées'},{l:'Gardes réalisées',v:gardeTotal,s:gardeH.toFixed(0)+'h effectuées'},
+   {l:'Bénévoles DPS',v:dpsSR,s:'Prises en charge : '+dpsPEC},{l:'Bénévoles Garde',v:gardeSR,s:'Interventions : '+gardeINT}
+  ].forEach(function(k){
+    win_html+='<div class="kpi"><div class="kpi-label">'+k.l+'</div><div class="kpi-val">'+k.v+'</div><div class="kpi-sub">'+k.s+'</div></div>';
+  });
+  win_html += '</div>';
+  win_html += '<div class="kpi-grid" style="grid-template-columns:repeat(2,1fr)">';
+  [{l:'Secouristes actifs (12 mois glissants)',v:srActifs,s:'sur le rôle SR Paris 12'},{l:'Postes locaux en cours',v:plEnCours,s:'DPS locaux actifs '+yr}]
+  .forEach(function(k){
+    win_html+='<div class="kpi" style="border-left-color:#002D74"><div class="kpi-label">'+k.l+'</div><div class="kpi-val" style="color:#002D74">'+k.v+'</div><div class="kpi-sub">'+k.s+'</div></div>';
+  });
+  win_html += '</div>';
+
+  win_html += '<div class="two-col">';
+
+  // DPS comparatif
+  win_html += '<div class="section">';
+  win_html += '<div style="font-size:10pt;font-weight:700;color:#FF7F30;margin-bottom:8px">DPS eProtec — comparatif N-1</div>';
+  win_html += svgBars('Missions DPS', dpsTotal, dpsTotalN1, '#FF7F30', maxDPS);
+  win_html += svgBars('Heures DPS', Math.round(dpsH), Math.round(dpsHN1), '#FF7F30', maxHDPS);
+  win_html += '</div>';
+
+  // Garde comparatif
+  win_html += '<div class="section">';
+  win_html += '<div style="font-size:10pt;font-weight:700;color:#002D74;margin-bottom:8px">Gardes — comparatif N-1</div>';
+  win_html += svgBars('Missions Garde', gardeTotal, gardeTotalN1, '#002D74', maxGar);
+  win_html += svgBars('Heures Garde', Math.round(gardeH), Math.round(gardeHN1), '#002D74', maxHGar);
+  win_html += '</div>';
+
+  win_html += '</div>';
+
+  win_html += '<div class="footer">Généré le '+new Date().toLocaleDateString('fr-FR')+' — Protection Civile Paris Seine · Antenne de Paris 12 · Direction des Opérations</div>';
+  win_html += '</div></body></html>';
+
+  var win = window.open('','_blank');
+  win.document.write(win_html);
+  win.document.close();
 }
 
 loadJSON();
