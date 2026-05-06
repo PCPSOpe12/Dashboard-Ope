@@ -7342,7 +7342,7 @@
       "statut": "cloturé",
       "inscrits": 6,
       "heures": 50.0,
-      "pec": 0
+      "pec": 4
     },
     {
       "annee": 2026,
@@ -7354,18 +7354,18 @@
       "statut": "cloturé",
       "inscrits": 5,
       "heures": 32.5,
-      "pec": 0
+      "pec": 1
     },
     {
       "annee": 2026,
       "mois": 5,
       "date": "07/05/2026",
-      "libelle": "Soirée Électronique - Boiler Room J1",
+      "libelle": "Soirée Électronique - Boiler Room Paris J1",
       "lieu": "Parc floral, Hall de la p",
       "dps": "DPS-PE",
       "statut": "cloturé",
-      "inscrits": 12,
-      "heures": 144.0,
+      "inscrits": 13,
+      "heures": 156.0,
       "pec": 0
     },
     {
@@ -7375,9 +7375,9 @@
       "libelle": "Soirée électronique - Boiler Room Paris J2",
       "lieu": "Paris 12",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 10,
-      "heures": 120.0,
+      "statut": "cloturé",
+      "inscrits": 13,
+      "heures": 156.0,
       "pec": 0
     },
     {
@@ -7387,9 +7387,9 @@
       "libelle": "Rugby Kids",
       "lieu": "Stade de la Cipale, vélod",
       "dps": "PAPS",
-      "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 21.0,
+      "statut": "cloturé",
+      "inscrits": 2,
+      "heures": 14.0,
       "pec": 0
     },
     {
@@ -7448,8 +7448,32 @@
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 18.0,
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "18/05/2026",
+      "libelle": "Renfort Concert Conan Gray - J1",
+      "lieu": "Adidas Arena",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "19/05/2026",
+      "libelle": "Renfort Concert Conan Gray - J2",
+      "lieu": "Adidas Arena",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 2,
+      "heures": 11.0,
       "pec": 0
     },
     {
@@ -7492,60 +7516,24 @@
       "annee": 2026,
       "mois": 5,
       "date": "21/05/2026",
-      "libelle": "Festival Educ'Sport",
-      "lieu": "Paris - UFR Cité Paris",
+      "libelle": "Salon SantExpo",
+      "lieu": "Paris - Parc des Expositi",
       "dps": "DPS-PE",
       "statut": "ouvert",
       "inscrits": 1,
-      "heures": 3.0,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 5,
-      "date": "22/05/2026",
-      "libelle": "[Prov] Le Cercle Festival J1",
-      "lieu": "Le Bourget",
-      "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 12.0,
+      "heures": 10.0,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 5,
       "date": "23/05/2026",
-      "libelle": "[Prov] Le Cercle Festival J2",
-      "lieu": "Le Bourget",
+      "libelle": "Le Duplex",
+      "lieu": "Paris",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 24.0,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 5,
-      "date": "24/05/2026",
-      "libelle": "[Prov] Le Cercle Festival J3",
-      "lieu": "Le Bourget",
-      "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 24.0,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 5,
-      "date": "24/05/2026",
-      "libelle": "[Prov]course du Château de Vincennes",
-      "lieu": "Vincennes",
-      "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 15.0,
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7556,8 +7544,8 @@
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 11.5,
+      "inscrits": 6,
+      "heures": 69.0,
       "pec": 0
     },
     {
@@ -7568,8 +7556,8 @@
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 11.0,
+      "inscrits": 3,
+      "heures": 16.5,
       "pec": 0
     },
     {
@@ -7582,6 +7570,18 @@
       "statut": "ouvert",
       "inscrits": 2,
       "heures": 14.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "31/05/2026",
+      "libelle": "Relais de la SPA",
+      "lieu": "Domaine National de Saint",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 2,
+      "heures": 12.0,
       "pec": 0
     },
     {
@@ -7628,8 +7628,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 8,
-      "heures": 80.0,
+      "inscrits": 10,
+      "heures": 100.0,
       "pec": 0
     },
     {
@@ -7700,8 +7700,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 10,
-      "heures": 70.0,
+      "inscrits": 11,
+      "heures": 77.0,
       "pec": 0
     },
     {
@@ -7748,8 +7748,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 11,
-      "heures": 121.0,
+      "inscrits": 10,
+      "heures": 110.0,
       "pec": 0
     },
     {
@@ -7873,7 +7873,7 @@
       "pec": 0
     }
   ],
-  "lastModified": "04/05/2026",
+  "lastModified": "06/05/2026",
   "maxDate": "15/07/2026",
   "totalRows": 656,
   "years": [
