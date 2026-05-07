@@ -3484,18 +3484,6 @@
       "annee": 2025,
       "mois": 4,
       "date": "26/04/2025",
-      "libelle": "DPS GE - PARADE LILLE 3000 FIESTA",
-      "lieu": "59000 LILLE",
-      "dps": "DPS-PE",
-      "statut": "cloturé",
-      "inscrits": 6,
-      "heures": 84.0,
-      "pec": 0
-    },
-    {
-      "annee": 2025,
-      "mois": 4,
-      "date": "26/04/2025",
       "libelle": "Renfort Olympiades Cartel des Mines - VPS 75-12",
       "lieu": "Paris - Stade Georges Car",
       "dps": "DPS-PE",
@@ -7496,8 +7484,8 @@
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 19.0,
+      "inscrits": 3,
+      "heures": 25.0,
       "pec": 0
     },
     {
@@ -7532,8 +7520,8 @@
       "lieu": "Paris",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 1,
+      "heures": 6.0,
       "pec": 0
     },
     {
@@ -7544,8 +7532,20 @@
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 6,
-      "heures": 69.0,
+      "inscrits": 8,
+      "heures": 92.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "24/05/2026",
+      "libelle": "[PROV] PdP France Angleterre",
+      "lieu": "Parc des Princes",
+      "dps": "-",
+      "statut": "ouvert",
+      "inscrits": 3,
+      "heures": 15.0,
       "pec": 0
     },
     {
@@ -7563,13 +7563,25 @@
     {
       "annee": 2026,
       "mois": 5,
+      "date": "28/05/2026",
+      "libelle": "[PROV] Concert Damso",
+      "lieu": "PLDA",
+      "dps": "-",
+      "statut": "ouvert",
+      "inscrits": 6,
+      "heures": 43.5,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
       "date": "30/05/2026",
       "libelle": "Course Amnestienne",
       "lieu": "Paris - Bois de Vincennes",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 14.0,
+      "inscrits": 3,
+      "heures": 21.0,
       "pec": 0
     },
     {
@@ -7580,8 +7592,8 @@
       "lieu": "Domaine National de Saint",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 12.0,
+      "inscrits": 3,
+      "heures": 18.0,
       "pec": 0
     },
     {
@@ -7594,18 +7606,6 @@
       "statut": "ouvert",
       "inscrits": 0,
       "heures": 0.0,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 6,
-      "date": "04/06/2026",
-      "libelle": "Forum des Transitions énergétiques et écologiques",
-      "lieu": "Parc Floral",
-      "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 9.5,
       "pec": 0
     },
     {
@@ -7628,8 +7628,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 10,
-      "heures": 100.0,
+      "inscrits": 11,
+      "heures": 110.0,
       "pec": 0
     },
     {
@@ -7873,7 +7873,7 @@
       "pec": 0
     }
   ],
-  "lastModified": "06/05/2026",
+  "lastModified": "07/05/2026",
   "maxDate": "15/07/2026",
   "totalRows": 656,
   "years": [
