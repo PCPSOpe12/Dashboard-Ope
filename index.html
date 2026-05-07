@@ -2203,24 +2203,69 @@ function renderAN(){
   // Pad palette if needed
   var palette = AN_PALETTE.slice(-years.length);
 
-  var datasets = years.map(function(yr,i){
+  var curWeek = (function(){
+    var today = new Date();
+    var start = new Date(today.getFullYear(),0,1);
+    return Math.floor((today-start)/(1000*60*60*24*7));
+  })();
+
+  var datasets = [];
+  years.forEach(function(yr,i){
     var p = palette[i];
     var data = anGetWeeklyData(yr, anType, anMetric);
     var isLast = i===years.length-1;
-    return {
-      label: String(yr),
-      data: data,
-      borderColor: p.border,
-      borderWidth: p.width,
-      borderDash: p.dash,
-      pointRadius: 0,
-      pointHoverRadius: isLast?5:3,
-      pointHoverBackgroundColor: p.border,
-      tension: 0.45,
-      fill: isLast?{target:'origin',above:'rgba(255,127,48,0.07)'}:false,
-      spanGaps: false,
-      order: years.length-i,
-    };
+    var isCurYear = yr===new Date().getFullYear();
+
+    if(isCurYear){
+      // Split into realised (solid) + planned (dashed)
+      var dataReal    = data.map(function(v,w){ return w<=curWeek?v:null; });
+      var dataPlan    = data.map(function(v,w){ return w>=curWeek?v:null; });
+      // Realised
+      datasets.push({
+        label: String(yr),
+        data: dataReal,
+        borderColor: p.border,
+        borderWidth: p.width+0.5,
+        borderDash: [],
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: p.border,
+        tension: 0.45,
+        fill: {target:'origin', above:'rgba(255,127,48,0.07)'},
+        spanGaps: false,
+        order: years.length-i,
+      });
+      // Planned (dashed, lighter)
+      datasets.push({
+        label: String(yr)+' planifié',
+        data: dataPlan,
+        borderColor: p.border,
+        borderWidth: p.width-0.5,
+        borderDash: [5,4],
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        pointHoverBackgroundColor: p.border,
+        tension: 0.45,
+        fill: {target:'origin', above:'rgba(255,127,48,0.03)'},
+        spanGaps: false,
+        order: years.length-i,
+      });
+    } else {
+      datasets.push({
+        label: String(yr),
+        data: data,
+        borderColor: p.border,
+        borderWidth: p.width,
+        borderDash: p.dash,
+        pointRadius: 0,
+        pointHoverRadius: isLast?5:3,
+        pointHoverBackgroundColor: p.border,
+        tension: 0.45,
+        fill: false,
+        spanGaps: false,
+        order: years.length-i,
+      });
+    }
   });
 
   var unitLabel = anMetric==='sr'?'SR / semaine':anMetric==='heures'?'Heures / semaine':'Missions / semaine';
@@ -2291,7 +2336,7 @@ function renderAN(){
   html+='<div style="background:var(--card);border-radius:10px;border:1px solid var(--border);padding:16px">';
   html+='<canvas id="anChart" role="img" aria-label="Courbes comparatives SR mobilisés par semaine" style="width:100%;height:300px"></canvas>';
   html+='</div>';
-  html+='<div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">Courbe lissée sur 3 semaines glissantes · 2026 tronqué à la semaine en cours</div>';
+  html+='<div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">Courbe lissée sur 3 semaines glissantes · <span style="border-bottom:2px solid var(--orange)">trait plein</span> = réalisé · <span style="border-bottom:2px dashed var(--orange)">tirets</span> = planifié eProtec</div>';
   html+='</div>';
 
   document.getElementById('contentAN').innerHTML=html;
@@ -2322,8 +2367,10 @@ function renderAN(){
             },
             label:function(ctx){
               if(ctx.raw===null)return null;
+              var lbl=ctx.dataset.label;
+              if(lbl.indexOf(' planifié')>=0) lbl=lbl.replace(' planifié',' (planifié)');
               var u=anMetric==='sr'?' SR':anMetric==='heures'?'h':' missions';
-              return '  '+ctx.dataset.label+' : '+ctx.raw+u;
+              return '  '+lbl+' : '+ctx.raw+u;
             }
           }
         }
