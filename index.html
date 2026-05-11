@@ -2337,12 +2337,53 @@ function renderAN(){
   html+='<canvas id="anChart" role="img" aria-label="Courbes comparatives SR mobilisés par semaine" style="width:100%;height:300px"></canvas>';
   html+='</div>';
   html+='<div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">Courbe lissée sur 3 semaines glissantes · <span style="border-bottom:2px solid var(--orange)">trait plein</span> = réalisé · <span style="border-bottom:2px dashed var(--orange)">tirets</span> = planifié eProtec</div>';
+
+  // ── Répartition par jour ──
+  html+='<div style="margin-top:20px;background:var(--card);border-radius:10px;border:1px solid var(--border);padding:16px">';
+  html+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">';
+  html+='<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">Répartition par jour de la semaine</div>';
+  html+='<select id="anJourType" onchange="renderJoursSection(\'anJoursContainer\',this.value)" style="border:1px solid var(--border);border-radius:5px;padding:4px 8px;font-size:11px;font-family:inherit">';
+  [{v:'both',l:'DPS + Gardes'},{v:'dps',l:'DPS uniquement'},{v:'garde',l:'Gardes uniquement'}].forEach(function(o){html+='<option value="'+o.v+'">'+o.l+'</option>';});
+  html+='</select>';
+  html+='</div>';
+  html+='<div id="anJoursContainer"></div>';
   html+='</div>';
 
+  // ── Heatmap mois × jour ──
+  // Build year options from available data
+  var hmYears=['all'].concat(years.slice().reverse().map(String));
+  html+='<div style="margin-top:16px;background:var(--card);border-radius:10px;border:1px solid var(--border);padding:16px">';
+  html+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">';
+  html+='<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">Heatmap mois × jour</div>';
+  html+='<div style="display:flex;gap:8px">';
+  html+='<select id="anHmType" onchange="renderHeatmapSection(\'anHeatmap\',this.value,document.getElementById(\'anHmYear\').value)" style="border:1px solid var(--border);border-radius:5px;padding:4px 8px;font-size:11px;font-family:inherit">';
+  [{v:'both',l:'DPS + Gardes'},{v:'dps',l:'DPS uniquement'},{v:'garde',l:'Gardes uniquement'}].forEach(function(o){html+='<option value="'+o.v+'">'+o.l+'</option>';});
+  html+='</select>';
+  html+='<select id="anHmYear" onchange="renderHeatmapSection(\'anHeatmap\',document.getElementById(\'anHmType\').value,this.value)" style="border:1px solid var(--border);border-radius:5px;padding:4px 8px;font-size:11px;font-family:inherit">';
+  hmYears.forEach(function(yr){html+='<option value="'+yr+'">'+(yr==='all'?'Toutes années':yr)+'</option>';});
+  html+='</select>';
+  html+='</div></div>';
+  html+='<div style="overflow-x:auto"><div id="anHeatmap" style="min-width:480px"></div></div>';
+  html+='<div style="display:flex;align-items:center;gap:4px;margin-top:10px">';
+  html+='<div style="font-size:10px;color:var(--muted)">Faible</div>';
+  html+='<div style="display:flex;gap:2px">'+Array.from({length:8},function(_,i){var t=i/7;var r=Math.round(230-t*220),g2=Math.round(235-t*210);return'<div style="width:18px;height:10px;border-radius:2px;background:rgb('+Math.max(0,r)+','+Math.max(20,g2)+',255)"></div>';}).join('')+'</div>';
+  html+='<div style="font-size:10px;color:var(--muted)">Fort (semaine)</div>';
+  html+='<div style="display:flex;gap:2px;margin-left:8px">'+Array.from({length:8},function(_,i){var t=i/7;var g=Math.round(240-t*200),b=Math.round(230-t*220);return'<div style="width:18px;height:10px;border-radius:2px;background:rgb(255,'+Math.max(40,g)+','+Math.max(30,b)+')"></div>';}).join('')+'</div>';
+  html+='<div style="font-size:10px;color:var(--muted)">Fort (week-end)</div>';
+  html+='</div>';
+  html+='</div>';
+
+  html+='</div>';
   document.getElementById('contentAN').innerHTML=html;
 
   // Draw chart
   if(AN_CHART){AN_CHART.destroy();AN_CHART=null;}
+  // Render sub-sections after DOM is ready
+  setTimeout(function(){
+    renderJoursSection('anJoursContainer', anType);
+    renderHeatmapSection('anHeatmap', 'both', 'all');
+  }, 50);
+
   AN_CHART=new Chart(document.getElementById('anChart'),{
     type:'line',
     data:{labels:weeks,datasets:datasets},
@@ -2458,6 +2499,173 @@ function openWeekModal(wk, years){
   });
 
   openModal('Semaine '+wkNum+' · '+monthLabel, html);
+}
+
+
+// ── Analyse — répartition jours + heatmap ─────────────────────────────────
+var AN_RADAR_CHART = null;
+
+var FR_JOURS_AN  = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+var FR_MOIS_AN   = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+
+function anGetRows(type){
+  var rows = [];
+  if(type==='dps'||type==='both')   rows = rows.concat(DATA_DPS   ? DATA_DPS.rows   : []);
+  if(type==='garde'||type==='both') rows = rows.concat(DATA_GARDE ? DATA_GARDE.rows : []);
+  return rows;
+}
+
+function anDow(dateStr){
+  var d = parseDate(dateStr);
+  if(!d) return -1;
+  return (d.getDay()+6)%7; // 0=Lun … 6=Dim
+}
+function anMonth(dateStr){
+  var d = parseDate(dateStr);
+  if(!d) return -1;
+  return d.getMonth(); // 0-11
+}
+
+function renderJoursSection(containerId, type){
+  var rows  = anGetRows(type);
+  var maxC  = 0, maxH = 0, maxSR = 0;
+  var byDay = FR_JOURS_AN.map(function(){ return {count:0,sr:0,heures:0}; });
+
+  rows.forEach(function(r){
+    var dow = anDow(r.date);
+    if(dow<0) return;
+    byDay[dow].count++;
+    byDay[dow].sr     += r.inscrits||0;
+    byDay[dow].heures += r.heures||0;
+  });
+
+  byDay.forEach(function(d){
+    if(d.count>maxC)   maxC=d.count;
+    if(d.sr>maxSR)     maxSR=d.sr;
+    if(d.heures>maxH)  maxH=d.heures;
+  });
+
+  // Bars
+  var barsHtml = byDay.map(function(d,i){
+    var isWE  = i>=5;
+    var color = isWE?'var(--orange)':'var(--navy)';
+    var pct   = maxC?Math.round(d.count/maxC*100):0;
+    return '<div style="display:flex;align-items:center;gap:8px">'+
+      '<div style="width:28px;font-size:11px;font-weight:600;color:var(--muted);text-align:right">'+FR_JOURS_AN[i]+'</div>'+
+      '<div style="flex:1;height:20px;background:var(--bg);border-radius:3px;overflow:hidden;border:1px solid var(--border)">'+
+        '<div style="width:'+pct+'%;height:100%;background:'+color+';border-radius:3px"></div>'+
+      '</div>'+
+      '<div style="width:28px;font-size:11px;font-weight:700;color:'+color+';text-align:right">'+d.count+'</div>'+
+    '</div>';
+  }).join('');
+
+  // Heat row
+  var heatHtml = byDay.map(function(d,i){
+    var isWE = i>=5;
+    var t    = maxH?d.heures/maxH:0;
+    var bg   = isWE
+      ? 'rgba(255,127,48,'+(0.1+t*0.75)+')'
+      : 'rgba(0,45,116,'+(0.08+t*0.65)+')';
+    var tc   = isWE?'#7A3A00':'#001A4D';
+    return '<div style="background:'+bg+';border-radius:6px;padding:10px 6px;text-align:center">'+
+      '<div style="font-size:10px;font-weight:700;color:'+tc+';opacity:.7;margin-bottom:2px">'+FR_JOURS_AN[i]+'</div>'+
+      '<div style="font-size:13px;font-weight:700;color:'+tc+'">'+Math.round(d.heures)+'h</div>'+
+    '</div>';
+  }).join('');
+
+  var el = document.getElementById(containerId);
+  if(!el) return;
+  el.innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px">'+
+      '<div>'+
+        '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Nb de postes par jour</div>'+
+        '<div style="display:flex;flex-direction:column;gap:6px">'+barsHtml+'</div>'+
+      '</div>'+
+      '<div>'+
+        '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px">SR mobilisés par jour (radar)</div>'+
+        '<div style="position:relative;width:100%;height:200px"><canvas id="anRadar" role="img" aria-label="Radar SR mobilisés par jour">Radar SR.</canvas></div>'+
+      '</div>'+
+    '</div>'+
+    '<div>'+
+      '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Charge horaire moyenne par jour</div>'+
+      '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">'+heatHtml+'</div>'+
+    '</div>';
+
+  // Radar
+  if(AN_RADAR_CHART){AN_RADAR_CHART.destroy();AN_RADAR_CHART=null;}
+  AN_RADAR_CHART = new Chart(document.getElementById('anRadar'),{
+    type:'radar',
+    data:{
+      labels: FR_JOURS_AN,
+      datasets:[{
+        label:'SR mobilisés',
+        data: byDay.map(function(d){return d.sr;}),
+        borderColor:'#FF7F30',
+        backgroundColor:'rgba(255,127,48,0.12)',
+        borderWidth:2,
+        pointBackgroundColor:'#FF7F30',
+        pointRadius:3,
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{r:{
+        ticks:{display:false},
+        grid:{color:'rgba(136,135,128,0.15)'},
+        pointLabels:{font:{size:11},color:'#888780'},
+        beginAtZero:true,
+      }}
+    }
+  });
+}
+
+function renderHeatmapSection(containerId, type, yearFilter){
+  var allRows = anGetRows(type);
+  var rows    = yearFilter==='all' ? allRows : allRows.filter(function(r){return r.annee===+yearFilter;});
+
+  // mat[mois][dow]
+  var mat = Array.from({length:12},function(){ return new Array(7).fill(0); });
+  rows.forEach(function(r){
+    var m   = anMonth(r.date);
+    var dow = anDow(r.date);
+    if(m<0||dow<0) return;
+    mat[m][dow]++;
+  });
+
+  var allVals = mat.reduce(function(a,b){return a.concat(b);},[]);
+  var maxV    = Math.max.apply(null,allVals)||1;
+  var minV    = 0;
+
+  function bg(v,dow){
+    var t=(v-minV)/(maxV-minV);
+    var isWE=dow>=5;
+    if(isWE){
+      var r=255,g=Math.round(240-t*200),b=Math.round(230-t*220);
+      return 'rgb('+r+','+Math.max(40,g)+','+Math.max(30,b)+')';
+    } else {
+      var r2=Math.round(230-t*220),g2=Math.round(235-t*210),b2=255;
+      return 'rgb('+Math.max(0,r2)+','+Math.max(20,g2)+','+b2+')';
+    }
+  }
+  function tc(v){ return v/maxV>0.55?'#fff':'#222'; }
+
+  var html='<table style="width:100%;border-collapse:separate;border-spacing:3px;font-size:11px"><thead><tr><th style="width:36px"></th>';
+  FR_JOURS_AN.forEach(function(j,i){
+    var isWE=i>=5;
+    html+='<th style="text-align:center;font-weight:600;color:'+(isWE?'#CC5500':'var(--muted)')+';padding:0 0 6px;font-size:10px">'+j+'</th>';
+  });
+  html+='</tr></thead><tbody>';
+  mat.forEach(function(row,m){
+    html+='<tr><td style="font-size:11px;font-weight:600;color:var(--muted);padding-right:8px;text-align:right;white-space:nowrap">'+FR_MOIS_AN[m]+'</td>';
+    row.forEach(function(v,dow){
+      html+='<td style="background:'+bg(v,dow)+';border-radius:5px;text-align:center;padding:7px 3px;font-size:11px;font-weight:600;color:'+tc(v)+'" title="'+FR_JOURS_AN[dow]+' '+FR_MOIS_AN[m]+' : '+v+'">'+v+'</td>';
+    });
+    html+='</tr>';
+  });
+  html+='</tbody></table>';
+  var el=document.getElementById(containerId);
+  if(el) el.innerHTML=html;
 }
 
 loadJSON();
