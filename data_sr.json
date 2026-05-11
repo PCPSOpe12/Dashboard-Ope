@@ -3814,10 +3814,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "19/04/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "15/03/2026",
-      "last_any": "19/04/2026",
-      "inscrit_dps": true,
+      "last_any": "08/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -3954,6 +3954,11 @@
           "date": "09/01/2026",
           "lib": "Renfort DPS-ME - Handball - Tournoi de France  (J.1)",
           "heures": 6.8
+        },
+        {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
         },
         {
           "date": "06/07/2025",
@@ -5668,9 +5673,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "03/05/2026",
+      "last_dps": "07/05/2026",
       "last_gar": "",
-      "last_any": "03/05/2026",
+      "last_any": "07/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -5678,6 +5683,11 @@
           "date": "28/04/2026",
           "lib": "Foire du Trone 2026",
           "heures": 10.5
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "03/05/2026",
@@ -7713,9 +7723,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "03/04/2026",
+      "last_dps": "07/05/2026",
       "last_gar": "",
-      "last_any": "03/04/2026",
+      "last_any": "07/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -7723,6 +7733,11 @@
           "date": "11/03/2026",
           "lib": "Renfort DPS-ME - Concert Wu Tang Clan",
           "heures": 5.5
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "03/04/2026",
@@ -8016,10 +8031,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "26/03/2026",
+      "last_dps": "10/05/2026",
       "last_gar": "05/03/2026",
-      "last_any": "26/03/2026",
-      "inscrit_dps": true,
+      "last_any": "10/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -8051,6 +8066,11 @@
           "date": "15/01/2026",
           "lib": "Renfort PBB vs AS Monaco",
           "heures": 4.8
+        },
+        {
+          "date": "10/05/2026",
+          "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
+          "heures": 8.0
         },
         {
           "date": "09/12/2025",
@@ -8340,10 +8360,10 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "28/04/2026",
+      "last_dps": "07/05/2026",
       "last_gar": "29/04/2026",
-      "last_any": "29/04/2026",
-      "inscrit_dps": true,
+      "last_any": "07/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -8680,6 +8700,11 @@
           "date": "07/07/2024",
           "lib": "Renfort Compagny Cup 2024 Annecy le Vieux",
           "heures": 7.0
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "07/03/2024",
@@ -9183,9 +9208,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "30/04/2026",
+      "last_dps": "09/05/2026",
       "last_gar": "18/04/2026",
-      "last_any": "30/04/2026",
+      "last_any": "09/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -9378,6 +9403,11 @@
           "date": "09/06/2024",
           "lib": "Passage de grade",
           "heures": 5.5
+        },
+        {
+          "date": "09/05/2026",
+          "lib": "Rugby Kids",
+          "heures": 7.0
         },
         {
           "date": "08/12/2024",
@@ -9804,9 +9834,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "29/04/2026",
+      "last_dps": "10/05/2026",
       "last_gar": "04/05/2026",
-      "last_any": "04/05/2026",
+      "last_any": "10/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -10016,6 +10046,16 @@
           "heures": 7.0
         },
         {
+          "date": "10/05/2026",
+          "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
+          "heures": 8.0
+        },
+        {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
+        },
+        {
           "date": "08/05/2025",
           "lib": "Cérémonie 8 Mai de Suresnes - Secours",
           "heures": 4.0
@@ -10029,6 +10069,11 @@
           "date": "08/02/2025",
           "lib": "Soirée T7",
           "heures": 7.0
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "07/02/2026",
@@ -10154,10 +10199,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "05/11/2025",
+      "last_dps": "08/05/2026",
       "last_gar": "31/03/2026",
-      "last_any": "31/03/2026",
-      "inscrit_dps": true,
+      "last_any": "08/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -10239,6 +10284,11 @@
           "date": "08/12/2024",
           "lib": "Renfort Réouverture Notre-Dame J2",
           "heures": 6.0
+        },
+        {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
         },
         {
           "date": "07/07/2024",
@@ -10732,9 +10782,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/04/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "04/05/2026",
-      "last_any": "04/05/2026",
+      "last_any": "08/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -11229,6 +11279,11 @@
           "heures": 10.5
         },
         {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
+        },
+        {
           "date": "08/03/2024",
           "lib": "Renfort DPS-PE - Tournoi de badminton",
           "heures": 5.0
@@ -11242,6 +11297,11 @@
           "date": "07/07/2024",
           "lib": "Renfort Compagny Cup 2024 Annecy le Vieux",
           "heures": 7.0
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "06/10/2025",
@@ -12615,9 +12675,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "28/04/2026",
+      "last_dps": "07/05/2026",
       "last_gar": "03/04/2026",
-      "last_any": "28/04/2026",
+      "last_any": "07/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -12750,6 +12810,11 @@
           "date": "13/06/2024",
           "lib": "MMS multisport",
           "heures": 6.0
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "06/11/2025",
@@ -13107,9 +13172,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "04/05/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "29/04/2026",
-      "last_any": "04/05/2026",
+      "last_any": "08/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -13289,6 +13354,11 @@
           "heures": 8.0
         },
         {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
+        },
+        {
           "date": "05/07/2025",
           "lib": "Renfort Compagny Cup 2025 Annecy le Vieux",
           "heures": 10.0
@@ -13429,10 +13499,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "04/05/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "22/02/2026",
-      "last_any": "04/05/2026",
-      "inscrit_dps": true,
+      "last_any": "08/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -13496,6 +13566,11 @@
           "heures": 5.5
         },
         {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
+        },
+        {
           "date": "06/12/2025",
           "lib": "Renfort PSG  Rennes Ligue 1",
           "heures": 5.0
@@ -13541,9 +13616,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "18/04/2026",
+      "last_dps": "07/05/2026",
       "last_gar": "15/04/2026",
-      "last_any": "18/04/2026",
+      "last_any": "07/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -13586,6 +13661,11 @@
           "date": "10/01/2026",
           "lib": "Renfort Soirée I Hate Models",
           "heures": 8.0
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "05/11/2025",
@@ -16245,10 +16325,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "15/04/2026",
+      "last_dps": "07/05/2026",
       "last_gar": "26/03/2026",
-      "last_any": "15/04/2026",
-      "inscrit_dps": true,
+      "last_any": "07/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -16415,6 +16495,11 @@
           "date": "07/09/2024",
           "lib": "Renfort RGA - Stade Roland-Garros",
           "heures": 7.5
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "06/06/2024",
@@ -17190,9 +17275,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/04/2026",
+      "last_dps": "07/05/2026",
       "last_gar": "04/03/2026",
-      "last_any": "28/04/2026",
+      "last_any": "07/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -17250,6 +17335,11 @@
           "date": "10/04/2026",
           "lib": "Rando Roller",
           "heures": 3.2
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "06/01/2026",
@@ -18327,10 +18417,10 @@
         "obt": "",
         "exp": ""
       },
-      "last_dps": "02/05/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "25/04/2026",
-      "last_any": "02/05/2026",
-      "inscrit_dps": true,
+      "last_any": "08/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": true,
       "activites_dps": [
         {
@@ -18839,6 +18929,11 @@
           "heures": 11.0
         },
         {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
+        },
+        {
           "date": "08/03/2024",
           "lib": "Renfort DPS-PE - Tournoi de badminton",
           "heures": 5.0
@@ -18862,6 +18957,11 @@
           "date": "07/08/2024",
           "lib": "Arena La Chapelle",
           "heures": 12.5
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "07/02/2025",
@@ -20524,9 +20624,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/04/2026",
+      "last_dps": "09/05/2026",
       "last_gar": "29/03/2026",
-      "last_any": "28/04/2026",
+      "last_any": "09/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -20584,6 +20684,11 @@
           "date": "11/03/2026",
           "lib": "Renfort PSG  Chelsea LDC",
           "heures": 5.0
+        },
+        {
+          "date": "09/05/2026",
+          "lib": "Rugby Kids",
+          "heures": 7.0
         },
         {
           "date": "09/01/2026",
@@ -21535,9 +21640,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "05/05/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "25/04/2026",
-      "last_any": "05/05/2026",
+      "last_any": "08/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -21797,6 +21902,11 @@
           "heures": 5.5
         },
         {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
+        },
+        {
           "date": "07/12/2024",
           "lib": "Renfort Réouverture Notre-Dame J1",
           "heures": 10.0
@@ -21805,6 +21915,11 @@
           "date": "07/06/2025",
           "lib": "Tournoi de Roland Garros",
           "heures": 5.5
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "06/11/2025",
@@ -22347,9 +22462,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "19/04/2026",
+      "last_dps": "07/05/2026",
       "last_gar": "10/04/2026",
-      "last_any": "19/04/2026",
+      "last_any": "07/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -22522,6 +22637,11 @@
           "date": "07/12/2024",
           "lib": "Renfort Réouverture Notre-Dame J1 - CDT",
           "heures": 10.0
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room J1",
+          "heures": 12.0
         },
         {
           "date": "07/05/2024",
@@ -23093,10 +23213,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/04/2026",
+      "last_dps": "10/05/2026",
       "last_gar": "09/04/2026",
-      "last_any": "09/04/2026",
-      "inscrit_dps": true,
+      "last_any": "10/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -23128,6 +23248,11 @@
           "date": "11/03/2026",
           "lib": "Renfort DPS-ME - Concert Wu Tang Clan",
           "heures": 5.5
+        },
+        {
+          "date": "10/05/2026",
+          "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
+          "heures": 8.0
         },
         {
           "date": "08/04/2026",
@@ -23205,10 +23330,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "02/05/2026",
+      "last_dps": "09/05/2026",
       "last_gar": "04/01/2026",
-      "last_any": "02/05/2026",
-      "inscrit_dps": true,
+      "last_any": "09/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -23255,6 +23380,11 @@
           "date": "13/03/2024",
           "lib": "Renfort PSG  OGC Nice Coupe de France",
           "heures": 5.0
+        },
+        {
+          "date": "09/05/2026",
+          "lib": "Rugby Kids",
+          "heures": 7.0
         },
         {
           "date": "09/02/2025",
@@ -23312,9 +23442,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "05/05/2026",
+      "last_dps": "10/05/2026",
       "last_gar": "30/04/2026",
-      "last_any": "05/05/2026",
+      "last_any": "10/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -23327,6 +23457,11 @@
           "date": "11/04/2026",
           "lib": "Démonstration d'arts martiaux",
           "heures": 3.5
+        },
+        {
+          "date": "10/05/2026",
+          "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
+          "heures": 8.0
         },
         {
           "date": "10/04/2026",
@@ -23441,10 +23576,10 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/04/2026",
+      "last_dps": "10/05/2026",
       "last_gar": "08/03/2026",
-      "last_any": "20/04/2026",
-      "inscrit_dps": true,
+      "last_any": "10/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -23586,6 +23721,11 @@
           "date": "10/06/2025",
           "lib": "Renfort DPS-ME - Concert Billie Eilish",
           "heures": 7.0
+        },
+        {
+          "date": "10/05/2026",
+          "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
+          "heures": 8.0
         },
         {
           "date": "09/10/2025",
@@ -23777,9 +23917,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "05/05/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "30/04/2026",
-      "last_any": "05/05/2026",
+      "last_any": "08/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -24072,6 +24212,11 @@
           "date": "08/06/2025",
           "lib": "Renfort Tournoi de flag football U13",
           "heures": 8.0
+        },
+        {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
         },
         {
           "date": "07/02/2026",
@@ -24648,10 +24793,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "10/04/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "15/11/2025",
-      "last_any": "10/04/2026",
-      "inscrit_dps": true,
+      "last_any": "08/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -24768,6 +24913,11 @@
           "date": "08/12/2024",
           "lib": "Renfort Réouverture Notre-Dame J2",
           "heures": 6.0
+        },
+        {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
         },
         {
           "date": "03/09/2025",
@@ -25573,7 +25723,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "07/05/2026",
+  "lastModified": "11/05/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141

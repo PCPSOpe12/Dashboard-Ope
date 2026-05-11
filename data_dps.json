@@ -3484,6 +3484,18 @@
       "annee": 2025,
       "mois": 4,
       "date": "26/04/2025",
+      "libelle": "DPS GE - PARADE LILLE 3000 FIESTA",
+      "lieu": "59000 LILLE",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 6,
+      "heures": 84.0,
+      "pec": 0
+    },
+    {
+      "annee": 2025,
+      "mois": 4,
+      "date": "26/04/2025",
       "libelle": "Renfort Olympiades Cartel des Mines - VPS 75-12",
       "lieu": "Paris - Stade Georges Car",
       "dps": "DPS-PE",
@@ -7354,7 +7366,7 @@
       "statut": "cloturé",
       "inscrits": 13,
       "heures": 156.0,
-      "pec": 0
+      "pec": 21
     },
     {
       "annee": 2026,
@@ -7366,7 +7378,7 @@
       "statut": "cloturé",
       "inscrits": 13,
       "heures": 156.0,
-      "pec": 0
+      "pec": 40
     },
     {
       "annee": 2026,
@@ -7378,7 +7390,7 @@
       "statut": "cloturé",
       "inscrits": 2,
       "heures": 14.0,
-      "pec": 0
+      "pec": 8
     },
     {
       "annee": 2026,
@@ -7389,7 +7401,19 @@
       "dps": "DPS-PE",
       "statut": "cloturé",
       "inscrits": 5,
-      "heures": 40.0,
+      "heures": 35.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "10/05/2026",
+      "libelle": "Renfort Concert Rüfüs du sol - J2",
+      "lieu": "Adidas Arena",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 1,
+      "heures": 5.8,
       "pec": 0
     },
     {
@@ -7407,13 +7431,25 @@
     {
       "annee": 2026,
       "mois": 5,
+      "date": "13/05/2026",
+      "libelle": "Renfort Foire du Trone 2026",
+      "lieu": "Paris - Pelouse de Reuill",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 3,
+      "heures": 15.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
       "date": "15/05/2026",
       "libelle": "KM 25",
       "lieu": "Paris",
-      "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 7,
-      "heures": 63.1,
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 5,
+      "heures": 45.1,
       "pec": 0
     },
     {
@@ -7422,7 +7458,7 @@
       "date": "16/05/2026",
       "libelle": "Renfort DPS-ME - Concert Twice J1",
       "lieu": "Accor Arena Bercy",
-      "dps": "PAPS",
+      "dps": "DPS-PE",
       "statut": "ouvert",
       "inscrits": 4,
       "heures": 24.0,
@@ -7436,8 +7472,8 @@
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 24.0,
+      "inscrits": 3,
+      "heures": 18.0,
       "pec": 0
     },
     {
@@ -7462,6 +7498,18 @@
       "statut": "ouvert",
       "inscrits": 2,
       "heures": 11.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "19/05/2026",
+      "libelle": "Course France AgriMer",
+      "lieu": "Paris - Bois de Vincennes",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 1.5,
       "pec": 0
     },
     {
@@ -7508,8 +7556,8 @@
       "lieu": "Paris - Parc des Expositi",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 10.0,
+      "inscrits": 2,
+      "heures": 20.0,
       "pec": 0
     },
     {
@@ -7532,8 +7580,8 @@
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 8,
-      "heures": 92.0,
+      "inscrits": 9,
+      "heures": 103.5,
       "pec": 0
     },
     {
@@ -7551,13 +7599,25 @@
     {
       "annee": 2026,
       "mois": 5,
+      "date": "26/05/2026",
+      "libelle": "Trophée Aventure",
+      "lieu": "Domaine Départemental de",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 8.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
       "date": "27/05/2026",
       "libelle": "Renfort DPS-ME - Handball PSG vs Nantes",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 16.5,
+      "inscrits": 4,
+      "heures": 22.0,
       "pec": 0
     },
     {
@@ -7580,8 +7640,8 @@
       "lieu": "Paris - Bois de Vincennes",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 21.0,
+      "inscrits": 5,
+      "heures": 35.0,
       "pec": 0
     },
     {
@@ -7592,8 +7652,8 @@
       "lieu": "Domaine National de Saint",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 18.0,
+      "inscrits": 4,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7604,8 +7664,8 @@
       "lieu": "Stade Charlety",
       "dps": "PAPS",
       "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 1,
+      "heures": 2.0,
       "pec": 0
     },
     {
@@ -7640,8 +7700,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 27.0,
+      "inscrits": 4,
+      "heures": 36.0,
       "pec": 0
     },
     {
@@ -7659,6 +7719,18 @@
     {
       "annee": 2026,
       "mois": 6,
+      "date": "16/06/2026",
+      "libelle": "Renfort DPS-ME - Concert Kaytranada",
+      "lieu": "Accor Arena Bercy",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
       "date": "17/06/2026",
       "libelle": "Jeux des collèges",
       "lieu": "Parc départemental des sp",
@@ -7666,6 +7738,18 @@
       "statut": "ouvert",
       "inscrits": 4,
       "heures": 28.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "18/06/2026",
+      "libelle": "Renfort DPS-ME - Concert Cypress Hill",
+      "lieu": "Accor Arena Bercy",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7873,9 +7957,9 @@
       "pec": 0
     }
   ],
-  "lastModified": "07/05/2026",
+  "lastModified": "11/05/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 656,
+  "totalRows": 663,
   "years": [
     2023,
     2024,
