@@ -2156,40 +2156,24 @@ function anGetWeeklyData(year, type, metric){
   if(type==='dps'||type==='both') source = source.concat((DATA_DPS?DATA_DPS.rows:[]).filter(function(r){return r.annee===year;}));
   if(type==='garde'||type==='both') source = source.concat((DATA_GARDE?DATA_GARDE.rows:[]).filter(function(r){return r.annee===year;}));
 
-  // Bucket by week number
   var weeks = new Array(52).fill(0);
   source.forEach(function(r){
     var d = parseDate(r.date);
     if(!d) return;
-    // Week number (ISO-ish: day of year / 7)
     var start = new Date(year,0,1);
     var dayOfYear = Math.floor((d - start)/(1000*60*60*24));
     var wk = Math.min(51, Math.floor(dayOfYear/7));
-    if(metric==='sr')       weeks[wk] += (r.inscrits||0);
+    if(metric==='sr')            weeks[wk] += (r.inscrits||0);
     else if(metric==='missions') weeks[wk] += 1;
     else if(metric==='heures')   weeks[wk] += (r.heures||0);
   });
 
-  // For 2026: null out weeks beyond today
-  var today = new Date();
-  var curYear = today.getFullYear();
-  if(year===curYear){
-    var start2 = new Date(year,0,1);
-    var dayOfYear2 = Math.floor((today-start2)/(1000*60*60*24));
-    var curWk = Math.floor(dayOfYear2/7);
-    for(var i=curWk+1;i<52;i++) weeks[i]=null;
-  }
-
-  // Smooth with 3-week rolling average
-  var smoothed = weeks.map(function(v,i){
-    if(v===null) return null;
+  // Smooth — no truncation, split realised/planned is done in renderAN
+  return weeks.map(function(v,i){
     var vals = [];
-    for(var j=Math.max(0,i-1);j<=Math.min(51,i+1);j++){
-      if(weeks[j]!==null) vals.push(weeks[j]);
-    }
-    return vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length*10)/10:0;
+    for(var j=Math.max(0,i-1);j<=Math.min(51,i+1);j++) vals.push(weeks[j]);
+    return vals.length ? Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length*10)/10 : 0;
   });
-  return smoothed;
 }
 
 function renderAN(){
