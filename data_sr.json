@@ -22,8 +22,8 @@
       },
       "CDD": null,
       "last_dps": "29/04/2026",
-      "last_gar": "04/05/2026",
-      "last_any": "04/05/2026",
+      "last_gar": "11/05/2026",
+      "last_any": "11/05/2026",
       "inscrit_dps": false,
       "inscrit_gar": true,
       "activites_dps": [
@@ -480,6 +480,11 @@
           "heures": 6.0
         },
         {
+          "date": "11/05/2026",
+          "lib": "[PROV] BSPP",
+          "heures": 6.0
+        },
+        {
           "date": "11/04/2024",
           "lib": "BSPP MENIL",
           "heures": 5.0
@@ -675,8 +680,8 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "30/04/2026",
-      "last_gar": "18/04/2026",
-      "last_any": "30/04/2026",
+      "last_gar": "11/05/2026",
+      "last_any": "11/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -1531,6 +1536,11 @@
           "date": "12/04/2024",
           "lib": "BSPP",
           "heures": 7.0
+        },
+        {
+          "date": "11/05/2026",
+          "lib": "[PROV] BSPP",
+          "heures": 6.0
         },
         {
           "date": "11/04/2025",
@@ -3638,10 +3648,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "08/10/2025",
-      "last_gar": "13/04/2026",
-      "last_any": "13/04/2026",
+      "last_gar": "11/05/2026",
+      "last_any": "11/05/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "29/04/2025",
@@ -3778,6 +3788,11 @@
         {
           "date": "11/06/2025",
           "lib": "GARDE BSPP - CHPT",
+          "heures": 6.0
+        },
+        {
+          "date": "11/05/2026",
+          "lib": "[PROV] BSPP",
           "heures": 6.0
         },
         {
@@ -4501,11 +4516,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "18/04/2026",
-      "last_gar": "04/05/2026",
-      "last_any": "04/05/2026",
+      "last_dps": "12/05/2026",
+      "last_gar": "11/05/2026",
+      "last_any": "12/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "28/07/2024",
@@ -4606,6 +4621,11 @@
           "date": "13/04/2025",
           "lib": "Renfort DPS-ME - Central CEE",
           "heures": 4.5
+        },
+        {
+          "date": "12/05/2026",
+          "lib": "Renfort DPS-ME - Concert Ne-Yo & Akon",
+          "heures": 6.0
         },
         {
           "date": "12/04/2025",
@@ -4728,6 +4748,11 @@
           "date": "15/03/2026",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "11/05/2026",
+          "lib": "[PROV] BSPP",
+          "heures": 6.0
         },
         {
           "date": "11/02/2026",
@@ -5506,10 +5531,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "09/04/2026",
+      "last_dps": "12/05/2026",
       "last_gar": "31/03/2026",
-      "last_any": "09/04/2026",
-      "inscrit_dps": true,
+      "last_any": "12/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -5565,6 +5590,11 @@
         {
           "date": "12/07/2025",
           "lib": "DPS-PE - Course Copenhague-Paris 2024",
+          "heures": 6.0
+        },
+        {
+          "date": "12/05/2026",
+          "lib": "Renfort DPS-ME - Concert Ne-Yo & Akon",
           "heures": 6.0
         },
         {
@@ -7759,9 +7789,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "03/05/2026",
+      "last_dps": "12/05/2026",
       "last_gar": "26/03/2026",
-      "last_any": "03/05/2026",
+      "last_any": "12/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -7859,6 +7889,11 @@
           "date": "12/06/2025",
           "lib": "Renfort Cross de Bercy",
           "heures": 1.5
+        },
+        {
+          "date": "12/05/2026",
+          "lib": "Renfort DPS-ME - Concert Ne-Yo & Akon",
+          "heures": 6.0
         },
         {
           "date": "12/04/2025",
@@ -13956,10 +13991,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "13/03/2026",
-      "last_gar": "10/03/2026",
-      "last_any": "13/03/2026",
+      "last_gar": "11/05/2026",
+      "last_any": "11/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "29/11/2025",
@@ -13991,6 +14026,11 @@
         {
           "date": "24/11/2025",
           "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "11/05/2026",
+          "lib": "[PROV] BSPP",
           "heures": 6.0
         },
         {
@@ -17806,9 +17846,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "03/05/2026",
+      "last_dps": "12/05/2026",
       "last_gar": "28/08/2025",
-      "last_any": "03/05/2026",
+      "last_any": "12/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -17891,6 +17931,11 @@
           "date": "15/03/2024",
           "lib": "DPS-ME - Patrick Bruel",
           "heures": 5.5
+        },
+        {
+          "date": "12/05/2026",
+          "lib": "Renfort DPS-ME - Concert Ne-Yo & Akon",
+          "heures": 6.0
         },
         {
           "date": "11/12/2025",
@@ -20625,10 +20670,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "09/05/2026",
-      "last_gar": "29/03/2026",
-      "last_any": "09/05/2026",
+      "last_gar": "11/05/2026",
+      "last_any": "11/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/01/2026",
@@ -20726,6 +20771,11 @@
           "date": "14/01/2026",
           "lib": "SAMU 75 - VPS PS",
           "heures": 5.0
+        },
+        {
+          "date": "11/05/2026",
+          "lib": "[PROV] BSPP",
+          "heures": 6.0
         }
       ]
     },
@@ -23917,9 +23967,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "08/05/2026",
+      "last_dps": "12/05/2026",
       "last_gar": "30/04/2026",
-      "last_any": "08/05/2026",
+      "last_any": "12/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -24187,6 +24237,11 @@
           "date": "13/03/2026",
           "lib": "Renfort Madame Loyal J1",
           "heures": 11.5
+        },
+        {
+          "date": "12/05/2026",
+          "lib": "Renfort DPS-ME - Concert Ne-Yo & Akon",
+          "heures": 6.0
         },
         {
           "date": "11/12/2024",
@@ -25723,7 +25778,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "11/05/2026",
+  "lastModified": "13/05/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141
