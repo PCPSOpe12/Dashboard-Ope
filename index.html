@@ -2168,12 +2168,9 @@ function anGetWeeklyData(year, type, metric){
     else if(metric==='heures')   weeks[wk] += (r.heures||0);
   });
 
-  // Smooth — no truncation, split realised/planned is done in renderAN
-  return weeks.map(function(v,i){
-    var vals = [];
-    for(var j=Math.max(0,i-1);j<=Math.min(51,i+1);j++) vals.push(weeks[j]);
-    return vals.length ? Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length*10)/10 : 0;
-  });
+  // Somme brute par semaine — pas de lissage
+  weeks._raw = weeks.slice();
+  return weeks;
 }
 
 function renderAN(){
@@ -2193,10 +2190,12 @@ function renderAN(){
     return Math.floor((today-start)/(1000*60*60*24*7));
   })();
 
+  var rawByYear = {};
   var datasets = [];
   years.forEach(function(yr,i){
     var p = palette[i];
     var data = anGetWeeklyData(yr, anType, anMetric);
+    rawByYear[yr] = data._raw || data;
     var isLast = i===years.length-1;
     var isCurYear = yr===new Date().getFullYear();
 
@@ -2320,7 +2319,7 @@ function renderAN(){
   html+='<div style="background:var(--card);border-radius:10px;border:1px solid var(--border);padding:16px">';
   html+='<canvas id="anChart" role="img" aria-label="Courbes comparatives SR mobilisés par semaine" style="width:100%;height:300px"></canvas>';
   html+='</div>';
-  html+='<div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">Courbe lissée sur 3 semaines glissantes · <span style="border-bottom:2px solid var(--orange)">trait plein</span> = réalisé · <span style="border-bottom:2px dashed var(--orange)">tirets</span> = planifié eProtec</div>';
+  html+='<div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center"><span style="border-bottom:2px solid var(--orange)">trait plein</span> = réalisé · <span style="border-bottom:2px dashed var(--orange)">tirets</span> = planifié eProtec</div>';
 
   // ── Répartition par jour ──
   html+='<div style="margin-top:20px;background:var(--card);border-radius:10px;border:1px solid var(--border);padding:16px">';
@@ -2393,9 +2392,16 @@ function renderAN(){
             label:function(ctx){
               if(ctx.raw===null)return null;
               var lbl=ctx.dataset.label;
-              if(lbl.indexOf(' planifié')>=0) lbl=lbl.replace(' planifié',' (planifié)');
+              // Hide planifié duplicate in tooltip — show as suffix instead
+              var isPlan=lbl.indexOf(' planifié')>=0;
+              var baseYr=isPlan?lbl.replace(' planifié',''):lbl;
+              var yr=parseInt(baseYr);
+              // Use raw (non-smoothed) value for accuracy
+              var rawVal = rawByYear[yr]?rawByYear[yr][ctx.dataIndex]:ctx.raw;
+              if(rawVal===0&&ctx.raw===0) return null; // hide empty weeks
               var u=anMetric==='sr'?' SR':anMetric==='heures'?'h':' missions';
-              return '  '+lbl+' : '+ctx.raw+u;
+              var suffix=isPlan?' (planifié)':'';
+              return '  '+baseYr+suffix+' : '+rawVal+u;
             }
           }
         }
