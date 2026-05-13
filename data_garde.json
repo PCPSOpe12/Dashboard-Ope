@@ -3418,26 +3418,46 @@
       "lieu": "MASS",
       "inscrits": 5,
       "heures": 30.0,
-      "pec": 0
+      "pec": 3
     },
     {
       "annee": 2026,
       "mois": 5,
       "date": "11/05/2026",
-      "libelle": "[PROV] BSPP",
+      "libelle": "BSPP",
       "lieu": "MENIL",
-      "inscrits": 6,
-      "heures": 36.0,
-      "pec": 0
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
     },
     {
       "annee": 2026,
       "mois": 5,
       "date": "11/05/2026",
-      "libelle": "[PROV] BSPP",
+      "libelle": "BSPP",
       "lieu": "PROY",
-      "inscrits": 1,
-      "heures": 6.0,
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "13/05/2026",
+      "libelle": "Garde BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "14/05/2026",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 5,
+      "heures": 60.0,
       "pec": 0
     },
     {
@@ -3445,19 +3465,39 @@
       "mois": 5,
       "date": "16/05/2026",
       "libelle": "BSPP - Journée des CS",
-      "lieu": "TBC",
-      "inscrits": 3,
-      "heures": 24.0,
+      "lieu": "CHTO",
+      "inscrits": 4,
+      "heures": 32.0,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 5,
       "date": "16/05/2026",
-      "libelle": "[PROV] BSPP",
+      "libelle": "BSPP",
       "lieu": "CRET",
-      "inscrits": 1,
-      "heures": 9.0,
+      "inscrits": 3,
+      "heures": 36.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "19/05/2026",
+      "libelle": "Garde BSPP",
+      "lieu": "PLAI",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "23/05/2026",
+      "libelle": "Garde BSPP",
+      "lieu": "MENIL",
+      "inscrits": 5,
+      "heures": 60.0,
       "pec": 0
     },
     {
@@ -3466,8 +3506,18 @@
       "date": "29/05/2026",
       "libelle": "[PROV] Garde BSPP",
       "lieu": "MTRL",
-      "inscrits": 2,
-      "heures": 24.0,
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "29/05/2026",
+      "libelle": "[PROV] Garde BSPP",
+      "lieu": "CHLY",
+      "inscrits": 6,
+      "heures": 36.0,
       "pec": 0
     },
     {
@@ -3476,8 +3526,8 @@
       "date": "06/06/2026",
       "libelle": "[PROV] Garde BSPP",
       "lieu": "AULN",
-      "inscrits": 3,
-      "heures": 36.0,
+      "inscrits": 5,
+      "heures": 60.0,
       "pec": 0
     },
     {
@@ -3486,8 +3536,18 @@
       "date": "08/06/2026",
       "libelle": "[PROV] Garde BSPP",
       "lieu": "LAND",
-      "inscrits": 2,
-      "heures": 12.0,
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "09/06/2026",
+      "libelle": "[PROV] Garde BSPP",
+      "lieu": "MENIL",
+      "inscrits": 4,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -3513,7 +3573,7 @@
   ],
   "lastModified": "13/05/2026",
   "maxDate": "20/06/2026",
-  "totalRows": 351,
+  "totalRows": 357,
   "years": [
     2024,
     2025,
