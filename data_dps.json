@@ -7450,7 +7450,7 @@
       "statut": "cloturé",
       "inscrits": 3,
       "heures": 27.1,
-      "pec": 0
+      "pec": 4
     },
     {
       "annee": 2026,
@@ -7471,9 +7471,9 @@
       "libelle": "Renfort DPS-ME - Concert Twice J2",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 18.0,
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7483,7 +7483,7 @@
       "libelle": "Renfort Concert Conan Gray - J1",
       "lieu": "Adidas Arena",
       "dps": "PAPS",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 1,
       "heures": 5.5,
       "pec": 0
@@ -7495,7 +7495,7 @@
       "libelle": "Renfort Concert Conan Gray - J2",
       "lieu": "Adidas Arena",
       "dps": "PAPS",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 2,
       "heures": 11.0,
       "pec": 0
@@ -7507,7 +7507,7 @@
       "libelle": "Course France AgriMer",
       "lieu": "Paris - Bois de Vincennes",
       "dps": "PAPS",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 2,
       "heures": 3.0,
       "pec": 0
@@ -7531,7 +7531,7 @@
       "libelle": "Foire du Trone 2026",
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 6,
       "heures": 47.5,
       "pec": 0
@@ -7555,7 +7555,7 @@
       "libelle": "Salon SantExpo",
       "lieu": "Paris - Parc des Expositi",
       "dps": "DPS-PE",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 5,
       "heures": 40.0,
       "pec": 0
@@ -7580,18 +7580,18 @@
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 9,
-      "heures": 103.5,
+      "inscrits": 11,
+      "heures": 126.5,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 5,
       "date": "24/05/2026",
-      "libelle": "[PROV] PdP France Angleterre",
+      "libelle": "Renfort France-Angleterre",
       "lieu": "Parc des Princes",
-      "dps": "-",
-      "statut": "ouvert",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
       "inscrits": 3,
       "heures": 15.0,
       "pec": 0
@@ -7604,8 +7604,8 @@
       "lieu": "Domaine Départemental de",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 16.0,
+      "inscrits": 5,
+      "heures": 40.0,
       "pec": 0
     },
     {
@@ -7628,8 +7628,20 @@
       "lieu": "PLDA",
       "dps": "-",
       "statut": "ouvert",
-      "inscrits": 6,
-      "heures": 43.5,
+      "inscrits": 9,
+      "heures": 65.2,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "29/05/2026",
+      "libelle": "Renfort DPS-ME - Concert Bouss",
+      "lieu": "Accor Arena Bercy",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 2,
+      "heures": 11.0,
       "pec": 0
     },
     {
@@ -7671,13 +7683,25 @@
     {
       "annee": 2026,
       "mois": 6,
+      "date": "06/06/2026",
+      "libelle": "On sla coule 12",
+      "lieu": "Stade Léo Lagrange",
+      "dps": "-",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
       "date": "07/06/2026",
       "libelle": "[Prov] La ruée des fadas",
       "lieu": "IdF",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 1,
+      "heures": 6.0,
       "pec": 0
     },
     {
@@ -7688,8 +7712,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 11,
-      "heures": 110.0,
+      "inscrits": 12,
+      "heures": 120.0,
       "pec": 0
     },
     {
@@ -7832,8 +7856,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 10,
-      "heures": 110.0,
+      "inscrits": 11,
+      "heures": 121.0,
       "pec": 0
     },
     {
@@ -7957,9 +7981,9 @@
       "pec": 0
     }
   ],
-  "lastModified": "13/05/2026",
+  "lastModified": "18/05/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 663,
+  "totalRows": 665,
   "years": [
     2023,
     2024,

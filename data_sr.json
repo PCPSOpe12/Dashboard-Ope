@@ -22,8 +22,8 @@
       },
       "CDD": null,
       "last_dps": "29/04/2026",
-      "last_gar": "11/05/2026",
-      "last_any": "11/05/2026",
+      "last_gar": "16/05/2026",
+      "last_any": "16/05/2026",
       "inscrit_dps": false,
       "inscrit_gar": true,
       "activites_dps": [
@@ -410,6 +410,11 @@
           "heures": 6.0
         },
         {
+          "date": "16/05/2026",
+          "lib": "BSPP - Journée des CS",
+          "heures": 8.0
+        },
+        {
           "date": "16/05/2024",
           "lib": "BSPP",
           "heures": 5.0
@@ -680,8 +685,8 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "30/04/2026",
-      "last_gar": "11/05/2026",
-      "last_any": "11/05/2026",
+      "last_gar": "16/05/2026",
+      "last_any": "16/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -1491,6 +1496,11 @@
           "date": "17/01/2025",
           "lib": "SAMU 75 - Régulation",
           "heures": 6.0
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "BSPP",
+          "heures": 10.0
         },
         {
           "date": "15/03/2026",
@@ -4516,9 +4526,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "12/05/2026",
+      "last_dps": "17/05/2026",
       "last_gar": "11/05/2026",
-      "last_any": "12/05/2026",
+      "last_any": "17/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -4601,6 +4611,11 @@
           "date": "18/04/2026",
           "lib": "Soirée T7 - Doctor Love",
           "heures": 7.0
+        },
+        {
+          "date": "17/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J2",
+          "heures": 6.0
         },
         {
           "date": "15/01/2026",
@@ -5739,16 +5754,21 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "13/10/2024",
+      "last_dps": "16/05/2026",
       "last_gar": "",
-      "last_any": "13/10/2024",
-      "inscrit_dps": true,
+      "last_any": "16/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "28/07/2024",
           "lib": "Renfort Arena Paris Sud - Hall 6",
           "heures": 11.2
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J1",
+          "heures": 6.0
         },
         {
           "date": "15/03/2024",
@@ -9869,9 +9889,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "10/05/2026",
+      "last_dps": "15/05/2026",
       "last_gar": "04/05/2026",
-      "last_any": "10/05/2026",
+      "last_any": "15/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -10024,6 +10044,11 @@
           "date": "16/04/2026",
           "lib": "Renfort Cross Scolaire",
           "heures": 3.5
+        },
+        {
+          "date": "15/05/2026",
+          "lib": "KM 25",
+          "heures": 9.0
         },
         {
           "date": "15/04/2026",
@@ -10529,10 +10554,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "24/04/2026",
+      "last_dps": "16/05/2026",
       "last_gar": "18/04/2026",
-      "last_any": "24/04/2026",
-      "inscrit_dps": true,
+      "last_any": "16/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -10608,6 +10633,11 @@
         {
           "date": "18/11/2025",
           "lib": "Renfort DPS-ME - Concert Lady Gaga",
+          "heures": 6.0
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J1",
           "heures": 6.0
         },
         {
@@ -10817,9 +10847,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/05/2026",
+      "last_dps": "15/05/2026",
       "last_gar": "04/05/2026",
-      "last_any": "08/05/2026",
+      "last_any": "15/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -11132,6 +11162,11 @@
           "date": "15/06/2025",
           "lib": "Passage de grade Aikido",
           "heures": 6.5
+        },
+        {
+          "date": "15/05/2026",
+          "lib": "KM 25",
+          "heures": 9.0
         },
         {
           "date": "15/04/2025",
@@ -12711,8 +12746,8 @@
       },
       "CDD": null,
       "last_dps": "07/05/2026",
-      "last_gar": "03/04/2026",
-      "last_any": "07/05/2026",
+      "last_gar": "15/05/2026",
+      "last_any": "15/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -13044,6 +13079,11 @@
           "heures": 6.0
         },
         {
+          "date": "15/05/2026",
+          "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
           "date": "14/10/2024",
           "lib": "BSPP",
           "heures": 6.0
@@ -13207,9 +13247,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/05/2026",
+      "last_dps": "15/05/2026",
       "last_gar": "29/04/2026",
-      "last_any": "08/05/2026",
+      "last_any": "15/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -13332,6 +13372,11 @@
           "date": "15/06/2025",
           "lib": "Passage de grade Aikido",
           "heures": 6.5
+        },
+        {
+          "date": "15/05/2026",
+          "lib": "KM 25",
+          "heures": 9.0
         },
         {
           "date": "15/04/2026",
@@ -13651,10 +13696,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "07/05/2026",
+      "last_dps": "15/05/2026",
       "last_gar": "15/04/2026",
-      "last_any": "07/05/2026",
-      "inscrit_dps": true,
+      "last_any": "15/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -13691,6 +13736,11 @@
           "date": "18/04/2026",
           "lib": "Soirée T7 - Doctor Love",
           "heures": 7.0
+        },
+        {
+          "date": "15/05/2026",
+          "lib": "KM 25",
+          "heures": 9.0
         },
         {
           "date": "10/01/2026",
@@ -13990,10 +14040,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "13/03/2026",
+      "last_dps": "15/05/2026",
       "last_gar": "11/05/2026",
-      "last_any": "11/05/2026",
-      "inscrit_dps": true,
+      "last_any": "15/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -14010,6 +14060,11 @@
           "date": "19/09/2025",
           "lib": "La Clairière",
           "heures": 7.0
+        },
+        {
+          "date": "15/05/2026",
+          "lib": "KM 25",
+          "heures": 9.0
         },
         {
           "date": "13/03/2026",
@@ -14060,11 +14115,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/04/2026",
-      "last_gar": "22/04/2026",
-      "last_any": "28/04/2026",
-      "inscrit_dps": true,
-      "inscrit_gar": true,
+      "last_dps": "17/05/2026",
+      "last_gar": "16/05/2026",
+      "last_any": "17/05/2026",
+      "inscrit_dps": false,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "30/11/2024",
@@ -14177,8 +14232,18 @@
           "heures": 5.0
         },
         {
+          "date": "17/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J2",
+          "heures": 6.0
+        },
+        {
           "date": "17/04/2026",
           "lib": "Soirée étudiante",
+          "heures": 9.0
+        },
+        {
+          "date": "15/05/2026",
+          "lib": "KM 25",
           "heures": 9.0
         },
         {
@@ -14327,6 +14392,11 @@
           "date": "17/03/2026",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "BSPP - Journée des CS",
+          "heures": 8.0
         },
         {
           "date": "16/05/2025",
@@ -17315,9 +17385,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "07/05/2026",
+      "last_dps": "15/05/2026",
       "last_gar": "04/03/2026",
-      "last_any": "07/05/2026",
+      "last_any": "15/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -17360,6 +17430,11 @@
           "date": "17/01/2026",
           "lib": "2 Much festival",
           "heures": 10.0
+        },
+        {
+          "date": "15/05/2026",
+          "lib": "KM 25",
+          "heures": 9.0
         },
         {
           "date": "13/12/2025",
@@ -18463,10 +18538,10 @@
         "exp": ""
       },
       "last_dps": "08/05/2026",
-      "last_gar": "25/04/2026",
-      "last_any": "08/05/2026",
+      "last_gar": "16/05/2026",
+      "last_any": "16/05/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/12/2025",
@@ -19336,6 +19411,11 @@
           "heures": 6.0
         },
         {
+          "date": "16/05/2026",
+          "lib": "[PROV] BSPP",
+          "heures": 9.0
+        },
+        {
           "date": "16/05/2025",
           "lib": "SAMU 75 - VPS PS",
           "heures": 6.0
@@ -19524,9 +19604,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "03/05/2026",
+      "last_dps": "17/05/2026",
       "last_gar": "25/04/2026",
-      "last_any": "03/05/2026",
+      "last_any": "17/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -19604,6 +19684,11 @@
           "date": "18/05/2025",
           "lib": "Foire du Trone 2025",
           "heures": 10.5
+        },
+        {
+          "date": "17/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J2",
+          "heures": 6.0
         },
         {
           "date": "15/03/2025",
@@ -23492,9 +23577,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "10/05/2026",
+      "last_dps": "16/05/2026",
       "last_gar": "30/04/2026",
-      "last_any": "10/05/2026",
+      "last_any": "16/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -23502,6 +23587,11 @@
           "date": "24/04/2026",
           "lib": "Renfort DPS-ME - Finales CDF de Basket",
           "heures": 6.5
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J1",
+          "heures": 6.0
         },
         {
           "date": "11/04/2026",
@@ -25753,9 +25843,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "26/12/2025",
+      "last_dps": "16/05/2026",
       "last_gar": "",
-      "last_any": "26/12/2025",
+      "last_any": "16/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -25773,12 +25863,17 @@
           "date": "19/12/2025",
           "lib": "Soirée DJ - Phantom",
           "heures": 7.0
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J1",
+          "heures": 6.0
         }
       ],
       "activites_gar": []
     }
   ],
-  "lastModified": "13/05/2026",
+  "lastModified": "18/05/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141
