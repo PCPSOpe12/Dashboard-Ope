@@ -7531,9 +7531,9 @@
       "libelle": "Le Duplex",
       "lieu": "Paris",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 24.1,
+      "statut": "cloturé",
+      "inscrits": 5,
+      "heures": 30.1,
       "pec": 0
     },
     {
@@ -7544,8 +7544,8 @@
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 11,
-      "heures": 126.5,
+      "inscrits": 12,
+      "heures": 138.0,
       "pec": 0
     },
     {
@@ -7558,6 +7558,18 @@
       "statut": "cloturé",
       "inscrits": 3,
       "heures": 15.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "24/05/2026",
+      "libelle": "Renfort DPS-ME - Rocket League Paris Major 2 (J3)",
+      "lieu": "Nanterre - Paris La Défen",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 1,
+      "heures": 11.0,
       "pec": 0
     },
     {
@@ -7588,12 +7600,12 @@
       "annee": 2026,
       "mois": 5,
       "date": "28/05/2026",
-      "libelle": "[PROV] Concert Damso",
-      "lieu": "PLDA",
-      "dps": "-",
-      "statut": "ouvert",
+      "libelle": "Renfort DPS-GE  - Concert DAMSO (J1)",
+      "lieu": "Nanterre - Paris La Défen",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
       "inscrits": 9,
-      "heures": 65.2,
+      "heures": 63.0,
       "pec": 0
     },
     {
@@ -7604,8 +7616,8 @@
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 11.0,
+      "inscrits": 3,
+      "heures": 16.5,
       "pec": 0
     },
     {
@@ -7628,8 +7640,8 @@
       "lieu": "Domaine National de Saint",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 5,
-      "heures": 30.0,
+      "inscrits": 6,
+      "heures": 36.0,
       "pec": 0
     },
     {
@@ -7640,8 +7652,8 @@
       "lieu": "Stade Charlety",
       "dps": "PAPS",
       "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 2.0,
+      "inscrits": 2,
+      "heures": 4.0,
       "pec": 0
     },
     {
@@ -7652,8 +7664,8 @@
       "lieu": "Stade Léo Lagrange",
       "dps": "-",
       "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 2,
+      "heures": 12.0,
       "pec": 0
     },
     {
@@ -7676,8 +7688,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 12,
-      "heures": 120.0,
+      "inscrits": 14,
+      "heures": 140.0,
       "pec": 0
     },
     {
@@ -7688,8 +7700,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 36.0,
+      "inscrits": 7,
+      "heures": 63.0,
       "pec": 0
     },
     {
@@ -7760,8 +7772,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 20.0,
+      "inscrits": 5,
+      "heures": 25.0,
       "pec": 0
     },
     {
@@ -7820,8 +7832,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 11,
-      "heures": 121.0,
+      "inscrits": 12,
+      "heures": 132.0,
       "pec": 0
     },
     {
@@ -7947,7 +7959,7 @@
   ],
   "lastModified": "19/05/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 662,
+  "totalRows": 663,
   "years": [
     2023,
     2024,
