@@ -21775,9 +21775,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/05/2026",
+      "last_dps": "18/05/2026",
       "last_gar": "25/04/2026",
-      "last_any": "08/05/2026",
+      "last_any": "18/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -21940,6 +21940,11 @@
           "date": "19/09/2025",
           "lib": "La Clairière",
           "heures": 7.0
+        },
+        {
+          "date": "18/05/2026",
+          "lib": "Qualification - Tournoi Roland-Garros",
+          "heures": 6.5
         },
         {
           "date": "18/03/2026",
@@ -25873,7 +25878,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "18/05/2026",
+  "lastModified": "19/05/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141
