@@ -550,7 +550,16 @@ function loadJSON(){
 
   fetch("data_sr.json?t="+Date.now())
     .then(function(r){return r.ok?r.json():null;})
-    .then(function(d){if(d&&d.secouristes){SR_DATA=d.secouristes;DATA_SR=d;}updateHeader();if(currentTab==='sr')renderSR();})
+    .then(function(d){
+      if(d&&d.secouristes){SR_DATA=d.secouristes;DATA_SR=d;}
+      updateHeader();
+      if(currentTab==='sr') renderSR();
+      else if(window._srUniqChart){
+        // Redraw SR uniques chart with fresh data even if not on SR tab
+        window._srUniqChart.destroy();
+        window._srUniqChart=null;
+      }
+    })
     .catch(function(){});
 }
 
@@ -957,7 +966,7 @@ function renderSR(){
         }
       }
     });
-  }, 150);
+  }, 2000);
 }
 
 function srUniqWeeks(type, year){
