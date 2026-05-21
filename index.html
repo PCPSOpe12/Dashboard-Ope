@@ -2193,8 +2193,31 @@ var AN_PALETTE = [
 ];
 
 function anGetWeeklyData(year, type, metric){
+  // Metric "sr_uniques" : SR uniques par semaine via data_sr.json (sans doublons)
+  if(metric==='sr_uniques'){
+    var weekSets = Array.from({length:52}, function(){ return new Set(); });
+    if(SR_DATA && SR_DATA.length){
+      SR_DATA.forEach(function(s){
+        var acts = [];
+        if(type==='dps'||type==='both')   acts = acts.concat(s.activites_dps||[]);
+        if(type==='garde'||type==='both') acts = acts.concat(s.activites_gar||[]);
+        acts.forEach(function(a){
+          var d = parseDate(a.date);
+          if(!d || d.getFullYear()!==year) return;
+          var start = new Date(year,0,1);
+          var wk = Math.min(51, Math.floor((d-start)/(1000*60*60*24*7)));
+          weekSets[wk].add(s.nom+'_'+s.prenom);
+        });
+      });
+    }
+    var weeks = weekSets.map(function(s){ return s.size; });
+    weeks._raw = weeks.slice();
+    return weeks;
+  }
+
+  // Autres métriques : depuis DPS/Garde rows
   var source = [];
-  if(type==='dps'||type==='both') source = source.concat((DATA_DPS?DATA_DPS.rows:[]).filter(function(r){return r.annee===year;}));
+  if(type==='dps'||type==='both')   source = source.concat((DATA_DPS  ?DATA_DPS.rows  :[]).filter(function(r){return r.annee===year;}));
   if(type==='garde'||type==='both') source = source.concat((DATA_GARDE?DATA_GARDE.rows:[]).filter(function(r){return r.annee===year;}));
 
   var weeks = new Array(52).fill(0);
@@ -2202,14 +2225,12 @@ function anGetWeeklyData(year, type, metric){
     var d = parseDate(r.date);
     if(!d) return;
     var start = new Date(year,0,1);
-    var dayOfYear = Math.floor((d - start)/(1000*60*60*24));
-    var wk = Math.min(51, Math.floor(dayOfYear/7));
+    var wk = Math.min(51, Math.floor((d-start)/(1000*60*60*24*7)));
     if(metric==='sr')            weeks[wk] += (r.inscrits||0);
     else if(metric==='missions') weeks[wk] += 1;
     else if(metric==='heures')   weeks[wk] += (r.heures||0);
   });
 
-  // Somme brute par semaine — pas de lissage
   weeks._raw = weeks.slice();
   return weeks;
 }
@@ -2292,7 +2313,7 @@ function renderAN(){
     }
   });
 
-  var unitLabel = anMetric==='sr'?'SR / semaine':anMetric==='heures'?'Heures / semaine':'Missions / semaine';
+  var unitLabel = anMetric==='sr'?'SR mobilisés / semaine':anMetric==='sr_uniques'?'SR uniques / semaine':anMetric==='heures'?'Heures / semaine':'Missions / semaine';
   var weeks = Array.from({length:52},function(_,i){return 'S'+(i+1);});
 
   var legendHtml = years.map(function(yr,i){
@@ -2350,7 +2371,7 @@ function renderAN(){
   [{v:'dps',l:'DPS eProtec'},{v:'garde',l:'Gardes'},{v:'both',l:'DPS + Gardes'}].forEach(function(o){html+='<option value="'+o.v+'"'+(anType===o.v?' selected':'')+'>'+o.l+'</option>';});
   html+='</select>';
   html+='<select onchange="anMetric=this.value;renderAN()" style="border:1px solid var(--border);border-radius:5px;padding:5px 8px;font-size:12px;font-family:inherit">';
-  [{v:'sr',l:'SR mobilisés'},{v:'missions',l:'Nb missions'},{v:'heures',l:'Heures'}].forEach(function(o){html+='<option value="'+o.v+'"'+(anMetric===o.v?' selected':'')+'>'+o.l+'</option>';});
+  [{v:'sr',l:'SR mobilisés (somme)'},{v:'sr_uniques',l:'SR uniques / semaine'},{v:'missions',l:'Nb missions'},{v:'heures',l:'Heures'}].forEach(function(o){html+='<option value="'+o.v+'"'+(anMetric===o.v?' selected':'')+'>'+o.l+'</option>';});
   html+='</select>';
   html+='<div style="margin-left:auto;display:flex;gap:12px;align-items:center">'+legendHtml+'</div>';
   html+='</div>';
