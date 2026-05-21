@@ -948,6 +948,7 @@ function drawSRUniqChart(){
     var labels=Array.from({length:52},function(_,i){return 'S'+(i+1);});
     var FR_M=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
     window._srUniqRaw={dps:dpsData,garde:gardeData};
+    console.log('FINAL dps.real[0-5]:',dps.real.slice(0,6),'dpsData[0-5]:',dpsData.slice(0,6));
     window._srUniqChart=new Chart(canvas,{
       type:'line',
       data:{labels:labels,datasets:[
