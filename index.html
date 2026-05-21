@@ -948,7 +948,6 @@ function drawSRUniqChart(){
     var labels=Array.from({length:52},function(_,i){return 'S'+(i+1);});
     var FR_M=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
     window._srUniqRaw={dps:dpsData,garde:gardeData};
-    console.log('FINAL dps.real[0-5]:',dps.real.slice(0,6),'dpsData[0-5]:',dpsData.slice(0,6));
     window._srUniqChart=new Chart(canvas,{
       type:'line',
       data:{labels:labels,datasets:[
@@ -975,7 +974,7 @@ function srUniqWeeks(type, year){
   // 1. Pre-computed from convert.py in DATA_SR (best source)
   var key='weekly_'+type+'_uniques';
   if(DATA_SR&&DATA_SR[key]&&DATA_SR[key][String(year)]){
-    return DATA_SR[key][String(year)];
+    return Array.from(DATA_SR[key][String(year)],function(v){return +v||0;});
   }
   // 2. From SR_DATA activites (individual names — requires new data_sr.json)
   var sets=Array.from({length:52},function(){return new Set();});
