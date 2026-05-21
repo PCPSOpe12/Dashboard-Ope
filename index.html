@@ -914,8 +914,8 @@ function renderSR(){
     '<div style="text-align:center;padding:14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px">Protection Civile Paris Seine — Antenne de Paris 12</div>'+
     '</div>';
 
-  // ── SR uniques chart ──────────────────────────────────────────────────
-  drawSRUniqChart();
+  // ── SR uniques chart ── dessiné après rendu DOM ──────────────────────
+  requestAnimationFrame(function(){requestAnimationFrame(drawSRUniqChart);});
 }
 
 function drawSRUniqChart(){
