@@ -928,10 +928,10 @@ function renderSR(){
     window._srUniqChart=new Chart(canvas,{
       type:'line',
       data:{labels:labels,datasets:[
-        {label:'DPS',      data:dps.real,   borderColor:'#FF7F30',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:false},
-        {label:'DPS plan', data:dps.plan,   borderColor:'#FF7F30',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:false},
-        {label:'Garde',    data:garde.real, borderColor:'#002D74',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:false},
-        {label:'Garde plan',data:garde.plan,borderColor:'#002D74',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:false},
+        {label:'DPS',      data:dps.real,   borderColor:'#FF7F30',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:true},
+        {label:'DPS plan', data:dps.plan,   borderColor:'#FF7F30',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:true},
+        {label:'Garde',    data:garde.real, borderColor:'#002D74',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:true},
+        {label:'Garde plan',data:garde.plan,borderColor:'#002D74',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:true},
       ]},
       options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
         onClick:function(evt,elements){if(!elements||!elements.length)return;openSRUniqWeekModal(elements[0].index);},
@@ -970,16 +970,18 @@ function srUniqWeeks(type, year){
     var total=sets.reduce(function(t,s){return t+s.size;},0);
     if(total>0) return sets.map(function(s){return s.size;});
   }
-  // 3. Fallback: sum inscrits (not unique but visible)
+  // 3. Fallback: count distinct events per week from DPS/Garde rows
+  // (not truly unique SR but at least shows activity shape)
   var source=type==='dps'?(DATA_DPS?DATA_DPS.rows:[]):(DATA_GARDE?DATA_GARDE.rows:[]);
-  var weeks=new Array(52).fill(0);
+  var eventSets=Array.from({length:52},function(){return new Set();});
   source.filter(function(r){return r.annee===year;}).forEach(function(r){
     var d=parseDate(r.date); if(!d) return;
     var start=new Date(year,0,1);
     var wk=Math.min(51,Math.floor((d-start)/(1000*60*60*24*7)));
-    weeks[wk]+=(r.inscrits||0);
+    // Use libelle+date as key to count distinct events
+    eventSets[wk].add((r.libelle||'x')+'_'+r.date);
   });
-  return weeks;
+  return eventSets.map(function(s){return s.size;});
 }
 
 function openSRUniqWeekModal(wk){
