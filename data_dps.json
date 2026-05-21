@@ -7587,6 +7587,18 @@
     {
       "annee": 2026,
       "mois": 5,
+      "date": "25/05/2026",
+      "libelle": "Canicule  Tour Eiffel",
+      "lieu": "Tour Eiffel",
+      "dps": "-",
+      "statut": "cloturé",
+      "inscrits": 3,
+      "heures": 24.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
       "date": "26/05/2026",
       "libelle": "Trophée Aventure",
       "lieu": "Domaine Départemental de",
@@ -7611,6 +7623,18 @@
     {
       "annee": 2026,
       "mois": 5,
+      "date": "27/05/2026",
+      "libelle": "Prière collective",
+      "lieu": "Saint-Denis - Stade du La",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 2.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
       "date": "28/05/2026",
       "libelle": "Renfort DPS-GE  - Concert DAMSO (J1)",
       "lieu": "Nanterre - Paris La Défen",
@@ -7629,7 +7653,7 @@
       "dps": "DPS-PE",
       "statut": "ouvert",
       "inscrits": 3,
-      "heures": 16.5,
+      "heures": 18.0,
       "pec": 0
     },
     {
@@ -7700,8 +7724,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 14,
-      "heures": 140.0,
+      "inscrits": 13,
+      "heures": 130.0,
       "pec": 0
     },
     {
@@ -7971,7 +7995,7 @@
   ],
   "lastModified": "21/05/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 664,
+  "totalRows": 666,
   "years": [
     2023,
     2024,
