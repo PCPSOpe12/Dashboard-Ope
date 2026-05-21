@@ -920,6 +920,18 @@ function renderSR(){
     var curWk=Math.min(51,Math.floor((today-startCur)/(1000*60*60*24*7)));
     var dpsData=srUniqWeeks('dps',curYear);
     var gardeData=srUniqWeeks('garde',curYear);
+
+    // If no data available, show message
+    if(!dpsData && !gardeData){
+      canvas.style.display='none';
+      var msg=document.createElement('div');
+      msg.style.cssText='padding:20px;text-align:center;color:var(--muted);font-size:12px;background:var(--bg);border-radius:6px;margin:8px 0';
+      msg.innerHTML='📊 Données SR uniques non disponibles — déploie <strong>convert_v5.py</strong> sur GitHub puis repousse l\'export participations via Admin';
+      canvas.parentNode.insertBefore(msg, canvas);
+      return;
+    }
+    dpsData = dpsData || new Array(52).fill(0);
+    gardeData = gardeData || new Array(52).fill(0);
     function splitData(data){return{real:data.map(function(v,i){return i<=curWk?v:null;}),plan:data.map(function(v,i){return i>=curWk?v:null;})};}
     var dps=splitData(dpsData),garde=splitData(gardeData);
     var labels=Array.from({length:52},function(_,i){return 'S'+(i+1);});
@@ -949,12 +961,12 @@ function renderSR(){
 }
 
 function srUniqWeeks(type, year){
-  // 1. Pre-computed from convert.py in DATA_SR
+  // 1. Pre-computed from convert.py in DATA_SR (best source)
   var key='weekly_'+type+'_uniques';
   if(DATA_SR&&DATA_SR[key]&&DATA_SR[key][String(year)]){
     return DATA_SR[key][String(year)];
   }
-  // 2. From SR_DATA activites (individual names)
+  // 2. From SR_DATA activites (individual names — requires new data_sr.json)
   var sets=Array.from({length:52},function(){return new Set();});
   if(SR_DATA&&SR_DATA.length){
     SR_DATA.forEach(function(s){
@@ -970,18 +982,8 @@ function srUniqWeeks(type, year){
     var total=sets.reduce(function(t,s){return t+s.size;},0);
     if(total>0) return sets.map(function(s){return s.size;});
   }
-  // 3. Fallback: count distinct events per week from DPS/Garde rows
-  // (not truly unique SR but at least shows activity shape)
-  var source=type==='dps'?(DATA_DPS?DATA_DPS.rows:[]):(DATA_GARDE?DATA_GARDE.rows:[]);
-  var eventSets=Array.from({length:52},function(){return new Set();});
-  source.filter(function(r){return r.annee===year;}).forEach(function(r){
-    var d=parseDate(r.date); if(!d) return;
-    var start=new Date(year,0,1);
-    var wk=Math.min(51,Math.floor((d-start)/(1000*60*60*24*7)));
-    // Use libelle+date as key to count distinct events
-    eventSets[wk].add((r.libelle||'x')+'_'+r.date);
-  });
-  return eventSets.map(function(s){return s.size;});
+  // No data available yet — return null to signal missing data
+  return null;
 }
 
 function openSRUniqWeekModal(wk){
