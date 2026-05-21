@@ -908,6 +908,127 @@ function renderSR(){
     ficheHtml+
     '<div style="text-align:center;padding:14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px">Protection Civile Paris Seine — Antenne de Paris 12</div>'+
     '</div>';
+
+  // ── SR uniques chart ──────────────────────────────────────────────────
+  setTimeout(function(){
+    var canvas = document.getElementById('srUniqChart');
+    if(!canvas) return;
+    if(window._srUniqChart){window._srUniqChart.destroy();window._srUniqChart=null;}
+    var curYear=new Date().getFullYear();
+    var today=new Date();
+    var startCur=new Date(curYear,0,1);
+    var curWk=Math.min(51,Math.floor((today-startCur)/(1000*60*60*24*7)));
+    var dpsData=srUniqWeeks('dps',curYear);
+    var gardeData=srUniqWeeks('garde',curYear);
+    function splitData(data){return{real:data.map(function(v,i){return i<=curWk?v:null;}),plan:data.map(function(v,i){return i>=curWk?v:null;})};}
+    var dps=splitData(dpsData),garde=splitData(gardeData);
+    var labels=Array.from({length:52},function(_,i){return 'S'+(i+1);});
+    var FR_M=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+    window._srUniqRaw={dps:dpsData,garde:gardeData};
+    window._srUniqChart=new Chart(canvas,{
+      type:'line',
+      data:{labels:labels,datasets:[
+        {label:'DPS',      data:dps.real,   borderColor:'#FF7F30',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:false},
+        {label:'DPS plan', data:dps.plan,   borderColor:'#FF7F30',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:false},
+        {label:'Garde',    data:garde.real, borderColor:'#002D74',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:false},
+        {label:'Garde plan',data:garde.plan,borderColor:'#002D74',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:false},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+        onClick:function(evt,elements){if(!elements||!elements.length)return;openSRUniqWeekModal(elements[0].index);},
+        plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(0,0,0,0.8)',callbacks:{
+          title:function(ctx){return 'Semaine '+(ctx[0].dataIndex+1)+' · '+FR_M[Math.floor(ctx[0].dataIndex/4.33)]+' — cliquer pour détail';},
+          label:function(ctx){if(ctx.raw===null)return null;var lbl=ctx.dataset.label.replace(' plan',' (planifié)');return '  '+lbl+' : '+ctx.raw+' SR uniques';}
+        }}},
+        scales:{
+          x:{ticks:{maxTicksLimit:13,autoSkip:true,color:'#888',font:{size:11},callback:function(_,i){return i%4===0?FR_M[Math.floor(i/4.33)]:''}},grid:{color:'rgba(136,135,128,0.1)'}},
+          y:{beginAtZero:true,ticks:{color:'#888',font:{size:11}},grid:{color:'rgba(136,135,128,0.1)'},title:{display:true,text:'SR uniques',color:'#888',font:{size:11}}}
+        }
+      }
+    });
+  }, 150);
+}
+
+function srUniqWeeks(type, year){
+  // 1. Pre-computed from convert.py in DATA_SR
+  var key='weekly_'+type+'_uniques';
+  if(DATA_SR&&DATA_SR[key]&&DATA_SR[key][String(year)]){
+    return DATA_SR[key][String(year)];
+  }
+  // 2. From SR_DATA activites (individual names)
+  var sets=Array.from({length:52},function(){return new Set();});
+  if(SR_DATA&&SR_DATA.length){
+    SR_DATA.forEach(function(s){
+      var acts=type==='dps'?(s.activites_dps||[]):(s.activites_gar||[]);
+      acts.forEach(function(a){
+        var d=parseDate(a.date);
+        if(!d||d.getFullYear()!==year) return;
+        var start=new Date(year,0,1);
+        var wk=Math.min(51,Math.floor((d-start)/(1000*60*60*24*7)));
+        sets[wk].add(s.nom+'__'+s.prenom);
+      });
+    });
+    var total=sets.reduce(function(t,s){return t+s.size;},0);
+    if(total>0) return sets.map(function(s){return s.size;});
+  }
+  // 3. Fallback: sum inscrits (not unique but visible)
+  var source=type==='dps'?(DATA_DPS?DATA_DPS.rows:[]):(DATA_GARDE?DATA_GARDE.rows:[]);
+  var weeks=new Array(52).fill(0);
+  source.filter(function(r){return r.annee===year;}).forEach(function(r){
+    var d=parseDate(r.date); if(!d) return;
+    var start=new Date(year,0,1);
+    var wk=Math.min(51,Math.floor((d-start)/(1000*60*60*24*7)));
+    weeks[wk]+=(r.inscrits||0);
+  });
+  return weeks;
+}
+
+function openSRUniqWeekModal(wk){
+  var FR_M=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+  var curYear=new Date().getFullYear();
+  var wkLabel='Semaine '+(wk+1)+' · '+FR_M[Math.floor(wk/4.33)];
+  function getSRForWeek(type){
+    var result=[],seen=new Set();
+    (SR_DATA||[]).forEach(function(s){
+      var acts=type==='dps'?(s.activites_dps||[]):(s.activites_gar||[]);
+      var found=acts.filter(function(a){
+        var d=parseDate(a.date);
+        if(!d||d.getFullYear()!==curYear) return false;
+        var start=new Date(curYear,0,1);
+        return Math.min(51,Math.floor((d-start)/(1000*60*60*24*7)))===wk;
+      });
+      if(!found.length) return;
+      var key=s.nom+'_'+s.prenom;
+      if(seen.has(key)) return;
+      seen.add(key);
+      var totalH=found.reduce(function(t,a){return t+(a.heures||0);},0);
+      result.push({nom:s.nom,prenom:s.prenom,nb:found.length,heures:Math.round(totalH*10)/10,missions:found.map(function(a){return a.lib;}).filter(function(v,i,arr){return arr.indexOf(v)===i;})});
+    });
+    return result.sort(function(a,b){return a.nom.localeCompare(b.nom);});
+  }
+  function tableHtml(rows,color){
+    if(!rows.length) return '<div style="font-size:11px;color:var(--muted);padding:8px;text-align:center">Aucun SR cette semaine</div>';
+    var h='<table style="width:100%;border-collapse:collapse;font-size:11px"><thead><tr>';
+    ['Nom','Prénom','Missions','Heures'].forEach(function(c){h+='<th style="background:'+color+';color:#fff;padding:5px 8px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase">'+c+'</th>';});
+    h+='</tr></thead><tbody>';
+    rows.forEach(function(r,i){
+      h+='<tr style="background:'+(i%2===0?'#fff':'#F8FAFC')+';border-bottom:1px solid var(--border)">'+
+        '<td style="padding:5px 8px;font-weight:600;color:var(--navy)">'+escHtml(r.nom)+'</td>'+
+        '<td style="padding:5px 8px">'+escHtml(r.prenom)+'</td>'+
+        '<td style="padding:5px 8px;color:var(--muted);font-size:10px">'+escHtml(r.missions.join(', '))+'</td>'+
+        '<td style="padding:5px 8px;text-align:center;font-weight:700;color:'+color+'">'+r.heures+'h</td></tr>';
+    });
+    var totH=rows.reduce(function(t,r){return t+(r.heures||0);},0);
+    h+='<tr style="border-top:2px solid '+color+';background:var(--bg)"><td colspan="3" style="padding:5px 8px;font-size:10px;color:var(--muted);text-transform:uppercase">Total</td><td style="padding:5px 8px;text-align:center;font-weight:700;color:'+color+'">'+Math.round(totH*10)/10+'h</td></tr>';
+    return h+'</tbody></table>';
+  }
+  var dpsSR=getSRForWeek('dps'),gardeSR=getSRForWeek('garde');
+  var html='<div style="margin-bottom:16px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'+
+    '<span style="font-size:12px;font-weight:700;color:var(--orange);background:#FFF0E6;border-radius:4px;padding:2px 8px;border:1px solid var(--orange)">DPS</span>'+
+    '<span style="font-size:11px;color:var(--muted)">'+dpsSR.length+' SR unique'+(dpsSR.length>1?'s':'')+'</span></div>'+tableHtml(dpsSR,'#FF7F30')+'</div>'+
+    '<div><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'+
+    '<span style="font-size:12px;font-weight:700;color:var(--navy);background:#E6F1FB;border-radius:4px;padding:2px 8px;border:1px solid var(--navy)">Garde</span>'+
+    '<span style="font-size:11px;color:var(--muted)">'+gardeSR.length+' SR unique'+(gardeSR.length>1?'s':'')+'</span></div>'+tableHtml(gardeSR,'#002D74')+'</div>';
+  openModal(wkLabel+' — SR mobilisés',html);
 }
 
 function showSRFiche(idx){srFicheIdx=idx;renderSR();setTimeout(function(){var el=document.getElementById('contentSR').querySelector('[style*="border-top:3px solid var(--orange)"]');if(el)el.scrollIntoView({behavior:'smooth'});},50);}
