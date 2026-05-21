@@ -929,8 +929,15 @@ function renderSR(){
     var curWk=Math.min(51,Math.floor((today-startCur)/(1000*60*60*24*7)));
     var dpsData=srUniqWeeks('dps',curYear);
     var gardeData=srUniqWeeks('garde',curYear);
-
-    // If no data available, show message
+    console.log('SR chart debug:', {
+      curYear: curYear,
+      DATA_SR_keys: DATA_SR ? Object.keys(DATA_SR) : 'null',
+      has_weekly_dps: DATA_SR && !!DATA_SR['weekly_dps_uniques'],
+      weekly_dps_years: DATA_SR && DATA_SR['weekly_dps_uniques'] ? Object.keys(DATA_SR['weekly_dps_uniques']) : 'none',
+      dpsData_null: dpsData===null,
+      dpsData_total: dpsData ? dpsData.reduce(function(a,b){return a+b;},0) : 'null',
+      SR_DATA_length: SR_DATA ? SR_DATA.length : 0
+    });
     if(!dpsData && !gardeData){
       canvas.style.display='none';
       var msg=document.createElement('div');
