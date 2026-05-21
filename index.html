@@ -958,6 +958,7 @@ function renderSR(){
     canvas.style.height='220px';
     canvas.height=220;
     console.log('Canvas dims before chart:', canvas.offsetWidth, canvas.offsetHeight, canvas.width, canvas.height);
+    console.log('curWk:', curWk, 'dps weeks 0-21:', dpsData.slice(0,22));
     window._srUniqRaw={dps:dpsData,garde:gardeData};
     window._srUniqChart=new Chart(canvas,{
       type:'line',
