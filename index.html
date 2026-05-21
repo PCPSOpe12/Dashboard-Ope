@@ -944,6 +944,12 @@ function drawSRUniqChart(){
       var plan=data.map(function(v,i){return i>=curWk?(v||0):null;});
       return{real:real,plan:plan};
     }
+    // Force 0 in first and last position so Y axis starts at 0
+    function forceZeroBounds(d){
+      var r=d.slice();
+      r[0]=r[0]===null?null:Math.max(0,r[0]);
+      return r;
+    }
     var dps=splitData(dpsData),garde=splitData(gardeData);
     var labels=Array.from({length:52},function(_,i){return 'S'+(i+1);});
     var FR_M=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
@@ -969,7 +975,7 @@ function drawSRUniqChart(){
         }}},
         scales:{
           x:{ticks:{maxTicksLimit:13,autoSkip:true,color:'#888',font:{size:11},callback:function(_,i){return i%4===0?FR_M[Math.floor(i/4.33)]:''}},grid:{color:'rgba(136,135,128,0.1)'}},
-          y:{suggestedMin:0,suggestedMax:40,ticks:{color:'#888',font:{size:11}},grid:{color:'rgba(136,135,128,0.1)'},title:{display:true,text:'SR uniques',color:'#888',font:{size:11}}}
+          y:{min:0,ticks:{color:'#888',font:{size:11}},grid:{color:'rgba(136,135,128,0.1)'},title:{display:true,text:'SR uniques',color:'#888',font:{size:11}}}
         }
       }
     });
