@@ -2392,10 +2392,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/04/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "09/04/2026",
-      "last_any": "28/04/2026",
-      "inscrit_dps": true,
+      "last_any": "20/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -2411,6 +2411,11 @@
         {
           "date": "21/04/2026",
           "lib": "Renfort DPS-ME - Concert Louis Tomlinson",
+          "heures": 6.0
+        },
+        {
+          "date": "20/05/2026",
+          "lib": "Renfort DPS-ME - Concert Star Academy",
           "heures": 6.0
         },
         {
@@ -12745,9 +12750,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "07/05/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "15/05/2026",
-      "last_any": "15/05/2026",
+      "last_any": "20/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -12840,6 +12845,11 @@
           "date": "20/11/2024",
           "lib": "Cross UNSS93",
           "heures": 4.0
+        },
+        {
+          "date": "20/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 9.5
         },
         {
           "date": "20/04/2025",
@@ -16047,9 +16057,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/04/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "30/04/2026",
-      "last_any": "30/04/2026",
+      "last_any": "20/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -16117,6 +16127,11 @@
           "date": "20/06/2025",
           "lib": "Evènement automobile - FESTIV4L - Nautique",
           "heures": 28.0
+        },
+        {
+          "date": "20/05/2026",
+          "lib": "Renfort DPS-ME - Concert Star Academy",
+          "heures": 6.0
         },
         {
           "date": "20/04/2024",
@@ -19944,10 +19959,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "04/05/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "01/03/2026",
-      "last_any": "04/05/2026",
-      "inscrit_dps": true,
+      "last_any": "20/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -20019,6 +20034,11 @@
           "date": "21/06/2024",
           "lib": "Fête de la Musique -  Neuilly-sur-Seine",
           "heures": 5.0
+        },
+        {
+          "date": "20/05/2026",
+          "lib": "Renfort DPS-ME - Concert Star Academy",
+          "heures": 6.0
         },
         {
           "date": "18/04/2025",
@@ -21163,9 +21183,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "29/04/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "17/03/2026",
-      "last_any": "29/04/2026",
+      "last_any": "20/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -21297,6 +21317,11 @@
         {
           "date": "20/12/2024",
           "lib": "Renfort DPS-ME - Concert Xmas Vybe",
+          "heures": 6.0
+        },
+        {
+          "date": "20/05/2026",
+          "lib": "Renfort DPS-ME - Concert Star Academy",
           "heures": 6.0
         },
         {
@@ -21775,9 +21800,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "18/05/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "25/04/2026",
-      "last_any": "18/05/2026",
+      "last_any": "20/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -21922,6 +21947,11 @@
           "heures": 12.0
         },
         {
+          "date": "20/05/2026",
+          "lib": "Qualification - Tournoi Roland-Garros",
+          "heures": 6.5
+        },
+        {
           "date": "20/05/2025",
           "lib": "Tournoi de Roland Garros",
           "heures": 6.5
@@ -21940,6 +21970,11 @@
           "date": "19/09/2025",
           "lib": "La Clairière",
           "heures": 7.0
+        },
+        {
+          "date": "19/05/2026",
+          "lib": "Qualification - Tournoi Roland-Garros",
+          "heures": 6.5
         },
         {
           "date": "18/05/2026",
@@ -25848,10 +25883,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "16/05/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "",
-      "last_any": "16/05/2026",
-      "inscrit_dps": true,
+      "last_any": "20/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -25863,6 +25898,11 @@
           "date": "21/12/2025",
           "lib": "Renfort DPS-ME - Concert Dinos J1",
           "heures": 5.5
+        },
+        {
+          "date": "20/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 9.5
         },
         {
           "date": "19/12/2025",
@@ -25878,7 +25918,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "19/05/2026",
+  "lastModified": "21/05/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141

@@ -7483,9 +7483,9 @@
       "libelle": "Renfort DPS-ME - Concert Star Academy",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
-      "statut": "cloturé",
-      "inscrits": 4,
-      "heures": 24.0,
+      "statut": "ouvert",
+      "inscrits": 3,
+      "heures": 16.5,
       "pec": 0
     },
     {
@@ -7498,19 +7498,7 @@
       "statut": "cloturé",
       "inscrits": 6,
       "heures": 47.5,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 5,
-      "date": "21/05/2026",
-      "libelle": "Exercice SOGEPP TRAPIL/TOTAL",
-      "lieu": "Gennevilliers",
-      "dps": "DPS-PE",
-      "statut": "cloturé",
-      "inscrits": 0,
-      "heures": 0.0,
-      "pec": 0
+      "pec": 1
     },
     {
       "annee": 2026,
@@ -7539,11 +7527,35 @@
     {
       "annee": 2026,
       "mois": 5,
+      "date": "23/05/2026",
+      "libelle": "Renfort DPS-ME - Finales CDF Handball",
+      "lieu": "Accor Arena Bercy",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 8.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "23/05/2026",
+      "libelle": "Finale régionale coupe de Paris",
+      "lieu": "Villeparisis",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 12.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
       "date": "24/05/2026",
       "libelle": "Foire du Trone 2026",
       "lieu": "Paris - Pelouse de Reuill",
       "dps": "DPS-PE",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 12,
       "heures": 138.0,
       "pec": 0
@@ -7579,7 +7591,7 @@
       "libelle": "Trophée Aventure",
       "lieu": "Domaine Départemental de",
       "dps": "DPS-PE",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 5,
       "heures": 40.0,
       "pec": 0
@@ -7605,7 +7617,7 @@
       "dps": "DPS-PE",
       "statut": "cloturé",
       "inscrits": 9,
-      "heures": 63.0,
+      "heures": 65.2,
       "pec": 0
     },
     {
@@ -7662,10 +7674,10 @@
       "date": "06/06/2026",
       "libelle": "On sla coule 12",
       "lieu": "Stade Léo Lagrange",
-      "dps": "-",
+      "dps": "PAPS",
       "statut": "ouvert",
       "inscrits": 2,
-      "heures": 12.0,
+      "heures": 14.0,
       "pec": 0
     },
     {
@@ -7957,9 +7969,9 @@
       "pec": 0
     }
   ],
-  "lastModified": "19/05/2026",
+  "lastModified": "21/05/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 663,
+  "totalRows": 664,
   "years": [
     2023,
     2024,
