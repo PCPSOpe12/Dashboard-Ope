@@ -971,7 +971,7 @@ function drawSRUniqChart(){
         }}},
         scales:{
           x:{ticks:{maxTicksLimit:13,autoSkip:true,color:'#888',font:{size:11},callback:function(_,i){return i%4===0?FR_M[Math.floor(i/4.33)]:''}},grid:{color:'rgba(136,135,128,0.1)'}},
-          y:{beginAtZero:true,ticks:{color:'#888',font:{size:11}},grid:{color:'rgba(136,135,128,0.1)'},title:{display:true,text:'SR uniques',color:'#888',font:{size:11}}}
+          y:{min:0,ticks:{color:'#888',font:{size:11}},grid:{color:'rgba(136,135,128,0.1)'},title:{display:true,text:'SR uniques',color:'#888',font:{size:11}}}
         }
       }
     });
