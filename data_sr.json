@@ -24,7 +24,7 @@
       "last_dps": "29/04/2026",
       "last_gar": "16/05/2026",
       "last_any": "16/05/2026",
-      "inscrit_dps": false,
+      "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
         {
@@ -411,7 +411,7 @@
         },
         {
           "date": "16/05/2026",
-          "lib": "BSPP - Journée des CS",
+          "lib": "BSPP",
           "heures": 8.0
         },
         {
@@ -486,7 +486,7 @@
         },
         {
           "date": "11/05/2026",
-          "lib": "[PROV] BSPP",
+          "lib": "BSPP",
           "heures": 6.0
         },
         {
@@ -684,7 +684,7 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "30/04/2026",
+      "last_dps": "16/05/2026",
       "last_gar": "16/05/2026",
       "last_any": "16/05/2026",
       "inscrit_dps": true,
@@ -772,13 +772,13 @@
         },
         {
           "date": "28/06/2024",
-          "lib": "Solidays J1 - VAC3 PSA Village",
-          "heures": 8.0
+          "lib": "Solidays J1 - VAC2 VPS",
+          "heures": 4.0
         },
         {
           "date": "28/06/2024",
-          "lib": "Solidays J1 - VAC2 VPS",
-          "heures": 4.0
+          "lib": "Solidays J1 - VAC3 PSA Village",
+          "heures": 8.0
         },
         {
           "date": "28/03/2026",
@@ -849,11 +849,6 @@
           "date": "25/05/2024",
           "lib": "Renfort DPS-ME - Concert Soolking",
           "heures": 5.5
-        },
-        {
-          "date": "25/04/2026",
-          "lib": "FORCEPS 2026 - ARGOS",
-          "heures": 179.5
         },
         {
           "date": "25/02/2024",
@@ -947,13 +942,13 @@
         },
         {
           "date": "20/04/2024",
-          "lib": "Renfort PAPS - After Show CDF Handball",
-          "heures": 1.5
+          "lib": "Renfort DPS-PE - CDF Handball 2024",
+          "heures": 8.0
         },
         {
           "date": "20/04/2024",
-          "lib": "Renfort DPS-PE - CDF Handball 2024",
-          "heures": 8.0
+          "lib": "Renfort PAPS - After Show CDF Handball",
+          "heures": 1.5
         },
         {
           "date": "20/03/2026",
@@ -1019,6 +1014,11 @@
           "date": "16/08/2025",
           "lib": "Renfort DPS-ME - Basket France / Espagne",
           "heures": 5.0
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J1",
+          "heures": 6.0
         },
         {
           "date": "15/11/2025",
@@ -1132,13 +1132,13 @@
         },
         {
           "date": "10/06/2025",
-          "lib": "Renfort DPS-ME - Concert Billie Eilish",
-          "heures": 7.0
+          "lib": "Tournoi de Rugby",
+          "heures": 2.0
         },
         {
           "date": "10/06/2025",
-          "lib": "Tournoi de Rugby",
-          "heures": 2.0
+          "lib": "Renfort DPS-ME - Concert Billie Eilish",
+          "heures": 7.0
         },
         {
           "date": "10/04/2026",
@@ -1508,6 +1508,11 @@
           "heures": 12.0
         },
         {
+          "date": "14/05/2026",
+          "lib": "BSPP",
+          "heures": 12.0
+        },
+        {
           "date": "14/04/2026",
           "lib": "BSPP",
           "heures": 6.0
@@ -1549,7 +1554,7 @@
         },
         {
           "date": "11/05/2026",
-          "lib": "[PROV] BSPP",
+          "lib": "BSPP",
           "heures": 6.0
         },
         {
@@ -1749,9 +1754,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "19/04/2026",
+      "last_dps": "10/05/2026",
       "last_gar": "03/01/2026",
-      "last_any": "19/04/2026",
+      "last_any": "10/05/2026",
       "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
@@ -1879,6 +1884,11 @@
           "date": "11/02/2024",
           "lib": "Renfort DPS-ME Meeting in door de Paris d'athlétisme",
           "heures": 4.5
+        },
+        {
+          "date": "10/05/2026",
+          "lib": "Renfort Concert Rüfüs du sol - J2",
+          "heures": 5.8
         },
         {
           "date": "09/10/2025",
@@ -2392,11 +2402,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "18/05/2026",
       "last_gar": "09/04/2026",
-      "last_any": "20/05/2026",
+      "last_any": "18/05/2026",
       "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "28/04/2026",
@@ -2414,11 +2424,6 @@
           "heures": 6.0
         },
         {
-          "date": "20/05/2026",
-          "lib": "Renfort DPS-ME - Concert Star Academy",
-          "heures": 6.0
-        },
-        {
           "date": "20/04/2026",
           "lib": "Renfort DPS-Me - Concert Naza",
           "heures": 5.5
@@ -2427,6 +2432,11 @@
           "date": "19/03/2026",
           "lib": "Renfort  PBB VS PARTIZAN BELGRADE",
           "heures": 4.8
+        },
+        {
+          "date": "18/05/2026",
+          "lib": "Renfort Concert Conan Gray - J1",
+          "heures": 5.5
         },
         {
           "date": "16/12/2025",
@@ -3430,9 +3440,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/04/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "05/03/2026",
-      "last_any": "28/04/2026",
+      "last_any": "08/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -3480,11 +3490,6 @@
           "date": "24/05/2024",
           "lib": "La Clairière",
           "heures": 7.0
-        },
-        {
-          "date": "22/06/2025",
-          "lib": "Manoeuvre DPS - Evenement ARGOS - Phase 1",
-          "heures": 6.0
         },
         {
           "date": "20/12/2024",
@@ -3550,6 +3555,11 @@
           "date": "08/11/2025",
           "lib": "Renfort Le Pacha Club - novembre 2025",
           "heures": 8.0
+        },
+        {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
         },
         {
           "date": "07/12/2024",
@@ -3662,9 +3672,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/10/2025",
+      "last_dps": "19/05/2026",
       "last_gar": "11/05/2026",
-      "last_any": "11/05/2026",
+      "last_any": "19/05/2026",
       "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
@@ -3677,6 +3687,11 @@
           "date": "27/04/2024",
           "lib": "Renfort PSG  Le Havre Ligue 1",
           "heures": 5.0
+        },
+        {
+          "date": "19/05/2026",
+          "lib": "Renfort Concert Conan Gray - J2",
+          "heures": 5.5
         },
         {
           "date": "17/05/2024",
@@ -3710,13 +3725,13 @@
         },
         {
           "date": "03/08/2024",
-          "lib": "Renfort Reserve",
-          "heures": 24.0
+          "lib": "Renfort Eiffel Champs de Mars",
+          "heures": 11.5
         },
         {
           "date": "03/08/2024",
-          "lib": "Renfort Eiffel Champs de Mars",
-          "heures": 11.5
+          "lib": "Renfort Reserve",
+          "heures": 24.0
         }
       ],
       "activites_gar": [
@@ -3807,7 +3822,7 @@
         },
         {
           "date": "11/05/2026",
-          "lib": "[PROV] BSPP",
+          "lib": "BSPP",
           "heures": 6.0
         },
         {
@@ -4032,9 +4047,9 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "10/04/2026",
-      "last_gar": "13/04/2026",
-      "last_any": "13/04/2026",
-      "inscrit_dps": false,
+      "last_gar": "19/05/2026",
+      "last_any": "19/05/2026",
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -4250,6 +4265,11 @@
           "heures": 6.0
         },
         {
+          "date": "19/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 5.0
+        },
+        {
           "date": "16/03/2026",
           "lib": "BSPP",
           "heures": 6.0
@@ -4364,7 +4384,7 @@
       "last_dps": "18/04/2026",
       "last_gar": "14/04/2026",
       "last_any": "18/04/2026",
-      "inscrit_dps": false,
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -4532,7 +4552,7 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "17/05/2026",
-      "last_gar": "11/05/2026",
+      "last_gar": "16/05/2026",
       "last_any": "17/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
@@ -4636,6 +4656,11 @@
           "date": "13/07/2025",
           "lib": "Renfort DPS-ME - Concert NK Divine",
           "heures": 6.0
+        },
+        {
+          "date": "13/05/2026",
+          "lib": "Renfort Foire du Trone 2026",
+          "heures": 5.0
         },
         {
           "date": "13/04/2025",
@@ -4765,13 +4790,23 @@
           "heures": 6.0
         },
         {
+          "date": "16/05/2026",
+          "lib": "BSPP",
+          "heures": 12.0
+        },
+        {
           "date": "15/03/2026",
           "lib": "BSPP",
           "heures": 12.0
         },
         {
+          "date": "13/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 6.0
+        },
+        {
           "date": "11/05/2026",
-          "lib": "[PROV] BSPP",
+          "lib": "BSPP",
           "heures": 6.0
         },
         {
@@ -4837,8 +4872,8 @@
       "last_dps": "30/04/2026",
       "last_gar": "15/04/2026",
       "last_any": "30/04/2026",
-      "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_dps": true,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/10/2024",
@@ -4926,11 +4961,6 @@
           "heures": 4.0
         },
         {
-          "date": "25/04/2026",
-          "lib": "FORCEPS 2026 - ARGOS",
-          "heures": 179.5
-        },
-        {
           "date": "24/05/2025",
           "lib": "Le Duplex",
           "heures": 6.0
@@ -4962,13 +4992,13 @@
         },
         {
           "date": "22/03/2025",
-          "lib": "Renfort EcoTrail Paris 2025 J1 - VLHR Jardy",
-          "heures": 3.0
+          "lib": "EcoTrail Paris 2025 J1 - BPI",
+          "heures": 9.0
         },
         {
           "date": "22/03/2025",
-          "lib": "EcoTrail Paris 2025 J1 - BPI",
-          "heures": 9.0
+          "lib": "Renfort EcoTrail Paris 2025 J1 - VLHR Jardy",
+          "heures": 3.0
         },
         {
           "date": "21/12/2024",
@@ -5092,13 +5122,13 @@
         },
         {
           "date": "08/03/2024",
-          "lib": "Renfort DPS-PE - Tournoi de badminton",
-          "heures": 5.0
+          "lib": "Soirée T7",
+          "heures": 7.0
         },
         {
           "date": "08/03/2024",
-          "lib": "Soirée T7",
-          "heures": 7.0
+          "lib": "Renfort DPS-PE - Tournoi de badminton",
+          "heures": 5.0
         },
         {
           "date": "07/12/2024",
@@ -5552,9 +5582,9 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "12/05/2026",
-      "last_gar": "31/03/2026",
-      "last_any": "12/05/2026",
-      "inscrit_dps": false,
+      "last_gar": "14/05/2026",
+      "last_any": "14/05/2026",
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -5708,6 +5738,11 @@
           "date": "16/05/2025",
           "lib": "SAMU 75 - VPS PS",
           "heures": 6.0
+        },
+        {
+          "date": "14/05/2026",
+          "lib": "BSPP",
+          "heures": 12.0
         }
       ]
     },
@@ -5724,10 +5759,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "07/05/2026",
-      "last_gar": "",
-      "last_any": "07/05/2026",
+      "last_gar": "13/05/2026",
+      "last_any": "13/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "28/04/2026",
@@ -5736,7 +5771,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -5745,7 +5780,13 @@
           "heures": 7.5
         }
       ],
-      "activites_gar": []
+      "activites_gar": [
+        {
+          "date": "13/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 6.0
+        }
+      ]
     },
     {
       "nom": "DEODATI",
@@ -5759,9 +5800,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "16/05/2026",
+      "last_dps": "13/10/2024",
       "last_gar": "",
-      "last_any": "16/05/2026",
+      "last_any": "13/10/2024",
       "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
@@ -5769,11 +5810,6 @@
           "date": "28/07/2024",
           "lib": "Renfort Arena Paris Sud - Hall 6",
           "heures": 11.2
-        },
-        {
-          "date": "16/05/2026",
-          "lib": "Renfort DPS-ME - Concert Twice J1",
-          "heures": 6.0
         },
         {
           "date": "15/03/2024",
@@ -6573,7 +6609,7 @@
       "last_dps": "11/04/2026",
       "last_gar": "22/04/2026",
       "last_any": "22/04/2026",
-      "inscrit_dps": false,
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -6910,13 +6946,13 @@
         },
         {
           "date": "27/07/2024",
-          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
-          "heures": 19.5
+          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
+          "heures": 17.0
         },
         {
           "date": "27/07/2024",
-          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
-          "heures": 17.0
+          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
+          "heures": 19.5
         },
         {
           "date": "19/06/2024",
@@ -7137,10 +7173,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "05/05/2026",
-      "last_gar": "22/04/2026",
-      "last_any": "05/05/2026",
+      "last_gar": "14/05/2026",
+      "last_any": "14/05/2026",
       "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -7234,13 +7270,13 @@
         },
         {
           "date": "06/08/2024",
-          "lib": "La Concorde",
-          "heures": 6.5
+          "lib": "Stade Roland-Garros",
+          "heures": 5.5
         },
         {
           "date": "06/08/2024",
-          "lib": "Stade Roland-Garros",
-          "heures": 5.5
+          "lib": "La Concorde",
+          "heures": 6.5
         },
         {
           "date": "06/01/2026",
@@ -7274,13 +7310,13 @@
         },
         {
           "date": "01/08/2024",
-          "lib": "PCMS JO - 01/08",
-          "heures": 24.0
+          "lib": "PCMS JO 1/08 A utiliser",
+          "heures": 23.0
         },
         {
           "date": "01/08/2024",
-          "lib": "PCMS JO 1/08 A utiliser",
-          "heures": 23.0
+          "lib": "PCMS JO - 01/08",
+          "heures": 24.0
         }
       ],
       "activites_gar": [
@@ -7348,6 +7384,11 @@
           "date": "15/06/2024",
           "lib": "BSPP",
           "heures": 6.0
+        },
+        {
+          "date": "14/05/2026",
+          "lib": "BSPP",
+          "heures": 12.0
         },
         {
           "date": "12/08/2025",
@@ -7623,7 +7664,7 @@
       "last_dps": "10/03/2026",
       "last_gar": "30/11/2025",
       "last_any": "10/03/2026",
-      "inscrit_dps": false,
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -7791,7 +7832,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -7818,7 +7859,7 @@
       "last_gar": "26/03/2026",
       "last_any": "12/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/05/2024",
@@ -7869,11 +7910,6 @@
           "date": "23/07/2024",
           "lib": "Renfort Entraînement JOP - Gymnastique artistique",
           "heures": 2.8
-        },
-        {
-          "date": "22/06/2025",
-          "lib": "Manoeuvre DPS - Evenement ARGOS - Phase 1",
-          "heures": 6.0
         },
         {
           "date": "22/06/2024",
@@ -8094,7 +8130,7 @@
       "last_dps": "10/05/2026",
       "last_gar": "05/03/2026",
       "last_any": "10/05/2026",
-      "inscrit_dps": false,
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -8130,7 +8166,7 @@
         {
           "date": "10/05/2026",
           "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
-          "heures": 8.0
+          "heures": 7.0
         },
         {
           "date": "09/12/2025",
@@ -8174,10 +8210,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "05/05/2026",
-      "last_gar": "29/04/2026",
-      "last_any": "05/05/2026",
+      "last_gar": "16/05/2026",
+      "last_any": "16/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "28/04/2026",
@@ -8220,6 +8256,11 @@
           "date": "29/04/2026",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "BSPP",
+          "heures": 8.0
         }
       ]
     },
@@ -8332,13 +8373,13 @@
         },
         {
           "date": "27/07/2024",
-          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
-          "heures": 17.0
+          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
+          "heures": 19.5
         },
         {
           "date": "27/07/2024",
-          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
-          "heures": 19.5
+          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
+          "heures": 17.0
         },
         {
           "date": "21/01/2024",
@@ -8421,10 +8462,10 @@
       },
       "CDD": null,
       "last_dps": "07/05/2026",
-      "last_gar": "29/04/2026",
-      "last_any": "07/05/2026",
+      "last_gar": "13/05/2026",
+      "last_any": "13/05/2026",
       "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -8763,7 +8804,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -9109,6 +9150,11 @@
           "heures": 6.5
         },
         {
+          "date": "13/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 6.0
+        },
+        {
           "date": "12/06/2024",
           "lib": "BSPP",
           "heures": 6.0
@@ -9272,7 +9318,7 @@
       "last_gar": "18/04/2026",
       "last_any": "09/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -9358,11 +9404,6 @@
           "date": "26/07/2024",
           "lib": "Renfort DPS GE - CER 1 VPS P12",
           "heures": 12.5
-        },
-        {
-          "date": "25/04/2026",
-          "lib": "FORCEPS 2026 - ARGOS",
-          "heures": 179.5
         },
         {
           "date": "25/02/2024",
@@ -9764,12 +9805,12 @@
         {
           "date": "20/10/2024",
           "lib": "League of Legend",
-          "heures": 2.5
+          "heures": 8.0
         },
         {
           "date": "20/10/2024",
           "lib": "League of Legend",
-          "heures": 8.0
+          "heures": 2.5
         },
         {
           "date": "20/01/2025",
@@ -9894,11 +9935,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "15/05/2026",
+      "last_dps": "10/05/2026",
       "last_gar": "04/05/2026",
-      "last_any": "15/05/2026",
+      "last_any": "10/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "29/04/2026",
@@ -9992,13 +10033,13 @@
         },
         {
           "date": "20/06/2025",
-          "lib": "Renfort Meeting Paris Charlety - PSA",
-          "heures": 6.0
+          "lib": "KM 25",
+          "heures": 7.0
         },
         {
           "date": "20/06/2025",
-          "lib": "KM 25",
-          "heures": 7.0
+          "lib": "Renfort Meeting Paris Charlety - PSA",
+          "heures": 6.0
         },
         {
           "date": "20/02/2026",
@@ -10049,11 +10090,6 @@
           "date": "16/04/2026",
           "lib": "Renfort Cross Scolaire",
           "heures": 3.5
-        },
-        {
-          "date": "15/05/2026",
-          "lib": "KM 25",
-          "heures": 9.0
         },
         {
           "date": "15/04/2026",
@@ -10113,7 +10149,7 @@
         {
           "date": "10/05/2026",
           "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
-          "heures": 8.0
+          "heures": 7.0
         },
         {
           "date": "08/05/2026",
@@ -10137,7 +10173,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -10268,7 +10304,7 @@
       "last_gar": "31/03/2026",
       "last_any": "08/05/2026",
       "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "30/08/2024",
@@ -10562,8 +10598,8 @@
       "last_dps": "16/05/2026",
       "last_gar": "18/04/2026",
       "last_any": "16/05/2026",
-      "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_dps": true,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -10852,9 +10888,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "15/05/2026",
-      "last_gar": "04/05/2026",
-      "last_any": "15/05/2026",
+      "last_dps": "20/05/2026",
+      "last_gar": "19/05/2026",
+      "last_any": "20/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -11086,6 +11122,11 @@
         {
           "date": "20/06/2025",
           "lib": "Renfort Meeting Paris Charlety - VPS Evac",
+          "heures": 6.0
+        },
+        {
+          "date": "20/05/2026",
+          "lib": "Foire du Trone 2026",
           "heures": 6.0
         },
         {
@@ -11375,7 +11416,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -11475,13 +11516,13 @@
         },
         {
           "date": "01/06/2024",
-          "lib": "Soirée Duplex",
-          "heures": 6.0
+          "lib": "Tournoi de Roland Garros",
+          "heures": 34.5
         },
         {
           "date": "01/06/2024",
-          "lib": "Tournoi de Roland Garros",
-          "heures": 34.5
+          "lib": "Soirée Duplex",
+          "heures": 6.0
         },
         {
           "date": "01/04/2026",
@@ -11646,6 +11687,11 @@
           "heures": 6.0
         },
         {
+          "date": "19/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 5.0
+        },
+        {
           "date": "17/04/2024",
           "lib": "BSPP 2",
           "heures": 6.0
@@ -11682,6 +11728,11 @@
         },
         {
           "date": "14/07/2024",
+          "lib": "BSPP",
+          "heures": 12.0
+        },
+        {
+          "date": "14/05/2026",
           "lib": "BSPP",
           "heures": 12.0
         },
@@ -11891,8 +11942,8 @@
       },
       "CDD": null,
       "last_dps": "28/03/2026",
-      "last_gar": "28/02/2025",
-      "last_any": "28/03/2026",
+      "last_gar": "09/05/2026",
+      "last_any": "09/05/2026",
       "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
@@ -11967,6 +12018,11 @@
           "date": "21/05/2024",
           "lib": "Renfort SAMU 92",
           "heures": 5.0
+        },
+        {
+          "date": "09/05/2026",
+          "lib": "BSPP",
+          "heures": 8.0
         },
         {
           "date": "06/02/2024",
@@ -12434,13 +12490,13 @@
         },
         {
           "date": "11/01/2024",
-          "lib": "Renfort DPS-PE - NBA Acteurs",
-          "heures": 6.0
+          "lib": "DPS-PE - Démontage NBA Paris Game 2024",
+          "heures": 4.5
         },
         {
           "date": "11/01/2024",
-          "lib": "DPS-PE - Démontage NBA Paris Game 2024",
-          "heures": 4.5
+          "lib": "Renfort DPS-PE - NBA Acteurs",
+          "heures": 6.0
         },
         {
           "date": "10/10/2024",
@@ -12893,7 +12949,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -13257,11 +13313,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "15/05/2026",
-      "last_gar": "29/04/2026",
-      "last_any": "15/05/2026",
+      "last_dps": "08/05/2026",
+      "last_gar": "16/05/2026",
+      "last_any": "16/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/10/2025",
@@ -13384,11 +13440,6 @@
           "heures": 6.5
         },
         {
-          "date": "15/05/2026",
-          "lib": "KM 25",
-          "heures": 9.0
-        },
-        {
           "date": "15/04/2026",
           "lib": "Renfort Declenchement CHU P12",
           "heures": 2.8
@@ -13446,6 +13497,11 @@
         {
           "date": "08/05/2026",
           "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
+        },
+        {
+          "date": "07/05/2026",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -13531,6 +13587,11 @@
           "heures": 5.0
         },
         {
+          "date": "16/05/2026",
+          "lib": "BSPP",
+          "heures": 8.0
+        },
+        {
           "date": "14/03/2025",
           "lib": "BSPP",
           "heures": 5.0
@@ -13589,10 +13650,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/05/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "22/02/2026",
-      "last_any": "08/05/2026",
-      "inscrit_dps": false,
+      "last_any": "20/05/2026",
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -13616,6 +13677,11 @@
           "heures": 5.5
         },
         {
+          "date": "20/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 9.5
+        },
+        {
           "date": "20/02/2026",
           "lib": "Renfort DPS-ME - Concert Louane",
           "heures": 5.5
@@ -13634,6 +13700,11 @@
           "date": "16/12/2025",
           "lib": "Renfort DPS-ME - Concert M - L'AMOMALI",
           "heures": 5.5
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J1",
+          "heures": 6.0
         },
         {
           "date": "13/02/2026",
@@ -13667,13 +13738,13 @@
         },
         {
           "date": "04/12/2025",
-          "lib": "Renfort Concert Tout le monde contre le cancer - After Show",
-          "heures": 1.5
+          "lib": "Renfort Concert Tout le monde contre le cancer",
+          "heures": 5.5
         },
         {
           "date": "04/12/2025",
-          "lib": "Renfort Concert Tout le monde contre le cancer",
-          "heures": 5.5
+          "lib": "Renfort Concert Tout le monde contre le cancer - After Show",
+          "heures": 1.5
         },
         {
           "date": "04/05/2026",
@@ -13706,10 +13777,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "15/05/2026",
-      "last_gar": "15/04/2026",
-      "last_any": "15/05/2026",
-      "inscrit_dps": false,
+      "last_dps": "07/05/2026",
+      "last_gar": "19/05/2026",
+      "last_any": "19/05/2026",
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -13748,18 +13819,13 @@
           "heures": 7.0
         },
         {
-          "date": "15/05/2026",
-          "lib": "KM 25",
-          "heures": 9.0
-        },
-        {
           "date": "10/01/2026",
           "lib": "Renfort Soirée I Hate Models",
           "heures": 8.0
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -13793,6 +13859,11 @@
           "date": "22/02/2026",
           "lib": "Renfort 24H SAMU 92 - PARTIE N°3 - VPS PARIS 12-A",
           "heures": 8.0
+        },
+        {
+          "date": "19/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 5.0
         },
         {
           "date": "15/04/2026",
@@ -13894,13 +13965,13 @@
         },
         {
           "date": "27/07/2024",
-          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
-          "heures": 17.0
+          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
+          "heures": 8.5
         },
         {
           "date": "27/07/2024",
-          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
-          "heures": 8.5
+          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
+          "heures": 17.0
         },
         {
           "date": "13/12/2024",
@@ -14051,9 +14122,9 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "15/05/2026",
-      "last_gar": "11/05/2026",
+      "last_gar": "10/03/2026",
       "last_any": "15/05/2026",
-      "inscrit_dps": false,
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -14082,6 +14153,11 @@
           "heures": 11.5
         },
         {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
+        },
+        {
           "date": "02/08/2025",
           "lib": "La Clairière",
           "heures": 7.5
@@ -14091,11 +14167,6 @@
         {
           "date": "24/11/2025",
           "lib": "BSPP",
-          "heures": 6.0
-        },
-        {
-          "date": "11/05/2026",
-          "lib": "[PROV] BSPP",
           "heures": 6.0
         },
         {
@@ -14125,11 +14196,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "17/05/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "17/05/2026",
-      "inscrit_dps": false,
-      "inscrit_gar": false,
+      "last_any": "20/05/2026",
+      "inscrit_dps": true,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "30/11/2024",
@@ -14207,6 +14278,11 @@
           "heures": 7.8
         },
         {
+          "date": "20/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 9.5
+        },
+        {
           "date": "20/03/2026",
           "lib": "Prière Collective",
           "heures": 2.5
@@ -14252,11 +14328,6 @@
           "heures": 9.0
         },
         {
-          "date": "15/05/2026",
-          "lib": "KM 25",
-          "heures": 9.0
-        },
-        {
           "date": "15/04/2026",
           "lib": "Renfort Declenchement CHU P12",
           "heures": 2.8
@@ -14275,6 +14346,11 @@
           "date": "13/11/2025",
           "lib": "Commémorations attentats 13/11",
           "heures": 3.0
+        },
+        {
+          "date": "13/05/2026",
+          "lib": "Renfort Foire du Trone 2026",
+          "heures": 5.0
         },
         {
           "date": "13/04/2026",
@@ -14405,7 +14481,7 @@
         },
         {
           "date": "16/05/2026",
-          "lib": "BSPP - Journée des CS",
+          "lib": "BSPP",
           "heures": 8.0
         },
         {
@@ -14426,6 +14502,11 @@
         {
           "date": "14/04/2026",
           "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "13/05/2026",
+          "lib": "Garde BSPP",
           "heures": 6.0
         },
         {
@@ -14773,7 +14854,7 @@
       "last_gar": "27/11/2025",
       "last_any": "20/04/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/10/2025",
@@ -14879,11 +14960,6 @@
           "date": "22/08/2025",
           "lib": "Rando Roller",
           "heures": 3.2
-        },
-        {
-          "date": "22/06/2025",
-          "lib": "Manoeuvre DPS - Evenement ARGOS - Phase 1",
-          "heures": 6.0
         },
         {
           "date": "22/03/2026",
@@ -15274,13 +15350,13 @@
         },
         {
           "date": "30/05/2025",
-          "lib": "UAI 2025 - Soirée #2",
-          "heures": 5.0
+          "lib": "UAI 2025 - Jour #2",
+          "heures": 9.0
         },
         {
           "date": "30/05/2025",
-          "lib": "UAI 2025 - Jour #2",
-          "heures": 9.0
+          "lib": "UAI 2025 - Soirée #2",
+          "heures": 5.0
         },
         {
           "date": "30/03/2025",
@@ -15289,23 +15365,23 @@
         },
         {
           "date": "29/06/2024",
-          "lib": "Bordeaux Fête le Vin 2024 21h-00h",
-          "heures": 4.5
-        },
-        {
-          "date": "29/06/2024",
           "lib": "Bordeaux Fête le Vin 2024 18h-21h",
           "heures": 3.5
         },
         {
-          "date": "29/05/2025",
-          "lib": "UAI 2025 - Soirée #1",
-          "heures": 5.0
+          "date": "29/06/2024",
+          "lib": "Bordeaux Fête le Vin 2024 21h-00h",
+          "heures": 4.5
         },
         {
           "date": "29/05/2025",
           "lib": "UAI 2025 - Jour #1",
           "heures": 4.0
+        },
+        {
+          "date": "29/05/2025",
+          "lib": "UAI 2025 - Soirée #1",
+          "heures": 5.0
         },
         {
           "date": "28/09/2025",
@@ -16058,7 +16134,7 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "20/05/2026",
-      "last_gar": "30/04/2026",
+      "last_gar": "11/05/2026",
       "last_any": "20/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
@@ -16131,12 +16207,17 @@
         {
           "date": "20/05/2026",
           "lib": "Renfort DPS-ME - Concert Star Academy",
-          "heures": 6.0
+          "heures": 5.5
         },
         {
           "date": "20/04/2024",
           "lib": "Renfort DPS-PE - CDF Handball 2024",
           "heures": 8.0
+        },
+        {
+          "date": "19/05/2026",
+          "lib": "Renfort Concert Conan Gray - J2",
+          "heures": 5.5
         },
         {
           "date": "19/02/2026",
@@ -16344,6 +16425,11 @@
           "date": "12/03/2024",
           "lib": "BSPP",
           "heures": 8.0
+        },
+        {
+          "date": "11/05/2026",
+          "lib": "BSPP",
+          "heures": 6.0
         },
         {
           "date": "11/03/2024",
@@ -16623,7 +16709,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -17227,7 +17313,7 @@
       "last_gar": "17/03/2026",
       "last_any": "19/04/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "30/06/2024",
@@ -17253,11 +17339,6 @@
           "date": "23/06/2025",
           "lib": "Grand Palais d'été",
           "heures": 5.0
-        },
-        {
-          "date": "22/06/2025",
-          "lib": "Manoeuvre DPS - Evenement ARGOS - Phase 1",
-          "heures": 6.0
         },
         {
           "date": "22/01/2026",
@@ -17468,7 +17549,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -17557,13 +17638,13 @@
         },
         {
           "date": "27/07/2024",
-          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
-          "heures": 19.5
+          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
+          "heures": 17.0
         },
         {
           "date": "27/07/2024",
-          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
-          "heures": 17.0
+          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
+          "heures": 19.5
         },
         {
           "date": "04/08/2024",
@@ -17681,11 +17762,6 @@
           "date": "23/11/2024",
           "lib": "Renfort Concert Dream Theater",
           "heures": 5.0
-        },
-        {
-          "date": "22/06/2025",
-          "lib": "Manoeuvre DPS - Evenement ARGOS - Phase 1",
-          "heures": 6.0
         },
         {
           "date": "21/12/2025",
@@ -17936,11 +18012,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "12/05/2026",
+      "last_dps": "17/05/2026",
       "last_gar": "28/08/2025",
-      "last_any": "12/05/2026",
+      "last_any": "17/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "29/02/2024",
@@ -18001,6 +18077,11 @@
           "date": "18/04/2025",
           "lib": "Renfort DPS-ME - Concert Kaytranada",
           "heures": 7.0
+        },
+        {
+          "date": "17/05/2026",
+          "lib": "Renfort DPS-ME - Concert Twice J2",
+          "heures": 6.0
         },
         {
           "date": "16/12/2025",
@@ -18351,11 +18432,6 @@
           "heures": 3.5
         },
         {
-          "date": "22/06/2025",
-          "lib": "Manoeuvre DPS - Evenement ARGOS - Phase 1",
-          "heures": 6.0
-        },
-        {
           "date": "19/07/2025",
           "lib": "Renfort Lollapalooza J2",
           "heures": 11.5
@@ -18401,8 +18477,8 @@
       "last_dps": "13/03/2026",
       "last_gar": "06/03/2026",
       "last_any": "13/03/2026",
-      "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_dps": true,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "28/06/2025",
@@ -18552,11 +18628,11 @@
         "obt": "",
         "exp": ""
       },
-      "last_dps": "08/05/2026",
+      "last_dps": "19/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "16/05/2026",
-      "inscrit_dps": false,
-      "inscrit_gar": false,
+      "last_any": "19/05/2026",
+      "inscrit_dps": true,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/12/2025",
@@ -18835,13 +18911,13 @@
         },
         {
           "date": "20/04/2024",
-          "lib": "Renfort PAPS - After Show CDF Handball",
-          "heures": 1.5
+          "lib": "DPS-PE - CDF Handball 2024",
+          "heures": 15.0
         },
         {
           "date": "20/04/2024",
-          "lib": "DPS-PE - CDF Handball 2024",
-          "heures": 15.0
+          "lib": "Renfort PAPS - After Show CDF Handball",
+          "heures": 1.5
         },
         {
           "date": "20/01/2026",
@@ -18864,8 +18940,18 @@
           "heures": 12.0
         },
         {
+          "date": "19/05/2026",
+          "lib": "Concert Conan Gray - J2",
+          "heures": 5.5
+        },
+        {
           "date": "18/06/2024",
           "lib": "Soirée privée",
+          "heures": 5.0
+        },
+        {
+          "date": "18/05/2026",
+          "lib": "Concert Conan Gray - J1",
           "heures": 5.0
         },
         {
@@ -18885,13 +18971,13 @@
         },
         {
           "date": "18/02/2025",
-          "lib": "Renfort DPS-ME - Concert Jok Air",
-          "heures": 6.0
+          "lib": "Renfort DPS-ME - Concert Jok Air After show",
+          "heures": 2.5
         },
         {
           "date": "18/02/2025",
-          "lib": "Renfort DPS-ME - Concert Jok Air After show",
-          "heures": 2.5
+          "lib": "Renfort DPS-ME - Concert Jok Air",
+          "heures": 6.0
         },
         {
           "date": "18/01/2026",
@@ -18995,13 +19081,13 @@
         },
         {
           "date": "12/12/2025",
-          "lib": "DPS-ME - Concert Soprano J2",
-          "heures": 6.0
+          "lib": "Renfort PAPS - After Show Concert Soprano J2",
+          "heures": 2.5
         },
         {
           "date": "12/12/2025",
-          "lib": "Renfort PAPS - After Show Concert Soprano J2",
-          "heures": 2.5
+          "lib": "DPS-ME - Concert Soprano J2",
+          "heures": 6.0
         },
         {
           "date": "12/10/2025",
@@ -19044,6 +19130,11 @@
           "heures": 4.5
         },
         {
+          "date": "10/05/2026",
+          "lib": "DPS-ME - Hockey sur glace France vs Canada",
+          "heures": 7.0
+        },
+        {
           "date": "10/05/2025",
           "lib": "Renfort DPS-ME - Concert DJ Snake",
           "heures": 8.0
@@ -19052,6 +19143,11 @@
           "date": "09/08/2024",
           "lib": "Arena La Chapelle",
           "heures": 10.0
+        },
+        {
+          "date": "09/05/2026",
+          "lib": "Concert Rüfüs du sol - J1",
+          "heures": 5.0
         },
         {
           "date": "09/01/2026",
@@ -19095,7 +19191,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -19427,8 +19523,8 @@
         },
         {
           "date": "16/05/2026",
-          "lib": "[PROV] BSPP",
-          "heures": 9.0
+          "lib": "BSPP",
+          "heures": 12.0
         },
         {
           "date": "16/05/2025",
@@ -19449,6 +19545,11 @@
           "date": "15/03/2026",
           "lib": "BSPP",
           "heures": 10.0
+        },
+        {
+          "date": "14/05/2026",
+          "lib": "BSPP",
+          "heures": 12.0
         },
         {
           "date": "14/03/2025",
@@ -19620,7 +19721,7 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "17/05/2026",
-      "last_gar": "25/04/2026",
+      "last_gar": "16/05/2026",
       "last_any": "17/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
@@ -19734,6 +19835,11 @@
           "date": "13/09/2025",
           "lib": "Village International de la Gastronomie",
           "heures": 12.0
+        },
+        {
+          "date": "13/05/2026",
+          "lib": "Renfort Foire du Trone 2026",
+          "heures": 5.0
         },
         {
           "date": "13/03/2026",
@@ -19876,6 +19982,11 @@
           "date": "16/09/2025",
           "lib": "BSPP",
           "heures": 6.5
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "BSPP",
+          "heures": 12.0
         },
         {
           "date": "16/05/2025",
@@ -20038,7 +20149,7 @@
         {
           "date": "20/05/2026",
           "lib": "Renfort DPS-ME - Concert Star Academy",
-          "heures": 6.0
+          "heures": 5.5
         },
         {
           "date": "18/04/2025",
@@ -20376,13 +20487,13 @@
         },
         {
           "date": "09/08/2024",
-          "lib": "Renfort Reserve",
-          "heures": 0.3
+          "lib": "Renfort Stade Roland-Garros",
+          "heures": 5.5
         },
         {
           "date": "09/08/2024",
-          "lib": "Renfort Stade Roland-Garros",
-          "heures": 5.5
+          "lib": "Renfort Reserve",
+          "heures": 0.3
         },
         {
           "date": "08/08/2024",
@@ -20401,13 +20512,13 @@
         },
         {
           "date": "04/08/2024",
-          "lib": "Renfort Reserve",
-          "heures": 24.0
+          "lib": "Club 24 Sevran",
+          "heures": 8.0
         },
         {
           "date": "04/08/2024",
-          "lib": "Club 24 Sevran",
-          "heures": 8.0
+          "lib": "Renfort Reserve",
+          "heures": 24.0
         },
         {
           "date": "04/02/2024",
@@ -20774,11 +20885,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "09/05/2026",
+      "last_dps": "08/05/2026",
       "last_gar": "11/05/2026",
       "last_any": "11/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/01/2026",
@@ -20836,14 +20947,14 @@
           "heures": 5.0
         },
         {
-          "date": "09/05/2026",
-          "lib": "Rugby Kids",
-          "heures": 7.0
-        },
-        {
           "date": "09/01/2026",
           "lib": "Renfort DPS-ME - Handball - Tournoi de France  (J.1)",
           "heures": 6.8
+        },
+        {
+          "date": "08/05/2026",
+          "lib": "Soirée électronique - Boiler Room Paris J2",
+          "heures": 12.0
         },
         {
           "date": "07/10/2025",
@@ -20879,7 +20990,7 @@
         },
         {
           "date": "11/05/2026",
-          "lib": "[PROV] BSPP",
+          "lib": "BSPP",
           "heures": 6.0
         }
       ]
@@ -20995,13 +21106,13 @@
         },
         {
           "date": "11/08/2024",
-          "lib": "Renfort Gare RATP Chatelet",
-          "heures": 9.0
+          "lib": "RATP - JOP Chatelet",
+          "heures": 16.0
         },
         {
           "date": "11/08/2024",
-          "lib": "RATP - JOP Chatelet",
-          "heures": 16.0
+          "lib": "Renfort Gare RATP Chatelet",
+          "heures": 9.0
         },
         {
           "date": "09/08/2024",
@@ -21261,13 +21372,13 @@
         },
         {
           "date": "27/07/2024",
-          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
-          "heures": 8.5
+          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
+          "heures": 17.0
         },
         {
           "date": "27/07/2024",
-          "lib": "Eiffel Champs de Mars - Arena Champ-de-Mars",
-          "heures": 17.0
+          "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
+          "heures": 8.5
         },
         {
           "date": "27/03/2026",
@@ -21321,13 +21432,18 @@
         },
         {
           "date": "20/05/2026",
-          "lib": "Renfort DPS-ME - Concert Star Academy",
-          "heures": 6.0
+          "lib": "Foire du Trone 2026",
+          "heures": 3.5
         },
         {
           "date": "20/03/2026",
           "lib": "Prière Collective",
           "heures": 2.5
+        },
+        {
+          "date": "19/05/2026",
+          "lib": "Course France AgriMer",
+          "heures": 1.5
         },
         {
           "date": "19/01/2026",
@@ -21801,7 +21917,7 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "20/05/2026",
-      "last_gar": "25/04/2026",
+      "last_gar": "16/05/2026",
       "last_any": "20/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
@@ -22093,7 +22209,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -22259,6 +22375,11 @@
           "heures": 6.0
         },
         {
+          "date": "16/05/2026",
+          "lib": "BSPP",
+          "heures": 12.0
+        },
+        {
           "date": "16/05/2025",
           "lib": "SAMU 75 - VPS PS",
           "heures": 6.0
@@ -22297,6 +22418,11 @@
           "date": "11/11/2025",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "11/05/2026",
+          "lib": "BSPP",
+          "heures": 6.0
         },
         {
           "date": "11/01/2026",
@@ -22641,7 +22767,7 @@
       "last_gar": "10/04/2026",
       "last_any": "07/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -22815,7 +22941,7 @@
         },
         {
           "date": "07/05/2026",
-          "lib": "Soirée Électronique - Boiler Room J1",
+          "lib": "Soirée Électronique - Boiler Room Paris J1",
           "heures": 12.0
         },
         {
@@ -23427,7 +23553,7 @@
         {
           "date": "10/05/2026",
           "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
-          "heures": 8.0
+          "heures": 7.0
         },
         {
           "date": "08/04/2026",
@@ -23618,7 +23744,7 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "16/05/2026",
-      "last_gar": "30/04/2026",
+      "last_gar": "11/05/2026",
       "last_any": "16/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
@@ -23641,7 +23767,7 @@
         {
           "date": "10/05/2026",
           "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
-          "heures": 8.0
+          "heures": 7.0
         },
         {
           "date": "10/04/2026",
@@ -23662,6 +23788,11 @@
       "activites_gar": [
         {
           "date": "30/04/2026",
+          "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "11/05/2026",
           "lib": "BSPP",
           "heures": 6.0
         }
@@ -23756,11 +23887,11 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "10/05/2026",
+      "last_dps": "19/05/2026",
       "last_gar": "08/03/2026",
-      "last_any": "10/05/2026",
+      "last_any": "19/05/2026",
       "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -23868,6 +23999,11 @@
           "heures": 5.5
         },
         {
+          "date": "19/05/2026",
+          "lib": "Course France AgriMer",
+          "heures": 1.5
+        },
+        {
           "date": "18/04/2025",
           "lib": "Renfort HYROX 2025",
           "heures": 5.0
@@ -23905,7 +24041,7 @@
         {
           "date": "10/05/2026",
           "lib": "Renfort DPS-ME - Hockey sur glace France vs Canada",
-          "heures": 8.0
+          "heures": 7.0
         },
         {
           "date": "09/10/2025",
@@ -24098,10 +24234,10 @@
       },
       "CDD": null,
       "last_dps": "12/05/2026",
-      "last_gar": "30/04/2026",
-      "last_any": "12/05/2026",
+      "last_gar": "19/05/2026",
+      "last_any": "19/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": false,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/12/2025",
@@ -24130,13 +24266,13 @@
         },
         {
           "date": "30/07/2024",
-          "lib": "Renfort Gare RATP Chatelet",
-          "heures": 15.0
+          "lib": "Stade Roland-Garros",
+          "heures": 7.0
         },
         {
           "date": "30/07/2024",
-          "lib": "Stade Roland-Garros",
-          "heures": 7.0
+          "lib": "Renfort Gare RATP Chatelet",
+          "heures": 15.0
         },
         {
           "date": "30/06/2024",
@@ -24676,6 +24812,11 @@
           "heures": 5.5
         },
         {
+          "date": "19/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 5.0
+        },
+        {
           "date": "18/02/2024",
           "lib": "BSPP",
           "heures": 8.0
@@ -24689,6 +24830,11 @@
           "date": "17/06/2025",
           "lib": "BSPP",
           "heures": 5.0
+        },
+        {
+          "date": "16/05/2026",
+          "lib": "BSPP CHLY",
+          "heures": 5.5
         },
         {
           "date": "16/05/2025",
@@ -24709,6 +24855,11 @@
           "date": "15/09/2024",
           "lib": "BSPP",
           "heures": 10.0
+        },
+        {
+          "date": "15/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 6.0
         },
         {
           "date": "15/04/2025",
@@ -25340,9 +25491,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/04/2026",
+      "last_dps": "20/05/2026",
       "last_gar": "01/03/2026",
-      "last_any": "08/04/2026",
+      "last_any": "20/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -25368,13 +25519,13 @@
         },
         {
           "date": "28/06/2024",
-          "lib": "Solidays J1 - VAC3 PSA Village",
-          "heures": 8.0
+          "lib": "Solidays J1 - VAC2 VPS",
+          "heures": 4.0
         },
         {
           "date": "28/06/2024",
-          "lib": "Solidays J1 - VAC2 VPS",
-          "heures": 4.0
+          "lib": "Solidays J1 - VAC3 PSA Village",
+          "heures": 8.0
         },
         {
           "date": "27/02/2026",
@@ -25420,6 +25571,11 @@
           "date": "20/06/2025",
           "lib": "Renfort Meeting Paris Charlety - VPS Evac",
           "heures": 6.0
+        },
+        {
+          "date": "20/05/2026",
+          "lib": "Renfort DPS-ME - Concert Star Academy",
+          "heures": 5.5
         },
         {
           "date": "19/06/2024",
@@ -25488,13 +25644,13 @@
         },
         {
           "date": "05/10/2025",
-          "lib": "Renfort DPS-ME - Jeux Videos Valorant",
-          "heures": 9.5
+          "lib": "Renfort PAPS - Jeux Videos Valorant (Patinoire/Phantom)",
+          "heures": 4.5
         },
         {
           "date": "05/10/2025",
-          "lib": "Renfort PAPS - Jeux Videos Valorant (Patinoire/Phantom)",
-          "heures": 4.5
+          "lib": "Renfort DPS-ME - Jeux Videos Valorant",
+          "heures": 9.5
         },
         {
           "date": "04/06/2024",
@@ -25560,8 +25716,8 @@
       "last_dps": "27/02/2026",
       "last_gar": "07/01/2026",
       "last_any": "27/02/2026",
-      "inscrit_dps": false,
-      "inscrit_gar": false,
+      "inscrit_dps": true,
+      "inscrit_gar": true,
       "activites_dps": [
         {
           "date": "31/12/2025",
@@ -25886,7 +26042,7 @@
       "last_dps": "20/05/2026",
       "last_gar": "",
       "last_any": "20/05/2026",
-      "inscrit_dps": false,
+      "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
         {
