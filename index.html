@@ -553,8 +553,11 @@ function loadJSON(){
     .then(function(d){
       if(d&&d.secouristes){SR_DATA=d.secouristes;DATA_SR=d;}
       updateHeader();
-      if(currentTab==='sr'){renderSR();}
-      else if(document.getElementById('srUniqChart')){drawSRUniqChart();}
+      if(currentTab==='sr'){
+        // If chart already drawn, just redraw it — don't re-render whole SR tab
+        if(document.getElementById('srUniqChart')) drawSRUniqChart();
+        else renderSR();
+      }
     })
     .catch(function(){});
 }
@@ -956,7 +959,7 @@ function drawSRUniqChart(){
         {label:'Garde',    data:garde.real, borderColor:'#002D74',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:false},
         {label:'Garde plan',data:garde.plan,borderColor:'#002D74',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:false},
       ]},
-      options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      options:{responsive:false,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
         onClick:function(evt,elements){if(!elements||!elements.length)return;openSRUniqWeekModal(elements[0].index);},
         plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(0,0,0,0.8)',callbacks:{
           title:function(ctx){return 'Semaine '+(ctx[0].dataIndex+1)+' · '+FR_M[Math.floor(ctx[0].dataIndex/4.33)]+' — cliquer pour détail';},
