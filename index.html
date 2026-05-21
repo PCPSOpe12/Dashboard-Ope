@@ -952,6 +952,12 @@ function renderSR(){
     var dps=splitData(dpsData),garde=splitData(gardeData);
     var labels=Array.from({length:52},function(_,i){return 'S'+(i+1);});
     var FR_M=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+    // Force canvas dimensions
+    canvas.style.display='block';
+    canvas.style.width='100%';
+    canvas.style.height='220px';
+    canvas.height=220;
+    console.log('Canvas dims before chart:', canvas.offsetWidth, canvas.offsetHeight, canvas.width, canvas.height);
     window._srUniqRaw={dps:dpsData,garde:gardeData};
     window._srUniqChart=new Chart(canvas,{
       type:'line',
