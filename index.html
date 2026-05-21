@@ -929,15 +929,6 @@ function renderSR(){
     var curWk=Math.min(51,Math.floor((today-startCur)/(1000*60*60*24*7)));
     var dpsData=srUniqWeeks('dps',curYear);
     var gardeData=srUniqWeeks('garde',curYear);
-    console.log('SR chart debug:', {
-      curYear: curYear,
-      DATA_SR_keys: DATA_SR ? Object.keys(DATA_SR) : 'null',
-      has_weekly_dps: DATA_SR && !!DATA_SR['weekly_dps_uniques'],
-      weekly_dps_years: DATA_SR && DATA_SR['weekly_dps_uniques'] ? Object.keys(DATA_SR['weekly_dps_uniques']) : 'none',
-      dpsData_null: dpsData===null,
-      dpsData_total: dpsData ? dpsData.reduce(function(a,b){return a+b;},0) : 'null',
-      SR_DATA_length: SR_DATA ? SR_DATA.length : 0
-    });
     if(!dpsData && !gardeData){
       canvas.style.display='none';
       var msg=document.createElement('div');
@@ -948,7 +939,13 @@ function renderSR(){
     }
     dpsData = dpsData || new Array(52).fill(0);
     gardeData = gardeData || new Array(52).fill(0);
-    function splitData(data){return{real:data.map(function(v,i){return i<=curWk?v:null;}),plan:data.map(function(v,i){return i>=curWk?v:null;})};}
+    function splitData(data){
+      // real: S1 to curWk (solid), plan: curWk to end (dashed)
+      // Use NaN for missing to avoid Chart.js drawing to zero
+      var real=data.map(function(v,i){return i<=curWk?(v||0):NaN;});
+      var plan=data.map(function(v,i){return i>=curWk?(v||0):NaN;});
+      return{real:real,plan:plan};
+    }
     var dps=splitData(dpsData),garde=splitData(gardeData);
     var labels=Array.from({length:52},function(_,i){return 'S'+(i+1);});
     var FR_M=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
@@ -957,16 +954,14 @@ function renderSR(){
     canvas.style.width='100%';
     canvas.style.height='220px';
     canvas.height=220;
-    console.log('Canvas dims before chart:', canvas.offsetWidth, canvas.offsetHeight, canvas.width, canvas.height);
-    console.log('curWk:', curWk, 'dps weeks 0-21:', dpsData.slice(0,22));
     window._srUniqRaw={dps:dpsData,garde:gardeData};
     window._srUniqChart=new Chart(canvas,{
       type:'line',
       data:{labels:labels,datasets:[
-        {label:'DPS',      data:dps.real,   borderColor:'#FF7F30',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:true},
-        {label:'DPS plan', data:dps.plan,   borderColor:'#FF7F30',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:true},
-        {label:'Garde',    data:garde.real, borderColor:'#002D74',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:true},
-        {label:'Garde plan',data:garde.plan,borderColor:'#002D74',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:true},
+        {label:'DPS',      data:dps.real,   borderColor:'#FF7F30',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:false},
+        {label:'DPS plan', data:dps.plan,   borderColor:'#FF7F30',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:false},
+        {label:'Garde',    data:garde.real, borderColor:'#002D74',borderWidth:2.5,borderDash:[],   pointRadius:0,pointHoverRadius:5,tension:0.4,fill:false,spanGaps:false},
+        {label:'Garde plan',data:garde.plan,borderColor:'#002D74',borderWidth:1.5,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,tension:0.4,fill:false,spanGaps:false},
       ]},
       options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
         onClick:function(evt,elements){if(!elements||!elements.length)return;openSRUniqWeekModal(elements[0].index);},
