@@ -132,6 +132,7 @@ def convert_sr(comp_path, part_path, json_path):
 
     # Participations
     stats = {}
+    all_rows = []  # keep all rows for weekly uniques computation
     max_date = None
     min_date = None
     if part_path.exists():
@@ -154,6 +155,7 @@ def convert_sr(comp_path, part_path, json_path):
             if d:
                 if max_date is None or d > max_date: max_date = d
                 if min_date is None or d < min_date: min_date = d
+                all_rows.append({'name': name, 'code': code, 'date': d})
 
             if code == "DPS":
                 if d and d < TODAY:
@@ -226,6 +228,21 @@ def convert_sr(comp_path, part_path, json_path):
             "activites_gar": agar,
         })
 
+    # Compute weekly SR uniques per year for the chart
+    def weekly_uniques(code_filter):
+        week_sets = {}  # year -> list of 52 sets
+        for row in all_rows:
+            if row['code'] != code_filter: continue
+            d = row['date']
+            if not d or d >= TODAY: continue
+            yr = d.year
+            if yr not in week_sets:
+                week_sets[yr] = [set() for _ in range(52)]
+            start = datetime(yr, 1, 1)
+            wk = min(51, int((d - start).days / 7))
+            week_sets[yr][wk].add(row['name'])
+        return {str(yr): [len(s) for s in sets] for yr, sets in week_sets.items()}
+
     now = datetime.now()
     output = {
         "secouristes":  secouristes,
@@ -233,6 +250,8 @@ def convert_sr(comp_path, part_path, json_path):
         "minDate":      min_date.strftime("%d/%m/%Y") if min_date else "—",
         "maxDate":      max_date.strftime("%d/%m/%Y") if max_date else "—",
         "totalRows":    len(secouristes),
+        "weekly_dps_uniques":   weekly_uniques("DPS"),
+        "weekly_gar_uniques":   weekly_uniques("GAR"),
     }
     json_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  OK — {len(secouristes)} secouristes → {json_path}")
