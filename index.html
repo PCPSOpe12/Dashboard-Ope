@@ -940,24 +940,13 @@ function drawSRUniqChart(){
     dpsData = dpsData || new Array(52).fill(0);
     gardeData = gardeData || new Array(52).fill(0);
     function splitData(data){
-      var real=data.map(function(v,i){return i<=curWk?(v||0):null;});
-      var plan=data.map(function(v,i){return i>=curWk?(v||0):null;});
+      var real=data.map(function(v,i){return i<=curWk?v:null;});
+      var plan=data.map(function(v,i){return i>=curWk?v:null;});
       return{real:real,plan:plan};
-    }
-    // Force 0 in first and last position so Y axis starts at 0
-    function forceZeroBounds(d){
-      var r=d.slice();
-      r[0]=r[0]===null?null:Math.max(0,r[0]);
-      return r;
     }
     var dps=splitData(dpsData),garde=splitData(gardeData);
     var labels=Array.from({length:52},function(_,i){return 'S'+(i+1);});
     var FR_M=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
-    // Force canvas dimensions
-    canvas.style.display='block';
-    canvas.style.width='100%';
-    canvas.style.height='220px';
-    canvas.height=220;
     window._srUniqRaw={dps:dpsData,garde:gardeData};
     window._srUniqChart=new Chart(canvas,{
       type:'line',
