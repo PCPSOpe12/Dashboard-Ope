@@ -718,9 +718,18 @@ function get12mCutoff(){
 }
 
 function parseDate(str){
-  if(!str)return null;
-  var p=str.split('/');
-  return new Date(+p[2],+p[1]-1,+p[0]);
+  if(!str) return null;
+  // DD/MM/YYYY or D/M/YYYY
+  var p = str.split('/');
+  if(p.length===3) return new Date(+p[2],+p[1]-1,+p[0]);
+  // DD-MM-YYYY or D-M-YYYY
+  p = str.split('-');
+  if(p.length===3){
+    // Could be YYYY-MM-DD or D-M-YYYY
+    if(p[0].length===4) return new Date(+p[0],+p[1]-1,+p[2]);
+    return new Date(+p[2],+p[1]-1,+p[0]);
+  }
+  return null;
 }
 
 function compute12m(s){
