@@ -16,9 +16,21 @@ def parse_date(val):
     if isinstance(val, (datetime, date)):
         return val if isinstance(val, datetime) else datetime.combine(val, datetime.min.time())
     if isinstance(val, str):
-        for fmt in ("%d-%m-%Y", "%d/%m/%Y", "%Y-%m-%d"):
-            try: return datetime.strptime(val.strip(), fmt)
+        v = val.strip()
+        # Handle D-M-YYYY (no zero padding) or DD-MM-YYYY or DD/MM/YYYY or YYYY-MM-DD
+        for fmt in ("%d-%m-%Y", "%d/%m/%Y", "%Y-%m-%d", "%-d-%-m-%Y"):
+            try: return datetime.strptime(v, fmt)
             except: pass
+        # Manual parse for D-M-YYYY without strptime format issues
+        for sep in ['-', '/']:
+            parts = v.split(sep)
+            if len(parts) == 3:
+                try:
+                    if len(parts[0]) == 4:  # YYYY-MM-DD
+                        return datetime(int(parts[0]), int(parts[1]), int(parts[2]))
+                    else:  # D-M-YYYY or DD-MM-YYYY
+                        return datetime(int(parts[2]), int(parts[1]), int(parts[0]))
+                except: pass
     return None
 
 def safe_float(v, default=0.0):
