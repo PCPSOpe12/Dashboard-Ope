@@ -769,46 +769,6 @@ function renderSR(){
   var cpv=D.filter(function(s){return s.CP&&!isExp(s.CP.exp);}).length;
   var cepsv=D.filter(function(s){return s.CEPS&&!isExp(s.CEPS.exp);}).length;
 
-  // ── Pool SR — calculs sur 12 mois glissants ──────────────────────────────
-  // Règles par MOIS moyen : très actif ≥3/mois, actif =2/mois, occasionnel <2
-  // On ramène nb_dps+nb_gar sur 12 mois → moyenne mensuelle
-  var poolUnique   = D.length;
-  var treActifs    = D.filter(function(s){return (s.nb_dps+s.nb_gar)/12>=3;}).length;
-  var actifsSR     = D.filter(function(s){var m=(s.nb_dps+s.nb_gar)/12;return m>=2&&m<3;}).length;
-  var occasionnels = D.filter(function(s){return (s.nb_dps+s.nb_gar)/12<2;}).length;
-
-  // Répartition DPS only / Garde only / Les deux
-  var dpsSeulement  = D.filter(function(s){return s.nb_dps>0&&s.nb_gar===0;}).length;
-  var gardeSeulement= D.filter(function(s){return s.nb_gar>0&&s.nb_dps===0;}).length;
-  var lesDeux       = D.filter(function(s){return s.nb_dps>0&&s.nb_gar>0;}).length;
-
-  var poolHtml='<div style="background:var(--card);border-radius:12px;border:1px solid var(--border);border-top:3px solid var(--navy);padding:16px;margin-bottom:16px">';
-  poolHtml+='<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Pool de secouristes — 12 mois glissants</div>';
-
-  // KPIs pool
-  poolHtml+='<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px">';
-  poolHtml+='<div style="background:var(--bg);border-radius:8px;padding:10px 12px;border-left:3px solid var(--navy)"><div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px">SR uniques actifs</div><div style="font-size:20px;font-weight:700;color:var(--navy)">'+poolUnique+'</div></div>';
-  [{l:'Très actifs',v:treActifs,desc:'≥ 3 postes/mois',c:'#BA7517',bg:'#FAEEDA'},{l:'Actifs',v:actifsSR,desc:'2 postes/mois',c:'#3B6D11',bg:'#EAF3DE'},{l:'Occasionnels',v:occasionnels,desc:'< 2 postes/mois',c:'#888',bg:'#F1EFE8'}].forEach(function(k){
-    poolHtml+='<div style="background:'+k.bg+';border-radius:8px;padding:10px 12px;border-left:3px solid '+k.c+'">'+
-      '<div style="font-size:10px;color:'+k.c+';font-weight:700;text-transform:uppercase;margin-bottom:2px">'+k.l+'</div>'+
-      '<div style="font-size:20px;font-weight:700;color:'+k.c+'">'+k.v+'</div>'+
-      '<div style="font-size:10px;color:'+k.c+';opacity:.8">'+k.desc+'</div></div>';
-  });
-  poolHtml+='</div>';
-
-  // Répartition DPS/Garde/Les deux
-  poolHtml+='<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px">';
-  [{l:'DPS uniquement',v:dpsSeulement,c:'var(--orange)'},{l:'Garde uniquement',v:gardeSeulement,c:'var(--navy)'},{l:'DPS + Garde',v:lesDeux,c:'#639922'}].forEach(function(k){
-    var pct=poolUnique?Math.round(k.v/poolUnique*100):0;
-    poolHtml+='<div style="background:var(--bg);border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px">'+
-      '<div style="flex:1"><div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:2px">'+k.l+'</div>'+
-      '<div style="height:6px;background:#eee;border-radius:3px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:'+k.c+';border-radius:3px"></div></div></div>'+
-      '<div style="font-size:16px;font-weight:700;color:'+k.c+'">'+k.v+'</div></div>';
-  });
-  poolHtml+='</div>';
-
-  poolHtml+='</div>';
-
   var kpiHtml=[
     {l:'Secouristes',v:D.length,c:'var(--orange)'},
     {l:'PSE2',v:pse2v,c:'var(--orange)'},
@@ -890,9 +850,19 @@ function renderSR(){
 
   document.getElementById('contentSR').innerHTML=
     '<div style="padding:14px 22px;background:var(--bg)">'+
-    poolHtml+
     '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:0 0 4px">Vue d\'ensemble — '+D.length+' secouristes actifs</div>'+
     '<div style="font-size:11px;color:var(--muted);margin-bottom:12px">Activités sur 12 mois glissants : '+cutoffStr+' → '+todayStr+'</div>'+
+    '<div style="background:var(--card);border-radius:12px;border:1px solid var(--border);border-top:3px solid var(--navy);padding:16px;margin-bottom:16px">'+
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'+
+    '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">SR uniques mobilisés par semaine</div>'+
+    '<div style="display:flex;gap:10px;align-items:center;font-size:11px">'+
+    '<span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:2px;background:var(--orange);display:inline-block"></span>DPS</span>'+
+    '<span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:2px;background:var(--navy);display:inline-block"></span>Garde</span>'+
+    '<span style="color:var(--muted)">· cliquer pour le détail</span>'+
+    '</div></div>'+
+    '<canvas id="srUniqChart" style="width:100%;height:200px"></canvas>'+
+    '<div style="font-size:11px;color:var(--muted);margin-top:6px;text-align:center"><span style="border-bottom:2px solid var(--orange)">trait plein</span> = réalisé · <span style="border-bottom:2px dashed var(--orange)">tirets</span> = planifié eProtec</div>'+
+    '</div>'+
     '<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px">'+kpiHtml+'</div>'+
     '<div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center">'+
     '<span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Recherche</span>'+
