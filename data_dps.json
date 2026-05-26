@@ -7510,7 +7510,7 @@
       "statut": "cloturé",
       "inscrits": 5,
       "heures": 40.0,
-      "pec": 0
+      "pec": 5
     },
     {
       "annee": 2026,
@@ -7531,7 +7531,7 @@
       "libelle": "Renfort DPS-ME - Finales CDF Handball",
       "lieu": "Accor Arena Bercy",
       "dps": "PAPS",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 1,
       "heures": 8.0,
       "pec": 0
@@ -7557,8 +7557,8 @@
       "dps": "DPS-PE",
       "statut": "cloturé",
       "inscrits": 12,
-      "heures": 138.0,
-      "pec": 0
+      "heures": 148.8,
+      "pec": 24
     },
     {
       "annee": 2026,
@@ -7590,11 +7590,11 @@
       "date": "25/05/2026",
       "libelle": "Canicule  Tour Eiffel",
       "lieu": "Tour Eiffel",
-      "dps": "-",
+      "dps": "PAPS",
       "statut": "cloturé",
       "inscrits": 3,
-      "heures": 24.0,
-      "pec": 0
+      "heures": 30.0,
+      "pec": 4
     },
     {
       "annee": 2026,
@@ -7617,7 +7617,7 @@
       "dps": "DPS-PE",
       "statut": "cloturé",
       "inscrits": 4,
-      "heures": 22.0,
+      "heures": 20.0,
       "pec": 0
     },
     {
@@ -7627,9 +7627,9 @@
       "libelle": "Prière collective",
       "lieu": "Saint-Denis - Stade du La",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 2.0,
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 8.0,
       "pec": 0
     },
     {
@@ -7651,9 +7651,9 @@
       "libelle": "Renfort DPS-ME - Concert Bouss",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 18.0,
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7664,8 +7664,32 @@
       "lieu": "Paris - Bois de Vincennes",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 6,
-      "heures": 42.0,
+      "inscrits": 7,
+      "heures": 49.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "30/05/2026",
+      "libelle": "Renfort DPS-ME - Retransmission Match foot + Concert Bouss",
+      "lieu": "Accor Arena Bercy",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 8.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "30/05/2026",
+      "libelle": "[PROV] Retransimission Longchamps",
+      "lieu": "Paris",
+      "dps": "-",
+      "statut": "ouvert",
+      "inscrits": 7,
+      "heures": 49.0,
       "pec": 0
     },
     {
@@ -7675,9 +7699,21 @@
       "libelle": "Relais de la SPA",
       "lieu": "Domaine National de Saint",
       "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 9,
+      "heures": 54.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "31/05/2026",
+      "libelle": "[PROV] Fête de la victoire PSG",
+      "lieu": "PdP",
+      "dps": "DPS-PE",
       "statut": "ouvert",
       "inscrits": 6,
-      "heures": 36.0,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7700,20 +7736,20 @@
       "lieu": "Stade Léo Lagrange",
       "dps": "PAPS",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 14.0,
+      "inscrits": 3,
+      "heures": 21.0,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 6,
-      "date": "07/06/2026",
-      "libelle": "[Prov] La ruée des fadas",
-      "lieu": "IdF",
+      "date": "09/06/2026",
+      "libelle": "Renfort DPS-ME - Concert Doja Cat",
+      "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 6.0,
+      "statut": "cloturé",
+      "inscrits": 3,
+      "heures": 18.0,
       "pec": 0
     },
     {
@@ -7724,8 +7760,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 13,
-      "heures": 130.0,
+      "inscrits": 12,
+      "heures": 120.0,
       "pec": 0
     },
     {
@@ -7736,8 +7772,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 7,
-      "heures": 63.0,
+      "inscrits": 12,
+      "heures": 108.0,
       "pec": 0
     },
     {
@@ -7760,8 +7796,8 @@
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 1,
+      "heures": 6.0,
       "pec": 0
     },
     {
@@ -7784,20 +7820,20 @@
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 12.0,
+      "inscrits": 3,
+      "heures": 18.0,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 6,
       "date": "21/06/2026",
-      "libelle": "[PROV] Fête de la musique",
-      "lieu": "Paris",
+      "libelle": "Fête de la musique",
+      "lieu": "Place de la bastille",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 5,
+      "heures": 40.0,
       "pec": 0
     },
     {
@@ -7820,8 +7856,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 12,
-      "heures": 84.0,
+      "inscrits": 13,
+      "heures": 91.0,
       "pec": 0
     },
     {
@@ -7832,8 +7868,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 6,
-      "heures": 66.0,
+      "inscrits": 7,
+      "heures": 77.0,
       "pec": 0
     },
     {
@@ -7868,8 +7904,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 12,
-      "heures": 132.0,
+      "inscrits": 13,
+      "heures": 143.0,
       "pec": 0
     },
     {
@@ -7993,9 +8029,9 @@
       "pec": 0
     }
   ],
-  "lastModified": "21/05/2026",
+  "lastModified": "26/05/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 666,
+  "totalRows": 669,
   "years": [
     2023,
     2024,

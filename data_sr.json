@@ -684,9 +684,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "16/05/2026",
-      "last_gar": "16/05/2026",
-      "last_any": "16/05/2026",
+      "last_dps": "25/05/2026",
+      "last_gar": "22/05/2026",
+      "last_any": "25/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -839,6 +839,11 @@
           "date": "25/07/2024",
           "lib": "Renfort Entraînement JOP - Gymnastique artistique",
           "heures": 7.8
+        },
+        {
+          "date": "25/05/2026",
+          "lib": "Canicule  Tour Eiffel",
+          "heures": 8.0
         },
         {
           "date": "25/05/2025",
@@ -1416,6 +1421,11 @@
           "date": "22/11/2025",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "22/05/2026",
+          "lib": "BSPP",
+          "heures": 5.0
         },
         {
           "date": "22/02/2024",
@@ -2479,9 +2489,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "24/04/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "",
-      "last_any": "24/04/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -2494,6 +2504,11 @@
           "date": "29/03/2026",
           "lib": "Renfort DPS-ME - Harlem Globetrotters Basket",
           "heures": 5.0
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
         },
         {
           "date": "24/04/2026",
@@ -3440,9 +3455,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "05/03/2026",
-      "last_any": "08/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -3485,6 +3500,11 @@
           "date": "27/07/2024",
           "lib": "Renfort Gare RATP Châtelet",
           "heures": 9.0
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
         },
         {
           "date": "24/05/2024",
@@ -4551,9 +4571,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "17/05/2026",
+      "last_dps": "25/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "17/05/2026",
+      "last_any": "25/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -4586,6 +4606,11 @@
           "date": "27/01/2025",
           "lib": "Défilé DIOR",
           "heures": 9.0
+        },
+        {
+          "date": "25/05/2026",
+          "lib": "Canicule  Tour Eiffel",
+          "heures": 8.0
         },
         {
           "date": "24/08/2025",
@@ -5913,9 +5938,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "21/03/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "10/04/2026",
-      "last_any": "10/04/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -5940,9 +5965,19 @@
           "heures": 5.5
         },
         {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
+        },
+        {
           "date": "24/05/2025",
           "lib": "Le Duplex",
           "heures": 6.0
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Finale régionale coupe de Paris",
+          "heures": 3.0
         },
         {
           "date": "22/11/2025",
@@ -6606,12 +6641,17 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "11/04/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "22/04/2026",
-      "last_any": "22/04/2026",
-      "inscrit_dps": true,
+      "last_any": "24/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
+        {
+          "date": "24/05/2026",
+          "lib": "Renfort DPS-ME - Rocket League Paris Major 2 (J3)",
+          "heures": 11.0
+        },
         {
           "date": "11/04/2026",
           "lib": "Démonstration d'arts martiaux",
@@ -7855,9 +7895,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "12/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "26/03/2026",
-      "last_any": "12/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -7905,6 +7945,11 @@
           "date": "26/08/2024",
           "lib": "Renfort Répétition CER 3",
           "heures": 5.2
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
         },
         {
           "date": "23/07/2024",
@@ -8127,10 +8172,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "10/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "05/03/2026",
-      "last_any": "10/05/2026",
-      "inscrit_dps": true,
+      "last_any": "24/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -8147,6 +8192,11 @@
           "date": "26/03/2026",
           "lib": "Renfort DPS-ME - Concert L2B J1",
           "heures": 5.5
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Renfort France-Angleterre",
+          "heures": 5.0
         },
         {
           "date": "20/03/2026",
@@ -8209,9 +8259,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "05/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "16/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -8219,6 +8269,21 @@
           "date": "28/04/2026",
           "lib": "Course d'entreprise",
           "heures": 3.0
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Renfort DPS-ME - Finales CDF Handball",
+          "heures": 8.0
+        },
+        {
+          "date": "21/05/2026",
+          "lib": "Salon SantExpo",
+          "heures": 10.0
         },
         {
           "date": "19/04/2026",
@@ -9314,9 +9379,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "09/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "18/04/2026",
-      "last_any": "09/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -9416,6 +9481,11 @@
           "heures": 3.5
         },
         {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
+        },
+        {
           "date": "24/05/2025",
           "lib": "Le Duplex",
           "heures": 6.0
@@ -9429,6 +9499,11 @@
           "date": "23/08/2025",
           "lib": "Cérémonie des Martyrs de la Résistance",
           "heures": 3.5
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Le Duplex",
+          "heures": 6.0
         },
         {
           "date": "23/02/2024",
@@ -9706,9 +9781,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/09/2025",
+      "last_dps": "25/05/2026",
       "last_gar": "",
-      "last_any": "28/09/2025",
+      "last_any": "25/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -9773,9 +9848,19 @@
           "heures": 30.5
         },
         {
+          "date": "25/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 4.5
+        },
+        {
           "date": "24/11/2024",
           "lib": "Montage Réouverture Notre-Dame",
           "heures": 30.5
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 4.5
         },
         {
           "date": "24/01/2025",
@@ -9935,9 +10020,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "10/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "04/05/2026",
-      "last_any": "10/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -9992,6 +10077,11 @@
           "heures": 7.0
         },
         {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
+        },
+        {
           "date": "23/07/2025",
           "lib": "Festival Paris lEté",
           "heures": 4.0
@@ -9999,6 +10089,11 @@
         {
           "date": "23/06/2025",
           "lib": "Répétitions défilé LOUIS VUITTON",
+          "heures": 6.0
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Le Duplex",
           "heures": 6.0
         },
         {
@@ -10301,10 +10396,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "08/05/2026",
-      "last_gar": "31/03/2026",
-      "last_any": "08/05/2026",
+      "last_gar": "23/05/2026",
+      "last_any": "23/05/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "30/08/2024",
@@ -10479,6 +10574,11 @@
           "heures": 5.5
         },
         {
+          "date": "23/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
+        },
+        {
           "date": "22/11/2024",
           "lib": "BSPP",
           "heures": 5.0
@@ -10596,10 +10696,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "16/05/2026",
-      "last_gar": "18/04/2026",
-      "last_any": "16/05/2026",
+      "last_gar": "23/05/2026",
+      "last_any": "23/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -10769,6 +10869,11 @@
           "heures": 5.0
         },
         {
+          "date": "23/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
+        },
+        {
           "date": "21/11/2024",
           "lib": "BSPP",
           "heures": 6.0
@@ -10888,9 +10993,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "19/05/2026",
-      "last_any": "20/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -11065,6 +11170,11 @@
           "heures": 3.5
         },
         {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
+        },
+        {
           "date": "24/05/2025",
           "lib": "Le Duplex",
           "heures": 6.0
@@ -11083,6 +11193,16 @@
           "date": "23/06/2025",
           "lib": "Grand Palais d'été",
           "heures": 5.0
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Finale régionale coupe de Paris",
+          "heures": 3.0
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Le Duplex",
+          "heures": 6.0
         },
         {
           "date": "23/05/2025",
@@ -12222,9 +12342,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "28/04/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "10/04/2026",
-      "last_any": "28/04/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -12361,6 +12481,11 @@
         {
           "date": "25/02/2024",
           "lib": "Renfort DPS-ME - Concert Urbain",
+          "heures": 5.0
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Renfort France-Angleterre",
           "heures": 5.0
         },
         {
@@ -13313,11 +13438,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/05/2026",
-      "last_gar": "16/05/2026",
-      "last_any": "16/05/2026",
+      "last_dps": "24/05/2026",
+      "last_gar": "23/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/10/2025",
@@ -13388,6 +13513,11 @@
           "date": "25/02/2025",
           "lib": "Renfort DPS-ME - Concert SDM",
           "heures": 6.0
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
         },
         {
           "date": "22/11/2025",
@@ -13560,6 +13690,11 @@
           "date": "25/03/2026",
           "lib": "BSPP",
           "heures": 6.0
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
         },
         {
           "date": "23/03/2025",
@@ -13777,9 +13912,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "07/05/2026",
+      "last_dps": "25/05/2026",
       "last_gar": "19/05/2026",
-      "last_any": "19/05/2026",
+      "last_any": "25/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -13797,6 +13932,16 @@
           "date": "27/01/2026",
           "lib": "Paris Basket Ball vs Real Madrid",
           "heures": 5.2
+        },
+        {
+          "date": "25/05/2026",
+          "lib": "Canicule  Tour Eiffel",
+          "heures": 8.0
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Le Duplex",
+          "heures": 6.0
         },
         {
           "date": "22/11/2025",
@@ -14196,9 +14341,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "23/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "20/05/2026",
+      "last_any": "23/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -14253,6 +14398,11 @@
           "heures": 5.5
         },
         {
+          "date": "23/05/2026",
+          "lib": "Le Duplex",
+          "heures": 6.0
+        },
+        {
           "date": "23/03/2025",
           "lib": "Renfort EcoTrail Paris 2025 J2 - VPS SAINT-CLOUD",
           "heures": 6.5
@@ -14261,6 +14411,11 @@
           "date": "22/01/2026",
           "lib": "Renfort DPS-ME - Gala des Pieces Jaunes - Concert Evenement",
           "heures": 6.8
+        },
+        {
+          "date": "21/05/2026",
+          "lib": "Salon SantExpo",
+          "heures": 10.0
         },
         {
           "date": "21/03/2026",
@@ -18012,11 +18167,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "17/05/2026",
-      "last_gar": "28/08/2025",
-      "last_any": "17/05/2026",
+      "last_dps": "24/05/2026",
+      "last_gar": "22/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "29/02/2024",
@@ -18039,9 +18194,19 @@
           "heures": 2.5
         },
         {
+          "date": "24/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 29.5
+        },
+        {
           "date": "24/01/2025",
           "lib": "Renfort DPS-ME - NBA",
           "heures": 6.2
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Entraînement Jean Bouin",
+          "heures": 7.5
         },
         {
           "date": "22/04/2026",
@@ -18057,6 +18222,11 @@
           "date": "22/02/2026",
           "lib": "Renfort DPS-ME - Concert Florence + The Machine",
           "heures": 5.5
+        },
+        {
+          "date": "21/05/2026",
+          "lib": "Qualification - Tournoi Roland-Garros",
+          "heures": 4.5
         },
         {
           "date": "21/04/2025",
@@ -18184,6 +18354,11 @@
           "date": "23/02/2024",
           "lib": "BSPP",
           "heures": 6.0
+        },
+        {
+          "date": "22/05/2026",
+          "lib": "BSPP",
+          "heures": 5.0
         },
         {
           "date": "21/03/2025",
@@ -18628,9 +18803,9 @@
         "obt": "",
         "exp": ""
       },
-      "last_dps": "19/05/2026",
+      "last_dps": "22/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "19/05/2026",
+      "last_any": "22/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -18863,6 +19038,11 @@
           "date": "22/06/2025",
           "lib": "Evènement automobile - FESTIV4L - Nautique",
           "heures": 5.5
+        },
+        {
+          "date": "22/05/2026",
+          "lib": "Renfort Le Cercle Festival - CDT",
+          "heures": 12.0
         },
         {
           "date": "22/03/2025",
@@ -19720,9 +19900,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "17/05/2026",
+      "last_dps": "21/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "17/05/2026",
+      "last_any": "21/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -19780,6 +19960,11 @@
           "date": "21/06/2025",
           "lib": "Renfort Concert France TV - PAM",
           "heures": 7.5
+        },
+        {
+          "date": "21/05/2026",
+          "lib": "Salon SantExpo",
+          "heures": 5.0
         },
         {
           "date": "19/12/2025",
@@ -20885,9 +21070,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "08/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "11/05/2026",
-      "last_any": "11/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -20915,6 +21100,11 @@
           "date": "25/01/2026",
           "lib": "Renfort DPS-ME - Meeting In Door de Paris d'Athlétisme",
           "heures": 4.5
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Renfort France-Angleterre",
+          "heures": 5.0
         },
         {
           "date": "21/12/2025",
@@ -21294,9 +21484,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "21/05/2026",
       "last_gar": "17/03/2026",
-      "last_any": "20/05/2026",
+      "last_any": "21/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -21414,6 +21604,11 @@
           "date": "22/04/2026",
           "lib": "Renfort PSG  Nantes Ligue 1",
           "heures": 5.0
+        },
+        {
+          "date": "21/05/2026",
+          "lib": "Salon SantExpo",
+          "heures": 10.0
         },
         {
           "date": "21/04/2025",
@@ -21916,9 +22111,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "25/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "20/05/2026",
+      "last_any": "25/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -22033,6 +22228,11 @@
           "heures": 8.5
         },
         {
+          "date": "25/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 4.5
+        },
+        {
           "date": "25/05/2025",
           "lib": "Tournoi de Roland Garros",
           "heures": 8.5
@@ -22043,9 +22243,19 @@
           "heures": 10.5
         },
         {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
+        },
+        {
           "date": "24/05/2025",
           "lib": "Tournoi de Roland Garros",
           "heures": 10.5
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Finale régionale coupe de Paris",
+          "heures": 3.0
         },
         {
           "date": "22/12/2024",
@@ -22053,9 +22263,19 @@
           "heures": 6.5
         },
         {
+          "date": "22/05/2026",
+          "lib": "Qualification - Tournoi Roland-Garros",
+          "heures": 6.5
+        },
+        {
           "date": "22/05/2025",
           "lib": "Tournoi de Roland Garros",
           "heures": 11.5
+        },
+        {
+          "date": "21/05/2026",
+          "lib": "Qualification - Tournoi Roland-Garros",
+          "heures": 7.5
         },
         {
           "date": "20/12/2024",
@@ -22763,9 +22983,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "07/05/2026",
-      "last_gar": "10/04/2026",
-      "last_any": "07/05/2026",
+      "last_dps": "24/05/2026",
+      "last_gar": "23/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -22808,6 +23028,11 @@
           "date": "25/02/2026",
           "lib": "Renfort DPS-ME - Concert Indochine",
           "heures": 5.5
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
         },
         {
           "date": "24/05/2024",
@@ -23150,6 +23375,11 @@
           "date": "23/09/2025",
           "lib": "BSPP",
           "heures": 6.0
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
         },
         {
           "date": "23/03/2025",
@@ -23743,9 +23973,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "16/05/2026",
+      "last_dps": "21/05/2026",
       "last_gar": "11/05/2026",
-      "last_any": "16/05/2026",
+      "last_any": "21/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -23753,6 +23983,11 @@
           "date": "24/04/2026",
           "lib": "Renfort DPS-ME - Finales CDF de Basket",
           "heures": 6.5
+        },
+        {
+          "date": "21/05/2026",
+          "lib": "Salon SantExpo",
+          "heures": 5.0
         },
         {
           "date": "16/05/2026",
@@ -24233,9 +24468,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "12/05/2026",
+      "last_dps": "24/05/2026",
       "last_gar": "19/05/2026",
-      "last_any": "19/05/2026",
+      "last_any": "24/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -24363,6 +24598,16 @@
           "date": "25/02/2026",
           "lib": "Renfort DPS-ME - Concert Indochine",
           "heures": 5.5
+        },
+        {
+          "date": "24/05/2026",
+          "lib": "Foire du Trone 2026",
+          "heures": 11.5
+        },
+        {
+          "date": "23/05/2026",
+          "lib": "Finale régionale coupe de Paris",
+          "heures": 3.0
         },
         {
           "date": "22/11/2025",
@@ -26074,7 +26319,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "21/05/2026",
+  "lastModified": "26/05/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141,
@@ -26208,7 +26453,7 @@
       18,
       34,
       22,
-      0,
+      26,
       0,
       0,
       0,
@@ -26426,7 +26671,7 @@
       7,
       12,
       16,
-      0,
+      6,
       0,
       0,
       0,
