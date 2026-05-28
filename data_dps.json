@@ -7522,7 +7522,7 @@
       "statut": "cloturé",
       "inscrits": 5,
       "heures": 30.1,
-      "pec": 0
+      "pec": 10
     },
     {
       "annee": 2026,
@@ -7606,7 +7606,7 @@
       "statut": "cloturé",
       "inscrits": 5,
       "heures": 40.0,
-      "pec": 0
+      "pec": 2
     },
     {
       "annee": 2026,
@@ -7635,6 +7635,18 @@
     {
       "annee": 2026,
       "mois": 5,
+      "date": "27/05/2026",
+      "libelle": "Renfort Canicule  Tour Eiffel",
+      "lieu": "Tour Eiffel",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 1,
+      "heures": 6.8,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
       "date": "28/05/2026",
       "libelle": "Renfort DPS-GE  - Concert DAMSO (J1)",
       "lieu": "Nanterre - Paris La Défen",
@@ -7653,7 +7665,7 @@
       "dps": "DPS-PE",
       "statut": "cloturé",
       "inscrits": 4,
-      "heures": 24.0,
+      "heures": 22.0,
       "pec": 0
     },
     {
@@ -7663,9 +7675,9 @@
       "libelle": "Course Amnestienne",
       "lieu": "Paris - Bois de Vincennes",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 7,
-      "heures": 49.0,
+      "statut": "cloturé",
+      "inscrits": 6,
+      "heures": 42.0,
       "pec": 0
     },
     {
@@ -7677,7 +7689,7 @@
       "dps": "PAPS",
       "statut": "ouvert",
       "inscrits": 1,
-      "heures": 8.0,
+      "heures": 7.0,
       "pec": 0
     },
     {
@@ -7688,8 +7700,8 @@
       "lieu": "Paris",
       "dps": "-",
       "statut": "ouvert",
-      "inscrits": 7,
-      "heures": 49.0,
+      "inscrits": 9,
+      "heures": 63.0,
       "pec": 0
     },
     {
@@ -7708,12 +7720,12 @@
       "annee": 2026,
       "mois": 5,
       "date": "31/05/2026",
-      "libelle": "[PROV] Fête de la victoire PSG",
-      "lieu": "PdP",
+      "libelle": "Renfort Présentation Trophéé LDC",
+      "lieu": "Parc des Princes",
       "dps": "DPS-PE",
       "statut": "ouvert",
       "inscrits": 6,
-      "heures": 24.0,
+      "heures": 27.0,
       "pec": 0
     },
     {
@@ -7724,8 +7736,20 @@
       "lieu": "Stade Charlety",
       "dps": "PAPS",
       "statut": "ouvert",
+      "inscrits": 3,
+      "heures": 6.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "05/06/2026",
+      "libelle": "Soirée étudiante",
+      "lieu": "Paris",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
       "inscrits": 2,
-      "heures": 4.0,
+      "heures": 14.0,
       "pec": 0
     },
     {
@@ -7760,8 +7784,20 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 12,
-      "heures": 120.0,
+      "inscrits": 13,
+      "heures": 130.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "13/06/2026",
+      "libelle": "Renfort Banquet des vins de Loire",
+      "lieu": "Paris",
+      "dps": "-",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7784,6 +7820,18 @@
       "lieu": "Maison des arts Martiaux",
       "dps": "PAPS",
       "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "14/06/2026",
+      "libelle": "Renfort Banquet des vins de Loire",
+      "lieu": "Paris",
+      "dps": "-",
+      "statut": "cloturé",
       "inscrits": 0,
       "heures": 0.0,
       "pec": 0
@@ -7832,8 +7880,20 @@
       "lieu": "Place de la bastille",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 5,
-      "heures": 40.0,
+      "inscrits": 6,
+      "heures": 48.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "21/06/2026",
+      "libelle": "Fête de la Musique Spotify",
+      "lieu": "Paris - Place de la Basti",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7844,8 +7904,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 5,
-      "heures": 25.0,
+      "inscrits": 6,
+      "heures": 30.0,
       "pec": 0
     },
     {
@@ -7856,8 +7916,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 13,
-      "heures": 91.0,
+      "inscrits": 14,
+      "heures": 98.0,
       "pec": 0
     },
     {
@@ -7868,8 +7928,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 7,
-      "heures": 77.0,
+      "inscrits": 9,
+      "heures": 99.0,
       "pec": 0
     },
     {
@@ -7952,8 +8012,8 @@
       "lieu": "Annecy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 8,
-      "heures": 72.0,
+      "inscrits": 9,
+      "heures": 81.0,
       "pec": 0
     },
     {
@@ -8024,14 +8084,14 @@
       "lieu": "Carhaix (29)",
       "dps": "-",
       "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 480.0,
+      "inscrits": 6,
+      "heures": 720.0,
       "pec": 0
     }
   ],
-  "lastModified": "26/05/2026",
+  "lastModified": "28/05/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 669,
+  "totalRows": 674,
   "years": [
     2023,
     2024,

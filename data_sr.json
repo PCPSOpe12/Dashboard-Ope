@@ -1981,12 +1981,17 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "13/03/2026",
+      "last_dps": "27/05/2026",
       "last_gar": "",
-      "last_any": "13/03/2026",
+      "last_any": "27/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
+        {
+          "date": "27/05/2026",
+          "lib": "Renfort DPS-ME - Handball PSG vs Nantes",
+          "heures": 5.5
+        },
         {
           "date": "25/01/2026",
           "lib": "Renfort DPS-ME - Meeting In Door de Paris d'Athlétisme",
@@ -4401,12 +4406,17 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "18/04/2026",
+      "last_dps": "27/05/2026",
       "last_gar": "14/04/2026",
-      "last_any": "18/04/2026",
+      "last_any": "27/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
+        {
+          "date": "27/05/2026",
+          "lib": "Renfort DPS-ME - Handball PSG vs Nantes",
+          "heures": 5.5
+        },
         {
           "date": "18/04/2026",
           "lib": "Soirée T7 - Doctor Love",
@@ -6963,10 +6973,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "19/01/2026",
+      "last_dps": "27/05/2026",
       "last_gar": "19/02/2026",
-      "last_any": "19/02/2026",
-      "inscrit_dps": true,
+      "last_any": "27/05/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -6993,6 +7003,11 @@
           "date": "27/07/2024",
           "lib": "Renfort Eiffel Champs de Mars - Stade Tour Eiffel",
           "heures": 19.5
+        },
+        {
+          "date": "27/05/2026",
+          "lib": "Renfort DPS-ME - Handball PSG vs Nantes",
+          "heures": 5.5
         },
         {
           "date": "19/06/2024",
@@ -8259,9 +8274,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "24/05/2026",
+      "last_dps": "26/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "24/05/2026",
+      "last_any": "26/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -8269,6 +8284,11 @@
           "date": "28/04/2026",
           "lib": "Course d'entreprise",
           "heures": 3.0
+        },
+        {
+          "date": "26/05/2026",
+          "lib": "Trophée Aventure",
+          "heures": 8.0
         },
         {
           "date": "24/05/2026",
@@ -9781,9 +9801,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "25/05/2026",
+      "last_dps": "27/05/2026",
       "last_gar": "",
-      "last_any": "25/05/2026",
+      "last_any": "27/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -9831,6 +9851,11 @@
           "date": "27/07/2024",
           "lib": "Renfort Club 24 Georges Valbon",
           "heures": 10.0
+        },
+        {
+          "date": "27/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 4.5
         },
         {
           "date": "27/02/2025",
@@ -13785,9 +13810,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "26/05/2026",
       "last_gar": "22/02/2026",
-      "last_any": "20/05/2026",
+      "last_any": "26/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -13795,6 +13820,11 @@
           "date": "29/12/2025",
           "lib": "Festival du merveilleux J4",
           "heures": 8.2
+        },
+        {
+          "date": "26/05/2026",
+          "lib": "Trophée Aventure",
+          "heures": 8.0
         },
         {
           "date": "23/12/2025",
@@ -14341,9 +14371,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "23/05/2026",
+      "last_dps": "26/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "23/05/2026",
+      "last_any": "26/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -14386,6 +14416,11 @@
           "date": "26/11/2025",
           "lib": "Salon du Livre - J1",
           "heures": 13.2
+        },
+        {
+          "date": "26/05/2026",
+          "lib": "Trophée Aventure",
+          "heures": 8.0
         },
         {
           "date": "25/11/2025",
@@ -17140,9 +17175,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "23/01/2026",
+      "last_dps": "27/05/2026",
       "last_gar": "28/02/2026",
-      "last_any": "28/02/2026",
+      "last_any": "27/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -17169,6 +17204,11 @@
         {
           "date": "27/07/2024",
           "lib": "Renfort Arena La Chapelle",
+          "heures": 5.5
+        },
+        {
+          "date": "27/05/2026",
+          "lib": "Renfort DPS-ME - Handball PSG vs Nantes",
           "heures": 5.5
         },
         {
@@ -18167,9 +18207,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "24/05/2026",
+      "last_dps": "27/05/2026",
       "last_gar": "22/05/2026",
-      "last_any": "24/05/2026",
+      "last_any": "27/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -18182,6 +18222,16 @@
           "date": "28/04/2025",
           "lib": "Renfort DPS-ME - Tyler the creator",
           "heures": 6.0
+        },
+        {
+          "date": "27/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 10.5
+        },
+        {
+          "date": "26/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 5.5
         },
         {
           "date": "25/11/2025",
@@ -22111,9 +22161,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "25/05/2026",
+      "last_dps": "27/05/2026",
       "last_gar": "16/05/2026",
-      "last_any": "25/05/2026",
+      "last_any": "27/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -22208,6 +22258,11 @@
           "heures": 12.0
         },
         {
+          "date": "27/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 4.5
+        },
+        {
           "date": "27/05/2025",
           "lib": "Tournoi de Roland Garros",
           "heures": 8.5
@@ -22221,6 +22276,16 @@
           "date": "27/01/2024",
           "lib": "Soirée électro",
           "heures": 7.0
+        },
+        {
+          "date": "26/05/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 4.5
+        },
+        {
+          "date": "26/05/2026",
+          "lib": "Trophée Aventure",
+          "heures": 8.0
         },
         {
           "date": "26/05/2025",
@@ -25736,9 +25801,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "26/05/2026",
       "last_gar": "01/03/2026",
-      "last_any": "20/05/2026",
+      "last_any": "26/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -25786,6 +25851,11 @@
           "date": "27/01/2026",
           "lib": "Paris Basket Ball vs Real Madrid",
           "heures": 5.2
+        },
+        {
+          "date": "26/05/2026",
+          "lib": "Trophée Aventure",
+          "heures": 8.0
         },
         {
           "date": "26/02/2025",
@@ -26284,12 +26354,17 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "27/05/2026",
       "last_gar": "",
-      "last_any": "20/05/2026",
+      "last_any": "27/05/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
+        {
+          "date": "27/05/2026",
+          "lib": "Prière collective",
+          "heures": 2.0
+        },
         {
           "date": "26/12/2025",
           "lib": "Festival du merveilleux J1",
@@ -26319,7 +26394,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "26/05/2026",
+  "lastModified": "28/05/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141,
@@ -26453,7 +26528,7 @@
       18,
       34,
       22,
-      26,
+      33,
       0,
       0,
       0,
