@@ -7653,7 +7653,7 @@
       "dps": "DPS-PE",
       "statut": "cloturé",
       "inscrits": 9,
-      "heures": 65.2,
+      "heures": 61.0,
       "pec": 0
     },
     {
@@ -7678,7 +7678,7 @@
       "statut": "cloturé",
       "inscrits": 6,
       "heures": 42.0,
-      "pec": 0
+      "pec": 1
     },
     {
       "annee": 2026,
@@ -7687,21 +7687,45 @@
       "libelle": "Renfort DPS-ME - Retransmission Match foot + Concert Bouss",
       "lieu": "Accor Arena Bercy",
       "dps": "PAPS",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 1,
-      "heures": 7.0,
+      "heures": 5.5,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 5,
       "date": "30/05/2026",
-      "libelle": "[PROV] Retransimission Longchamps",
+      "libelle": "Renfort Fan Zone Finale Ligue des Champions",
+      "lieu": "Hippodrome de Longchamps",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 8,
+      "heures": 64.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "30/05/2026",
+      "libelle": "Renfort Recensement VPS Finale LDC",
       "lieu": "Paris",
-      "dps": "-",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 18.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 5,
+      "date": "30/05/2026",
+      "libelle": "Renfort DPS Champs-Elysées Finale LDC",
+      "lieu": "Champs - Elysées",
+      "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 9,
-      "heures": 63.0,
+      "inscrits": 4,
+      "heures": 10.0,
       "pec": 0
     },
     {
@@ -7714,7 +7738,7 @@
       "statut": "cloturé",
       "inscrits": 9,
       "heures": 54.0,
-      "pec": 0
+      "pec": 7
     },
     {
       "annee": 2026,
@@ -7723,7 +7747,7 @@
       "libelle": "Renfort Présentation Trophéé LDC",
       "lieu": "Parc des Princes",
       "dps": "DPS-PE",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 6,
       "heures": 27.0,
       "pec": 0
@@ -7735,9 +7759,21 @@
       "libelle": "Rugby à 5",
       "lieu": "Stade Charlety",
       "dps": "PAPS",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 3,
       "heures": 6.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "02/06/2026",
+      "libelle": "Renfort PlayOff - Demi Finale - Match 1",
+      "lieu": "Adidas Arena",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
       "pec": 0
     },
     {
@@ -7748,8 +7784,8 @@
       "lieu": "Paris",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 14.0,
+      "inscrits": 4,
+      "heures": 28.0,
       "pec": 0
     },
     {
@@ -7760,8 +7796,8 @@
       "lieu": "Stade Léo Lagrange",
       "dps": "PAPS",
       "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 21.0,
+      "inscrits": 5,
+      "heures": 35.0,
       "pec": 0
     },
     {
@@ -7784,20 +7820,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 13,
-      "heures": 130.0,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 6,
-      "date": "13/06/2026",
-      "libelle": "Renfort Banquet des vins de Loire",
-      "lieu": "Paris",
-      "dps": "-",
-      "statut": "cloturé",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 14,
+      "heures": 140.0,
       "pec": 0
     },
     {
@@ -7808,8 +7832,8 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 12,
-      "heures": 108.0,
+      "inscrits": 13,
+      "heures": 117.0,
       "pec": 0
     },
     {
@@ -7892,6 +7916,18 @@
       "lieu": "Paris - Place de la Basti",
       "dps": "DPS-PE",
       "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 8.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "21/06/2026",
+      "libelle": "Fête la musique Playground",
+      "lieu": "Rue du Général Renault (P",
+      "dps": "PAPS",
+      "statut": "ouvert",
       "inscrits": 0,
       "heures": 0.0,
       "pec": 0
@@ -7904,8 +7940,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 6,
-      "heures": 30.0,
+      "inscrits": 8,
+      "heures": 40.0,
       "pec": 0
     },
     {
@@ -7916,8 +7952,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 14,
-      "heures": 98.0,
+      "inscrits": 17,
+      "heures": 119.0,
       "pec": 0
     },
     {
@@ -7928,8 +7964,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 9,
-      "heures": 99.0,
+      "inscrits": 11,
+      "heures": 121.0,
       "pec": 0
     },
     {
@@ -7964,8 +8000,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 13,
-      "heures": 143.0,
+      "inscrits": 14,
+      "heures": 154.0,
       "pec": 0
     },
     {
@@ -8012,8 +8048,8 @@
       "lieu": "Annecy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 9,
-      "heures": 81.0,
+      "inscrits": 11,
+      "heures": 363.0,
       "pec": 0
     },
     {
@@ -8084,14 +8120,14 @@
       "lieu": "Carhaix (29)",
       "dps": "-",
       "statut": "ouvert",
-      "inscrits": 6,
-      "heures": 720.0,
+      "inscrits": 5,
+      "heures": 600.0,
       "pec": 0
     }
   ],
-  "lastModified": "28/05/2026",
+  "lastModified": "01/06/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 674,
+  "totalRows": 677,
   "years": [
     2023,
     2024,
