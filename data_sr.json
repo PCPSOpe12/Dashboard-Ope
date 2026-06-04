@@ -694,9 +694,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "31/05/2026",
-      "last_gar": "29/05/2026",
-      "last_any": "31/05/2026",
+      "last_dps": "02/06/2026",
+      "last_gar": "02/06/2026",
+      "last_any": "02/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -1296,6 +1296,11 @@
           "heures": 9.5
         },
         {
+          "date": "02/06/2026",
+          "lib": "Rugby à 5",
+          "heures": 2.0
+        },
+        {
           "date": "02/05/2025",
           "lib": "Soir&eacute;e electronique",
           "heures": 14.0
@@ -1716,6 +1721,11 @@
           "date": "03/03/2026",
           "lib": "BSPP",
           "heures": 12.0
+        },
+        {
+          "date": "02/06/2026",
+          "lib": "BSPP",
+          "heures": 6.0
         },
         {
           "date": "02/04/2024",
@@ -5666,9 +5676,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "12/05/2026",
+      "last_dps": "02/06/2026",
       "last_gar": "14/05/2026",
-      "last_any": "14/05/2026",
+      "last_any": "02/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -5776,6 +5786,11 @@
           "date": "02/09/2024",
           "lib": "Renfort SPA - Arena Paris Sud Hall 1",
           "heures": 7.5
+        },
+        {
+          "date": "02/06/2026",
+          "lib": "Rugby à 5",
+          "heures": 2.0
         },
         {
           "date": "01/08/2024",
@@ -9886,9 +9901,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "31/05/2026",
+      "last_dps": "03/06/2026",
       "last_gar": "",
-      "last_any": "31/05/2026",
+      "last_any": "03/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -10106,6 +10121,11 @@
           "date": "03/08/2024",
           "lib": "Renfort Eiffel Champs de Mars",
           "heures": 6.5
+        },
+        {
+          "date": "03/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 4.5
         },
         {
           "date": "01/12/2024",
@@ -11124,8 +11144,8 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "31/05/2026",
-      "last_gar": "29/05/2026",
-      "last_any": "31/05/2026",
+      "last_gar": "02/06/2026",
+      "last_any": "02/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -12168,6 +12188,11 @@
         },
         {
           "date": "03/04/2026",
+          "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "02/06/2026",
           "lib": "BSPP",
           "heures": 6.0
         },
@@ -15697,9 +15722,9 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "30/05/2026",
+      "last_dps": "02/06/2026",
       "last_gar": "",
-      "last_any": "30/05/2026",
+      "last_any": "02/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -16007,6 +16032,11 @@
           "date": "02/08/2025",
           "lib": "Championnat de France Athlétisme Elite #Jour 2",
           "heures": 5.8
+        },
+        {
+          "date": "02/06/2026",
+          "lib": "Renfort Black Legends",
+          "heures": 5.0
         },
         {
           "date": "02/03/2024",
@@ -18392,9 +18422,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "30/05/2026",
+      "last_dps": "02/06/2026",
       "last_gar": "22/05/2026",
-      "last_any": "30/05/2026",
+      "last_any": "02/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -18567,6 +18597,16 @@
           "date": "03/05/2026",
           "lib": "Renfort DPS-ME - Concert Tame Impala",
           "heures": 6.0
+        },
+        {
+          "date": "02/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 10.5
+        },
+        {
+          "date": "01/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 10.5
         },
         {
           "date": "01/03/2024",
@@ -22376,9 +22416,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "31/05/2026",
+      "last_dps": "03/06/2026",
       "last_gar": "16/05/2026",
-      "last_any": "31/05/2026",
+      "last_any": "03/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -22798,6 +22838,11 @@
           "heures": 12.5
         },
         {
+          "date": "03/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 7.5
+        },
+        {
           "date": "03/06/2025",
           "lib": "Tournoi de Roland Garros",
           "heures": 8.5
@@ -22813,6 +22858,11 @@
           "heures": 29.2
         },
         {
+          "date": "02/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 7.5
+        },
+        {
           "date": "02/06/2024",
           "lib": "Tournoi de Roland Garros",
           "heures": 8.5
@@ -22826,6 +22876,11 @@
           "date": "02/05/2025",
           "lib": "Soir&eacute;e electronique",
           "heures": 14.0
+        },
+        {
+          "date": "01/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 7.5
         },
         {
           "date": "01/06/2025",
@@ -26664,7 +26719,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "01/06/2026",
+  "lastModified": "04/06/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141,
@@ -26799,7 +26854,7 @@
       34,
       22,
       33,
-      26,
+      27,
       0,
       0,
       0,

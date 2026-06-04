@@ -7762,7 +7762,7 @@
       "statut": "cloturé",
       "inscrits": 3,
       "heures": 6.0,
-      "pec": 0
+      "pec": 1
     },
     {
       "annee": 2026,
@@ -7771,9 +7771,33 @@
       "libelle": "Renfort PlayOff - Demi Finale - Match 1",
       "lieu": "Adidas Arena",
       "dps": "PAPS",
-      "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "statut": "cloturé",
+      "inscrits": 2,
+      "heures": 9.5,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "04/06/2026",
+      "libelle": "Renfort Cross de Bercy 2026",
+      "lieu": "Bois de Vincennes",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "04/06/2026",
+      "libelle": "Renfort DPS-PE - Evènement d'entreprise Google",
+      "lieu": "Accor Arena Bercy",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 1,
+      "heures": 12.0,
       "pec": 0
     },
     {
@@ -7783,7 +7807,7 @@
       "libelle": "Soirée étudiante",
       "lieu": "Paris",
       "dps": "DPS-PE",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 4,
       "heures": 28.0,
       "pec": 0
@@ -7795,9 +7819,21 @@
       "libelle": "On sla coule 12",
       "lieu": "Stade Léo Lagrange",
       "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 3,
+      "heures": 21.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "08/06/2026",
+      "libelle": "Renfort Concert  FKA TWIGS - BODY HIGH TOUR",
+      "lieu": "Adidas Arena",
+      "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 5,
-      "heures": 35.0,
+      "inscrits": 2,
+      "heures": 10.0,
       "pec": 0
     },
     {
@@ -7815,13 +7851,25 @@
     {
       "annee": 2026,
       "mois": 6,
+      "date": "11/06/2026",
+      "libelle": "Tournage SAUT DANS LA SEINE",
+      "lieu": "Pont Marie",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
       "date": "13/06/2026",
       "libelle": "Brunch Electronik Paris - J1",
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
-      "statut": "ouvert",
-      "inscrits": 14,
-      "heures": 140.0,
+      "statut": "cloturé",
+      "inscrits": 13,
+      "heures": 130.0,
       "pec": 0
     },
     {
@@ -7831,9 +7879,9 @@
       "libelle": "Brunch Electronik Paris - J2",
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 13,
-      "heures": 117.0,
+      "heures": 108.0,
       "pec": 0
     },
     {
@@ -7843,21 +7891,21 @@
       "libelle": "Passage de grade Aikido",
       "lieu": "Maison des arts Martiaux",
       "dps": "PAPS",
-      "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "statut": "cloturé",
+      "inscrits": 3,
+      "heures": 16.5,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 6,
-      "date": "14/06/2026",
-      "libelle": "Renfort Banquet des vins de Loire",
-      "lieu": "Paris",
-      "dps": "-",
-      "statut": "cloturé",
-      "inscrits": 0,
-      "heures": 0.0,
+      "date": "15/06/2026",
+      "libelle": "Soirée d'entreprise METRO",
+      "lieu": "Paris - Musée des Arts Fo",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 5.5,
       "pec": 0
     },
     {
@@ -7899,6 +7947,18 @@
     {
       "annee": 2026,
       "mois": 6,
+      "date": "18/06/2026",
+      "libelle": "Summer Party Google",
+      "lieu": "Paris - Parc Floral",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
       "date": "21/06/2026",
       "libelle": "Fête de la musique",
       "lieu": "Place de la bastille",
@@ -7916,8 +7976,8 @@
       "lieu": "Paris - Place de la Basti",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 8.0,
+      "inscrits": 3,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7940,8 +8000,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 8,
-      "heures": 40.0,
+      "inscrits": 11,
+      "heures": 55.0,
       "pec": 0
     },
     {
@@ -7952,8 +8012,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 17,
-      "heures": 119.0,
+      "inscrits": 19,
+      "heures": 133.0,
       "pec": 0
     },
     {
@@ -7964,8 +8024,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 11,
-      "heures": 121.0,
+      "inscrits": 15,
+      "heures": 165.0,
       "pec": 0
     },
     {
@@ -7976,8 +8036,8 @@
       "lieu": "Paris",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "inscrits": 4,
+      "heures": 32.0,
       "pec": 0
     },
     {
@@ -8000,8 +8060,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 14,
-      "heures": 154.0,
+      "inscrits": 16,
+      "heures": 176.0,
       "pec": 0
     },
     {
@@ -8125,9 +8185,9 @@
       "pec": 0
     }
   ],
-  "lastModified": "01/06/2026",
+  "lastModified": "04/06/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 677,
+  "totalRows": 682,
   "years": [
     2023,
     2024,
