@@ -22,10 +22,10 @@
       },
       "CDD": null,
       "last_dps": "28/05/2026",
-      "last_gar": "29/05/2026",
-      "last_any": "29/05/2026",
+      "last_gar": "06/06/2026",
+      "last_any": "06/06/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/12/2025",
@@ -570,6 +570,11 @@
           "heures": 5.0
         },
         {
+          "date": "06/06/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
+        },
+        {
           "date": "06/06/2024",
           "lib": "BSPP",
           "heures": 6.0
@@ -695,8 +700,8 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "02/06/2026",
-      "last_gar": "02/06/2026",
-      "last_any": "02/06/2026",
+      "last_gar": "07/06/2026",
+      "last_any": "07/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -1658,9 +1663,19 @@
           "heures": 11.0
         },
         {
+          "date": "07/06/2026",
+          "lib": "BSPP",
+          "heures": 10.0
+        },
+        {
           "date": "06/08/2024",
           "lib": "Garde 2 - SAMU 93",
           "heures": 8.0
+        },
+        {
+          "date": "06/06/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
         },
         {
           "date": "06/06/2024",
@@ -2453,10 +2468,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "18/05/2026",
-      "last_gar": "09/04/2026",
-      "last_any": "18/05/2026",
+      "last_gar": "08/06/2026",
+      "last_any": "08/06/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "28/04/2026",
@@ -2508,6 +2523,11 @@
         {
           "date": "09/04/2026",
           "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "08/06/2026",
+          "lib": "Garde BSPP",
           "heures": 6.0
         },
         {
@@ -4631,9 +4651,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/05/2026",
+      "last_dps": "06/06/2026",
       "last_gar": "16/05/2026",
-      "last_any": "28/05/2026",
+      "last_any": "06/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -4808,6 +4828,11 @@
           "heures": 8.5
         },
         {
+          "date": "06/06/2026",
+          "lib": "On sla coule 12",
+          "heures": 7.0
+        },
+        {
           "date": "06/03/2026",
           "lib": "Renfort PSG  Monaco Ligue 1",
           "heures": 5.2
@@ -4960,10 +4985,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "28/05/2026",
-      "last_gar": "15/04/2026",
-      "last_any": "28/05/2026",
+      "last_gar": "04/06/2026",
+      "last_any": "04/06/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/10/2024",
@@ -5618,6 +5643,11 @@
           "heures": 6.0
         },
         {
+          "date": "04/06/2026",
+          "lib": "[PROV] BSPP",
+          "heures": 6.0
+        },
+        {
           "date": "03/06/2025",
           "lib": "Garde BSPP",
           "heures": 6.0
@@ -5859,10 +5889,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "28/05/2026",
-      "last_gar": "13/05/2026",
-      "last_any": "28/05/2026",
+      "last_gar": "04/06/2026",
+      "last_any": "04/06/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "28/05/2026",
@@ -5889,6 +5919,11 @@
         {
           "date": "13/05/2026",
           "lib": "Garde BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "04/06/2026",
+          "lib": "[PROV] BSPP",
           "heures": 6.0
         }
       ]
@@ -6019,8 +6054,8 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "24/05/2026",
-      "last_gar": "29/05/2026",
-      "last_any": "29/05/2026",
+      "last_gar": "06/06/2026",
+      "last_any": "06/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -6240,6 +6275,11 @@
           "date": "09/06/2025",
           "lib": "BSPP",
           "heures": 9.0
+        },
+        {
+          "date": "06/06/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
         },
         {
           "date": "05/03/2026",
@@ -7791,10 +7831,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "31/05/2026",
+      "last_dps": "07/06/2026",
       "last_gar": "30/11/2025",
-      "last_any": "31/05/2026",
-      "inscrit_dps": true,
+      "last_any": "07/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -7831,6 +7871,11 @@
           "date": "10/03/2026",
           "lib": "Renfort DPS-ME - Lara Fabian",
           "heures": 5.5
+        },
+        {
+          "date": "07/06/2026",
+          "lib": "[Prov] La ruée des fadas",
+          "heures": 6.0
         },
         {
           "date": "04/05/2025",
@@ -8642,10 +8687,10 @@
       },
       "CDD": null,
       "last_dps": "07/05/2026",
-      "last_gar": "13/05/2026",
-      "last_any": "13/05/2026",
+      "last_gar": "04/06/2026",
+      "last_any": "04/06/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -9430,6 +9475,11 @@
           "heures": 7.0
         },
         {
+          "date": "04/06/2026",
+          "lib": "[PROV] BSPP",
+          "heures": 6.0
+        },
+        {
           "date": "03/07/2024",
           "lib": "SAMU 75 - VPS PS",
           "heures": 5.0
@@ -9495,8 +9545,8 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "24/05/2026",
-      "last_gar": "29/05/2026",
-      "last_any": "29/05/2026",
+      "last_gar": "05/06/2026",
+      "last_any": "05/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -9878,6 +9928,11 @@
           "heures": 9.0
         },
         {
+          "date": "05/06/2026",
+          "lib": "BSPP",
+          "heures": 5.5
+        },
+        {
           "date": "05/03/2026",
           "lib": "BSPP",
           "heures": 6.0
@@ -9901,10 +9956,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "03/06/2026",
+      "last_dps": "06/06/2026",
       "last_gar": "",
-      "last_any": "03/06/2026",
-      "inscrit_dps": true,
+      "last_any": "06/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -10093,6 +10148,11 @@
           "heures": 4.5
         },
         {
+          "date": "06/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 6.5
+        },
+        {
           "date": "05/12/2024",
           "lib": "Montage R&eacute;ouverture Notre-Dame",
           "heures": 8.5
@@ -10106,6 +10166,11 @@
           "date": "04/08/2024",
           "lib": "Renfort Eiffel Champs de Mars",
           "heures": 7.0
+        },
+        {
+          "date": "04/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 3.5
         },
         {
           "date": "03/12/2024",
@@ -11144,8 +11209,8 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "31/05/2026",
-      "last_gar": "02/06/2026",
-      "last_any": "02/06/2026",
+      "last_gar": "08/06/2026",
+      "last_any": "08/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -12117,6 +12182,11 @@
           "heures": 6.0
         },
         {
+          "date": "08/06/2026",
+          "lib": "Garde BSPP",
+          "heures": 6.0
+        },
+        {
           "date": "08/05/2024",
           "lib": "BSPP",
           "heures": 11.0
@@ -12145,6 +12215,11 @@
           "date": "07/05/2025",
           "lib": "BSPP",
           "heures": 10.0
+        },
+        {
+          "date": "06/06/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
         },
         {
           "date": "05/03/2026",
@@ -13107,8 +13182,8 @@
       },
       "CDD": null,
       "last_dps": "20/05/2026",
-      "last_gar": "31/05/2026",
-      "last_any": "31/05/2026",
+      "last_gar": "08/06/2026",
+      "last_any": "08/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": true,
       "activites_dps": [
@@ -13542,6 +13617,11 @@
         {
           "date": "08/10/2025",
           "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "08/06/2026",
+          "lib": "Garde BSPP",
           "heures": 6.0
         },
         {
@@ -15230,11 +15310,11 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "29/05/2026",
-      "last_gar": "27/11/2025",
-      "last_any": "29/05/2026",
-      "inscrit_dps": true,
-      "inscrit_gar": true,
+      "last_dps": "06/06/2026",
+      "last_gar": "08/06/2026",
+      "last_any": "08/06/2026",
+      "inscrit_dps": false,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/10/2025",
@@ -15507,6 +15587,11 @@
           "heures": 8.5
         },
         {
+          "date": "06/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 6.5
+        },
+        {
           "date": "05/12/2024",
           "lib": "Renfort DPS-GE - Concert Paul McCartney",
           "heures": 6.0
@@ -15520,6 +15605,11 @@
           "date": "05/07/2025",
           "lib": "Renfort Compagny Cup 2025 Annecy le Vieux",
           "heures": 10.0
+        },
+        {
+          "date": "05/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 3.5
         },
         {
           "date": "04/08/2024",
@@ -15664,6 +15754,11 @@
           "heures": 6.0
         },
         {
+          "date": "08/06/2026",
+          "lib": "Garde BSPP",
+          "heures": 6.0
+        },
+        {
           "date": "03/06/2025",
           "lib": "Garde BSPP",
           "heures": 6.0
@@ -15722,10 +15817,10 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "02/06/2026",
+      "last_dps": "06/06/2026",
       "last_gar": "",
-      "last_any": "02/06/2026",
-      "inscrit_dps": true,
+      "last_any": "06/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -15972,6 +16067,11 @@
           "date": "06/07/2024",
           "lib": "Inauguration Pont Simone Veil",
           "heures": 10.0
+        },
+        {
+          "date": "06/06/2026",
+          "lib": "Tournoi football BPCE",
+          "heures": 8.5
         },
         {
           "date": "06/01/2024",
@@ -17709,9 +17809,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "31/05/2026",
+      "last_dps": "06/06/2026",
       "last_gar": "29/05/2026",
-      "last_any": "31/05/2026",
+      "last_any": "06/06/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -17814,6 +17914,11 @@
           "date": "09/02/2025",
           "lib": "Renfort Foulées de Vincennes - VPS",
           "heures": 6.0
+        },
+        {
+          "date": "06/06/2026",
+          "lib": "On sla coule 12",
+          "heures": 7.0
         },
         {
           "date": "05/10/2025",
@@ -18422,10 +18527,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "02/06/2026",
+      "last_dps": "07/06/2026",
       "last_gar": "22/05/2026",
-      "last_any": "02/06/2026",
-      "inscrit_dps": true,
+      "last_any": "07/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -18584,9 +18689,29 @@
           "heures": 6.0
         },
         {
+          "date": "07/06/2026",
+          "lib": "Tournoi Roland-Garros - Finale",
+          "heures": 7.5
+        },
+        {
+          "date": "06/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 5.5
+        },
+        {
           "date": "06/04/2024",
           "lib": "Soirée Duplex",
           "heures": 6.0
+        },
+        {
+          "date": "05/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 5.5
+        },
+        {
+          "date": "04/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 10.5
         },
         {
           "date": "03/07/2025",
@@ -21371,10 +21496,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "24/05/2026",
-      "last_gar": "29/05/2026",
-      "last_any": "29/05/2026",
+      "last_gar": "08/06/2026",
+      "last_any": "08/06/2026",
       "inscrit_dps": true,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/01/2026",
@@ -21486,6 +21611,16 @@
         {
           "date": "11/05/2026",
           "lib": "BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "08/06/2026",
+          "lib": "Garde BSPP",
+          "heures": 6.0
+        },
+        {
+          "date": "04/06/2026",
+          "lib": "[PROV] BSPP",
           "heures": 6.0
         }
       ]
@@ -22416,10 +22551,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "03/06/2026",
+      "last_dps": "07/06/2026",
       "last_gar": "16/05/2026",
-      "last_any": "03/06/2026",
-      "inscrit_dps": true,
+      "last_any": "07/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -22763,6 +22898,11 @@
           "heures": 10.0
         },
         {
+          "date": "07/06/2026",
+          "lib": "Tournoi Roland-Garros - Finale",
+          "heures": 6.5
+        },
+        {
           "date": "07/06/2025",
           "lib": "Tournoi de Roland Garros",
           "heures": 5.5
@@ -22816,6 +22956,11 @@
           "date": "04/08/2024",
           "lib": "Renfort Reserve",
           "heures": 24.0
+        },
+        {
+          "date": "04/06/2026",
+          "lib": "Tournoi Roland-Garros",
+          "heures": 7.5
         },
         {
           "date": "04/06/2025",
@@ -24493,10 +24638,10 @@
       "CEPS": null,
       "CDD": null,
       "last_dps": "19/05/2026",
-      "last_gar": "08/03/2026",
-      "last_any": "19/05/2026",
+      "last_gar": "06/06/2026",
+      "last_any": "06/06/2026",
       "inscrit_dps": false,
-      "inscrit_gar": true,
+      "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/07/2024",
@@ -24809,6 +24954,11 @@
           "date": "07/08/2025",
           "lib": "BSPP",
           "heures": 11.0
+        },
+        {
+          "date": "06/06/2026",
+          "lib": "Garde BSPP",
+          "heures": 12.0
         },
         {
           "date": "05/09/2025",
@@ -26719,7 +26869,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "04/06/2026",
+  "lastModified": "09/06/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 141,
@@ -26855,7 +27005,7 @@
       22,
       33,
       27,
-      0,
+      8,
       0,
       0,
       0,
@@ -27073,7 +27223,7 @@
       16,
       6,
       15,
-      0,
+      13,
       0,
       0,
       0,

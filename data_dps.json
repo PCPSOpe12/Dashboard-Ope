@@ -7810,7 +7810,7 @@
       "statut": "cloturé",
       "inscrits": 4,
       "heures": 28.0,
-      "pec": 0
+      "pec": 5
     },
     {
       "annee": 2026,
@@ -7831,9 +7831,9 @@
       "libelle": "Renfort Concert  FKA TWIGS - BODY HIGH TOUR",
       "lieu": "Adidas Arena",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 2,
-      "heures": 10.0,
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 20.0,
       "pec": 0
     },
     {
@@ -7851,6 +7851,18 @@
     {
       "annee": 2026,
       "mois": 6,
+      "date": "09/06/2026",
+      "libelle": "Forum emploi",
+      "lieu": "Vitry-sur-Seine",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 2,
+      "heures": 14.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
       "date": "11/06/2026",
       "libelle": "Tournage SAUT DANS LA SEINE",
       "lieu": "Pont Marie",
@@ -7858,6 +7870,18 @@
       "statut": "cloturé",
       "inscrits": 0,
       "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "12/06/2026",
+      "libelle": "Renfort DPS-ME  - Concert KALASH",
+      "lieu": "Nanterre - Paris La Défen",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 2,
+      "heures": 12.5,
       "pec": 0
     },
     {
@@ -7879,9 +7903,9 @@
       "libelle": "Brunch Electronik Paris - J2",
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
-      "statut": "cloturé",
+      "statut": "ouvert",
       "inscrits": 13,
-      "heures": 108.0,
+      "heures": 102.0,
       "pec": 0
     },
     {
@@ -7903,9 +7927,9 @@
       "libelle": "Soirée d'entreprise METRO",
       "lieu": "Paris - Musée des Arts Fo",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 5.5,
+      "statut": "cloturé",
+      "inscrits": 5,
+      "heures": 27.5,
       "pec": 0
     },
     {
@@ -7995,13 +8019,25 @@
     {
       "annee": 2026,
       "mois": 6,
+      "date": "25/06/2026",
+      "libelle": "Défilé RICK OWENS",
+      "lieu": "Paris - Palais de Tokyo",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 2,
+      "heures": 6.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
       "date": "26/06/2026",
       "libelle": "[PROV] Solidays J1 - 1/2",
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 11,
-      "heures": 55.0,
+      "inscrits": 12,
+      "heures": 60.0,
       "pec": 0
     },
     {
@@ -8024,8 +8060,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 15,
-      "heures": 165.0,
+      "inscrits": 16,
+      "heures": 176.0,
       "pec": 0
     },
     {
@@ -8036,8 +8072,8 @@
       "lieu": "Paris",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 4,
-      "heures": 32.0,
+      "inscrits": 5,
+      "heures": 40.0,
       "pec": 0
     },
     {
@@ -8060,8 +8096,8 @@
       "lieu": "Hippodrome de Longchamp",
       "dps": "DPS-ME",
       "statut": "ouvert",
-      "inscrits": 16,
-      "heures": 176.0,
+      "inscrits": 15,
+      "heures": 165.0,
       "pec": 0
     },
     {
@@ -8098,6 +8134,18 @@
       "statut": "cloturé",
       "inscrits": 0,
       "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "02/07/2026",
+      "libelle": "Olympiades du groupe AFD",
+      "lieu": "Stade Alain Mimoun",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 2.8,
       "pec": 0
     },
     {
@@ -8175,6 +8223,18 @@
     {
       "annee": 2026,
       "mois": 7,
+      "date": "13/07/2026",
+      "libelle": "Feu dartifice",
+      "lieu": "Alfortville",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 0,
+      "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
       "date": "15/07/2026",
       "libelle": "[PROV] Vieilles Charrues 2026",
       "lieu": "Carhaix (29)",
@@ -8185,9 +8245,9 @@
       "pec": 0
     }
   ],
-  "lastModified": "04/06/2026",
+  "lastModified": "09/06/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 682,
+  "totalRows": 687,
   "years": [
     2023,
     2024,
