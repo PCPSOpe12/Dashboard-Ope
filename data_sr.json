@@ -697,7 +697,10 @@
         "obt": "",
         "exp": ""
       },
-      "CEPS": null,
+      "CEPS": {
+        "obt": "",
+        "exp": ""
+      },
       "CDD": null,
       "last_dps": "17/06/2026",
       "last_gar": "20/06/2026",
@@ -7307,10 +7310,7 @@
     {
       "nom": "GAUTHIEROT",
       "prenom": "Kawly",
-      "PSE1": {
-        "obt": "",
-        "exp": "31-12-2026"
-      },
+      "PSE1": null,
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -14180,13 +14180,10 @@
       ]
     },
     {
-      "nom": "LETRANGE RECHAL",
-      "prenom": "Dimitri",
+      "nom": "LETRANGE",
+      "prenom": "RECHAL Dimitri",
       "PSE1": null,
-      "PSE2": {
-        "obt": "",
-        "exp": "31-12-2027"
-      },
+      "PSE2": null,
       "CE": null,
       "CP": null,
       "CEPS": null,
@@ -14764,7 +14761,10 @@
         "obt": "",
         "exp": ""
       },
-      "CP": null,
+      "CP": {
+        "obt": "",
+        "exp": ""
+      },
       "CEPS": null,
       "CDD": null,
       "last_dps": "14/06/2026",
@@ -24752,10 +24752,7 @@
     {
       "nom": "VALLET",
       "prenom": "Olivier",
-      "PSE1": {
-        "obt": "",
-        "exp": "31-12-2027"
-      },
+      "PSE1": null,
       "PSE2": null,
       "CE": null,
       "CP": null,
@@ -26463,7 +26460,7 @@
         "exp": "31-12-2027"
       },
       "CE": {
-        "obt": "18-05-2017",
+        "obt": "11-04-2016",
         "exp": ""
       },
       "CP": {
