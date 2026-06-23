@@ -7892,9 +7892,9 @@
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
       "statut": "cloturé",
-      "inscrits": 13,
-      "heures": 130.0,
-      "pec": 0
+      "inscrits": 14,
+      "heures": 136.0,
+      "pec": 37
     },
     {
       "annee": 2026,
@@ -7903,10 +7903,10 @@
       "libelle": "Brunch Electronik Paris - J2",
       "lieu": "Hippodrome Paris-Vincenne",
       "dps": "DPS-ME",
-      "statut": "ouvert",
-      "inscrits": 13,
-      "heures": 102.0,
-      "pec": 0
+      "statut": "cloturé",
+      "inscrits": 14,
+      "heures": 111.0,
+      "pec": 14
     },
     {
       "annee": 2026,
@@ -7930,7 +7930,7 @@
       "statut": "cloturé",
       "inscrits": 5,
       "heures": 27.5,
-      "pec": 0
+      "pec": 1
     },
     {
       "annee": 2026,
@@ -7939,9 +7939,9 @@
       "libelle": "Renfort DPS-ME - Concert Kaytranada",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 1,
-      "heures": 6.0,
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 22.0,
       "pec": 0
     },
     {
@@ -7951,10 +7951,10 @@
       "libelle": "Jeux des collèges",
       "lieu": "Parc départemental des sp",
       "dps": "DPS-PE",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 4,
       "heures": 28.0,
-      "pec": 0
+      "pec": 10
     },
     {
       "annee": 2026,
@@ -7963,9 +7963,9 @@
       "libelle": "Renfort DPS-ME - Concert Cypress Hill",
       "lieu": "Accor Arena Bercy",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 18.0,
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 24.0,
       "pec": 0
     },
     {
@@ -7975,21 +7975,21 @@
       "libelle": "Summer Party Google",
       "lieu": "Paris - Parc Floral",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "statut": "cloturé",
+      "inscrits": 5,
+      "heures": 47.5,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 6,
-      "date": "21/06/2026",
-      "libelle": "Fête de la musique",
-      "lieu": "Place de la bastille",
-      "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 6,
-      "heures": 48.0,
+      "date": "19/06/2026",
+      "libelle": "Renfort DPS-ME  - Concert Foo Fighters",
+      "lieu": "Nanterre - Paris La Défen",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 1,
+      "heures": 7.5,
       "pec": 0
     },
     {
@@ -7999,10 +7999,10 @@
       "libelle": "Fête de la Musique Spotify",
       "lieu": "Paris - Place de la Basti",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 3,
-      "heures": 24.0,
-      "pec": 0
+      "statut": "cloturé",
+      "inscrits": 9,
+      "heures": 72.0,
+      "pec": 19
     },
     {
       "annee": 2026,
@@ -8011,9 +8011,33 @@
       "libelle": "Fête la musique Playground",
       "lieu": "Rue du Général Renault (P",
       "dps": "PAPS",
-      "statut": "ouvert",
-      "inscrits": 0,
-      "heures": 0.0,
+      "statut": "cloturé",
+      "inscrits": 2,
+      "heures": 21.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "22/06/2026",
+      "libelle": "Renfort DPS-ME  - Concert  Iron Maiden",
+      "lieu": "Nanterre - Paris La Défen",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 27.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "23/06/2026",
+      "libelle": "Renfort PlayOff - Final J5",
+      "lieu": "Adidas Arena",
+      "dps": "PAPS",
+      "statut": "cloturé",
+      "inscrits": 2,
+      "heures": 9.5,
       "pec": 0
     },
     {
@@ -8023,57 +8047,33 @@
       "libelle": "Défilé RICK OWENS",
       "lieu": "Paris - Palais de Tokyo",
       "dps": "PAPS",
-      "statut": "ouvert",
+      "statut": "cloturé",
       "inscrits": 2,
-      "heures": 6.0,
+      "heures": 7.0,
       "pec": 0
     },
     {
       "annee": 2026,
       "mois": 6,
       "date": "26/06/2026",
-      "libelle": "[PROV] Solidays J1 - 1/2",
-      "lieu": "Hippodrome de Longchamp",
-      "dps": "DPS-ME",
-      "statut": "ouvert",
-      "inscrits": 12,
-      "heures": 60.0,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 6,
-      "date": "26/06/2026",
-      "libelle": "[PROV] Solidays J1 - 2/2",
-      "lieu": "Hippodrome de Longchamp",
-      "dps": "DPS-ME",
-      "statut": "ouvert",
-      "inscrits": 19,
-      "heures": 133.0,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 6,
-      "date": "27/06/2026",
-      "libelle": "[PROV] Solidays J2",
-      "lieu": "Hippodrome de Longchamp",
-      "dps": "DPS-ME",
-      "statut": "ouvert",
-      "inscrits": 16,
-      "heures": 176.0,
-      "pec": 0
-    },
-    {
-      "annee": 2026,
-      "mois": 6,
-      "date": "27/06/2026",
-      "libelle": "[PROV] La marche des fiertés",
-      "lieu": "Paris",
+      "libelle": "Renfort Solidays J1 - PSA Paris 2",
+      "lieu": "Paris - Hippodrome de Lon",
       "dps": "DPS-PE",
-      "statut": "ouvert",
-      "inscrits": 5,
-      "heures": 40.0,
+      "statut": "cloturé",
+      "inscrits": 8,
+      "heures": 96.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "26/06/2026",
+      "libelle": "Renfort Solidays J1 - VPS",
+      "lieu": "Paris - Hippodrome de Lon",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 44.0,
       "pec": 0
     },
     {
@@ -8091,13 +8091,25 @@
     {
       "annee": 2026,
       "mois": 6,
-      "date": "28/06/2026",
-      "libelle": "[PROV] Solidays J3",
-      "lieu": "Hippodrome de Longchamp",
-      "dps": "DPS-ME",
-      "statut": "ouvert",
-      "inscrits": 15,
-      "heures": 165.0,
+      "date": "27/06/2026",
+      "libelle": "Renfort Solidays J2 - PSA Cesar Circus",
+      "lieu": "Paris - Hippodrome de Lon",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 64.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "27/06/2026",
+      "libelle": "Renfort Solidays J2 - VPS",
+      "lieu": "Paris - Hippodrome de Lon",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 64.0,
       "pec": 0
     },
     {
@@ -8115,6 +8127,42 @@
     {
       "annee": 2026,
       "mois": 6,
+      "date": "28/06/2026",
+      "libelle": "Renfort Solidays J3 - PSA Paris 1",
+      "lieu": "Paris - Hippodrome de Lon",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 44.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "28/06/2026",
+      "libelle": "Renfort Solidays J3 - VPS A",
+      "lieu": "Paris - Hippodrome de Lon",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 44.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "28/06/2026",
+      "libelle": "Renfort Solidays J3 - VPS B",
+      "lieu": "Paris - Hippodrome de Lon",
+      "dps": "DPS-PE",
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 44.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
       "date": "29/06/2026",
       "libelle": "Tournage Le réseau Corneille",
       "lieu": "Tunnel Canal Saint martin",
@@ -8122,6 +8170,18 @@
       "statut": "cloturé",
       "inscrits": 0,
       "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "30/06/2026",
+      "libelle": "Du Stade vers l'emploi - LIFA",
+      "lieu": "Évry-Courcouronnes",
+      "dps": "PAPS",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 2.5,
       "pec": 0
     },
     {
@@ -8144,8 +8204,32 @@
       "lieu": "Stade Alain Mimoun",
       "dps": "PAPS",
       "statut": "ouvert",
+      "inscrits": 2,
+      "heures": 5.5,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "03/07/2026",
+      "libelle": "Guinguette d'été",
+      "lieu": "Paris - Place Raoul-Dautr",
+      "dps": "PAPS",
+      "statut": "ouvert",
       "inscrits": 1,
-      "heures": 2.8,
+      "heures": 6.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "03/07/2026",
+      "libelle": "Rando Roller",
+      "lieu": "Paris",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 3.2,
       "pec": 0
     },
     {
@@ -8156,8 +8240,8 @@
       "lieu": "Annecy",
       "dps": "DPS-PE",
       "statut": "ouvert",
-      "inscrits": 11,
-      "heures": 363.0,
+      "inscrits": 13,
+      "heures": 429.0,
       "pec": 0
     },
     {
@@ -8170,6 +8254,30 @@
       "statut": "cloturé",
       "inscrits": 0,
       "heures": 0.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "10/07/2026",
+      "libelle": "Le Duplex",
+      "lieu": "Paris",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 6.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "11/07/2026",
+      "libelle": "Course Copenhague-Paris 2026",
+      "lieu": "Paris",
+      "dps": "DPS-PE",
+      "statut": "ouvert",
+      "inscrits": 1,
+      "heures": 7.0,
       "pec": 0
     },
     {
@@ -8236,18 +8344,18 @@
       "annee": 2026,
       "mois": 7,
       "date": "15/07/2026",
-      "libelle": "[PROV] Vieilles Charrues 2026",
+      "libelle": "Vieilles Charrues 2026",
       "lieu": "Carhaix (29)",
       "dps": "-",
-      "statut": "ouvert",
-      "inscrits": 5,
-      "heures": 600.0,
+      "statut": "cloturé",
+      "inscrits": 4,
+      "heures": 480.0,
       "pec": 0
     }
   ],
-  "lastModified": "09/06/2026",
+  "lastModified": "23/06/2026",
   "maxDate": "15/07/2026",
-  "totalRows": 687,
+  "totalRows": 696,
   "years": [
     2023,
     2024,
