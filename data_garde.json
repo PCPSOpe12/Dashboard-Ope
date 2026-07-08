@@ -3638,16 +3638,96 @@
       "lieu": "MENIL",
       "inscrits": 4,
       "heures": 24.0,
-      "pec": 0
+      "pec": 5
     },
     {
       "annee": 2026,
       "mois": 6,
       "date": "24/06/2026",
-      "libelle": "SAMU 75",
-      "lieu": "",
+      "libelle": "SAMU 75 - VPS PS",
+      "lieu": "Paris",
       "inscrits": 4,
-      "heures": 19.9,
+      "heures": 23.9,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "25/06/2026",
+      "libelle": "BSPP",
+      "lieu": "PROY",
+      "inscrits": 3,
+      "heures": 15.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "25/06/2026",
+      "libelle": "BSPP",
+      "lieu": "MENI",
+      "inscrits": 4,
+      "heures": 20.0,
+      "pec": 3
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "26/06/2026",
+      "libelle": "BSPP canicule",
+      "lieu": "BITCH",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 7
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "27/06/2026",
+      "libelle": "bspp canicule",
+      "lieu": "Boursault",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 6
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "27/06/2026",
+      "libelle": "BSPP canicule",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 7
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "28/06/2026",
+      "libelle": "Garde BSPP canicule",
+      "lieu": "LAND",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 8
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "28/06/2026",
+      "libelle": "garde canicule",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 38.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 6,
+      "date": "28/06/2026",
+      "libelle": "garde canicule",
+      "lieu": "CRET",
+      "inscrits": 5,
+      "heures": 30.0,
       "pec": 0
     },
     {
@@ -3658,14 +3738,84 @@
       "lieu": "CHLY",
       "inscrits": 4,
       "heures": 24.0,
-      "pec": 0
+      "pec": 4
     },
     {
       "annee": 2026,
       "mois": 7,
       "date": "01/07/2026",
-      "libelle": "[PROV] BSPP",
+      "libelle": "BSPP",
       "lieu": "CHTO",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "06/07/2026",
+      "libelle": "BSPP",
+      "lieu": "MASS",
+      "inscrits": 4,
+      "heures": 24.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "07/07/2026",
+      "libelle": "BSPP",
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 23.0,
+      "pec": 5
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "08/07/2026",
+      "libelle": "BSPP",
+      "lieu": "MENIL",
+      "inscrits": 5,
+      "heures": 30.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "12/07/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "MASS",
+      "inscrits": 5,
+      "heures": 35.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "13/07/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "BLAN",
+      "inscrits": 4,
+      "heures": 48.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "13/07/2026",
+      "libelle": "[pROV] BSPP",
+      "lieu": "MTRL",
+      "inscrits": 1,
+      "heures": 8.0,
+      "pec": 0
+    },
+    {
+      "annee": 2026,
+      "mois": 7,
+      "date": "15/07/2026",
+      "libelle": "[PROV] BSPP",
+      "lieu": "CHLY",
       "inscrits": 4,
       "heures": 24.0,
       "pec": 0
@@ -3673,17 +3823,17 @@
     {
       "annee": 2026,
       "mois": 7,
-      "date": "07/07/2026",
+      "date": "21/07/2026",
       "libelle": "[PROV] BSPP",
-      "lieu": "MTMA",
-      "inscrits": 1,
-      "heures": 6.0,
+      "lieu": "CHLY",
+      "inscrits": 4,
+      "heures": 24.0,
       "pec": 0
     },
     {
       "annee": 2026,
-      "mois": 7,
-      "date": "25/07/2026",
+      "mois": 10,
+      "date": "03/10/2026",
       "libelle": "BSPP",
       "lieu": "CHLY",
       "inscrits": 3,
@@ -3692,8 +3842,8 @@
     }
   ],
   "lastModified": "08/07/2026",
-  "maxDate": "25/07/2026",
-  "totalRows": 369,
+  "maxDate": "03/10/2026",
+  "totalRows": 384,
   "years": [
     2024,
     2025,
