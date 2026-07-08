@@ -183,6 +183,7 @@ tr:nth-child(even) td{background:#F8FAFC}
     <div class="tab" id="tabCL" onclick="switchTab('cl')">Clients</div>
     <div class="tab" id="tabCAL" onclick="switchTab('cal')">📅 Calendrier</div>
     <div class="tab" id="tabAN" onclick="switchTab('an')">📈 Analyse</div>
+    <div class="tab" id="tabSTD" onclick="switchTab('std')">🎯 Conformité</div>
   </div>
 
   <div id="controlsActivity" class="controls">
@@ -202,6 +203,7 @@ tr:nth-child(even) td{background:#F8FAFC}
   <div id="contentCL" style="display:none"></div>
   <div id="contentCAL" style="display:none"></div>
   <div id="contentAN" style="display:none"></div>
+  <div id="contentSTD" style="display:none"></div>
   <!-- Modal pop-up universel -->
   <div id="modalOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000;overflow-y:auto">
     <div id="modalBox" style="background:#fff;border-radius:12px;max-width:640px;width:90%;margin:40px auto;border-top:4px solid var(--navy);box-shadow:0 8px 32px rgba(0,0,0,.2)">
@@ -257,7 +259,8 @@ function switchTab(tab){
   document.getElementById("contentCL").style.display=tab==="cl"?"block":"none";
   document.getElementById("contentCAL").style.display=tab==="cal"?"block":"none";
   document.getElementById("contentAN").style.display=tab==="an"?"block":"none";
-  document.getElementById("controlsActivity").style.display=(tab==="sr"||tab==="pl"||tab==="cl"||tab==="cal"||tab==="an")?"none":"flex";
+  document.getElementById("contentSTD").style.display=tab==="std"?"block":"none";
+  document.getElementById("controlsActivity").style.display=(tab==="sr"||tab==="pl"||tab==="cl"||tab==="cal"||tab==="an"||tab==="std")?"none":"flex";
   document.getElementById("tabDPS").className="tab"+(tab==="dps"?" dps-active":"");
   document.getElementById("tabGarde").className="tab"+(tab==="garde"?" garde-active":"");
   document.getElementById("tabSR").className="tab"+(tab==="sr"?" sr-active":"");
@@ -265,6 +268,7 @@ function switchTab(tab){
   document.getElementById("tabCL").className="tab"+(tab==="cl"?" cl-active":"");
   document.getElementById("tabCAL").className="tab"+(tab==="cal"?" cal-active":"");
   document.getElementById("tabAN").className="tab"+(tab==="an"?" an-active":"");
+  document.getElementById("tabSTD").className="tab"+(tab==="std"?" an-active":"");
   var sel=document.getElementById("selInd");
   sel.options[0].text=tab==="garde"?"Gardes":"DPS";
   sel.options[3].text=tab==="garde"?"Interventions":"Prises en charge";
@@ -273,6 +277,7 @@ function switchTab(tab){
   else if(tab==="cl") renderCL();
   else if(tab==="cal") renderCAL();
   else if(tab==="an") renderAN();
+  else if(tab==="std") renderSTD();
   else render();
 }
 
@@ -2860,6 +2865,279 @@ function renderHeatmapSection(containerId, type, yearFilter){
   html+='</tbody></table>';
   var el=document.getElementById(containerId);
   if(el) el.innerHTML=html;
+}
+
+
+// ── Suivi Toutes Directions ────────────────────────────────────────────────
+var STD_SEMESTRE = null; // auto-detect current
+var STD_SECTION  = '';
+var STD_SEARCH   = '';
+var STD_SORT     = 'nom';
+
+var CODES_CONFORMITE = ['dps','man','tec','mar'];
+
+function stdGetActivites(sr){
+  // Toutes activités conformité : DPS + MAN + TEC + MAR
+  var all = [];
+  (sr.activites_dps||[]).forEach(function(a){ all.push({date:a.date,lib:a.lib,code:'DPS'}); });
+  (sr.activites_man||[]).forEach(function(a){ all.push({date:a.date,lib:a.lib,code:'MAN'}); });
+  (sr.activites_tec||[]).forEach(function(a){ all.push({date:a.date,lib:a.lib,code:'TEC'}); });
+  (sr.activites_mar||[]).forEach(function(a){ all.push({date:a.date,lib:a.lib,code:'MAR'}); });
+  return all;
+}
+
+function stdQuarter(dateStr, sem){
+  var d = parseDate(dateStr);
+  if(!d) return -1;
+  var yr = parseInt(sem.split('-')[1]);
+  var half = sem.split('-')[0]; // S1 or S2
+  if(d.getFullYear() !== yr) return -1;
+  var m = d.getMonth()+1; // 1-12
+  if(half==='S1'){
+    if(m>=1&&m<=3) return 1;
+    if(m>=4&&m<=6) return 2;
+  } else {
+    if(m>=7&&m<=9) return 1;
+    if(m>=10&&m<=12) return 2;
+  }
+  return -1;
+}
+
+function stdCurrentSemestre(){
+  var now = new Date();
+  var yr  = now.getFullYear();
+  var m   = now.getMonth()+1;
+  return (m<=6?'S1':'S2')+'-'+yr;
+}
+
+function stdSemestreLabel(sem){
+  var half = sem.split('-')[0];
+  var yr   = sem.split('-')[1];
+  if(half==='S1') return 'S1 '+yr+' (Jan – Juin)';
+  return 'S2 '+yr+' (Juil – Déc)';
+}
+
+function stdSemestreList(){
+  var now = new Date();
+  var sems = [];
+  for(var i=0;i<4;i++){
+    var yr = now.getFullYear() - Math.floor(i/2);
+    var half = (now.getMonth()<6) ? (i%2===0?'S1':'S2') : (i%2===0?'S2':'S1');
+    // Build chronologically recent
+    var m = now.getMonth()+1;
+    if(m<=6){
+      var opts=[['S1',now.getFullYear()],['S2',now.getFullYear()-1],['S1',now.getFullYear()-1],['S2',now.getFullYear()-2]];
+    } else {
+      var opts=[['S2',now.getFullYear()],['S1',now.getFullYear()],['S2',now.getFullYear()-1],['S1',now.getFullYear()-1]];
+    }
+    return opts.map(function(o){return o[0]+'-'+o[1];});
+  }
+  return sems;
+}
+
+function stdStatut(t1,t2,sem){
+  if(t1>=3&&t2>=3) return 'conforme';
+  if(t1+t2>=6)     return 'alerte';
+  return 'exclusion';
+}
+
+function stdCodeColor(code){
+  var m = {'DPS':'var(--orange)','MAN':'#639922','TEC':'#1D9E75','MAR':'#002D74'};
+  return m[code]||'var(--muted)';
+}
+
+function renderSTD(){
+  var sem = STD_SEMESTRE || stdCurrentSemestre();
+  var sems = stdSemestreList();
+  if(!STD_SEMESTRE) STD_SEMESTRE = sems[0];
+  sem = STD_SEMESTRE;
+
+  var now = new Date();
+  var curYr = parseInt(sem.split('-')[1]);
+  var isS1  = sem.split('-')[0]==='S1';
+  // Determine which quarters are "past" vs "in progress"
+  var m = now.getMonth()+1;
+  var t1Past = isS1 ? m>3 : m>9;
+  var t2Past = isS1 ? m>6 : m>12;
+
+  var D = (SR_DATA||[]).filter(function(sr){
+    return (sr.section||'').includes('75-12');
+  });
+
+  var rows = D.map(function(sr){
+    var acts  = stdGetActivites(sr);
+    var t1=0, t2=0;
+    acts.forEach(function(a){
+      var q = stdQuarter(a.date, sem);
+      if(q===1) t1++;
+      else if(q===2) t2++;
+    });
+    return {
+      nom: sr.nom, prenom: sr.prenom,
+      section: sr.section||'—',
+      t1:t1, t2:t2, sem:t1+t2,
+      statut: stdStatut(t1,t2,t1+t2),
+      acts: acts.filter(function(a){return stdQuarter(a.date,sem)>0;})
+    };
+  }).filter(function(r){return r.sem>0||r.t1>0||r.t2>0;});
+
+  // Filter
+  var q = STD_SEARCH.toLowerCase();
+  var f = rows.filter(function(r){
+    if(STD_SECTION&&r.section!==STD_SECTION) return false;
+    if(q&&!(r.nom.toLowerCase().includes(q)||r.prenom.toLowerCase().includes(q))) return false;
+    return true;
+  });
+
+  // Sort
+  f.sort(function(a,b){
+    if(STD_SORT==='nom') return a.nom.localeCompare(b.nom);
+    if(STD_SORT==='statut'){
+      var ord={conforme:0,alerte:1,exclusion:2};
+      return ord[a.statut]-ord[b.statut]||a.nom.localeCompare(b.nom);
+    }
+    if(STD_SORT==='sem') return b.sem-a.sem;
+    return 0;
+  });
+
+  // KPIs
+  var nbConf=f.filter(function(r){return r.statut==='conforme';}).length;
+  var nbAl  =f.filter(function(r){return r.statut==='alerte';}).length;
+  var nbEx  =f.filter(function(r){return r.statut==='exclusion';}).length;
+
+  // Sections list
+  var sections=[...new Set((SR_DATA||[]).map(function(s){return s.section||'';}).filter(Boolean))].sort();
+
+  var html='<div style="padding:16px 22px;background:var(--bg)">';
+  html+='<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Suivi conformité activités — toutes directions</div>';
+
+  // Controls
+  html+='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px">';
+  html+='<select onchange="STD_SEMESTRE=this.value;renderSTD()" style="font-size:12px;padding:5px 8px;border-radius:6px;border:1px solid var(--border)">';
+  sems.forEach(function(s){html+='<option value="'+s+'"'+(s===sem?' selected':'')+'>'+stdSemestreLabel(s)+'</option>';});
+  html+='</select>';
+
+  html+='<input type="text" value="'+escHtml(STD_SEARCH)+'" placeholder="Rechercher..." oninput="STD_SEARCH=this.value;renderSTD()" style="font-size:12px;padding:5px 10px;border-radius:6px;border:1px solid var(--border);width:160px">';
+  html+='<select onchange="STD_SORT=this.value;renderSTD()" style="font-size:12px;padding:5px 8px;border-radius:6px;border:1px solid var(--border)">';
+  [{v:'nom',l:'Trier : Nom'},{v:'statut',l:'Trier : Statut'},{v:'sem',l:'Trier : Total ↓'}].forEach(function(o){html+='<option value="'+o.v+'"'+(STD_SORT===o.v?' selected':'')+'>'+o.l+'</option>';});
+  html+='</select>';
+  html+='<div style="margin-left:auto;display:flex;gap:10px;font-size:11px;color:var(--muted);align-items:center">';
+  [{l:'Conforme',c:'var(--green)'},{l:'Alerte',c:'var(--amber)'},{l:'Exclusion',c:'var(--red)'}].forEach(function(k){
+    html+='<span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:'+k.c+'"></span>'+k.l+'</span>';
+  });
+  html+='</div></div>';
+
+  // KPI row
+  html+='<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px">';
+  [{l:'SR suivis',v:f.length,c:'var(--navy)'},{l:'Conformes',v:nbConf,c:'var(--green)'},{l:'En alerte',v:nbAl,c:'var(--amber)'},{l:'Exclusion',v:nbEx,c:'var(--red)'}]
+  .forEach(function(k){
+    html+='<div style="background:var(--card);border-radius:8px;border:1px solid var(--border);padding:10px 13px;border-left:3px solid '+k.c+'">'+
+      '<div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:2px">'+k.l+'</div>'+
+      '<div style="font-size:22px;font-weight:700;color:'+k.c+'">'+k.v+'</div></div>';
+  });
+  html+='</div>';
+
+  // Règles
+  html+='<div style="font-size:11px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 12px;margin-bottom:12px">'+
+    '📋 Activités comptabilisées : <strong>DPS</strong> · <strong>MAN</strong> (Manœuvre) · <strong>TEC</strong> (Désinfection) · <strong>MAR</strong> (Maraude) &nbsp;—&nbsp; '+
+    'Règle : ≥ 3 par trimestre → <span style="color:var(--green);font-weight:600">Conforme</span> · '+
+    '≥ 6 sur le semestre → <span style="color:var(--amber);font-weight:600">Alerte (rattrapé)</span> · '+
+    '< 6 → <span style="color:var(--red);font-weight:600">Exclusion</span></div>';
+
+  // Table
+  var t1Lbl = isS1?'T1 (Jan–Mar)':'T1 (Juil–Sep)';
+  var t2Lbl = isS1?'T2 (Avr–Jun)':'T2 (Oct–Déc)';
+  html+='<div style="overflow-x:auto;border-radius:10px;border:1px solid var(--border)">';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:11px;background:var(--card)">';
+  html+='<thead><tr>';
+  [{l:'Nom — Prénom',a:'left'},{l:'Section',a:'center'},{l:t1Lbl+'<br><small style="opacity:.6">≥ 3</small>',a:'center'},
+   {l:t2Lbl+'<br><small style="opacity:.6">≥ 3</small>',a:'center'},{l:'Semestre<br><small style="opacity:.6">≥ 6</small>',a:'center'},
+   {l:'Statut',a:'center'},{l:'Activités du semestre',a:'left'}]
+  .forEach(function(h){
+    html+='<th style="background:var(--navy);color:#fff;padding:7px 8px;text-align:'+h.a+';font-size:10px;font-weight:700;text-transform:uppercase;position:sticky;top:0">'+h.l+'</th>';
+  });
+  html+='</tr></thead><tbody>';
+
+  f.forEach(function(r,i){
+    var bg=i%2===0?'#fff':'#F8FAFC';
+    var sc={conforme:'var(--green)',alerte:'var(--amber)',exclusion:'var(--red)'}[r.statut];
+    var sb={conforme:'#EAF3DE',alerte:'#FAEEDA',exclusion:'#FCEBEB'}[r.statut];
+    var sl={conforme:'✓ Conforme',alerte:'⚠ Alerte',exclusion:'✕ Exclusion'}[r.statut];
+    function qcell(v){
+      var c=v>=3?'var(--green)':v>0?'var(--amber)':'var(--muted)';
+      return '<td style="padding:6px 8px;text-align:center;font-weight:700;font-size:13px;color:'+c+'">'+v+'</td>';
+    }
+    // Act badges
+    var actHtml=r.acts.map(function(a){
+      var c=stdCodeColor(a.code);
+      return '<span title="'+escHtml(a.lib)+' ('+a.date+')" style="display:inline-block;font-size:9px;font-weight:700;border-radius:3px;padding:1px 5px;margin:1px;border:1px solid '+c+';color:'+c+'">'+a.code+'</span>';
+    }).join('');
+    html+='<tr style="background:'+bg+';border-bottom:1px solid var(--border);cursor:pointer" onclick="stdShowDetail(\'' + escHtml(r.nom) + '\',\'' + escHtml(r.prenom) + '\')">'; 
+    html+='<td style="padding:6px 8px;font-weight:600;color:var(--navy)">'+escHtml(r.nom)+' '+escHtml(r.prenom)+'</td>';
+    html+='<td style="padding:6px 8px;text-align:center;font-size:10px;color:var(--muted)">'+escHtml(r.section)+'</td>';
+    html+=qcell(r.t1)+qcell(r.t2);
+    html+='<td style="padding:6px 8px;text-align:center;font-weight:700;font-size:14px;color:'+(r.sem>=6?'var(--green)':'var(--red)')+'">'+r.sem+'</td>';
+    html+='<td style="padding:6px 8px;text-align:center"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;background:'+sb+';color:'+sc+'">'+sl+'</span></td>';
+    html+='<td style="padding:6px 8px;max-width:220px">'+actHtml+'</td>';
+    html+='</tr>';
+  });
+
+  if(!f.length) html+='<tr><td colspan="7" style="padding:24px;text-align:center;color:var(--muted)">Aucun secouriste trouvé</td></tr>';
+  html+='</tbody></table></div>';
+  html+='<div style="text-align:center;padding:12px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);margin-top:14px">Protection Civile Paris Seine — Antenne de Paris 12</div>';
+  html+='</div>';
+  document.getElementById('contentSTD').innerHTML=html;
+}
+
+function stdShowDetail(nom, prenom){
+  var sem = STD_SEMESTRE || stdCurrentSemestre();
+  var sr = (SR_DATA||[]).find(function(s){return s.nom===nom&&s.prenom===prenom;});
+  if(!sr) return;
+  var acts = stdGetActivites(sr).filter(function(a){return stdQuarter(a.date,sem)>0;});
+  acts.sort(function(a,b){return b.date.localeCompare(a.date);});
+
+  var isS1 = sem.split('-')[0]==='S1';
+  var t1Lbl = isS1?'T1 Jan–Mar':'T1 Juil–Sep';
+  var t2Lbl = isS1?'T2 Avr–Jun':'T2 Oct–Déc';
+
+  var t1=[],t2=[];
+  acts.forEach(function(a){ var q=stdQuarter(a.date,sem); if(q===1)t1.push(a); else if(q===2)t2.push(a); });
+
+  function actTable(list,label){
+    if(!list.length) return '<div style="font-size:11px;color:var(--muted);padding:8px;background:var(--bg);border-radius:6px;text-align:center">Aucune activité sur ce trimestre</div>';
+    var h='<table style="width:100%;border-collapse:collapse;font-size:11px"><thead><tr>';
+    ['Date','Activité','Code'].forEach(function(c){h+='<th style="background:var(--navy);color:#fff;padding:5px 8px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase">'+c+'</th>';});
+    h+='</tr></thead><tbody>';
+    list.forEach(function(a,i){
+      var c=stdCodeColor(a.code);
+      h+='<tr style="background:'+(i%2===0?'#fff':'#F8FAFC')+';border-bottom:1px solid var(--border)">'+
+        '<td style="padding:5px 8px;color:var(--muted);white-space:nowrap">'+a.date+'</td>'+
+        '<td style="padding:5px 8px;font-weight:500">'+escHtml(a.lib)+'</td>'+
+        '<td style="padding:5px 8px"><span style="font-size:10px;font-weight:700;padding:1px 6px;border-radius:3px;border:1px solid '+c+';color:'+c+'">'+a.code+'</span></td>'+
+      '</tr>';
+    });
+    h+='<tr style="background:var(--bg);border-top:2px solid var(--navy)"><td colspan="2" style="padding:5px 8px;font-size:10px;color:var(--muted)">Total</td><td style="padding:5px 8px;font-weight:700;color:var(--navy)">'+list.length+' activité'+(list.length>1?'s':'')+'</td></tr>';
+    return h+'</tbody></table>';
+  }
+
+  var stat=stdStatut(t1.length,t2.length,t1.length+t2.length);
+  var sc={conforme:'var(--green)',alerte:'var(--amber)',exclusion:'var(--red)'}[stat];
+  var sl={conforme:'✓ Conforme',alerte:'⚠ Alerte (semestre rattrapé)',exclusion:'✕ Exclusion'}[stat];
+
+  var html='<div style="display:flex;gap:10px;margin-bottom:14px">';
+  [{l:t1Lbl,v:t1.length},{l:t2Lbl,v:t2.length},{l:'Semestre',v:t1.length+t2.length}].forEach(function(k){
+    var c=k.l==='Semestre'?(k.v>=6?'var(--green)':'var(--red)'):(k.v>=3?'var(--green)':'var(--red)');
+    html+='<div style="flex:1;background:var(--bg);border-radius:7px;padding:10px;border-left:3px solid '+c+';text-align:center">'+
+      '<div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:2px">'+k.l+'</div>'+
+      '<div style="font-size:22px;font-weight:700;color:'+c+'">'+k.v+'</div></div>';
+  });
+  html+='<div style="flex:1;background:var(--bg);border-radius:7px;padding:10px;text-align:center;display:flex;align-items:center;justify-content:center">'+
+    '<span style="font-size:12px;font-weight:700;color:'+sc+'">'+sl+'</span></div>';
+  html+='</div>';
+  html+='<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:6px">'+t1Lbl+'</div>'+actTable(t1,t1Lbl);
+  html+='<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin:12px 0 6px">'+t2Lbl+'</div>'+actTable(t2,t2Lbl);
+
+  openModal(nom+' '+prenom+' — '+stdSemestreLabel(sem), html);
 }
 
 loadJSON();
