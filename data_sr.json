@@ -702,9 +702,9 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "17/06/2026",
+      "last_dps": "04/07/2026",
       "last_gar": "20/06/2026",
-      "last_any": "20/06/2026",
+      "last_any": "04/07/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -789,6 +789,11 @@
           "heures": 5.2
         },
         {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
+        },
+        {
           "date": "28/06/2025",
           "lib": "On s'la coule Douze",
           "heures": 12.5
@@ -829,6 +834,11 @@
           "heures": 5.5
         },
         {
+          "date": "27/06/2026",
+          "lib": "[PROV] Solidays J2",
+          "heures": 11.0
+        },
+        {
           "date": "27/04/2025",
           "lib": "Renfort DPS-ME - Rugby Top 14 Racing 92 vs Stade Francais (J",
           "heures": 5.5
@@ -847,6 +857,16 @@
           "date": "26/12/2025",
           "lib": "Festival du merveilleux J1",
           "heures": 8.2
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 1/2",
+          "heures": 5.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "26/05/2024",
@@ -1267,6 +1287,11 @@
           "date": "04/08/2024",
           "lib": "La Concorde",
           "heures": 8.0
+        },
+        {
+          "date": "04/07/2026",
+          "lib": "Company Cup 2026",
+          "heures": 9.0
         },
         {
           "date": "04/07/2025",
@@ -2567,10 +2592,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "30/05/2026",
+      "last_dps": "27/06/2026",
       "last_gar": "",
-      "last_any": "30/05/2026",
-      "inscrit_dps": true,
+      "last_any": "27/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -2587,6 +2612,11 @@
           "date": "29/03/2026",
           "lib": "Renfort DPS-ME - Harlem Globetrotters Basket",
           "heures": 5.0
+        },
+        {
+          "date": "27/06/2026",
+          "lib": "[PROV] Solidays J2",
+          "heures": 11.0
         },
         {
           "date": "24/05/2026",
@@ -3543,10 +3573,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "13/06/2026",
+      "last_dps": "26/06/2026",
       "last_gar": "05/03/2026",
-      "last_any": "13/06/2026",
-      "inscrit_dps": true,
+      "last_any": "26/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -3588,6 +3618,11 @@
           "date": "27/07/2024",
           "lib": "Renfort Gare RATP Châtelet",
           "heures": 9.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "24/05/2026",
@@ -4679,16 +4714,21 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "18/06/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "16/05/2026",
-      "last_any": "18/06/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "28/07/2024",
           "lib": "Renfort Arena Paris Sud - Hall 1",
           "heures": 33.5
+        },
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
         },
         {
           "date": "28/05/2026",
@@ -5744,10 +5784,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "02/06/2026",
+      "last_dps": "26/06/2026",
       "last_gar": "14/05/2026",
-      "last_any": "02/06/2026",
-      "inscrit_dps": true,
+      "last_any": "26/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -5764,6 +5804,11 @@
           "date": "27/07/2025",
           "lib": "Roller et Coquillages",
           "heures": 3.5
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 1/2",
+          "heures": 5.0
         },
         {
           "date": "25/05/2025",
@@ -5926,12 +5971,17 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "28/05/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "04/06/2026",
-      "last_any": "04/06/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
+        },
         {
           "date": "28/05/2026",
           "lib": "Renfort DPS-GE  - Concert DAMSO (J1)",
@@ -6945,10 +6995,10 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "19/03/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "",
-      "last_any": "19/03/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -6957,9 +7007,24 @@
           "heures": 12.0
         },
         {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays - J3 Médical",
+          "heures": 12.0
+        },
+        {
+          "date": "27/06/2026",
+          "lib": "[PROV] Solidays - J2 Médical",
+          "heures": 17.0
+        },
+        {
           "date": "26/08/2024",
           "lib": "Renfort Répétition CER 3",
           "heures": 3.2
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays - J1 Médical 1/2",
+          "heures": 17.0
         },
         {
           "date": "19/03/2026",
@@ -8075,12 +8140,22 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "17/06/2026",
+      "last_dps": "26/06/2026",
       "last_gar": "",
-      "last_any": "17/06/2026",
-      "inscrit_dps": true,
+      "last_any": "26/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 1/2",
+          "heures": 5.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
+        },
         {
           "date": "17/06/2026",
           "lib": "Jeux des collèges",
@@ -8116,10 +8191,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "30/05/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "29/05/2026",
-      "last_any": "30/05/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -8156,6 +8231,11 @@
           "date": "29/03/2025",
           "lib": "Renfort Harlem Globe Trotters",
           "heures": 4.0
+        },
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
         },
         {
           "date": "28/06/2025",
@@ -8490,16 +8570,26 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "13/06/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "29/05/2026",
-      "last_any": "13/06/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
+        },
         {
           "date": "28/04/2026",
           "lib": "Course d'entreprise",
           "heures": 3.0
+        },
+        {
+          "date": "27/06/2026",
+          "lib": "[PROV] Solidays J2",
+          "heures": 11.0
         },
         {
           "date": "26/05/2026",
@@ -10331,10 +10421,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "24/05/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "09/06/2026",
-      "last_any": "09/06/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -10346,6 +10436,11 @@
           "date": "28/11/2025",
           "lib": "Renfort DPS-ME - Concert Sabaton",
           "heures": 6.0
+        },
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
         },
         {
           "date": "28/06/2025",
@@ -10381,6 +10476,11 @@
           "date": "26/10/2025",
           "lib": "Renfort HYROX 2025",
           "heures": 16.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "25/06/2025",
@@ -11314,10 +11414,10 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "14/06/2026",
+      "last_dps": "04/07/2026",
       "last_gar": "20/06/2026",
-      "last_any": "20/06/2026",
-      "inscrit_dps": true,
+      "last_any": "04/07/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -11386,6 +11486,11 @@
           "heures": 6.5
         },
         {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
+        },
+        {
           "date": "28/06/2025",
           "lib": "On s'la coule Douze",
           "heures": 12.5
@@ -11431,6 +11536,11 @@
           "heures": 3.5
         },
         {
+          "date": "27/06/2026",
+          "lib": "[PROV] Solidays J2",
+          "heures": 11.0
+        },
+        {
           "date": "27/04/2025",
           "lib": "Renfort DPS-ME - Rugby Top 14 Racing 92 vs Stade Francais (J",
           "heures": 5.5
@@ -11449,6 +11559,11 @@
           "date": "27/01/2026",
           "lib": "Paris Basket Ball vs Real Madrid",
           "heures": 5.2
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "26/05/2025",
@@ -11929,6 +12044,11 @@
           "date": "04/08/2024",
           "lib": "Renfort Golf National",
           "heures": 12.0
+        },
+        {
+          "date": "04/07/2026",
+          "lib": "Company Cup 2026",
+          "heures": 9.0
         },
         {
           "date": "04/05/2024",
@@ -13307,10 +13427,10 @@
         "exp": ""
       },
       "CDD": null,
-      "last_dps": "17/06/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "09/06/2026",
-      "last_any": "17/06/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -13342,6 +13462,11 @@
           "date": "28/11/2025",
           "lib": "Salon du Livre - J3",
           "heures": 12.2
+        },
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
         },
         {
           "date": "28/06/2025",
@@ -13377,6 +13502,16 @@
           "date": "27/07/2025",
           "lib": "ARGOS FORMATION CP",
           "heures": 10.0
+        },
+        {
+          "date": "27/06/2026",
+          "lib": "[PROV] Solidays J2",
+          "heures": 11.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "24/05/2024",
@@ -13839,9 +13974,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "30/05/2026",
+      "last_dps": "04/07/2026",
       "last_gar": "23/05/2026",
-      "last_any": "30/05/2026",
+      "last_any": "04/07/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -13879,6 +14014,11 @@
           "date": "28/10/2025",
           "lib": "Renfort DPS-ME  - Rolex Paris Master - Tournoi",
           "heures": 6.2
+        },
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
         },
         {
           "date": "28/06/2025",
@@ -14054,6 +14194,11 @@
           "date": "04/10/2025",
           "lib": "Brunch Electronik Paris - J1",
           "heures": 12.0
+        },
+        {
+          "date": "04/07/2026",
+          "lib": "Company Cup 2026",
+          "heures": 9.0
         },
         {
           "date": "04/05/2026",
@@ -14330,16 +14475,21 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "25/05/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "19/05/2026",
-      "last_any": "25/05/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "31/12/2025",
           "lib": "Festival du merveilleux J6",
           "heures": 8.2
+        },
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
         },
         {
           "date": "27/02/2026",
@@ -16314,10 +16464,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "25/02/2026",
+      "last_dps": "26/06/2026",
       "last_gar": "14/06/2026",
-      "last_any": "14/06/2026",
-      "inscrit_dps": true,
+      "last_any": "26/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -16344,6 +16494,11 @@
           "date": "26/11/2025",
           "lib": "Renfort PSG  Tottenham LDC",
           "heures": 5.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "25/02/2026",
@@ -16784,10 +16939,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "20/05/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "11/05/2026",
-      "last_any": "20/05/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -16804,6 +16959,11 @@
           "date": "28/07/2024",
           "lib": "Renfort Arena Paris Sud - Hall 1",
           "heures": 33.2
+        },
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
         },
         {
           "date": "27/06/2024",
@@ -17636,10 +17796,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "27/05/2026",
+      "last_dps": "27/06/2026",
       "last_gar": "28/02/2026",
-      "last_any": "27/05/2026",
-      "inscrit_dps": true,
+      "last_any": "27/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -17668,9 +17828,24 @@
           "heures": 5.5
         },
         {
+          "date": "27/06/2026",
+          "lib": "[PROV] Solidays J2",
+          "heures": 11.0
+        },
+        {
           "date": "27/05/2026",
           "lib": "Renfort DPS-ME - Handball PSG vs Nantes",
           "heures": 5.5
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 1/2",
+          "heures": 5.0
         },
         {
           "date": "23/12/2025",
@@ -17970,9 +18145,9 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "06/06/2026",
+      "last_dps": "04/07/2026",
       "last_gar": "29/05/2026",
-      "last_any": "06/06/2026",
+      "last_any": "04/07/2026",
       "inscrit_dps": true,
       "inscrit_gar": false,
       "activites_dps": [
@@ -17995,6 +18170,11 @@
           "date": "28/04/2025",
           "lib": "Renfort DPS-ME - Tyler the creator",
           "heures": 6.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "25/05/2025",
@@ -18090,6 +18270,11 @@
           "date": "04/09/2024",
           "lib": "Renfort RGA - Stade Roland-Garros",
           "heures": 11.0
+        },
+        {
+          "date": "04/07/2026",
+          "lib": "Company Cup 2026",
+          "heures": 9.0
         }
       ],
       "activites_gar": [
@@ -18157,10 +18342,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "13/06/2026",
+      "last_dps": "26/06/2026",
       "last_gar": "04/03/2026",
-      "last_any": "13/06/2026",
-      "inscrit_dps": true,
+      "last_any": "26/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -18182,6 +18367,11 @@
           "date": "27/11/2025",
           "lib": "Renfort DPS-ME - Concert Jamiroquai",
           "heures": 6.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "23/12/2025",
@@ -19230,16 +19420,21 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "13/03/2026",
+      "last_dps": "26/06/2026",
       "last_gar": "29/05/2026",
-      "last_any": "29/05/2026",
-      "inscrit_dps": true,
+      "last_any": "26/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
           "date": "28/06/2025",
           "lib": "Renfort Solidays J2 - PSA Bagatelle",
           "heures": 16.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "23/06/2024",
@@ -20496,10 +20691,10 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "13/06/2026",
+      "last_dps": "04/07/2026",
       "last_gar": "16/05/2026",
-      "last_any": "13/06/2026",
-      "inscrit_dps": true,
+      "last_any": "04/07/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -20681,6 +20876,11 @@
           "date": "05/03/2026",
           "lib": "Renfort Le Seigneur des anneaux J1",
           "heures": 6.0
+        },
+        {
+          "date": "04/07/2026",
+          "lib": "Company Cup 2026",
+          "heures": 9.0
         },
         {
           "date": "04/04/2026",
@@ -23494,10 +23694,10 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "22/12/2025",
+      "last_dps": "04/07/2026",
       "last_gar": "20/06/2026",
-      "last_any": "20/06/2026",
-      "inscrit_dps": true,
+      "last_any": "04/07/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -23569,6 +23769,11 @@
           "date": "05/07/2025",
           "lib": "Renfort Compagny Cup 2025 Annecy le Vieux",
           "heures": 10.0
+        },
+        {
+          "date": "04/07/2026",
+          "lib": "Company Cup 2026",
+          "heures": 9.0
         },
         {
           "date": "03/05/2025",
@@ -24689,12 +24894,17 @@
       "CP": null,
       "CEPS": null,
       "CDD": null,
-      "last_dps": "21/05/2026",
+      "last_dps": "28/06/2026",
       "last_gar": "11/05/2026",
-      "last_any": "21/05/2026",
-      "inscrit_dps": true,
+      "last_any": "28/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
+        {
+          "date": "28/06/2026",
+          "lib": "[PROV] Solidays J3",
+          "heures": 11.0
+        },
         {
           "date": "24/04/2026",
           "lib": "Renfort DPS-ME - Finales CDF de Basket",
@@ -26469,10 +26679,10 @@
       },
       "CEPS": null,
       "CDD": null,
-      "last_dps": "26/05/2026",
+      "last_dps": "26/06/2026",
       "last_gar": "01/03/2026",
-      "last_any": "26/05/2026",
-      "inscrit_dps": true,
+      "last_any": "26/06/2026",
+      "inscrit_dps": false,
       "inscrit_gar": false,
       "activites_dps": [
         {
@@ -26519,6 +26729,16 @@
           "date": "27/01/2026",
           "lib": "Paris Basket Ball vs Real Madrid",
           "heures": 5.2
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 1/2",
+          "heures": 5.0
+        },
+        {
+          "date": "26/06/2026",
+          "lib": "[PROV] Solidays J1 - 2/2",
+          "heures": 7.0
         },
         {
           "date": "26/05/2026",
@@ -27077,7 +27297,7 @@
       "activites_gar": []
     }
   ],
-  "lastModified": "23/06/2026",
+  "lastModified": "08/07/2026",
   "minDate": "29/12/2023",
   "maxDate": "15/07/2026",
   "totalRows": 142,
@@ -27216,8 +27436,8 @@
       8,
       20,
       2,
-      0,
-      0,
+      23,
+      6,
       0,
       0,
       0,
