@@ -2961,7 +2961,9 @@ function renderSTD(){
   var t2Past = isS1 ? m>6 : m>12;
 
   var D = (SR_DATA||[]).filter(function(sr){
-    return (sr.section||'').includes('75-12');
+    // Si section pas encore dans le JSON, on affiche tout
+    if(!sr.section) return true;
+    return sr.section.includes('75-12');
   });
 
   var rows = D.map(function(sr){
