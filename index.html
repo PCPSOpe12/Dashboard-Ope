@@ -478,18 +478,43 @@ function parseExcel(buffer,type){
 
   // ── Participations SR ──
   if(type==="participations"){
-    var rows=[];
-    raw.forEach(function(row){
-      function g(k){
-        var keys=Object.keys(row);
-        var found=keys.find(function(k2){return k2.toLowerCase()===k.toLowerCase();});
-        return found?String(row[found]||'').trim():'';
+    // Use raw array mode to avoid column name encoding issues
+    var rawArr=XLSX.utils.sheet_to_json(ws,{header:1,defval:null});
+    if(!rawArr.length) return{rows:[],maxDate:"—",lastModified:now.toLocaleDateString("fr-FR"),totalRows:0};
+    // Find header row (first row with 'Personnel' in it)
+    var hdrIdx=0;
+    for(var hi=0;hi<Math.min(5,rawArr.length);hi++){
+      if(rawArr[hi]&&rawArr[hi].some(function(c){return c&&String(c).toLowerCase().includes('personnel');})){
+        hdrIdx=hi; break;
       }
-      var pers=g('Personnel'); var code=g('Code');
-      var dv=row['Début']||row['Debut']||row['début']||g('Début');
-      if(!pers||!dv)return;
-      rows.push({Personnel:pers,Code:code,Début:dv,Présence:g('Présence')||g('Presence'),Evenement:g('Evenement')||g('Évènement')||g('Libellé')});
-    });
+    }
+    var hdrs=rawArr[hdrIdx].map(function(h){return h?String(h).trim().toLowerCase():'';});
+    function ci(names){
+      for(var ni=0;ni<names.length;ni++){
+        var n=names[ni].toLowerCase();
+        for(var i=0;i<hdrs.length;i++){
+          if(hdrs[i]===n||hdrs[i].includes(n)||n.includes(hdrs[i])) return i;
+        }
+      }
+      return -1;
+    }
+    var iPerso=ci(['personnel']);
+    var iCode =ci(['code']);
+    var iDebut=ci(['début','debut','début','start','début']);
+    var iHeure=ci(['présence','presence','présence','durée','duree','heures']);
+    var iEvent=ci(['evenement','évènement','libellé','libelle','event']);
+    var rows=[];
+    for(var ri=hdrIdx+1;ri<rawArr.length;ri++){
+      var row=rawArr[ri];
+      if(!row||!row.length) continue;
+      var pers=iPerso>=0&&row[iPerso]?String(row[iPerso]).trim():'';
+      var code=iCode>=0&&row[iCode]?String(row[iCode]).trim():'';
+      var dv  =iDebut>=0&&row[iDebut]?String(row[iDebut]).trim():'';
+      var h   =iHeure>=0&&row[iHeure]?row[iHeure]:'';
+      var ev  =iEvent>=0&&row[iEvent]?String(row[iEvent]).trim():'';
+      if(!pers||!dv) continue;
+      rows.push({Personnel:pers,Code:code,Début:dv,Présence:h,Evenement:ev});
+    }
     return{rows:rows,maxDate:"—",lastModified:now.toLocaleDateString("fr-FR"),totalRows:rows.length};
   }
 
