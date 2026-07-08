@@ -148,10 +148,13 @@ def convert_sr(comp_path, part_path, json_path):
                     "heures":0,"inscrit_dps":False,"inscrit_gar":False,
                     "activites_dps":[], "activites_gar":[]
                 }
-            code = safe_str(col(row, headers, "Code"))
+            code    = safe_str(col(row, headers, "Code"))
+            section = safe_str(col(row, headers, "Section"))
             d    = parse_date(col(row, headers, "Début", "Debut"))
             h    = safe_float(col(row, headers, "Présence", "Presence"))
             lib  = safe_str(col(row, headers, "Evenement", "Évènement", "Libellé", "Libelle"))
+            if section and not stats[key]["section"]:
+                stats[key]["section"] = section
             if d:
                 if max_date is None or d > max_date: max_date = d
                 if min_date is None or d < min_date: min_date = d
@@ -181,6 +184,13 @@ def convert_sr(comp_path, part_path, json_path):
                     })
                 elif d and d >= TODAY:
                     stats[key]["inscrit_gar"] = True
+            elif code in ("MAN", "TEC", "MAR"):
+                if d and d < TODAY:
+                    key_act = "activites_" + code.lower()
+                    stats[key][key_act].append({
+                        "date": d.strftime("%d/%m/%Y"), "lib": lib, "heures": round(h,1),
+                        "ts": d.timestamp()
+                    })
         print(f"  Participations SR : {len(stats)} personnes")
 
     # Fusion — uniquement SR avec participations ET heures > 0
@@ -203,6 +213,7 @@ def convert_sr(comp_path, part_path, json_path):
             [{k2: v2 for k2, v2 in a.items() if k2 != "ts"} for a in s["activites_gar"]],
             key=lambda x: x["date"], reverse=True
         )
+        # (man/tec/mar sorted in sort_acts helper below)
 
         # Dernière activité toutes catégories pour le feu (calculé côté JS)
         last_any = None
@@ -213,9 +224,16 @@ def convert_sr(comp_path, part_path, json_path):
         elif s["last_gar"]:
             last_any = s["last_gar"]
 
+        def sort_acts(acts):
+            return sorted(
+                [{k2: v2 for k2, v2 in a.items() if k2 != "ts"} for a in acts],
+                key=lambda x: x["date"], reverse=True
+            )
+
         secouristes.append({
             "nom":    c.get("nom")    or (np[0] if np else key),
             "prenom": c.get("prenom") or (np[1] if len(np)>1 else ""),
+            "section": s["section"],
             "PSE1": comp_val("PSE1"), "PSE2": comp_val("PSE2"),
             "CE":   comp_val("CE"),   "CP":   comp_val("CP"),
             "CEPS": comp_val("CEPS"), "CDD":  comp_val("CDD"),
@@ -226,6 +244,9 @@ def convert_sr(comp_path, part_path, json_path):
             "inscrit_gar": s["inscrit_gar"],
             "activites_dps": adps,
             "activites_gar": agar,
+            "activites_man": sort_acts(s["activites_man"]),
+            "activites_tec": sort_acts(s["activites_tec"]),
+            "activites_mar": sort_acts(s["activites_mar"]),
         })
 
     # Compute weekly SR uniques per year for the chart
